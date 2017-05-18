@@ -13,7 +13,7 @@ header {
 }
 .navbar.navbar-default .paddingLogoNav {
     height: auto;
-    padding: 10px 20px 10px 20px;
+    padding: 5% 5% 5% 5%;
     margin-left: 0;
 }
 .navbar .navbar-nav {
@@ -43,7 +43,7 @@ footer {
 
 .mentionFooter {
     color: #777;
-    margin-top: 30px;
+    margin-top: 4%;
 }
 
 /*_____Page Services_____*/
