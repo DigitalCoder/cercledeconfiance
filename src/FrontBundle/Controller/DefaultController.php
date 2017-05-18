@@ -22,4 +22,12 @@ class DefaultController extends Controller
     {
         return $this->render('FrontBundle:Default:services.html.twig');
     }
+
+    /**
+     * @Route("/objets")
+     */
+    public function objetsAction()
+    {
+        return $this->render('FrontBundle:Default:objets.html.twig');
+    }
 }
