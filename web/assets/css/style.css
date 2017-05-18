@@ -1,3 +1,33 @@
-.qsn{
-    margin-bottom: 10px;
+/*_____GENERAL_____*/
+
+
+/*_____NAVBAR_____*/
+header {
+    font-size: 25px;
+}
+.navbar.navbar-default .paddingLogoNav {
+    height: auto;
+    padding: 10px 20px 10px 20px;
+    margin-left: 0;
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+/*_____FOOTER_____*/
+footer {
+    font-size: 25px;
+}
+.mentionFooter {
+    margin-top: 30px;
+}
+/*_____QuiSommesNous_____*/
+.qsn {
+    margin: 25px 0;
 }

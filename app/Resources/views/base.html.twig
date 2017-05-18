@@ -19,8 +19,8 @@
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     {% endblock %}
     <!--[if lt IE 9]>
-    <script src="{{ asset('assets/js/html5shiv.js') }}"></script>
-    <script src="{{ asset('assets/js/respond.min.js') }}"></script>
+    {#<!--<script src="{{ asset('assets/js/html5shiv.js') }}"></script>-->#}
+    {#<!--<script src="{{ asset('assets/js/respond.min.js') }}"></script>-->#}
     <![endif]-->
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
 
@@ -38,16 +38,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img width="150px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}" alt="logo"></a>
+                <a class="paddingLogoNav navbar-brand" href="/"><img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}" alt="logo_cercle_confiance"></a>
             </div>
 
-            <div class="collapse navbar-collapse navbar-right">
+            <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     {% block navbar %}
-                    <li class="scroll active"><a href="#home">Accueil</a></li>
+                    <li class="scroll active"><a href="/">Accueil</a></li>
                     <li class="scroll"><a href="#">Qui sommes nous ?</a></li>
                     <li class="scroll"><a href="#"> Nos services</a></li>
                     <li class="scroll"><a href="#">Nos objets connectés</a></li>
+                    <li class="scroll"><a href="#" class="btn btn-default">Se connecter</a></li>
+                    <li class="scroll"><a href="#" class="btn btn-default">S'inscrire</a></li>
                     {% endblock %}
                 </ul>
             </div>
@@ -57,7 +59,7 @@
 {% block content %}{% endblock %}
 {#<section id="main-slider">#}
     {#<div class="owl-carousel">#}
-        {#<div class="item" style="background-image: url(images/slider/bg1.jpg);">#}
+        {#<div class="item" style="background-image: url(/assets/images/slider/bg1.jpg);">#}
             {#<div class="slider-inner">#}
                 {#<div class="container">#}
                     {#<div class="row">#}
@@ -72,7 +74,7 @@
                 {#</div>#}
             {#</div>#}
         {#</div><!--/.item-->#}
-        {#<div class="item" style="background-image: url(images/slider/bg2.jpg);">#}
+        {#<div class="item" style="background-image: url(/assets/images/slider/bg2.jpg);">#}
             {#<div class="slider-inner">#}
                 {#<div class="container">#}
                     {#<div class="row">#}
@@ -1007,23 +1009,18 @@
 
 <footer id="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                &copy; 2017 Cercle Confiance. Designed by <a target="_blank" href="http://wildcodeschool.com" title="wild code school">Wild Code School</a>
+        <div class="row text-center">
+            <div class="col-xs-4">
+                <a href="#">Nos partenaires</a>
             </div>
-            <div class="col-sm-6">
-                <ul class="social-icons">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    <li><a href="#"><i class="fa fa-flickr"></i></a></li>
-                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                </ul>
+            <div class="col-xs-4">
+                <a href="#">Mentions légales</a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#">Contactez-nous</a>
+            </div>
+            <div class="col-xs-12 mentionFooter">
+                &copy; 2017 Cercle Confiance. Designed by <a target="_blank" href="http://wildcodeschool.com" title="wild code school">Wild Code School</a>
             </div>
         </div>
     </div>
