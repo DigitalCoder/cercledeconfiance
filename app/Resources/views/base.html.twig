@@ -41,17 +41,17 @@
                 <a class="paddingLogoNav navbar-brand" href="/"><img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}" alt="logo_cercle_confiance"></a>
             </div>
 
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse text-right">
                 <ul class="nav navbar-nav">
                     {% block navbar %}
                     <li class="scroll active"><a href="/">Accueil</a></li>
-                    <li class="scroll"><a href="#">Qui sommes nous ?</a></li>
-                    <li class="scroll"><a href="#"> Nos services</a></li>
-                    <li class="scroll"><a href="#">Nos objets connectés</a></li>
-                    <li class="scroll"><a href="#" class="btn btn-default">Se connecter</a></li>
-                    <li class="scroll"><a href="#" class="btn btn-default">S'inscrire</a></li>
+                    <li class="scroll"><a href="/presentation">Qui sommes nous ?</a></li>
+                    <li class="scroll"><a href="/services"> Nos services</a></li>
+                    <li class="scroll"><a href="/objets">Nos objets connectés</a></li>
                     {% endblock %}
                 </ul>
+                <a href="#" class="btn btn-default">Se connecter</a>
+                <a href="#" class="btn btn-default">S'inscrire</a>
             </div>
         </div><!--/.container-->
     </nav><!--/nav-->
