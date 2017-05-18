@@ -14,4 +14,12 @@ class DefaultController extends Controller
     {
         return $this->render('FrontBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/services")
+     */
+    public function serviceAction()
+    {
+        return $this->render('FrontBundle:Default:services.html.twig');
+    }
 }
