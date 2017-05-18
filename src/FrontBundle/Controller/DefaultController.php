@@ -24,6 +24,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/presentation")
+     */
+    public function quiSommesNousAction()
+    {
+        return $this->render('FrontBundle:Default:quisommesnous.html.twig');
+    }
+
+    /**
      * @Route("/objets")
      */
     public function objetsAction()
