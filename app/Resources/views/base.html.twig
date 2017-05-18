@@ -29,7 +29,7 @@
 
 <header id="header">
     <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -44,21 +44,16 @@
                 <ul class="nav navbar-nav">
                     {% block navbar %}
                     <li class="scroll active"><a href="#home">Accueil</a></li>
-                    <li class="scroll"><a href="#features">Features</a></li>
-                    <li class="scroll"><a href="#services">Services</a></li>
-                    <li class="scroll"><a href="#portfolio">Portfolio</a></li>
-                    <li class="scroll"><a href="#about">About</a></li>
-                    <li class="scroll"><a href="#meet-team">Team</a></li>
-                    <li class="scroll"><a href="#pricing">Pricing</a></li>
-                    <li class="scroll"><a href="#blog">Blog</a></li>
-                    <li class="scroll"><a href="#get-in-touch">Contact</a></li>
+                    <li class="scroll"><a href="#">Qui sommes nous ?</a></li>
+                    <li class="scroll"><a href="#"> Nos services</a></li>
+                    <li class="scroll"><a href="#">Nos objets connectés</a></li>
                     {% endblock %}
                 </ul>
             </div>
         </div><!--/.container-->
     </nav><!--/nav-->
 </header><!--/header-->
-
+{% block content %}{% endblock %}
 {#<section id="main-slider">#}
     {#<div class="owl-carousel">#}
         {#<div class="item" style="background-image: url(images/slider/bg1.jpg);">#}
@@ -1013,7 +1008,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                &copy; 2014 Your Company. Designed by <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>
+                &copy; 2017 Cercle Confiance. Designed by <a target="_blank" href="http://wildcodeschool.com" title="wild code school">Wild Code School</a>
             </div>
             <div class="col-sm-6">
                 <ul class="social-icons">
