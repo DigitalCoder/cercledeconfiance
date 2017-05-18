@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block navbar %}
+    <li class="scroll active"><a href="#">Accueil</a></li>
+    <li class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
+    <li class="scroll"><a href="#"> Nos services</a></li>
+    <li class="scroll"><a href="#">Nos objets connectés</a></li>
+{% endblock %}
+
 {% block content %}
 
 <section id="main-slider">
@@ -47,7 +54,7 @@
 
                 <!-- /.intro image -->
                 <div class="col-md-6 intro-pic wow slideInLeft">
-                    <img src="../../assets/images/blog/01.jpg" alt="image" class="img-responsive">
+                    <img src="{{ asset('assets/images/blog/01.jpg') }}" alt="image" class="img-responsive">
                 </div>
 
                 <!-- /.intro content -->
@@ -56,7 +63,7 @@
                     <p>Good marketing makes the company look smart. <a href="#">Great marketing</a> makes the customer feel smart, - Joe Chernov. Never doubt a small group of thoughtful, committed people can change the world. Indeed, it is the only thing that ever has, - Margaret Mead. The best way to predict the future is to create it, - Peter Drucker.
                     </p>
 
-                    <div class="btn-section"><a href="#feature" class="btn-default">Learn More</a></div>
+                    <div class="btn-section"><a href="/presentation" class="btn-default">Learn More</a></div>
 
                 </div>
             </div>
