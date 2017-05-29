@@ -1,11 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "FrontBundle::layoutFront.html.twig" %}
 {% block title %}Services{% endblock %}
-{% block navbar %}
-    <li class="scroll"><a href="/">Accueil</a></li>
-    <li class="scroll"><a href="/presentation">Qui sommes nous ?</a></li>
-    <li class="scroll active"><a href="/services"> Nos services</a></li>
-    <li class="scroll"><a href="/objets">Nos objets connectés</a></li>
-{% endblock %}
+
 {% block content %}
     <section id="pricing">
         <div class="container">

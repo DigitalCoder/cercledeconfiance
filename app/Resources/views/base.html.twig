@@ -9,13 +9,6 @@
     <!-- core CSS -->
     {% block stylesheets %}
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/owl.carousel.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/owl.transitions.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/prettyPhoto.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     {% endblock %}
     <!--[if lt IE 9]>
@@ -27,6 +20,7 @@
 </head><!--/head-->
 
 <body id="home" class="homepage">
+{% block navbar %}{% endblock %}
 
 <header id="header">
     <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
@@ -47,8 +41,8 @@
                         <ul class="nav navbar-nav">
                             {% block navbar %}
                             <li class="scroll active"><a href="/">Accueil</a></li>
-                            <li class="scroll"><a href="/presentation">Qui sommes nous ?</a></li>
-                            <li class="scroll"><a href="/services"> Nos services</a></li>
+                            <li class="scroll active"><a href="/presentation">Qui sommes nous ?</a></li>
+                            <li class="scroll active"><a href="/services"> Nos services</a></li>
                             <li class="scroll"><a href="/objets">Nos objets connectés</a></li>
                             {% endblock %}
                         </ul>
@@ -62,8 +56,9 @@
         </div><!--/.container-->
     </nav><!--/nav-->
 </header><!--/header-->
-{% block content %}
-{% endblock %}
+
+{% block content %}{% endblock %}
+
 {#<section id="main-slider">#}
     {#<div class="owl-carousel">#}
         {#<div class="item" style="background-image: url(/assets/images/slider/bg1.jpg);">#}
@@ -1038,13 +1033,5 @@
 {% block javascript %}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/js/mousescroll.js') }}"></script>
-    <script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
 {% endblock %}
 </html>
