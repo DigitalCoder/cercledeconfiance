@@ -102,5 +102,69 @@ class Upload
     {
         return $this->name;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->clouds = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add cloud
+     *
+     * @param \AppBundle\Entity\Cloud $cloud
+     *
+     * @return Upload
+     */
+    public function addCloud(\AppBundle\Entity\Cloud $cloud)
+    {
+        $this->clouds[] = $cloud;
+
+        return $this;
+    }
+
+    /**
+     * Remove cloud
+     *
+     * @param \AppBundle\Entity\Cloud $cloud
+     */
+    public function removeCloud(\AppBundle\Entity\Cloud $cloud)
+    {
+        $this->clouds->removeElement($cloud);
+    }
+
+    /**
+     * Get clouds
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClouds()
+    {
+        return $this->clouds;
+    }
+
+    /**
+     * Set fileType
+     *
+     * @param \AppBundle\Entity\File_type $fileType
+     *
+     * @return Upload
+     */
+    public function setFileType(\AppBundle\Entity\File_type $fileType = null)
+    {
+        $this->file_type = $fileType;
+
+        return $this;
+    }
+
+    /**
+     * Get fileType
+     *
+     * @return \AppBundle\Entity\File_type
+     */
+    public function getFileType()
+    {
+        return $this->file_type;
+    }
+}

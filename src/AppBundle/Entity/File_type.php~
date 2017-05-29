@@ -66,5 +66,45 @@ class File_type
     {
         return $this->name;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->uploads = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add upload
+     *
+     * @param \AppBundle\Entity\Upload $upload
+     *
+     * @return File_type
+     */
+    public function addUpload(\AppBundle\Entity\Upload $upload)
+    {
+        $this->uploads[] = $upload;
+
+        return $this;
+    }
+
+    /**
+     * Remove upload
+     *
+     * @param \AppBundle\Entity\Upload $upload
+     */
+    public function removeUpload(\AppBundle\Entity\Upload $upload)
+    {
+        $this->uploads->removeElement($upload);
+    }
+
+    /**
+     * Get uploads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUploads()
+    {
+        return $this->uploads;
+    }
+}

@@ -165,5 +165,69 @@ class Agenda
     {
         return $this->eventEnd;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add dataApp
+     *
+     * @param \AppBundle\Entity\Data_app $dataApp
+     *
+     * @return Agenda
+     */
+    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    {
+        $this->data_apps[] = $dataApp;
+
+        return $this;
+    }
+
+    /**
+     * Remove dataApp
+     *
+     * @param \AppBundle\Entity\Data_app $dataApp
+     */
+    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    {
+        $this->data_apps->removeElement($dataApp);
+    }
+
+    /**
+     * Get dataApps
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDataApps()
+    {
+        return $this->data_apps;
+    }
+
+    /**
+     * Set categoryEvent
+     *
+     * @param \AppBundle\Entity\Category_event $categoryEvent
+     *
+     * @return Agenda
+     */
+    public function setCategoryEvent(\AppBundle\Entity\Category_event $categoryEvent = null)
+    {
+        $this->category_event = $categoryEvent;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryEvent
+     *
+     * @return \AppBundle\Entity\Category_event
+     */
+    public function getCategoryEvent()
+    {
+        return $this->category_event;
+    }
+}

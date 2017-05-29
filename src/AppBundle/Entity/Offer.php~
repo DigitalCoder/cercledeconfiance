@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Offer
  *
  * @ORM\Table(name="offer")
- * @ORM\Entity(repositoryClass="AppliBundle\Repository\OfferRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\OfferRepository")
  */
 class Offer
 {

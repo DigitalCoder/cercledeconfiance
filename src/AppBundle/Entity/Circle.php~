@@ -201,4 +201,28 @@ class Circle
     {
         return $this->address;
     }
+
+    /**
+     * Set dataApp
+     *
+     * @param \AppBundle\Entity\Data_app $dataApp
+     *
+     * @return Circle
+     */
+    public function setDataApp(\AppBundle\Entity\Data_app $dataApp = null)
+    {
+        $this->data_app = $dataApp;
+
+        return $this;
+    }
+
+    /**
+     * Get dataApp
+     *
+     * @return \AppBundle\Entity\Data_app
+     */
+    public function getDataApp()
+    {
+        return $this->data_app;
+    }
 }

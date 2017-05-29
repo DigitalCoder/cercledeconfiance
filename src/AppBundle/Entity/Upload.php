@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Upload
  *
  * @ORM\Table(name="upload")
- * @ORM\Entity(repositoryClass="AppliBundle\Repository\UploadRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UploadRepository")
  */
 class Upload
 {
