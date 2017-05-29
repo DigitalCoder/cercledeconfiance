@@ -1,4 +1,5 @@
-{% extends "FrontBundle::layoutFront.html.twig" %}
+{% extends is_granted('ROLE_ADMIN') ? "FrontBundle::layoutAdmin.html.twig" : "FrontBundle::layoutFront.html.twig" %}
+
 {% block title %} Qui Sommes Nous ?{% endblock %}
 
 {% block content %}
