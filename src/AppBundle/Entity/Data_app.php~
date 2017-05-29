@@ -49,6 +49,11 @@ class Data_app
     private $wall;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="data_apps")
+     */
+    private $user;
+
+    /**
      * Get id
      *
      * @return int
@@ -193,5 +198,29 @@ class Data_app
     public function getWall()
     {
         return $this->wall;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Data_app
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -68,10 +68,10 @@ class Circle_user
      */
     private $object_entries;
 
-//    /**
-//     * @ORM\ManyToOne(targetEntity="User", inversedBy="circle_users")
-//     */
-//    private $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users")
+     */
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Address", inversedBy="circle_users")
