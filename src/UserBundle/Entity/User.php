@@ -66,8 +66,10 @@ class User extends BaseUser
      */
     private $data_apps;
 
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Address", inversedBy="users")
+     */
+    private $address;
 
     /**
      * Get id
@@ -266,5 +268,29 @@ class User extends BaseUser
     public function getDataApps()
     {
         return $this->data_apps;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\Address $address
+     *
+     * @return User
+     */
+    public function setAddress(\AppBundle\Entity\Address $address = null)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\Address
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

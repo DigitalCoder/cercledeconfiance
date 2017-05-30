@@ -29,9 +29,9 @@ class Address
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="address")
+     * @ORM\OneToMany(targetEntity="\UserBundle\Entity\User", mappedBy="address")
      */
-    private $circle_users;
+    private $users;
 
     /**
      * @ORM\OneToMany(targetEntity="Circle", mappedBy="address")
@@ -146,5 +146,63 @@ class Address
     public function getCircles()
     {
         return $this->circles;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Address
+     */
+    public function setUser(\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Address
+     */
+    public function addUser(\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \UserBundle\Entity\User $user
+     */
+    public function removeUser(\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

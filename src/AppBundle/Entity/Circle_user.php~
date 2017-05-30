@@ -74,11 +74,6 @@ class Circle_user
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="circle_users")
-     */
-    private $address;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users")
      */
     private $circle;
