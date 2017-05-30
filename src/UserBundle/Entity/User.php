@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use UserBundle\Model\UserInterface;
 
 /**
  * User
@@ -11,7 +12,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @var int
@@ -50,9 +51,9 @@ class User extends BaseUser
     private $relation;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="phone_number", type="integer")
+     * @ORM\Column(name="phone_number", type="string", length=15)
      */
     private $phoneNumber;
 
@@ -67,7 +68,7 @@ class User extends BaseUser
     private $data_apps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Address", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Address", inversedBy="users", cascade={"persist"})
      */
     private $address;
 
