@@ -43,12 +43,12 @@ class Model
     private $docUrl;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="modeles")
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="models")
      */
     private $brand;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="modeles")
+     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
      */
     private $type_object;
 
