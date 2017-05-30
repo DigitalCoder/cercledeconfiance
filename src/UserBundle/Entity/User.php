@@ -67,8 +67,6 @@ class User extends BaseUser
     private $data_apps;
 
 
-
-
     /**
      * Get id
      *
