@@ -29,9 +29,9 @@ class File_type
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Upload", mappedBy="file_type")
+     * @ORM\OneToMany(targetEntity="Cloud", mappedBy="file_type")
      */
-    private $uploads;
+    private $clouds;
 
     /**
      * Get id
@@ -74,37 +74,37 @@ class File_type
         $this->uploads = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add upload
+     /**
+     * Add cloud
      *
-     * @param \AppBundle\Entity\Upload $upload
+     * @param \AppBundle\Entity\Cloud $cloud
      *
      * @return File_type
      */
-    public function addUpload(\AppBundle\Entity\Upload $upload)
+    public function addCloud(\AppBundle\Entity\Cloud $cloud)
     {
-        $this->uploads[] = $upload;
+        $this->clouds[] = $cloud;
 
         return $this;
     }
 
     /**
-     * Remove upload
+     * Remove cloud
      *
-     * @param \AppBundle\Entity\Upload $upload
+     * @param \AppBundle\Entity\Cloud $cloud
      */
-    public function removeUpload(\AppBundle\Entity\Upload $upload)
+    public function removeCloud(\AppBundle\Entity\Cloud $cloud)
     {
-        $this->uploads->removeElement($upload);
+        $this->clouds->removeElement($cloud);
     }
 
     /**
-     * Get uploads
+     * Get clouds
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUploads()
+    public function getClouds()
     {
-        return $this->uploads;
+        return $this->clouds;
     }
 }

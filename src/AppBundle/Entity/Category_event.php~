@@ -31,7 +31,7 @@ class Category_event
     /**
      * @var int
      *
-     * @ORM\Column(name="color", type="integer")
+     * @ORM\Column(name="color", type="string", length=10)
      */
     private $color;
 
