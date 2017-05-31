@@ -5,6 +5,7 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use UserBundle\Model\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -30,30 +31,59 @@ class User extends BaseUser implements UserInterface
     private $avatar;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message="Nom", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
+
     private $name;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @Assert\NotBlank(message="Prenom", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $firstname;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="relation", type="string", length=255)
+     * @Assert\NotBlank(message="Relation", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $relation;
 
     /**
-     * @var string
+     * @ORM\Column(type="string", length=255)
      *
-     * @ORM\Column(name="phone_number", type="string", length=15)
+     * @Assert\NotBlank(message="Numero Telephone", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $phoneNumber;
 
