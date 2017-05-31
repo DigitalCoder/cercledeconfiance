@@ -27,12 +27,22 @@ class CreateCircleController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $em = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+            $userId = $user->getId();
+            $cercle->setAdminCircle($userId);
+
 
             $em->persist($cercle);
             $em->flush();
+            $centerId = $cercle->getUser()->getId();
+//            $test = $em->getRepository('AppBundle:circle_user');
+            var_dump($centerId);
+            die();
         }
-
         return $this->render('FrontBundle:Default:test.html.twig', array("form" => $form->createView()));
 
     }

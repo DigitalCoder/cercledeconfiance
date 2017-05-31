@@ -28,7 +28,7 @@ class User extends BaseUser implements UserInterface
      *
      * @ORM\Column(name="avatar", type="string", length=255)
      */
-    private $avatar;
+    private $avatar='1';
 
     /**
      * @ORM\Column(type="string", length=255)
