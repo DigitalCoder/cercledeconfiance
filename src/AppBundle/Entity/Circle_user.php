@@ -64,17 +64,17 @@ class Circle_user
     private $agendaAccess;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user")
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})
      */
     private $object_entries;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"})
      */
     private $circle;
 
