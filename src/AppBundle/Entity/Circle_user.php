@@ -276,11 +276,11 @@ class Circle_user
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      *
      * @return Circle_user
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -290,7 +290,7 @@ class Circle_user
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -300,7 +300,7 @@ class Circle_user
     /**
      * Set address
      *
-     * @param \AppBundle\Entity\Address $address
+     * @param \UserBundle\Entity\Address $address
      *
      * @return Circle_user
      */

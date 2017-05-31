@@ -113,4 +113,28 @@ class Offer
     {
         return $this->circles;
     }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Offer
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }
