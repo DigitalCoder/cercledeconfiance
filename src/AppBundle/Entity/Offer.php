@@ -29,6 +29,12 @@ class Offer
     private $name;
 
     /**
+     * @var integer
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
+    /**
      * @ORM\OneToMany(targetEntity="Circle", mappedBy="offer")
      */
     private $circles;
@@ -106,5 +112,29 @@ class Offer
     public function getCircles()
     {
         return $this->circles;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Offer
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

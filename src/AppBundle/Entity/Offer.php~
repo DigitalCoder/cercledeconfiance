@@ -29,6 +29,12 @@ class Offer
     private $name;
 
     /**
+     * @var integer
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
+    /**
      * @ORM\OneToMany(targetEntity="Circle", mappedBy="offer")
      */
     private $circles;

@@ -24,10 +24,12 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
     {
         $offer0 = new Offer();
         $offer0->setName('Service Confiance');
+        $offer0->setPrice(50);
         $manager->persist($offer0);
 
         $offer1 = new Offer();
         $offer1->setName('Service Secours');
+        $offer1->setPrice(60);
         $manager->persist($offer1);
 
         $manager->flush();
