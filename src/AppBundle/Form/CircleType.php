@@ -16,7 +16,8 @@ class CircleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class, array("label"=>"Nom du Cercle"))
+        $builder
+//            ->add('name', TextType::class, array("label"=>"Nom du Cercle"))
 //                ->add('active')
 //                ->add('paid')
             ->add('offer', EntityType::class,  [
