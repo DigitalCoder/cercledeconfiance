@@ -36,22 +36,22 @@ class Circle
     private $paid;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles")
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles", cascade={"persist"})
      */
     private $offer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle")
+     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle", cascade={"persist"})
      */
     private $circle_users;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="circles")
+     * @ORM\ManyToOne(targetEntity="Address", inversedBy="circles", cascade={"persist"})
      */
     private $address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Data_app", inversedBy="circles")
+     * @ORM\ManyToOne(targetEntity="Data_app", inversedBy="circles", cascade={"persist"})
      */
     private $data_app;
 

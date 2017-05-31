@@ -64,17 +64,17 @@ class Circle_user
     private $agendaAccess;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user")
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})
      */
     private $object_entries;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"})
      */
     private $circle;
 
@@ -276,11 +276,11 @@ class Circle_user
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      *
      * @return Circle_user
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -290,7 +290,7 @@ class Circle_user
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
