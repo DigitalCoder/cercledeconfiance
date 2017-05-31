@@ -22,6 +22,7 @@ class Brand
     private $id;
 
     /**
+     * @ORM\Column(name="name", type="string", length=255)
      * @var string
      */
     private $name;
