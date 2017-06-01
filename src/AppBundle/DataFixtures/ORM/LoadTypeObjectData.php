@@ -37,10 +37,6 @@ class LoadTypeObjectData extends AbstractFixture implements OrderedFixtureInterf
         $type_object3->setType('Smoke sensor');
         $manager->persist($type_object3);
 
-        $type_object4 = new Type_object();
-        $type_object4->setType('Camera');
-        $manager->persist($type_object4);
-
         $manager->flush();
     }
 

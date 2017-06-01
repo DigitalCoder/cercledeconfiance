@@ -24,9 +24,9 @@ class Cloud
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="file_name", type="string", length=255)
      */
-    private $name;
+    private $file_name;
 
     /**
      * @ORM\OneToMany(targetEntity="Data_app", mappedBy="cloud")
@@ -34,9 +34,16 @@ class Cloud
     private $data_apps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Upload", inversedBy="clouds")
+     * @ORM\ManyToOne(targetEntity="File_type", inversedBy="clouds")
      */
-    private $upload;
+    private $file_type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
 
     /**
      * Get id
@@ -51,25 +58,25 @@ class Cloud
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $file_name
      *
      * @return Cloud
      */
-    public function setName($name)
+    public function setFileName($file_name)
     {
-        $this->name = $name;
+        $this->file_name = $file_name;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get file_name
      *
      * @return string
      */
-    public function getName()
+    public function getFileName()
     {
-        return $this->name;
+        return $this->file_name;
     }
     /**
      * Constructor
@@ -114,26 +121,50 @@ class Cloud
     }
 
     /**
-     * Set upload
+     * Set url
      *
-     * @param \AppBundle\Entity\Upload $upload
+     * @param string $url
      *
      * @return Cloud
      */
-    public function setUpload(\AppBundle\Entity\Upload $upload = null)
+    public function setUrl($url)
     {
-        $this->upload = $upload;
+        $this->url = $url;
 
         return $this;
     }
 
     /**
-     * Get upload
+     * Get url
      *
-     * @return \AppBundle\Entity\Upload
+     * @return string
      */
-    public function getUpload()
+    public function getUrl()
     {
-        return $this->upload;
+        return $this->url;
+    }
+
+    /**
+     * Set fileType
+     *
+     * @param \AppBundle\Entity\File_type $fileType
+     *
+     * @return Cloud
+     */
+    public function setFileType(\AppBundle\Entity\File_type $fileType = null)
+    {
+        $this->file_type = $fileType;
+
+        return $this;
+    }
+
+    /**
+     * Get fileType
+     *
+     * @return \AppBundle\Entity\File_type
+     */
+    public function getFileType()
+    {
+        return $this->file_type;
     }
 }

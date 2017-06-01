@@ -29,9 +29,9 @@ class Data_app
     private $creationDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle", mappedBy="data_app")
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="data_apps")
      */
-    private $circles;
+    private $circle;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps")
@@ -94,39 +94,6 @@ class Data_app
         $this->circles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add circle
-     *
-     * @param \AppBundle\Entity\Circle $circle
-     *
-     * @return Data_app
-     */
-    public function addCircle(\AppBundle\Entity\Circle $circle)
-    {
-        $this->circles[] = $circle;
-
-        return $this;
-    }
-
-    /**
-     * Remove circle
-     *
-     * @param \AppBundle\Entity\Circle $circle
-     */
-    public function removeCircle(\AppBundle\Entity\Circle $circle)
-    {
-        $this->circles->removeElement($circle);
-    }
-
-    /**
-     * Get circles
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCircles()
-    {
-        return $this->circles;
-    }
 
     /**
      * Set cloud
@@ -203,11 +170,11 @@ class Data_app
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      *
      * @return Data_app
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -217,10 +184,34 @@ class Data_app
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set circle
+     *
+     * @param \AppBundle\Entity\Circle $circle
+     *
+     * @return Data_app
+     */
+    public function setCircle(\AppBundle\Entity\Circle $circle = null)
+    {
+        $this->circle = $circle;
+
+        return $this;
+    }
+
+    /**
+     * Get circle
+     *
+     * @return \AppBundle\Entity\Circle
+     */
+    public function getCircle()
+    {
+        return $this->circle;
     }
 }

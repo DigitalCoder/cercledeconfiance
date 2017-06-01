@@ -1,42 +1,36 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sylvain
- * Date: 30/05/17
- * Time: 11:37
+ * User: necro
+ * Date: 01/06/17
+ * Time: 16:28
  */
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Circle_user;
-use AppBundle\Entity\Object_entry;
-use AppBundle\Form\Circle_userType;
-use AppBundle\Form\CircleType;
-use AppBundle\Form\Object_entryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Circle;
+use AppBundle\Entity\Model;
+use AppBundle\Form\ModelType;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateCircleController extends Controller
+
+class CreateModelController extends Controller
 {
     /**
-     * @Route("/test")
+     * @Route("/test2")
      */
-    public function createCircle(Request $request){
-        $cercle = new Circle_user();
-        $form = $this->createForm(Circle_userType::class, $cercle);
+    public function createModelAction(Request $request){
+        $item = new Model();
+        $form = $this->createForm(ModelType::class, $item);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($cercle);
+            $em->persist($item);
             $em->flush();
         }
-
         return $this->render('FrontBundle:Default:test.html.twig', array("form" => $form->createView()));
-
     }
-
 }
