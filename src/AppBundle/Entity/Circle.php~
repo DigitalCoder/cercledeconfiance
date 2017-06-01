@@ -26,27 +26,27 @@ class Circle
      *
      * @ORM\Column(name="active", type="boolean")
      */
-    private $active;
+    private $active=0;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="paid", type="boolean")
      */
-    private $paid;
+    private $paid=0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles")
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles", cascade={"persist"})
      */
     private $offer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle")
+     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle", cascade={"persist"})
      */
     private $circle_users;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Address", inversedBy="circles")
+     * @ORM\ManyToOne(targetEntity="Address", inversedBy="circles", cascade={"persist"})
      */
     private $address;
 
