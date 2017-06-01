@@ -48,15 +48,16 @@ class Model
     private $brand;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
-     */
-    private $type_object;
-
-    /**
      * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="model")
      */
     private $connected_objects;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
 
     /**
      * Get id
@@ -165,29 +166,6 @@ class Model
     }
 
     /**
-     * Set typeObject
-     *
-     * @param \AppBundle\Entity\Type_object $typeObject
-     *
-     * @return Model
-     */
-    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
-    {
-        $this->type_object = $typeObject;
-
-        return $this;
-    }
-
-    /**
-     * Get typeObject
-     *
-     * @return \AppBundle\Entity\Type_object
-     */
-    public function getTypeObject()
-    {
-        return $this->type_object;
-    }
-    /**
      * Constructor
      */
     public function __construct()
@@ -227,5 +205,29 @@ class Model
     public function getConnectedObjects()
     {
         return $this->connected_objects;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Model
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Circle
@@ -62,6 +63,12 @@ class Circle
      */
     private $name;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="availabilityDate", type="datetime", nullable=true)
+     */
+    private $availabilityDate;
     /**
      * Get id
      *
@@ -267,5 +274,29 @@ class Circle
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set availabilityDate
+     *
+     * @param \DateTime $availabilityDate
+     *
+     * @return Circle
+     */
+    public function setAvailabilityDate($availabilityDate)
+    {
+        $this->availabilityDate = $availabilityDate;
+
+        return $this;
+    }
+
+    /**
+     * Get availabilityDate
+     *
+     * @return \DateTime
+     */
+    public function getAvailabilityDate()
+    {
+        return $this->availabilityDate;
     }
 }

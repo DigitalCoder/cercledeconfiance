@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class Circle_userRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

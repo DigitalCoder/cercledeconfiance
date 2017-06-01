@@ -29,9 +29,14 @@ class Type_object
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Model", mappedBy="type_object")
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="type_object")
      */
-    private $models;
+    private $object_entries;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="type_object")
+     */
+    private $connected_objects;
 
 
     /**
@@ -75,37 +80,72 @@ class Type_object
         $this->models = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
-     * Add model
+     * Add objectEntry
      *
-     * @param \AppBundle\Entity\Model $model
+     * @param \AppBundle\Entity\Object_entry $objectEntry
      *
      * @return Type_object
      */
-    public function addModel(\AppBundle\Entity\Model $model)
+    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
     {
-        $this->models[] = $model;
+        $this->object_entries[] = $objectEntry;
 
         return $this;
     }
 
     /**
-     * Remove model
+     * Remove objectEntry
      *
-     * @param \AppBundle\Entity\Model $model
+     * @param \AppBundle\Entity\Object_entry $objectEntry
      */
-    public function removeModel(\AppBundle\Entity\Model $model)
+    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
     {
-        $this->models->removeElement($model);
+        $this->object_entries->removeElement($objectEntry);
     }
 
     /**
-     * Get models
+     * Get objectEntries
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getModels()
+    public function getObjectEntries()
     {
-        return $this->models;
+        return $this->object_entries;
+    }
+
+    /**
+     * Add connectedObject
+     *
+     * @param \AppBundle\Entity\Connected_object $connectedObject
+     *
+     * @return Type_object
+     */
+    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    {
+        $this->connected_objects[] = $connectedObject;
+
+        return $this;
+    }
+
+    /**
+     * Remove connectedObject
+     *
+     * @param \AppBundle\Entity\Connected_object $connectedObject
+     */
+    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    {
+        $this->connected_objects->removeElement($connectedObject);
+    }
+
+    /**
+     * Get connectedObjects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConnectedObjects()
+    {
+        return $this->connected_objects;
     }
 }
