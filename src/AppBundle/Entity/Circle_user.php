@@ -26,7 +26,7 @@ class Circle_user
      *
      * @ORM\Column(name="admin_circle", type="boolean")
      */
-    private $adminCircle;
+    private $adminCircle=0;
 
     /**
      * @var bool
@@ -40,28 +40,28 @@ class Circle_user
      *
      * @ORM\Column(name="call_access", type="boolean")
      */
-    private $callAccess=0;
+    private $callAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="wall_access", type="boolean")
      */
-    private $wallAccess=0;
+    private $wallAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="cloud_access", type="boolean")
      */
-    private $cloudAccess=0;
+    private $cloudAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="agenda_access", type="boolean")
      */
-    private $agendaAccess=0;
+    private $agendaAccess=1;
 
     /**
      * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})

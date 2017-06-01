@@ -31,17 +31,34 @@ class CreateCircleController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $user = $this->getUser();
-            $userId = $user->getId();
-            $cercle->setAdminCircle($userId);
+//            $user = $this->getUser();
+//            $userId = $user->getId();
+//            $cercle->setAdminCircle($userId);
 
 
             $em->persist($cercle);
             $em->flush();
-            $centerId = $cercle->getUser()->getId();
+//            $centerId = $cercle->getUser();
 //            $test = $em->getRepository('AppBundle:circle_user');
-            var_dump($centerId);
-            die();
+//            var_dump($cercle);
+//            die();
+
+            $idCercle=$cercle->getCircle();
+
+
+
+            $adminCircle = new Circle_user();
+            $adminCircle->setUser($this->getUser());
+            $adminCircle->setCircle($idCercle);
+            $adminCircle->setAdminCircle(1);
+            $adminCircle->setCircleCenter(0);
+            $adminCircle->setCallAccess(1);
+            $adminCircle->setWallAccess(1);
+            $adminCircle->setAgendaAccess(1);
+            $adminCircle->setCloudAccess(1);
+
+            $em->persist($adminCircle);
+            $em->flush();
         }
         return $this->render('FrontBundle:Default:test.html.twig', array("form" => $form->createView()));
 
