@@ -9,6 +9,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 
+use AppBundle\Entity\Circle;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,7 +22,18 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $offers = $manager->getRepository('AppBundle:Offer')->findAll();
+        $addresses = $manager->getRepository('AppBundle:Address')->findAll();
 
+        $circle0 = new Circle();
+        $circle0->setAddress($addresses[0]);
+        $circle0->setOffer($offers[0]);
+        $circle0->setActive(1);
+        $circle0->setPaid(1);
+        $circle0->setName('Cercle1');
+        $manager->persist($circle0);
+
+        $manager->flush();
     }
 
     /**
@@ -30,7 +42,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 2;
     }
 
 }

@@ -51,9 +51,16 @@ class Circle
     private $address;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Data_app", inversedBy="circles")
+     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="circle")
      */
-    private $data_app;
+    private $data_apps;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
 
     /**
      * Get id
@@ -202,27 +209,63 @@ class Circle
         return $this->address;
     }
 
+
+
     /**
-     * Set dataApp
+     * Add dataApp
      *
      * @param \AppBundle\Entity\Data_app $dataApp
      *
      * @return Circle
      */
-    public function setDataApp(\AppBundle\Entity\Data_app $dataApp = null)
+    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
     {
-        $this->data_app = $dataApp;
+        $this->data_apps[] = $dataApp;
 
         return $this;
     }
 
     /**
-     * Get dataApp
+     * Remove dataApp
      *
-     * @return \AppBundle\Entity\Data_app
+     * @param \AppBundle\Entity\Data_app $dataApp
      */
-    public function getDataApp()
+    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
     {
-        return $this->data_app;
+        $this->data_apps->removeElement($dataApp);
+    }
+
+    /**
+     * Get dataApps
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDataApps()
+    {
+        return $this->data_apps;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Circle
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
