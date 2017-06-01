@@ -7,6 +7,7 @@ use AppBundle\Entity\Type_object;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,7 +29,8 @@ class ModelType extends AbstractType
             ->add('type_object', EntityType::class, [
                 'class'=>Type_object::class,
                 'choice_label'=>'type'
-            ]);
+            ])
+            ->add('save', SubmitType::class);
     }
     
     /**
@@ -48,6 +50,5 @@ class ModelType extends AbstractType
     {
         return 'appbundle_model';
     }
-
 
 }
