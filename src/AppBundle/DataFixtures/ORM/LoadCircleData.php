@@ -26,12 +26,36 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $addresses = $manager->getRepository('AppBundle:Address')->findAll();
 
         $circle0 = new Circle();
-        $circle0->setAddress($addresses[0]);
-        $circle0->setOffer($offers[0]);
+        $circle0->setAddress($addresses[5]);
+        $circle0->setOffer($offers[1]);
         $circle0->setActive(1);
         $circle0->setPaid(1);
-        $circle0->setName('Cercle1');
+        $circle0->setName('Cercle_1');
         $manager->persist($circle0);
+
+        $circle1 = new Circle();
+        $circle1->setAddress($addresses[7]);
+        $circle1->setOffer($offers[0]);
+        $circle1->setActive(1);
+        $circle1->setPaid(1);
+        $circle1->setName('Cercle_2');
+        $manager->persist($circle1);
+
+        $circle2 = new Circle();
+        $circle2->setAddress($addresses[9]);
+        $circle2->setOffer($offers[1]);
+        $circle2->setActive(1);
+        $circle2->setPaid(1);
+        $circle2->setName('Cercle_3');
+        $manager->persist($circle2);
+
+        $circle3 = new Circle();
+        $circle3->setAddress($addresses[10]);
+        $circle3->setOffer($offers[0]);
+        $circle3->setActive(0);
+        $circle3->setPaid(0);
+        $circle3->setName('Cercle_4');
+        $manager->persist($circle3);
 
         $manager->flush();
     }
