@@ -29,12 +29,12 @@ class Address
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="\UserBundle\Entity\User", mappedBy="address")
+     * @ORM\OneToMany(targetEntity="\UserBundle\Entity\User", mappedBy="address", cascade={"persist"})
      */
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle", mappedBy="address")
+     * @ORM\OneToMany(targetEntity="Circle", mappedBy="address", cascade={"persist"})
      */
     private $circles;
 
