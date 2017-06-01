@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: julien
- * Date: 30/05/17
- * Time: 21:22
+ * Date: 31/05/17
+ * Time: 18:04
  */
 
 namespace AppBundle\DataFixtures\ORM;
 
 
-use AppBundle\Entity\Offer;
+use AppBundle\Entity\Circle;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -22,15 +22,16 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $offer0 = new Offer();
-        $offer0->setName('Service Confiance');
-        $offer0->setPrice(50);
-        $manager->persist($offer0);
+        $offers = $manager->getRepository('AppBundle:Offer')->findAll();
+        $addresses = $manager->getRepository('AppBundle:Address')->findAll();
 
-        $offer1 = new Offer();
-        $offer1->setName('Service Secours');
-        $offer1->setPrice(60);
-        $manager->persist($offer1);
+        $circle0 = new Circle();
+        $circle0->setAddress($addresses[0]);
+        $circle0->setOffer($offers[0]);
+        $circle0->setActive(1);
+        $circle0->setPaid(1);
+        $circle0->setName('Cercle1');
+        $manager->persist($circle0);
 
         $manager->flush();
     }
@@ -41,6 +42,7 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 0;
+        return 2;
     }
+
 }

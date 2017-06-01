@@ -24,7 +24,7 @@ class Data_object
     /**
      * @var string
      *
-     * @ORM\Column(name="data", type="text")
+     * @ORM\Column(name="data", type="float")
      */
     private $data;
 

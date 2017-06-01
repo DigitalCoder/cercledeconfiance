@@ -2,19 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: julien
- * Date: 30/05/17
- * Time: 21:22
+ * Date: 31/05/17
+ * Time: 14:56
  */
 
 namespace AppBundle\DataFixtures\ORM;
 
-
-use AppBundle\Entity\Offer;
+use AppBundle\Entity\File_type;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
+class LoadFileTypeData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -22,15 +21,17 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $offer0 = new Offer();
-        $offer0->setName('Service Confiance');
-        $offer0->setPrice(50);
-        $manager->persist($offer0);
+        $file_type0 = new File_type();
+        $file_type0->setName('image');
+        $manager->persist($file_type0);
 
-        $offer1 = new Offer();
-        $offer1->setName('Service Secours');
-        $offer1->setPrice(60);
-        $manager->persist($offer1);
+        $file_type1 = new File_type();
+        $file_type1->setName('video');
+        $manager->persist($file_type1);
+
+        $file_type2 = new File_type();
+        $file_type2->setName('document');
+        $manager->persist($file_type2);
 
         $manager->flush();
     }
