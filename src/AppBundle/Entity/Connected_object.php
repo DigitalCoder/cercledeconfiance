@@ -32,9 +32,9 @@ class Connected_object
     private $model;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="connected_object")
+     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="connected_objects")
      */
-    private $object_entries;
+    private $type_object;
 
     /**
      * Get id
@@ -101,37 +101,29 @@ class Connected_object
         $this->object_entries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+
     /**
-     * Add objectEntry
+     * Set typeObject
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\Type_object $typeObject
      *
      * @return Connected_object
      */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
     {
-        $this->object_entries[] = $objectEntry;
+        $this->type_object = $typeObject;
 
         return $this;
     }
 
     /**
-     * Remove objectEntry
+     * Get typeObject
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @return \AppBundle\Entity\Type_object
      */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function getTypeObject()
     {
-        $this->object_entries->removeElement($objectEntry);
-    }
-
-    /**
-     * Get objectEntries
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObjectEntries()
-    {
-        return $this->object_entries;
+        return $this->type_object;
     }
 }

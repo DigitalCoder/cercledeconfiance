@@ -26,55 +26,55 @@ class Circle_user
      *
      * @ORM\Column(name="admin_circle", type="boolean")
      */
-    private $adminCircle;
+    private $adminCircle=0;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="circle_center", type="boolean")
      */
-    private $circleCenter;
+    private $circleCenter=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="call_access", type="boolean")
      */
-    private $callAccess;
+    private $callAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="wall_access", type="boolean")
      */
-    private $wallAccess;
+    private $wallAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="cloud_access", type="boolean")
      */
-    private $cloudAccess;
+    private $cloudAccess=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="agenda_access", type="boolean")
      */
-    private $agendaAccess;
+    private $agendaAccess=1;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user")
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})
      */
     private $object_entries;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"})
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users")
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"})
      */
     private $circle;
 
@@ -276,11 +276,11 @@ class Circle_user
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      *
      * @return Circle_user
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -290,7 +290,7 @@ class Circle_user
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {

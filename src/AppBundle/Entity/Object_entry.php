@@ -26,17 +26,18 @@ class Object_entry
      *
      * @ORM\Column(name="access", type="boolean")
      */
-    private $access;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Connected_object", inversedBy="object_entries")
-     */
-    private $connected_object;
+    private $access=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="object_entries")
      */
     private $circle_user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="object_entries")
+     */
+    private $type_object;
+
 
     /**
      * Get id
@@ -73,30 +74,6 @@ class Object_entry
     }
 
     /**
-     * Set connectedObject
-     *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
-     *
-     * @return Object_entry
-     */
-    public function setConnectedObject(\AppBundle\Entity\Connected_object $connectedObject = null)
-    {
-        $this->connected_object = $connectedObject;
-
-        return $this;
-    }
-
-    /**
-     * Get connectedObject
-     *
-     * @return \AppBundle\Entity\Connected_object
-     */
-    public function getConnectedObject()
-    {
-        return $this->connected_object;
-    }
-
-    /**
      * Set circleUser
      *
      * @param \AppBundle\Entity\Circle_user $circleUser
@@ -118,5 +95,29 @@ class Object_entry
     public function getCircleUser()
     {
         return $this->circle_user;
+    }
+
+    /**
+     * Set typeObject
+     *
+     * @param \AppBundle\Entity\Type_object $typeObject
+     *
+     * @return Object_entry
+     */
+    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    {
+        $this->type_object = $typeObject;
+
+        return $this;
+    }
+
+    /**
+     * Get typeObject
+     *
+     * @return \AppBundle\Entity\Type_object
+     */
+    public function getTypeObject()
+    {
+        return $this->type_object;
     }
 }

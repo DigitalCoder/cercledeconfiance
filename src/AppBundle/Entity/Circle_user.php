@@ -39,7 +39,6 @@ class Circle_user
      * @var bool
      *
      * @ORM\Column(name="call_access", type="boolean")
-     * @Assert
      */
     private $callAccess=1;
 

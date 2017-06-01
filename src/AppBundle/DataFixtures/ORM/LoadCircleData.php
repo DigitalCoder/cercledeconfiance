@@ -54,6 +54,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $circle3->setOffer($offers[0]);
         $circle3->setActive(0);
         $circle3->setPaid(0);
+        $circle3->setAvailabilityDate(new \DateTime());
         $circle3->setName('Cercle_4');
         $manager->persist($circle3);
 
