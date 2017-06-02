@@ -116,29 +116,6 @@ interface UserInterface extends \FOS\UserBundle\Model\UserInterface
     public function getCircleUsers();
 
     /**
-     * Add dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     *
-     * @return User
-     */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp);
-
-    /**
-     * Remove dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp);
-
-    /**
-     * Get dataApps
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDataApps();
-
-    /**
      * Set address
      *
      * @param \AppBundle\Entity\Address $address
