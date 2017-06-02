@@ -40,28 +40,60 @@ class Circle_user
      *
      * @ORM\Column(name="call_access", type="boolean")
      */
+<<<<<<< HEAD
     private $callAccess=1;
+=======
+<<<<<<< HEAD
+    private $callAccess=0;
+=======
+    private $callAccess=1;
+>>>>>>> 912655e07503c100c658409f9dd2b00eb70d9d71
+>>>>>>> formModel
 
     /**
      * @var bool
      *
      * @ORM\Column(name="wall_access", type="boolean")
      */
+<<<<<<< HEAD
     private $wallAccess=1;
+=======
+<<<<<<< HEAD
+    private $wallAccess=0;
+=======
+    private $wallAccess=1;
+>>>>>>> 912655e07503c100c658409f9dd2b00eb70d9d71
+>>>>>>> formModel
 
     /**
      * @var bool
      *
      * @ORM\Column(name="cloud_access", type="boolean")
      */
+<<<<<<< HEAD
     private $cloudAccess=1;
+=======
+<<<<<<< HEAD
+    private $cloudAccess=0;
+=======
+    private $cloudAccess=1;
+>>>>>>> 912655e07503c100c658409f9dd2b00eb70d9d71
+>>>>>>> formModel
 
     /**
      * @var bool
      *
      * @ORM\Column(name="agenda_access", type="boolean")
      */
+<<<<<<< HEAD
     private $agendaAccess=1;
+=======
+<<<<<<< HEAD
+    private $agendaAccess=0;
+=======
+    private $agendaAccess=1;
+>>>>>>> 912655e07503c100c658409f9dd2b00eb70d9d71
+>>>>>>> formModel
 
     /**
      * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})
@@ -300,7 +332,7 @@ class Circle_user
     /**
      * Set address
      *
-     * @param \AppBundle\Entity\Address $address
+     * @param \UserBundle\Entity\Address $address
      *
      * @return Circle_user
      */

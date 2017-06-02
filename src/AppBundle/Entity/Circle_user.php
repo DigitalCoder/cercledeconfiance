@@ -40,6 +40,7 @@ class Circle_user
      *
      * @ORM\Column(name="call_access", type="boolean")
      */
+
     private $callAccess=1;
 
     /**
@@ -47,6 +48,7 @@ class Circle_user
      *
      * @ORM\Column(name="wall_access", type="boolean")
      */
+
     private $wallAccess=1;
 
     /**
@@ -54,6 +56,7 @@ class Circle_user
      *
      * @ORM\Column(name="cloud_access", type="boolean")
      */
+
     private $cloudAccess=1;
 
     /**
@@ -61,6 +64,7 @@ class Circle_user
      *
      * @ORM\Column(name="agenda_access", type="boolean")
      */
+
     private $agendaAccess=1;
 
     /**
@@ -300,7 +304,7 @@ class Circle_user
     /**
      * Set address
      *
-     * @param \AppBundle\Entity\Address $address
+     * @param \UserBundle\Entity\Address $address
      *
      * @return Circle_user
      */
