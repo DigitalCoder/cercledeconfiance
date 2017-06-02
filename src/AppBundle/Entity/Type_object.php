@@ -34,9 +34,9 @@ class Type_object
     private $object_entries;
 
     /**
-     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="type_object")
+     * @ORM\OneToMany(targetEntity="Model", mappedBy="type_object")
      */
-    private $connected_objects;
+    private $models;
 
 
     /**
@@ -115,37 +115,38 @@ class Type_object
         return $this->object_entries;
     }
 
+
     /**
-     * Add connectedObject
+     * Add model
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\Model $model
      *
      * @return Type_object
      */
-    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function addModel(\AppBundle\Entity\Model $model)
     {
-        $this->connected_objects[] = $connectedObject;
+        $this->models[] = $model;
 
         return $this;
     }
 
     /**
-     * Remove connectedObject
+     * Remove model
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\Model $model
      */
-    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function removeModel(\AppBundle\Entity\Model $model)
     {
-        $this->connected_objects->removeElement($connectedObject);
+        $this->models->removeElement($model);
     }
 
     /**
-     * Get connectedObjects
+     * Get models
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getConnectedObjects()
+    public function getModels()
     {
-        return $this->connected_objects;
+        return $this->models;
     }
 }

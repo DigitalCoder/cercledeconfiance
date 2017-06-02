@@ -32,11 +32,6 @@ class Connected_object
     private $model;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="connected_objects")
-     */
-    private $type_object;
-
-    /**
      * Get id
      *
      * @return int
@@ -101,29 +96,4 @@ class Connected_object
         $this->object_entries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-
-    /**
-     * Set typeObject
-     *
-     * @param \AppBundle\Entity\Type_object $typeObject
-     *
-     * @return Connected_object
-     */
-    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
-    {
-        $this->type_object = $typeObject;
-
-        return $this;
-    }
-
-    /**
-     * Get typeObject
-     *
-     * @return \AppBundle\Entity\Type_object
-     */
-    public function getTypeObject()
-    {
-        return $this->type_object;
-    }
 }
