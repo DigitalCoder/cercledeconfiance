@@ -60,7 +60,7 @@ class CreateCircleController extends Controller
             $em->persist($adminCircle);
             $em->flush();
         }
-        return $this->render('FrontBundle:Default:test.html.twig', array("form" => $form->createView()));
+        return $this->render('FrontBundle:Default:createCircle.html.twig', array("form" => $form->createView()));
 
     }
 }
