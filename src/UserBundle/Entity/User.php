@@ -92,12 +92,7 @@ class User extends BaseUser implements UserInterface
      */
     private $circle_users;
 
-    /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Data_app", mappedBy="user")
-     */
-    private $data_apps;
-
-    /**
+        /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Address", inversedBy="users", cascade={"persist"})
      */
     private $address;
@@ -267,39 +262,6 @@ class User extends BaseUser implements UserInterface
         return $this->circle_users;
     }
 
-    /**
-     * Add dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     *
-     * @return User
-     */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
-    {
-        $this->data_apps[] = $dataApp;
-
-        return $this;
-    }
-
-    /**
-     * Remove dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
-    {
-        $this->data_apps->removeElement($dataApp);
-    }
-
-    /**
-     * Get dataApps
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDataApps()
-    {
-        return $this->data_apps;
-    }
 
     /**
      * Set address

@@ -79,6 +79,11 @@ class Circle_user
     private $circle;
 
     /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Data_app", mappedBy="circle_user")
+     */
+    private $data_apps;
+
+    /**
      * Get id
      *
      * @return int
@@ -343,5 +348,39 @@ class Circle_user
     public function getCircle()
     {
         return $this->circle;
+    }
+
+    /**
+     * Add dataApp
+     *
+     * @param \AppBundle\Entity\Data_app $dataApp
+     *
+     * @return Circle_user
+     */
+    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    {
+        $this->data_apps[] = $dataApp;
+
+        return $this;
+    }
+
+    /**
+     * Remove dataApp
+     *
+     * @param \AppBundle\Entity\Data_app $dataApp
+     */
+    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    {
+        $this->data_apps->removeElement($dataApp);
+    }
+
+    /**
+     * Get dataApps
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDataApps()
+    {
+        return $this->data_apps;
     }
 }

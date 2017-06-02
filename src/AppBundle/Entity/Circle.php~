@@ -52,11 +52,6 @@ class Circle
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="circle")
-     */
-    private $data_apps;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -216,41 +211,6 @@ class Circle
         return $this->address;
     }
 
-
-
-    /**
-     * Add dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     *
-     * @return Circle
-     */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
-    {
-        $this->data_apps[] = $dataApp;
-
-        return $this;
-    }
-
-    /**
-     * Remove dataApp
-     *
-     * @param \AppBundle\Entity\Data_app $dataApp
-     */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
-    {
-        $this->data_apps->removeElement($dataApp);
-    }
-
-    /**
-     * Get dataApps
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDataApps()
-    {
-        return $this->data_apps;
-    }
 
     /**
      * Set name

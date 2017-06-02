@@ -79,6 +79,11 @@ class Circle_user
     private $circle;
 
     /**
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Data_app", mappedBy="circle_user")
+     */
+    private $data_apps;
+
+    /**
      * Get id
      *
      * @return int
