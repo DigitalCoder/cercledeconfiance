@@ -29,9 +29,9 @@ class Data_app
     private $creationDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="data_apps")
      */
-    private $circle;
+    private $circle_user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps")
@@ -47,11 +47,6 @@ class Data_app
      * @ORM\ManyToOne(targetEntity="Wall", inversedBy="data_apps")
      */
     private $wall;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="data_apps")
-     */
-    private $user;
 
     /**
      * Get id
@@ -167,51 +162,28 @@ class Data_app
         return $this->wall;
     }
 
+
     /**
-     * Set user
+     * Set circleUser
      *
-     * @param \UserBundle\Entity\User $user
+     * @param \AppBundle\Entity\Circle_user $circleUser
      *
      * @return Data_app
      */
-    public function setUser(\UserBundle\Entity\User $user = null)
+    public function setCircleUser(\AppBundle\Entity\Circle_user $circleUser = null)
     {
-        $this->user = $user;
+        $this->circle_user = $circleUser;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get circleUser
      *
-     * @return \UserBundle\Entity\User
+     * @return \AppBundle\Entity\Circle_user
      */
-    public function getUser()
+    public function getCircleUser()
     {
-        return $this->user;
-    }
-
-    /**
-     * Set circle
-     *
-     * @param \AppBundle\Entity\Circle $circle
-     *
-     * @return Data_app
-     */
-    public function setCircle(\AppBundle\Entity\Circle $circle = null)
-    {
-        $this->circle = $circle;
-
-        return $this;
-    }
-
-    /**
-     * Get circle
-     *
-     * @return \AppBundle\Entity\Circle
-     */
-    public function getCircle()
-    {
-        return $this->circle;
+        return $this->circle_user;
     }
 }
