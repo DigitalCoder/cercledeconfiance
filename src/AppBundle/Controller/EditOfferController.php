@@ -20,10 +20,12 @@ class EditOfferController extends Controller
     /**
      * @Route("/circle/edit_offer/{id}")
      */
-    public function editOffer(Request $request)
+    public function editOfferAction(Request $request, $id)
     {
-        $offer = new Offer();
-        $form = $this->createForm(OfferType::class, $offer);
+        $em = $this->getDoctrine()->getManager();
+        $offer = $em->getRepository('AppBundle:Circle');
+        $circle = $offer->find($id);
+        $form = $this->createForm(OfferType::class, $circle);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
