@@ -9,8 +9,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Circle_user;
+use AppBundle\Entity\Object_entry;
 use AppBundle\Form\Circle_userType;
 use AppBundle\Form\CircleType;
+use AppBundle\Form\Object_entryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Circle;
@@ -60,7 +62,8 @@ class CreateCircleController extends Controller
             $em->persist($adminCircle);
             $em->flush();
         }
-        return $this->render('FrontBundle:Default:createCircle.html.twig', array("form" => $form->createView()));
-
+        return $this->render('FrontBundle:Default:test.html.twig', array("form" => $form->createView()));
+        // TODO ajouter page twig pour le webmaster
     }
+
 }
