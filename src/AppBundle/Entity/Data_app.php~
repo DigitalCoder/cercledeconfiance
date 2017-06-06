@@ -162,4 +162,28 @@ class Data_app
         return $this->wall;
     }
 
+
+    /**
+     * Set circleUser
+     *
+     * @param \AppBundle\Entity\Circle_user $circleUser
+     *
+     * @return Data_app
+     */
+    public function setCircleUser(\AppBundle\Entity\Circle_user $circleUser = null)
+    {
+        $this->circle_user = $circleUser;
+
+        return $this;
+    }
+
+    /**
+     * Get circleUser
+     *
+     * @return \AppBundle\Entity\Circle_user
+     */
+    public function getCircleUser()
+    {
+        return $this->circle_user;
+    }
 }

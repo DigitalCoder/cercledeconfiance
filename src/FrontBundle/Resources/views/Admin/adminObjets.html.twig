@@ -1,0 +1,11 @@
+{% extends is_granted('ROLE_SUPER_ADMIN') ? "FrontBundle::layoutAdmin.html.twig" : "FrontBundle::layoutFront.html.twig" %}
+
+{% block title %}Model Creation{% endblock %}
+
+{% block content %}
+        {{ dump() }}
+    {% for obj in ListObj %}
+        <h1>{{ obj.typeobject.id }}</h1>
+        <p>{{ obj.model.id }}</p>
+    {% endfor %}
+{% endblock %}
