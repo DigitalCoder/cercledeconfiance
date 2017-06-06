@@ -60,6 +60,12 @@ class Model
     private $price;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
+     */
+    private $type_object;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -229,5 +235,29 @@ class Model
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set typeObject
+     *
+     * @param \AppBundle\Entity\Type_object $typeObject
+     *
+     * @return Model
+     */
+    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    {
+        $this->type_object = $typeObject;
+
+        return $this;
+    }
+
+    /**
+     * Get typeObject
+     *
+     * @return \AppBundle\Entity\Type_object
+     */
+    public function getTypeObject()
+    {
+        return $this->type_object;
     }
 }

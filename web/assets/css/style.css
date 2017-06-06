@@ -134,8 +134,8 @@ footer {
 .btn-default:focus,
 .btn-default:active,
 .btn-default:active {
-    background: #2C94B3;
-    border: 2px solid #2C94B3;
+    background: #1C75BC;
+    border: 2px solid #1C75BC;
     color: white;
 }
 
@@ -146,7 +146,7 @@ footer {
 }
 */
 .quote {
-    color: #2C94B3;
+    color: #1C75BC;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -174,7 +174,7 @@ footer {
     bottom: 10px;
 }
 #fade-quote-carousel.carousel .carousel-indicators > li {
-    background-color: #2C94B3;;
+    background-color: #1C75BC;
     border: none;
 }
 #fade-quote-carousel blockquote {
