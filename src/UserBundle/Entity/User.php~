@@ -88,7 +88,7 @@ class User extends BaseUser implements UserInterface
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Circle_user", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Circle_user", mappedBy="user", fetch="EAGER")
      */
     private $circle_users;
 

@@ -42,7 +42,7 @@ class Circle
     private $offer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle", cascade={"persist"}, fetch="EAGER")
      */
     private $circle_users;
 
