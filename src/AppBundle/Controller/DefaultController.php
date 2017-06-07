@@ -73,4 +73,17 @@ class DefaultController extends Controller
         $param = ['error'=>$error];
         return $this->render('FrontBundle:Default:index.html.twig', $param);
     }
+
+    /**
+     * @Route("/cercles/{id}")
+     */
+    public function accueilAppliAction($id)
+    {
+        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
+        }
+        $error = "Erreur!";
+        $param = ['error'=>$error, 'id'=>$id];
+        return $this->render('FrontBundle:Default:index.html.twig', $param);
+    }
 }
