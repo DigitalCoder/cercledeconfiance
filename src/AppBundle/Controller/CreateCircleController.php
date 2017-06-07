@@ -19,7 +19,8 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateCircleController extends Controller
 {
     /**
-     * @Route("circle/creer")
+
+     * @Route("cercles/creer")
      */
     public function createCircle(Request $request){
         $cercle = new Circle_user();
