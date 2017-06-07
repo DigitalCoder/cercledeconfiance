@@ -10,7 +10,7 @@ use AppBundle\Entity\Circle_user;
 /**
  * Class DefaultController
  * @package AppBundle\Controller
- * @Route("/circles")
+ * @Route("/cercles")
  */
 class DefaultController extends Controller
 {
