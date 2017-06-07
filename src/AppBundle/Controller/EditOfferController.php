@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 class EditOfferController extends Controller
 {
     /**
-     * @Route("/circle/edit_offer/{id}")
+     * @Route("/cercle/{id}/admin/offres")
      */
     public function editOfferAction(Request $request, $id)
     {
