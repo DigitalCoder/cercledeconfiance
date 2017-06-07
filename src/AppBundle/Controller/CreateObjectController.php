@@ -18,37 +18,25 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateObjectController extends Controller
 {
     /**
-     * @Route("/showobj")
+     * @Route("/objets")
      */
     public function createObjectAction(Request $request){
 
-        //$currentUser = $this->getUser();
-        $currentCircle = 37;
         $em = $this->getDoctrine()->getManager();
         $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
 
     /**
-     * @Route("/editobj")
+     * @Route("/cercles/{id}/admin/objets")
      */
     public function editObjectAction(Request $request){
 
-        // GET circle_ID
-        //$currentUser = $this->getUser();
-        $user_id = 37;
-
         $em = $this->getDoctrine()->getManager();
-        $circleUser = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $user_id));
-        $objectsId = array();
-        foreach ($circleUser as $objId){
-            $objectsId[] = $objId->getTypeObject()->getId();
-        }
-        $objectWithInfo = array();
-        foreach ($objectsId as $id){
-            $objectWithInfo[] = $em->getRepository('AppBundle:Model')->findOneBy(array("type_object" => $id));
-        }
-        dump($objectWithInfo);die();
+        $userId = $em->getRepository('AppBundle:Circle_user')->findBy(array("user" => $this->getUser()));
+        $circleID = "????? $this->getUser()";
+
+        //dump($users);die();
 
         $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
         // TODO add function buyItem() add function EditItem();
