@@ -64,6 +64,10 @@ class Model
      */
     private $type_object;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="model")
+     */
+    private $object_entries;
 
     /**
      * Get id
@@ -259,5 +263,39 @@ class Model
     public function getTypeObject()
     {
         return $this->type_object;
+    }
+
+    /**
+     * Add objectEntry
+     *
+     * @param \AppBundle\Entity\Object_entry $objectEntry
+     *
+     * @return Model
+     */
+    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    {
+        $this->object_entries[] = $objectEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectEntry
+     *
+     * @param \AppBundle\Entity\Object_entry $objectEntry
+     */
+    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    {
+        $this->object_entries->removeElement($objectEntry);
+    }
+
+    /**
+     * Get objectEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObjectEntries()
+    {
+        return $this->object_entries;
     }
 }

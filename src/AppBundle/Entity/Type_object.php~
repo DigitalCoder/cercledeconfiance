@@ -29,11 +29,6 @@ class Type_object
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="type_object")
-     */
-    private $object_entries;
-
-    /**
      * @ORM\OneToMany(targetEntity="Model", mappedBy="type_object")
      */
     private $models;
@@ -79,42 +74,6 @@ class Type_object
     {
         $this->models = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-
-    /**
-     * Add objectEntry
-     *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
-     *
-     * @return Type_object
-     */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
-    {
-        $this->object_entries[] = $objectEntry;
-
-        return $this;
-    }
-
-    /**
-     * Remove objectEntry
-     *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
-     */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
-    {
-        $this->object_entries->removeElement($objectEntry);
-    }
-
-    /**
-     * Get objectEntries
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getObjectEntries()
-    {
-        return $this->object_entries;
-    }
-
 
     /**
      * Add model
