@@ -73,12 +73,12 @@ class Circle_user
     private $object_entries;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"}, fetch="EAGER")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"}, fetch="EAGER")
      */
     private $circle;
 

@@ -60,6 +60,16 @@ class Model
     private $price;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
+     */
+    private $type_object;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="model")
+     */
+    private $object_entries;
+
+    /**
      * Get id
      *
      * @return int
@@ -229,5 +239,63 @@ class Model
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set typeObject
+     *
+     * @param \AppBundle\Entity\Type_object $typeObject
+     *
+     * @return Model
+     */
+    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    {
+        $this->type_object = $typeObject;
+
+        return $this;
+    }
+
+    /**
+     * Get typeObject
+     *
+     * @return \AppBundle\Entity\Type_object
+     */
+    public function getTypeObject()
+    {
+        return $this->type_object;
+    }
+
+    /**
+     * Add objectEntry
+     *
+     * @param \AppBundle\Entity\Object_entry $objectEntry
+     *
+     * @return Model
+     */
+    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    {
+        $this->object_entries[] = $objectEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectEntry
+     *
+     * @param \AppBundle\Entity\Object_entry $objectEntry
+     */
+    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    {
+        $this->object_entries->removeElement($objectEntry);
+    }
+
+    /**
+     * Get objectEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObjectEntries()
+    {
+        return $this->object_entries;
     }
 }

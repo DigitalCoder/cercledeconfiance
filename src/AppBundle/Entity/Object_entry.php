@@ -34,9 +34,9 @@ class Object_entry
     private $circle_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="object_entries")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="object_entries")
      */
-    private $type_object;
+    private $model;
 
 
     /**
@@ -97,27 +97,28 @@ class Object_entry
         return $this->circle_user;
     }
 
+
     /**
-     * Set typeObject
+     * Set model
      *
-     * @param \AppBundle\Entity\Type_object $typeObject
+     * @param \AppBundle\Entity\Model $model
      *
      * @return Object_entry
      */
-    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    public function setModel(\AppBundle\Entity\Model $model = null)
     {
-        $this->type_object = $typeObject;
+        $this->model = $model;
 
         return $this;
     }
 
     /**
-     * Get typeObject
+     * Get model
      *
-     * @return \AppBundle\Entity\Type_object
+     * @return \AppBundle\Entity\Model
      */
-    public function getTypeObject()
+    public function getModel()
     {
-        return $this->type_object;
+        return $this->model;
     }
 }
