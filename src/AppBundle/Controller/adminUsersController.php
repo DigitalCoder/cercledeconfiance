@@ -18,32 +18,42 @@ use UserBundle\Entity\User;
 
 class adminUsersController extends Controller
 {
+
+    /**
+     * @Route("circles/list_users/{id}")
+     */
+    public function listUsersAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $circleId = 11;
+        $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
+
+
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users]);
+    }
+
     /**
      * @Route("circle/add_users/{id}")
      */
     public function addUsersAction()
     {
 
+
+        return $this->render('FrontBundle:Admin:users:addUser.html.twig');
+
+
     }
 
     /**
-     * @Route("circle/list_users/{id}")
+     * @Route("circle/edit_user_access/{id}")
      */
-    public function listUsersAction()
+    public function editUsersAccessAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $circleId = 6;
-        $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
 
-        foreach ($circle_users as $test){
-        $users[$test->getUser()->getId()]['name'] = $test->getUser()->getName();
-        $users[$test->getUser()->getId()]['firstname'] = $test->getUser()->getFirstname();
-        $users[$test->getUser()->getId()]['visio'] = $test->getCallAccess();
-        $users[$test->getUser()->getId()]['wall'] = $test->getWallAccess();
-        $users[$test->getUser()->getId()]['cloud'] = $test->getCloudAccess();
-        $users[$test->getUser()->getId()]['agenda'] = $test->getAgendaAccess();
-        }
 
-        return $this->render('AppBundle:Default:listUsersInCircle.html.twig', ['users'=>$users]);
+        return $this->render('FrontBundle:Admin:users:editUserAccess.html.twig');
+
+
     }
+
 }
