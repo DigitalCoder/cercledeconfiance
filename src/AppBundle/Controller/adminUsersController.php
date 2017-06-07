@@ -22,9 +22,9 @@ class adminUsersController extends Controller
 {
 
     /**
-     * @Route("cercles/{idCircle}/admin/membres")
+     * @Route("cercles/{id}/admin/membres")
      */
-    public function listUsersAction(Request $request)
+    public function listUsersAction(Request $request, $id)
     {
         $mail = new User();
 
@@ -33,7 +33,7 @@ class adminUsersController extends Controller
             ->getForm();
 
         $em = $this->getDoctrine()->getManager();
-        $circleId = 11;
+        $circleId = $id;
         $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
 
         $form->handleRequest($request);
@@ -62,7 +62,7 @@ class adminUsersController extends Controller
 
 
     /**
-     * @Route("circle/edit_user_access/{id}")
+     * @Route("cercles/{id}/admin/membres/{idUser}")
      */
     public function editUsersAccessAction()
     {

@@ -36,54 +36,28 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin/objets")
-     */
-    public function adminObjetsAction()
-    {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminObjets.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
-    }
-
-    /**
-     * @Route("/admin/services")
-     */
-    public function adminServicesAction()
-    {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminServices.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
-    }
-
-    /**
-     * @Route("/admin/users")
-     */
-    public function adminUsersAction()
-    {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
-    }
-
-    /**
-     * @Route("/cercles/{id}")
+     * @Route("/{id}")
      */
     public function accueilAppliAction($id)
     {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error, 'id'=>$id];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
+//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
+//        }
+//        $error = "Erreur!";
+        $param = ['id'=>$id];
+        return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
+    }
+
+    /**
+     * @Route("/{id}/admin")
+     */
+    public function adminCircleAction($id)
+    {
+//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
+//        }
+//        $error = "Erreur!";
+        $param = ['id'=>$id];
+        return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 }
