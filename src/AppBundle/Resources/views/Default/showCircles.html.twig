@@ -1,1 +1,36 @@
 {% extends 'FrontBundle::layoutFront.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="container-fluid">
+            <div class="row marginTopAccueilCercles">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <a href="/circle/create_circle" class="thumbnail">
+                        Ajouter un nouveau cercle
+                    </a>
+                </div>
+
+                {% for CUser in CUsers %}
+
+                    <a href="/circles/{{ CUser.circle.id }}">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
+                            <h3>{{ CUser.circle.name }}</h3>
+                            <p>
+                                {% for circleUser in CUser.circle.circleUsers %}
+                                    {% if circleUser.circleCenter == 1 %}
+                                        Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
+                                    {% elseif circleUser.adminCircle == 1 %}
+                                        Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
+                                    {% else %}
+                                        Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </a>
+
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
