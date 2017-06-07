@@ -28,24 +28,11 @@ class CreateCircleController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             $em = $this->getDoctrine()->getManager();
-
-//            $user = $this->getUser();
-//            $userId = $user->getId();
-//            $cercle->setAdminCircle($userId);
-
-
             $em->persist($cercle);
             $em->flush();
-//            $centerId = $cercle->getUser();
-//            $test = $em->getRepository('AppBundle:circle_user');
-//            var_dump($cercle);
-//            die();
 
             $idCercle=$cercle->getCircle();
-
-
 
             $adminCircle = new Circle_user();
             $adminCircle->setUser($this->getUser());
