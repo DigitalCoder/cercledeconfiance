@@ -15,6 +15,10 @@
             <tr>
                 <td class="tdFirstname">Firstname</td>
                 <td class="tdName">Name</td>
+                <td class="tdName">Visio</td>
+                <td class="tdName">Wall</td>
+                <td class="tdName">Cloud</td>
+                <td class="tdName">Agenda</td>
                 <td class="tdAction">Action</td>
             </tr>
 
@@ -23,6 +27,10 @@
                 <tr>
                     <td class="tdFirstname">{{ user.firstname }}</td>
                     <td class="tdName">{{ user.name}}</td>
+                    <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.visio == true %}checked="checked"{% endif %}></td>
+                    <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.wall == true %}checked="checked"{% endif %}></td>
+                    <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.cloud == true %}checked="checked"{% endif %}></td>
+                    <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.agenda == true %}checked="checked"{% endif %}></td>
                     <td class="tdAction">
                         <input class="btn btn-default" name="contactLus" value="Edit" type="submit">
                         <input class="btn btn-danger" name="contactDelete" value="Delete" type="submit">
@@ -32,5 +40,13 @@
         </table>
     </div>
 </div>
+
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 text-center">
+            <a href="circle/add_users/6">
+            <input class="btn btn-success" name="addUser" value="Ajouter un utilisateur">
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

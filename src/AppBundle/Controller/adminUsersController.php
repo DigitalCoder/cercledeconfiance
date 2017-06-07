@@ -16,7 +16,7 @@ use UserBundle\Entity\User;
 
 
 
-class addUsersController extends Controller
+class adminUsersController extends Controller
 {
     /**
      * @Route("circle/add_users/{id}")
@@ -35,8 +35,6 @@ class addUsersController extends Controller
         $circleId = 6;
         $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
 
-        var_dump($circle_users);
-        die();
         foreach ($circle_users as $test){
         $users[$test->getUser()->getId()]['name'] = $test->getUser()->getName();
         $users[$test->getUser()->getId()]['firstname'] = $test->getUser()->getFirstname();
@@ -45,9 +43,6 @@ class addUsersController extends Controller
         $users[$test->getUser()->getId()]['cloud'] = $test->getCloudAccess();
         $users[$test->getUser()->getId()]['agenda'] = $test->getAgendaAccess();
         }
-
-//                var_dump($users);
-//        die();
 
         return $this->render('AppBundle:Default:listUsersInCircle.html.twig', ['users'=>$users]);
     }
