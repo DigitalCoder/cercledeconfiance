@@ -27,8 +27,9 @@ class User extends BaseUser implements UserInterface
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255)
+     * @Assert\File()
      */
-    private $avatar='1';
+    private $avatar;
 
     /**
      * @ORM\Column(type="string", length=255)

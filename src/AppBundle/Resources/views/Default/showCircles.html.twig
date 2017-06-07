@@ -2,17 +2,17 @@
 
 {% block content %}
     <section>
-        <div class="container-fluid">
-            <div class="row marginTopAccueilCercles">
+        <div class="container-fluid marginTop marginBottom">
+            <div class="row">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <a href="/circle/create_circle" class="thumbnail">
+                    <a href="/circle/creer" class="thumbnail">
                         Ajouter un nouveau cercle
                     </a>
                 </div>
 
                 {% for CUser in CUsers %}
 
-                    <a href="/circles/{{ CUser.circle.id }}">
+                    <a href="/cercles/{{ CUser.circle.id }}">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
                             <h3>{{ CUser.circle.name }}</h3>
                             <p>
