@@ -29,14 +29,9 @@ class Type_object
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="type_object")
+     * @ORM\OneToMany(targetEntity="Model", mappedBy="type_object")
      */
-    private $object_entries;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="type_object")
-     */
-    private $connected_objects;
+    private $models;
 
 
     /**
@@ -80,72 +75,37 @@ class Type_object
         $this->models = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Add objectEntry
+     * Add model
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\Model $model
      *
      * @return Type_object
      */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function addModel(\AppBundle\Entity\Model $model)
     {
-        $this->object_entries[] = $objectEntry;
+        $this->models[] = $model;
 
         return $this;
     }
 
     /**
-     * Remove objectEntry
+     * Remove model
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\Model $model
      */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function removeModel(\AppBundle\Entity\Model $model)
     {
-        $this->object_entries->removeElement($objectEntry);
+        $this->models->removeElement($model);
     }
 
     /**
-     * Get objectEntries
+     * Get models
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getObjectEntries()
+    public function getModels()
     {
-        return $this->object_entries;
-    }
-
-    /**
-     * Add connectedObject
-     *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
-     *
-     * @return Type_object
-     */
-    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
-    {
-        $this->connected_objects[] = $connectedObject;
-
-        return $this;
-    }
-
-    /**
-     * Remove connectedObject
-     *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
-     */
-    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
-    {
-        $this->connected_objects->removeElement($connectedObject);
-    }
-
-    /**
-     * Get connectedObjects
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnectedObjects()
-    {
-        return $this->connected_objects;
+        return $this->models;
     }
 }

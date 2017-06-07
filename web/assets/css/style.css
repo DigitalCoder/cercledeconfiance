@@ -37,6 +37,11 @@ header {
     text-align: center;
 }
 
+/*_____Accueil Cercles_____*/
+.marginTopAccueilCercles {
+    margin-top: 150px;
+}
+
 /*_____FOOTER_____*/
 footer {
     font-size: 25px;

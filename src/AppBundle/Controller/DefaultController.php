@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\AppBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Circle_user;
 
 /**
  * Class DefaultController
@@ -22,8 +23,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user->getId()]);
-        dump($circle_users);
-        return $this->render('AppBundle:Default:showCircles.html.twig');
+        return $this->render('AppBundle:Default:showCircles.html.twig',
+            ['CUsers'=>$circle_users]);
     }
 
     /**
