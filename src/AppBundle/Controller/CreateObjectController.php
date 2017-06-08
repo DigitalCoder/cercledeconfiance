@@ -30,16 +30,27 @@ class CreateObjectController extends Controller
     /**
      * @Route("/cercles/{id}/admin/objets")
      */
-    public function editObjectAction(Request $request){
+    public function editObjectAction(Request $request, $id){
 
         $em = $this->getDoctrine()->getManager();
-        $userId = $em->getRepository('AppBundle:Circle_user')->findBy(array("user" => $this->getUser()));
-        $circleID = "????? $this->getUser()";
-
-        //dump($users);die();
-
-        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
-        // TODO add function buyItem() add function EditItem();
+        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $id));
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
+    }
+
+    /**
+     * @Route("/cercles/{id}/admin/objets/{objectId}")
+     */
+    public function activateObjectAction(Request $request, $id, $objectId) {
+        $em = $this->getDoctrine()->getManager();
+        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneById($objectId);
+        if ($objectToActivate->getAccess() == true){
+
+        }
+        $objectToActivate->setAccess(!$objectToActivate->getAccess());
+        $em->persist($objectToActivate);
+        $em->flush();
+        // TODO change route for buy;
+        // TODO add confirmation for remove;
+        return $this->redirect("/cercles/".$id."/admin/objets");
     }
 }
