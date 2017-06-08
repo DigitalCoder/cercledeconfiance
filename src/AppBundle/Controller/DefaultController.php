@@ -36,41 +36,28 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin/objets")
+     * @Route("/{id}")
      */
-    public function adminObjetsAction()
+    public function accueilAppliAction($id)
     {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminObjets.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
+//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
+//        }
+//        $error = "Erreur!";
+        $param = ['id'=>$id];
+        return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
     }
 
     /**
-     * @Route("/admin/services")
+     * @Route("/{id}/admin")
      */
-    public function adminServicesAction()
+    public function adminCircleAction($id)
     {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminServices.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
-    }
-
-    /**
-     * @Route("/admin/users")
-     */
-    public function adminUsersAction()
-    {
-        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
-        }
-        $error = "Erreur!";
-        $param = ['error'=>$error];
-        return $this->render('FrontBundle:Default:index.html.twig', $param);
+//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
+//        }
+//        $error = "Erreur!";
+        $param = ['id'=>$id];
+        return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 }

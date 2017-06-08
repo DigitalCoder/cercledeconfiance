@@ -43,24 +43,5 @@ class EditOfferController extends Controller
 
     }
 
-//    /**
-//     * @Route("/circle/edit_offer/{id}")
-//     */
-//    public function editAction(Circle $circle, Request $request)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $form = $this->createForm(CircleType::class, $circle);
-//
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em->flush();
-//        }
-//
-//        return $this->render('FrontBundle:Admin:adminServices.html.twig', [
-//            'form' => $form->createView(),
-//            'circle' => $circle,
-//        ]);
-//    }
+
 }

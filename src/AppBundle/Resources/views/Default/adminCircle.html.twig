@@ -1,0 +1,29 @@
+{% extends 'FrontBundle::layoutFront.html.twig' %}
+
+{% block title %}Bienvenu sur le Cercle{% endblock %}
+
+{% block content %}
+
+
+
+    <a href="/cercles/{{ id }}/admin/membres">
+        <input type="button" class="btn btn-success" value="Gerer Membres" />
+    </a>
+
+    <a href="/cercles/{{ id }}/admin/offres">
+        <input type="button" class="btn btn-success" value="Gerer Offres" />
+    </a>
+
+    <a href="/cercles/{{ id }}/admin/objets">
+        <input type="button" class="btn btn-success" value="Gerer Objets" />
+    </a>
+
+    <a href="/cercles/{{ id }}/admin/cercle">
+        <input type="button" class="btn btn-success" value="Gerer Cercle" />
+    </a>
+
+
+
+
+
+{% endblock %}
