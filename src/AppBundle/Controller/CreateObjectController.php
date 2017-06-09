@@ -43,9 +43,9 @@ class CreateObjectController extends Controller
     public function activateObjectAction(Request $request, $id, $objectId) {
         $em = $this->getDoctrine()->getManager();
         $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneById($objectId);
-        if ($objectToActivate->getAccess() == true){
-
-        }
+//        if ($objectToActivate->getAccess() == true){
+//
+//        }
         $objectToActivate->setAccess(!$objectToActivate->getAccess());
         $em->persist($objectToActivate);
         $em->flush();
