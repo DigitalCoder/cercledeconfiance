@@ -57,7 +57,7 @@ class CreateCircleController extends Controller
     }
 
     /**
-     * @Route("cercles/{id}/invit")
+     * @Route("{id}/invit")
      */
     public function userInvit(Request $request, $id){
 
@@ -74,8 +74,8 @@ class CreateCircleController extends Controller
             $invit->setCircleCenter(0);
             $em->persist($invit);
             $em->flush();
-            $user = $this->getUser();
-            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user->getId()]);
+
+            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getId()]);
             return $this->render('AppBundle:Default:showCircles.html.twig',
                 ['CUsers'=>$circle_users]);
         }
