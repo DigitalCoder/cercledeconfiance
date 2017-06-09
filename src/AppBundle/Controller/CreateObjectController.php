@@ -33,7 +33,10 @@ class CreateObjectController extends Controller
     public function editObjectAction(Request $request, $id){
 
         $em = $this->getDoctrine()->getManager();
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $id));
+        $user = $this->getUser();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user, 'circle'=>$id]);
+        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser));
+
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
 
