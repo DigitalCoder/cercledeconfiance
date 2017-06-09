@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Circle;
 use AppBundle\Entity\Offer;
 use AppBundle\Form\CircleType;
@@ -28,7 +27,6 @@ class EditOfferController extends Controller
         $offer = $em->getRepository('AppBundle:Circle');
         $circle = $offer->find($id);
         $form = $this->createForm(CircleType::class, $circle);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -40,7 +38,6 @@ class EditOfferController extends Controller
         }
             return $this->render('FrontBundle:Admin:adminServices.html.twig', array("form" => $form->createView(),
                                                                                         "circle" => $circle));
-
     }
 
 //    /**

@@ -22,12 +22,12 @@ class Connected_object
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Data_object", inversedBy="connected_objects")
+     * @ORM\ManyToOne(targetEntity="Data_object", inversedBy="connected_objects", cascade={"all"}, fetch="EAGER")
      */
     private $data_object;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Model", inversedBy="connected_objects")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="connected_objects", cascade={"all"}, fetch="EAGER")
      */
     private $model;
 
