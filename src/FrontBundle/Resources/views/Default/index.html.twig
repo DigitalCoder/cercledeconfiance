@@ -1,11 +1,11 @@
- {% extends "FrontBundle::layoutFront.html.twig" %}
+{% extends "FrontBundle::layoutFront.html.twig" %}
 
 {% block links %}
     <li class="scroll active"><a href="/">Accueil</a></li>
     <li class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
     <li class="scroll"><a href="#serve"> Nos services</a></li>
     <li class="scroll"><a href="#object">Nos objets connectés</a></li>
-    <li class="scroll"><a href="/circles">Accéder aux cercles</a></li>
+    <li class="scroll"><a href="/cercles">Accéder aux cercles</a></li>
 {% endblock %}
 
 {% block content %}
@@ -91,32 +91,75 @@
                             <h2>Marketing Box #2</h2>
                             <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
                         </div>
-        </div>
-                        <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir                         plus</a>
-                        </div>
-
                     </div>
+                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir                         plus</a>
+                    </div>
+
                 </div>
-        <div id="object">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
+            </div>
+            <div id="object">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
+
+                        <div class="row item">
+
+                            <div class="features">
+                                <h3>Visio</h3>
+                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                                    <div class="media service-box">
+                                        <div class="pull-left">
+                                            <i class="fa fa-line-chart"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Camera de Visioconférence</h4>
+                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+                                    <div class="media service-box">
+                                        <div class="pull-left">
+                                            <i class="fa fa-cubes"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Camera supplémentaire</h4>
+                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+                                    <div class="media service-box">
+                                        <div class="pull-left">
+                                            <i class="fa fa-cubes"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Camera supplémentaire</h4>
+                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row item">
 
                         <div class="features">
-                            <h3>Visio</h3>
+                            <h3>Confort</h3>
                             <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
                                 <div class="media service-box">
                                     <div class="pull-left">
                                         <i class="fa fa-line-chart"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Camera de Visioconférence</h4>
+                                        <h4 class="media-heading">Capteur de température</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div><!--/.col-md-4-->
 
                             <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
                                 <div class="media service-box">
@@ -124,139 +167,93 @@
                                         <i class="fa fa-cubes"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Camera supplémentaire</h4>
+                                        <h4 class="media-heading">Capteur incendie</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
                                 <div class="media service-box">
                                     <div class="pull-left">
                                         <i class="fa fa-cubes"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Camera supplémentaire</h4>
+                                        <h4 class="media-heading">Capteur incendie</h4>
                                         <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row item">
-
-            <div class="features">
-                <h3>Confort</h3>
-                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
-                    <div class="media service-box">
-                        <div class="pull-left">
-                            <i class="fa fa-line-chart"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Capteur de température</h4>
-                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                        </div>
-                    </div>
-                </div><!--/.col-md-4-->
-
-                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
-                    <div class="media service-box">
-                        <div class="pull-left">
-                            <i class="fa fa-cubes"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Capteur incendie</h4>
-                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
-                    <div class="media service-box">
-                        <div class="pull-left">
-                            <i class="fa fa-cubes"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Capteur incendie</h4>
-                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                        </div>
+                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir plus</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir                         plus</a>
-        </div>
-                </div>
-            </div>
-
 
     </section>
 
 
-        <section id="testi">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown">Les Témoignages</h2>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
-                            <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-                                <!-- Carousel indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
-                                    <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
-                                    <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
-                                    <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
-                                    <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
-                                    <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
-                                </ol>
-                                <!-- Carousel items -->
-                                <div class="carousel-inner">
-                                    <div class="item">
-                                        <div class="profile-circle" style="background-color: rgba(0,0,0,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
-                                    <div class="item">
-                                        <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
-                                    <div class="active item">
-                                        <div class="profile-circle" style="background-color: rgba(145,169,216,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
-                                    <div class="item">
-                                        <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
-                                    <div class="item">
-                                        <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
-                                    <div class="item">
-                                        <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                        </blockquote>
-                                    </div>
+    <section id="testi">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Les Témoignages</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
+                        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                            <!-- Carousel indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
+                                <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
+                                <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
+                                <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
+                                <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
+                                <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
+                            </ol>
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item">
+                                    <div class="profile-circle" style="background-color: rgba(0,0,0,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
+                                </div>
+                                <div class="item">
+                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
+                                </div>
+                                <div class="active item">
+                                    <div class="profile-circle" style="background-color: rgba(145,169,216,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
+                                </div>
+                                <div class="item">
+                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
+                                </div>
+                                <div class="item">
+                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
+                                </div>
+                                <div class="item">
+                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
+                                    <blockquote>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </section>
-
-        </div>
+            </div>
         </div>
     </section>
-
 {% endblock %}

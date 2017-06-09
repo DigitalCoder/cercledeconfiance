@@ -35,7 +35,7 @@
                                 <li class="scroll"><a href="/presentation">Qui sommes nous ?</a></li>
                                 <li class="scroll"><a href="/services"> Nos services</a></li>
                                 <li class="scroll"><a href="/objets">Nos objets connectés</a></li>
-                                <li class="scroll"><a href="/circles">Accéder aux cercles</a></li>
+                                <li class="scroll"><a href="/cercles">Accéder aux cercles</a></li>
                                 {% endblock %}
                             </ul>
                         </div>
@@ -48,14 +48,3 @@
 
 {% block content %}{% endblock %}
 
-{% block javascript %}
-    {{ parent() }}
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/js/mousescroll.js') }}"></script>
-    <script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-{% endblock %}
