@@ -2,19 +2,19 @@
 
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-{% block title %} Modifiez vos services{% endblock %}
+{% block title %} Modification de l'offre{% endblock %}
 
 
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-md-4 col-md-offset-4 offerform">
 
-            <h3 class="section-header">Choisissez vos services</h3>
+            <h3 class="section-header section-title text-center">Choisissez Votre Service</h3>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <div class="form-group">
-                <input class="btn btn-info form-control" type="submit" name="add" value="Modifiez vos services"/>
+                 <input class="btn btn-info form-control" type="submit" name="add" value="Modifiez votre service"/>
             </div>
             {{ form_end(form) }}
             </div>

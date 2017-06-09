@@ -49,7 +49,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{id}/admin")
+     * @Route("/{id}/admin", name="admin")
      */
     public function adminCircleAction($id)
     {
