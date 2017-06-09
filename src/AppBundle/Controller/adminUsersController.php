@@ -49,7 +49,7 @@ class adminUsersController extends Controller
             $message = new \Swift_Message('Invitation Cercle Confiance');
             $message->setTo($mail->getEmail())
             ->setFrom('cercleconfiance07@gmail.com')
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName())), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'id'=>$id)), 'text/html');
 
 //            $this->renderView('Emails/invitation.html.twig', array('name' => $mail->getName())), 'text/html'
 
