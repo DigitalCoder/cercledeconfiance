@@ -38,8 +38,12 @@ header {
 }
 
 /*_____Accueil Cercles_____*/
-.marginTopAccueilCercles {
+.marginTop {
     margin-top: 150px;
+}
+
+.marginBottom {
+    margin-bottom: 100px;
 }
 
 /*_____FOOTER_____*/
