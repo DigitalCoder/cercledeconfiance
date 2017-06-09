@@ -20,26 +20,25 @@ use Symfony\Component\HttpFoundation\Request;
 class EditOfferController extends Controller
 {
     /**
-     * @Route("/cercle/{id}/admin/offres")
+     * @Route("/cercles/{id}/admin/offres", name="edit_offer")
      */
     public function editOfferAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $offer = $em->getRepository('AppBundle:Circle');
-        $circle = $offer->find($id);
+        $circle = $em->getRepository('AppBundle:Circle')->find($id);
         $form = $this->createForm(CircleType::class, $circle);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($offer);
+            $em->persist($circle);
             $em->flush();
+            return $this->redirectToRoute('admin', ['id'=>$circle->getId()]);
+
         }
-            return $this->render('FrontBundle:Admin:adminServices.html.twig', array("form" => $form->createView(),
-                                                                                        "circle" => $circle));
+
+            return $this->render('FrontBundle:Admin:adminServices.html.twig',
+                        array("form" => $form->createView()));
 
     }
 
