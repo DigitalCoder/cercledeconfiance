@@ -27,7 +27,7 @@ class User extends BaseUser implements UserInterface
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255)
-     * @Assert\File()
+     * @Assert\Image()
      */
     private $avatar;
 
@@ -287,4 +287,5 @@ class User extends BaseUser implements UserInterface
     {
         return $this->address;
     }
+
 }

@@ -43,7 +43,7 @@ class LoadUserData extends AbstractFixture
         $user0->setPlainPassword('admin');
         $user0->setEnabled(true);
         $user0->addRole('ROLE_SUPER_ADMIN');
-        $user0->setAvatar('http://icons.iconarchive.com/icons/mattahan/ultrabuuf/256/Comics-Mask-icon.png');
+        $user0->setAvatar('image.png');
         $user0->setName('Martin');
         $user0->setFirstname('Julien');
         $user0->setRelation('Super Dev');
@@ -60,7 +60,7 @@ class LoadUserData extends AbstractFixture
         $user1->setPlainPassword('admin');
         $user1->setEnabled(true);
         $user1->addRole('ROLE_ADMIN');
-        $user1->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user1->setAvatar('image.png');
         $user1->setName('Martin');
         $user1->setFirstname('Julien');
         $user1->setRelation('Dev');
@@ -77,7 +77,7 @@ class LoadUserData extends AbstractFixture
         $user2->setPlainPassword('admin');
         $user2->setEnabled(true);
         $user2->addRole('ROLE_ADMIN');
-        $user2->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user2->setAvatar('image.png');
         $user2->setName('Koffi');
         $user2->setFirstname('Guillaume');
         $user2->setRelation('Dev');
@@ -94,7 +94,7 @@ class LoadUserData extends AbstractFixture
         $user3->setPlainPassword('admin');
         $user3->setEnabled(true);
         $user3->addRole('ROLE_ADMIN');
-        $user3->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user3->setAvatar('image.png');
         $user3->setName('Jan');
         $user3->setFirstname('Sylvain');
         $user3->setRelation('Dev');
@@ -111,7 +111,7 @@ class LoadUserData extends AbstractFixture
         $user4->setPlainPassword('admin');
         $user4->setEnabled(true);
         $user4->addRole('ROLE_ADMIN');
-        $user4->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user4->setAvatar('image.png');
         $user4->setName('Cabezas');
         $user4->setFirstname('Maxime');
         $user4->setRelation('Dev');
@@ -127,7 +127,7 @@ class LoadUserData extends AbstractFixture
         $user5->setEmail('test5@gmail.com');
         $user5->setPlainPassword('admin');
         $user5->setEnabled(true);
-        $user5->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user5->setAvatar('image.png');
         $user5->setName('Pinel');
         $user5->setFirstname('Georgette');
         $user5->setRelation('Centre');
@@ -143,7 +143,7 @@ class LoadUserData extends AbstractFixture
         $user6->setEmail('test6@gmail.com');
         $user6->setPlainPassword('admin');
         $user6->setEnabled(true);
-        $user6->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user6->setAvatar('image.png');
         $user6->setName('Rostand');
         $user6->setFirstname('Gaston');
         $user6->setRelation('Frère');
@@ -159,7 +159,7 @@ class LoadUserData extends AbstractFixture
         $user7->setEmail('test7gmail.com');
         $user7->setPlainPassword('admin');
         $user7->setEnabled(true);
-        $user7->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user7->setAvatar('image.png');
         $user7->setName('De la Bibiche');
         $user7->setFirstname('Guenièvre');
         $user7->setRelation('Centre');
@@ -175,7 +175,7 @@ class LoadUserData extends AbstractFixture
         $user8->setEmail('test8@gmail.com');
         $user8->setPlainPassword('admin');
         $user8->setEnabled(true);
-        $user8->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user8->setAvatar('image.png');
         $user8->setName('Dupuis');
         $user8->setFirstname('Léontine');
         $user8->setRelation('Soeur');
@@ -191,7 +191,7 @@ class LoadUserData extends AbstractFixture
         $user9->setEmail('test9@gmail.com');
         $user9->setPlainPassword('admin');
         $user9->setEnabled(true);
-        $user9->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user9->setAvatar('image.png');
         $user9->setName('Dupuis');
         $user9->setFirstname('Firmin');
         $user9->setRelation('Centre');
@@ -207,7 +207,7 @@ class LoadUserData extends AbstractFixture
         $user10->setEmail('test10gmail.com');
         $user10->setPlainPassword('admin');
         $user10->setEnabled(true);
-        $user10->setAvatar('https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png');
+        $user10->setAvatar('image.png');
         $user10->setName('Grimaldi');
         $user10->setFirstname('Ernesto');
         $user10->setRelation('Centre');
