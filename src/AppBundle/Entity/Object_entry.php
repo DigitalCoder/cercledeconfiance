@@ -29,7 +29,7 @@ class Object_entry
     private $access=0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="object_entries")
+     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="object_entries", cascade={"persist", "remove"})
      */
     private $circle_user;
 

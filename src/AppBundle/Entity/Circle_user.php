@@ -68,7 +68,7 @@ class Circle_user
     private $agendaAccess=1;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist", "remove"})
      */
     private $object_entries;
 
