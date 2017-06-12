@@ -10,14 +10,17 @@
 <div class="container-fluid">
     <h3>Créer un cercle</h3>
 
-    <div class="container text-center">
-        <h3>Créer un cercle</h3>
+    {% if error is defined %}
+        {{ error }}
+    {% else %}
+        <div class="container text-center">
+            <h3>Créer un cercle</h3>
 
-        {{ form_start(form) }}
+            {{ form_start(form) }}
 
 
-        {{ form_end(form) }}
-    </div>
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
 
-
-{% endblock %}
+    {% endblock %}

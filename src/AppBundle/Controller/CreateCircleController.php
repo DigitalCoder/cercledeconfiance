@@ -66,9 +66,15 @@ class CreateCircleController extends Controller
         $form = $this->createForm(User_InvitType::class, $invit);
         $form->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+
+        if (isset($circleUsers) && count($circleUsers) >=6 ) {
+            return $this->render('FrontBundle:Default:createCircle.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
             $circle = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$id]);
             $invit->setCircle($circle[0]);
             $invit->setCircleCenter(0);
