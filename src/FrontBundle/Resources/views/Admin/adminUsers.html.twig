@@ -35,7 +35,7 @@
                                 <td class="tdCloud"><input type="checkbox" disabled="disabled" {% if user.cloudAccess == true %}checked="checked"{% endif %}></td>
                                 <td class="tdAgenda"><input type="checkbox" disabled="disabled" {% if user.agendaAccess == true %}checked="checked"{% endif %}></td>
                                 <td class="tdAction">
-                                    <a href="/cercles/{{ id }}/admin/membres/{{ user.id }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ path('editMember', {'id': id ,'idUser': user.id }) }}" class="btn btn-warning">Edit</a>
 
                                     <a href="{{ path('deleteMember', {'id': id ,'idUser': user.id }) }}" class="btn btn-danger">Delete</a>
                                 </td>
