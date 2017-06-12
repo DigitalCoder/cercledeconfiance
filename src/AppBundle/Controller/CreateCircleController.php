@@ -78,12 +78,13 @@ class CreateCircleController extends Controller
             $circle = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$id]);
             $invit->setCircle($circle[0]);
             $invit->setCircleCenter(0);
+            $invit->getUser()->setEnabled(true);
             $em->persist($invit);
             $em->flush();
 
-            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getId()]);
-            return $this->render('AppBundle:Default:showCircles.html.twig',
-                ['CUsers'=>$circle_users]);
+
+            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getUser()->getId()]);
+            return $this->redirectToRoute('accueil', ['CUsers'=>$circle_users]);
         }
         return $this->render('FrontBundle:Default:createCircle.html.twig', array("form" => $form->createView()));
 

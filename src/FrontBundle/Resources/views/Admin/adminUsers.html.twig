@@ -43,12 +43,9 @@
                                                             {% if user.agendaAccess == true %}checked="checked"{% endif %}>
                                 </td>
                                 <td class="tdAction">
-                                    <a href="/cercles/{{ id }}/admin/membres/{{ user.id }}">
-                                        <input class="btn btn-warning" name="editUser" value="Edit" type="submit">
-                                    </a>
-                                    <a href="/cercles/{{ id }}/edit">
-                                        <input class="btn btn-danger" name="deleteUser" value="Delete" type="submit">
-                                    </a>
+                                    <a href="/cercles/{{ id }}/admin/membres/{{ user.id }}" class="btn btn-warning">Edit</a>
+
+                                    <a href="{{ path('deleteMember', {'id': id ,'idUser': user.id }) }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
