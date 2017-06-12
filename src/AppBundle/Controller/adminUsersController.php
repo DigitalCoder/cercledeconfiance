@@ -9,8 +9,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
+use AppBundle\Form\Circle_userType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Circle_user;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,7 +26,7 @@ class adminUsersController extends Controller
 {
 
     /**
-     * @Route("cercles/{id}/admin/membres")
+     * @Route("cercles/{id}/admin/membres", name="listMembers")
      */
     public function listUsersAction(Request $request, $id)
     {
@@ -66,10 +68,49 @@ class adminUsersController extends Controller
     /**
      * @Route("cercles/{id}/admin/membres/{idUser}")
      */
-    public function editUsersAccessAction($id, $idUser)
+    public function editUsersAccessAction($id, $idUser, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
 
-        return $this->render('FrontBundle:Admin:users:editUserAccess.html.twig');
+        $formBuilder = $this->createFormBuilder($circleUser);
+
+        $formBuilder->add('callAccess')
+                    ->add('wallAccess')
+                    ->add('cloudAccess')
+                    ->add('agendaAccess')
+                    ->add('add', SubmitType::class)
+        ;
+
+        $form = $formBuilder->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('listMembers', ['id'=>$id]);
+        }
+
+        return $this->render('FrontBundle:Admin:editUserAccess.html.twig', [
+            'form' => $form->createView(),
+            'user' => $circleUser,
+            'id'=>$id,
+        ]);
+    }
+
+    /**
+     * @Route("cercles/{id}/admin/membres/{idUser}/delete", name="deleteMember")
+     *
+     */
+    public function deleteAction($idUser, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
+        $em->remove($circleUser[0]);
+
+        $em->flush();
+
+        return $this->redirectToRoute('listMembers', ['id'=>$id]);
     }
 
 }

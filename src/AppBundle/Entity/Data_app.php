@@ -29,7 +29,7 @@ class Data_app
     private $creationDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="data_apps", cascade={"persist"})
      */
     private $circle_user;
 
