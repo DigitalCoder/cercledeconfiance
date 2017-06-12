@@ -17,10 +17,10 @@
                         <tr>
                             <th class="tdFirstname">Firstname</th>
                             <th class="tdName">Name</th>
-                            <th class="tdName">Visio</th>
-                            <th class="tdName">Wall</th>
-                            <th class="tdName">Cloud</th>
-                            <th class="tdName">Agenda</th>
+                            <th class="tdVisio">Visio</th>
+                            <th class="tdWall">Wall</th>
+                            <th class="tdCloud">Cloud</th>
+                            <th class="tdAgenda">Agenda</th>
                             <th class="tdAction">Action</th>
                         </tr>
                         </thead>
@@ -30,13 +30,17 @@
                             <tr>
                                 <td class="tdFirstname">{{ user.user.firstname }}</td>
                                 <td class="tdName">{{ user.user.name }}</td>
-                                <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.callAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.wallAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.cloudAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdName"><input type="checkbox" disabled="disabled" {% if user.agendaAccess == true %}checked="checked"{% endif %}></td>
+                                <td class="tdVisio"><input type="checkbox" disabled="disabled" {% if user.callAccess == true %}checked="checked"{% endif %}></td>
+                                <td class="tdWall"><input type="checkbox" disabled="disabled" {% if user.wallAccess == true %}checked="checked"{% endif %}></td>
+                                <td class="tdCloud"><input type="checkbox" disabled="disabled" {% if user.cloudAccess == true %}checked="checked"{% endif %}></td>
+                                <td class="tdAgenda"><input type="checkbox" disabled="disabled" {% if user.agendaAccess == true %}checked="checked"{% endif %}></td>
                                 <td class="tdAction">
-                                    <input class="btn btn-default" name="contactLus" value="Edit" type="submit">
-                                    <input class="btn btn-danger" name="contactDelete" value="Delete" type="submit">
+                                    <a href="/cercles/{{ id }}/admin/membres/{{ user.id }}">
+                                    <input class="btn btn-warning" name="editUser" value="Edit" type="submit">
+                                    </a>
+                                    <a href="/cercles/{{ id }}/edit">
+                                    <input class="btn btn-danger" name="deleteUser" value="Delete" type="submit">
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -46,8 +50,8 @@
             </div>
 
             <div class="row">
-                <h3>Ajouter un utilisateur au cercle</h3>
                 <div class="col-xs-10 col-xs-offset-1 text-center">
+                    <h3>Ajouter un utilisateur au cercle</h3>
                     <p>Renseigner le mail de la personne a inviter</p>
                     {{ form(form) }}
                 </div>

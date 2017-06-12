@@ -6,15 +6,14 @@
 
 
 {% block content %}
+    {{ dump(form) }}
+    {#{{ form(form) }}#}
 
-    <div class="container text-center">
-        <h3>Créer un cercle</h3>
+    <h3>s'enregistrer</h3>
 
-        {{ form_start(form) }}
+    {{ form_start(form) }}
 
 
-        {{ form_end(form) }}
-    </div>
-
+    {{ form_end(form) }}
 
 {% endblock %}
