@@ -17,15 +17,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateObjectController extends Controller
 {
-    /**
-     * @Route("/objets")
-     */
-    public function createObjectAction(Request $request){
-
-        $em = $this->getDoctrine()->getManager();
-        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
-        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
-    }
+//    /**
+//     * @Route("/cercles/admin/objets")
+//     */
+//    public function createObjectAction(Request $request){
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
+//        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
+//    }
 
     /**
      * @Route("/cercles/{id}/admin/objets")
@@ -45,7 +45,7 @@ class CreateObjectController extends Controller
      */
     public function activateObjectAction(Request $request, $id, $objectId) {
         $em = $this->getDoctrine()->getManager();
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneById($objectId);
+        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneByModelId($objectId);
         if ($objectToActivate->getAccess() == true){
 
         }
