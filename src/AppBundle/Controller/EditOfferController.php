@@ -15,6 +15,7 @@ use AppBundle\Form\OfferType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class EditOfferController extends Controller
 {
@@ -37,9 +38,24 @@ class EditOfferController extends Controller
         }
 
             return $this->render('FrontBundle:Admin:adminServices.html.twig',
-                        array("form" => $form->createView()));
+                        array("form" => $form->createView(), 'id'=>$id));
 
     }
 
+    /**
+     * @Route("cercles/{id}/admin/offres/delete", name="deleteCircle")
+     *
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['id'=>$id]);
+        $circle->setActive(0);
+        $circle->setAvailabilityDate(new \DateTime());
+        $em->persist($circle);
+        $em->flush();
+
+        return $this->redirectToRoute('accueil');
+    }
 
 }
