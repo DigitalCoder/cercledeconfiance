@@ -36,7 +36,7 @@ class UserUploadListener
     }
     public function postLoad(LifecycleEventArgs $args)
     {
-        if(!$_SERVER['argv'][1] === 'doctrine:fixtures:load') {
+        if(isset ($_SERVER['argv']) && !$_SERVER['argv'][1] === 'doctrine:fixtures:load') {
 
             $entity = $args->getEntity();
             if (!$entity instanceof User) {
