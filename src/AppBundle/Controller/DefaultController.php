@@ -16,7 +16,7 @@ class DefaultController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/")
+     * @Route("/", name="showCircle")
      */
     public function showCircles()
     {
