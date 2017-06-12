@@ -70,7 +70,7 @@ class CreateCircleController extends Controller
         $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
 
         if (isset($circleUsers) && count($circleUsers) >=6 ) {
-            return $this->render('FrontBundle:Default:createCircle.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
+            return $this->render('FrontBundle:Admin:invitUser.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class CreateCircleController extends Controller
             $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getUser()->getId()]);
             return $this->redirectToRoute('accueil', ['CUsers'=>$circle_users]);
         }
-        return $this->render('FrontBundle:Default:createCircle.html.twig', array("form" => $form->createView()));
+        return $this->render('FrontBundle:Admin:invitUser.html.twig', array("form" => $form->createView()));
 
     }
 }
