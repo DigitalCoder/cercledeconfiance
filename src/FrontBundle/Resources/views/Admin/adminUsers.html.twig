@@ -30,16 +30,24 @@
                             <tr>
                                 <td class="tdFirstname">{{ user.user.firstname }}</td>
                                 <td class="tdName">{{ user.user.name }}</td>
-                                <td class="tdVisio"><input type="checkbox" disabled="disabled" {% if user.callAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdWall"><input type="checkbox" disabled="disabled" {% if user.wallAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdCloud"><input type="checkbox" disabled="disabled" {% if user.cloudAccess == true %}checked="checked"{% endif %}></td>
-                                <td class="tdAgenda"><input type="checkbox" disabled="disabled" {% if user.agendaAccess == true %}checked="checked"{% endif %}></td>
+                                <td class="tdVisio"><input type="checkbox" disabled="disabled"
+                                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
+                                </td>
+                                <td class="tdWall"><input type="checkbox" disabled="disabled"
+                                                          {% if user.wallAccess == true %}checked="checked"{% endif %}>
+                                </td>
+                                <td class="tdCloud"><input type="checkbox" disabled="disabled"
+                                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
+                                </td>
+                                <td class="tdAgenda"><input type="checkbox" disabled="disabled"
+                                                            {% if user.agendaAccess == true %}checked="checked"{% endif %}>
+                                </td>
                                 <td class="tdAction">
                                     <a href="/cercles/{{ id }}/admin/membres/{{ user.id }}">
-                                    <input class="btn btn-warning" name="editUser" value="Edit" type="submit">
+                                        <input class="btn btn-warning" name="editUser" value="Edit" type="submit">
                                     </a>
                                     <a href="/cercles/{{ id }}/edit">
-                                    <input class="btn btn-danger" name="deleteUser" value="Delete" type="submit">
+                                        <input class="btn btn-danger" name="deleteUser" value="Delete" type="submit">
                                     </a>
                                 </td>
                             </tr>
@@ -48,14 +56,21 @@
                     </table>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 text-center">
-                    <h3>Ajouter un utilisateur au cercle</h3>
-                    <p>Renseigner le mail de la personne a inviter</p>
-                    {{ form(form) }}
+            {% if users|length < 6 %}
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 text-center">
+                        <h3>Ajouter un utilisateur au cercle</h3>
+                        <p>Renseigner le mail de la personne a inviter</p>
+                        {{ form(form) }}
+                    </div>
                 </div>
-            </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 text-center marginBottom">
+                        <h3>Le nombre maximal d'utilisateur du cercle est atteint !</h3>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 
