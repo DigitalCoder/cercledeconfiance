@@ -97,7 +97,7 @@ class CreateCircleController extends Controller
             $message = new \Swift_Message('Nouvel utilisateur Cercle Confiance');
             $message->setTo($admin->getUser()->getEmail())
                 ->setFrom('cercleconfiance07@gmail.com')
-                ->setBody($this->renderView('confirmation.html.twig', array('adminName' => $admin->getUser()->getName(), 'invitName' => $invit->getUser()->getName())), 'text/html');
+                ->setBody($this->renderView('confirmation.html.twig', array('adminName' => $admin->getUser()->getUsername(), 'invitName' => $invit->getUser()->getUsername())), 'text/html');
             $mailer->send($message);
 
             $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user' => $invit->getUser()->getId()]);

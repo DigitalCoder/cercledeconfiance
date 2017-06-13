@@ -4,6 +4,13 @@
 
 {% block content %}
     <div class="container-fluid">
+        <a href="/cercles">
+            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+        </a>
+
+        <a href="/cercles/{{ token }}">
+            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+        </a>
         {#<h1>Edit {{ user.user.firstname }}</h1>#}
         {{ form_start(form) }}
         {{ form_widget(form) }}

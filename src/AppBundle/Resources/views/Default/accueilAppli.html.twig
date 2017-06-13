@@ -4,37 +4,42 @@
 
 {% block content %}
 
+    <div class="container">
+        <div class="row">
+            <a href="/cercles">
+                <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+            </a>
 
+            <a href="/cercles/{{ token }}/visio">
+                <input type="button" class="btn btn-success" value="Visio"/>
+            </a>
 
-    <a href="/cercles/{{ token }}/visio">
-        <input type="button" class="btn btn-success" value="Visio" />
-    </a>
+            <a href="/cercles/{{ token }}/cloud">
+                <input type="button" class="btn btn-success" value="Cloud"/>
+            </a>
 
-    <a href="/cercles/{{ token }}/cloud">
-        <input type="button" class="btn btn-success" value="Cloud" />
-    </a>
+            <a href="/cercles/{{ token }}/mur">
+                <input type="button" class="btn btn-success" value="Mur"/>
+            </a>
 
-    <a href="/cercles/{{ token }}/mur">
-        <input type="button" class="btn btn-success" value="Mur" />
-    </a>
+            <a href="/cercles/{{ token }}/agenda">
+                <input type="button" class="btn btn-success" value="Agenda"/>
+            </a>
 
-    <a href="/cercles/{{ token }}/agenda">
-        <input type="button" class="btn btn-success" value="Agenda" />
-    </a>
+            <a href="/cercles/{{ token }}/objets">
+                <input type="button" class="btn btn-success" value="Objets"/>
+            </a>
 
-    <a href="/cercles/{{ token }}/objets">
-        <input type="button" class="btn btn-success" value="Objets" />
-    </a>
+            <a href="/profile/edit">
+                <input type="button" class="btn btn-success" value="Editer Profil"/>
+            </a>
+            {% if circleUser.adminCircle == 1 %}
+                <a href="/cercles/{{ token }}/admin">
+                    <input type="button" class="btn btn-success" value="Admin"/>
+                </a>
+            {% endif %}
 
-    <a href="/profile/edit">
-        <input type="button" class="btn btn-success" value="Editer Profil" />
-    </a>
-
-    <a href="/cercles/{{ token }}/admin">
-        <input type="button" class="btn btn-success" value="Admin" />
-    </a>
-
-
-
+        </div>
+    </div>
 
 {% endblock %}
