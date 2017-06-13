@@ -26,7 +26,8 @@ class CreateCircleController extends Controller
     /**
      * @Route("cercles/creer")
      */
-    public function createCircle(Request $request){
+    public function createCircle(Request $request)
+    {
         $cercle = new Circle_user();
         $form = $this->createForm(Circle_userType::class, $cercle);
 
@@ -37,7 +38,7 @@ class CreateCircleController extends Controller
             $em->persist($cercle);
             $em->flush();
 
-            $idCercle=$cercle->getCircle();
+            $idCercle = $cercle->getCircle();
 
             $adminCircle = new Circle_user();
             $adminCircle->setUser($this->getUser());
@@ -59,7 +60,8 @@ class CreateCircleController extends Controller
     /**
      * @Route("{id}/invit")
      */
-    public function userInvit(Request $request, $id){
+    public function userInvit(Request $request, $id)
+    {
 
         $invit = new Circle_user();
 
@@ -67,24 +69,31 @@ class CreateCircleController extends Controller
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
-        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle' => $id]);
 
-        if (isset($circleUsers) && count($circleUsers) >=6 ) {
+        if (isset($circleUsers) && count($circleUsers) >= 6) {
             return $this->render('FrontBundle:Admin:invitUser.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $circle = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$id]);
+            $circle = $em->getRepository('AppBundle:Circle')->findBy(['id' => $id]);
             $invit->setCircle($circle[0]);
             $invit->setCircleCenter(0);
             $invit->getUser()->setEnabled(true);
             $em->persist($invit);
+
             $em->flush();
+            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle' => $id, 'adminCircle' => 1]);
+            $mailer = $this->get('mailer');
+            $message = new \Swift_Message('Nouvel utilisateur Cercle Confiance');
+            $message->setTo($admin->getUser()->getEmail())
+                ->setFrom('cercleconfiance07@gmail.com')
+                ->setBody($this->renderView('confirmation.html.twig', array('adminName' => $admin->getUser()->getName(), 'invitName' => $invit->getUser()->getName())), 'text/html');
+            $mailer->send($message);
 
-
-            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getUser()->getId()]);
-            return $this->redirectToRoute('accueil', ['CUsers'=>$circle_users]);
+            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user' => $invit->getUser()->getId()]);
+            return $this->redirectToRoute('accueil', ['CUsers' => $circle_users]);
         }
         return $this->render('FrontBundle:Admin:invitUser.html.twig', array("form" => $form->createView()));
 
