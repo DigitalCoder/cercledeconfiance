@@ -24,6 +24,7 @@ class CreateObjectController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        dump($circleUser[1]);die();
         $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser[1]));
 
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
