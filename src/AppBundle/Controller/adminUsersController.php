@@ -47,6 +47,11 @@ class adminUsersController extends Controller
         $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
         $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
 
+        $objects = $em->getRepository('AppBundle:Object_entry')->findBy(['circle_user'=>$users]);
+
+//        var_dump($objects);
+//        die();
+
         $circleToken = $circleId[0]->getToken();
         $form->handleRequest($request);
 
@@ -62,11 +67,11 @@ class adminUsersController extends Controller
 
 
         $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
 
         }
 
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
     }
 
 
