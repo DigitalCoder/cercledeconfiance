@@ -13,9 +13,9 @@
                         <div class="col-lg-5 text-center">
                             <img src="http://via.placeholder.com/64x64" alt="placeholder" class="left"><br /><br />
                         {% if object.access == 1 %}
-                            <a href="/cercles/{{ object.circleuser.circle.id }}/admin/objets/{{ object.model.id }}"><button class="btn btn-danger">Résilié</button></a>
+                            <a href="/cercles/{{ object.circleuser.circle.token }}/admin/objets/{{ object.model.id }}"><button class="btn btn-danger">Résilié</button></a>
                             {% else %}
-                                <a href="/cercles/{{ object.circleuser.circle.id }}/admin/objets/{{ object.model.id }}"><button class="btn btn-primary">Acheter</button></a>
+                                <a href="/cercles/{{ object.circleuser.circle.token }}/admin/objets/{{ object.model.id }}"><button class="btn btn-primary">Acheter</button></a>
                         {% endif %}
                             </div>
                         <div class="col-lg-7">
