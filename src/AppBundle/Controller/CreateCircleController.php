@@ -34,6 +34,7 @@ class CreateCircleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
+            $cercle->getCircle()->setToken(md5(uniqid()));
             $em->persist($cercle);
             $em->flush();
 
@@ -57,9 +58,9 @@ class CreateCircleController extends Controller
     }
 
     /**
-     * @Route("{id}/invit")
+     * @Route("{token}/invit")
      */
-    public function userInvit(Request $request, $id){
+    public function userInvit(Request $request, $token){
 
         $invit = new Circle_user();
 
@@ -67,7 +68,9 @@ class CreateCircleController extends Controller
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
-        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        $circleId = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
+        $circleId = $circleId[0]->getId();
+        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
 
         if (isset($circleUsers) && count($circleUsers) >=6 ) {
             return $this->render('FrontBundle:Admin:invitUser.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
@@ -75,7 +78,7 @@ class CreateCircleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $circle = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$id]);
+            $circle = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
             $invit->setCircle($circle[0]);
             $invit->setCircleCenter(0);
             $invit->getUser()->setEnabled(true);

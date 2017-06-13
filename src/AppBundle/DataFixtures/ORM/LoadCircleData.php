@@ -31,6 +31,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $circle0->setActive(1);
         $circle0->setPaid(1);
         $circle0->setName('Cercle_1');
+        $circle0->setToken(md5(uniqid()));
         $manager->persist($circle0);
 
         $circle1 = new Circle();
@@ -39,6 +40,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $circle1->setActive(1);
         $circle1->setPaid(1);
         $circle1->setName('Cercle_2');
+        $circle1->setToken(md5(uniqid()));
         $manager->persist($circle1);
 
         $circle2 = new Circle();
@@ -47,6 +49,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $circle2->setActive(1);
         $circle2->setPaid(1);
         $circle2->setName('Cercle_3');
+        $circle2->setToken(md5(uniqid()));
         $manager->persist($circle2);
 
         $circle3 = new Circle();
@@ -56,6 +59,7 @@ class LoadCircleData extends AbstractFixture implements OrderedFixtureInterface
         $circle3->setPaid(0);
         $circle3->setAvailabilityDate(new \DateTime());
         $circle3->setName('Cercle_4');
+        $circle3->setToken(md5(uniqid()));
         $manager->persist($circle3);
 
         $manager->flush();

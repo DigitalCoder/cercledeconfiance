@@ -64,6 +64,31 @@ class Circle
      * @ORM\Column(name="availabilityDate", type="datetime", nullable=true)
      */
     private $availabilityDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255)
+     */
+    private $token;
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+
     /**
      * Get id
      *
