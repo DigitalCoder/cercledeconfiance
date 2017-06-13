@@ -58,4 +58,13 @@ class DefaultController extends Controller
         $param = ['token' => $token];
         return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
+
+    /**
+     * @Route("/{token}/visio", name="visio")
+     */
+    public function visio($token)
+    {
+        $param = ['token' => $token];
+        return $this->render('AppBundle:Default:visio.html.twig', $param);
+    }
 }

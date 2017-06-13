@@ -1,0 +1,33 @@
+{% extends 'FrontBundle::layoutFront.html.twig' %}
+
+{% block content %}
+    <div class="container marginBottom marginTop text-center">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Appel</h2>
+                <video controls width="100%" id="receive"></video>
+                <textarea id="offer" class="form-control"></textarea>
+            </div>
+            <div class="col-sm-6">
+                <h2 class="marginBottom">Retour</h2>
+                <video controls width="30%" id="send"></video>
+                <form id="incoming">
+                    <textarea class="form-control"></textarea>
+                    <button type="submit">Accepter l'offre</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <button id="start">Appeler</button>
+            <button id="init">Décrocher</button>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/adapter.js') }}"></script>
+    <script src="{{ asset('assets/js/simplepeer-min.js') }}"></script>
+    <script src="{{ asset('assets/js/visio.js') }}"></script>
+{% endblock %}
