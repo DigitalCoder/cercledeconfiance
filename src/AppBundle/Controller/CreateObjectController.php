@@ -18,25 +18,25 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateObjectController extends Controller
 {
     /**
-     * @Route("/cercles/{id}/admin/objets")
+     * @Route("/cercles/{token}/admin/objets")
      */
-    public function editObjectAction(Request $request, $id){
+    public function editObjectAction(Request $request, $token){
 
         $em = $this->getDoctrine()->getManager();
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId->getId()]);
         $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser[1]));
-
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
 
     /**
-     * @Route("/cercles/{id}/admin/objets/{objectId}")
+     * @Route("/cercles/{token}/admin/objets/{objectId}")
      */
-    public function activateObjectAction(Request $request, $id, $objectId) {
+    public function activateObjectAction(Request $request, $token, $objectId) {
         $em = $this->getDoctrine()->getManager();
-
-        $circleuser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findBy(['model'=>$objectId, 'circle_user'=>$circleuser]);
+        $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId->getId()]);
+        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findBy(['model'=>$objectId, 'circle_user'=>$circleUser]);
         foreach ($objectToActivate as $value){
             $access = $value->getAccess();
             $value->setAccess(!$access);
@@ -45,6 +45,6 @@ class CreateObjectController extends Controller
         }
         // TODO change route for buy;
         // TODO add confirmation for remove;
-        return $this->redirect("/cercles/".$id."/admin/objets");
+        return $this->redirect("/cercles/".$token."/admin/objets");
     }
 }
