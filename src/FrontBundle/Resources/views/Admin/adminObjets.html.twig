@@ -1,6 +1,13 @@
 {% extends "FrontBundle::layoutFront.html.twig" %}
 {% block content %}
     <div class="container">
+        <a href="/cercles">
+            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+        </a>
+
+        <a href="/cercles/{{ token }}">
+            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+        </a>
         <h1>Vos Objets Connectés</h1>
         <div class="row">
             {% for object in objects %}

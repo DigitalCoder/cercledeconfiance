@@ -22,9 +22,9 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user->getId()]);
+        $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user' => $user->getId()]);
         return $this->render('AppBundle:Default:showCircles.html.twig',
-            ['CUsers'=>$circle_users]);
+            ['CUsers' => $circle_users]);
     }
 
     /**
@@ -40,11 +40,12 @@ class DefaultController extends Controller
      */
     public function accueilAppliAction($token)
     {
-//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
-//        }
-//        $error = "Erreur!";
-        $param = ['token'=>$token];
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
+        $circleUser = $em->getRepository('AppBundle:Circle_user')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $param = ['token' => $token, 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
     }
 
@@ -53,11 +54,8 @@ class DefaultController extends Controller
      */
     public function adminCircleAction($token)
     {
-//        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-//            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
-//        }
-//        $error = "Erreur!";
-        $param = ['token'=>$token];
+
+        $param = ['token' => $token];
         return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 }
