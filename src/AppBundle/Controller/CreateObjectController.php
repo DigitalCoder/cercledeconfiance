@@ -17,25 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateObjectController extends Controller
 {
-//    /**
-//     * @Route("/cercles/admin/objets")
-//     */
-//    public function createObjectAction(Request $request){
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
-//        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
-//    }
-
     /**
      * @Route("/cercles/{id}/admin/objets")
      */
     public function editObjectAction(Request $request, $id){
 
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user, 'circle'=>$id]);
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser));
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser[1]));
 
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
@@ -45,13 +34,14 @@ class CreateObjectController extends Controller
      */
     public function activateObjectAction(Request $request, $id, $objectId) {
         $em = $this->getDoctrine()->getManager();
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneByModelId($objectId);
-        if ($objectToActivate->getAccess() == true){
-
+        $circleuser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$id]);
+        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findBy(['model'=>$objectId, 'circle_user'=>$circleuser]);
+        foreach ($objectToActivate as $value){
+            $test = $value->getAccess();
+            $value->setAccess(!$test);
+            $em->persist($value);
+            $em->flush();
         }
-        $objectToActivate->setAccess(!$objectToActivate->getAccess());
-        $em->persist($objectToActivate);
-        $em->flush();
         // TODO change route for buy;
         // TODO add confirmation for remove;
         return $this->redirect("/cercles/".$id."/admin/objets");
