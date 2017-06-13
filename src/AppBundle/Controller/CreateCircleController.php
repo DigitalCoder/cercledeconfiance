@@ -92,7 +92,7 @@ class CreateCircleController extends Controller
             $em->persist($invit);
 
             $em->flush();
-            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle' => $id, 'adminCircle' => 1]);
+            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle' => $circleId, 'adminCircle' => 1]);
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Nouvel utilisateur Cercle Confiance');
             $message->setTo($admin->getUser()->getEmail())

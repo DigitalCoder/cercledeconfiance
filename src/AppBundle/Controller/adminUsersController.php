@@ -46,8 +46,7 @@ class adminUsersController extends Controller
         $circleId = $circleToken[0]->getId();
         $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
         $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
-//        var_dump($circleId);
-//        die();
+
         $circleToken = $circleId[0]->getToken();
         $form->handleRequest($request);
 
@@ -119,7 +118,19 @@ class adminUsersController extends Controller
     public function deleteAction($idUser, $token)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $circleToken = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
+        $circleId = $circleToken[0]->getId();
+
+        $admin = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId, 'adminCircle'=>1]);
+
+        $data = $em->getRepository('AppBundle:Data_app')->findBy(['circle_user'=>$idUser]);
+
+        $newData = $data[0]->setCircleUser($admin[0]);
+
         $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
+
+        $em->persist($newData);
         $em->remove($circleUser[0]);
 
         $em->flush();
