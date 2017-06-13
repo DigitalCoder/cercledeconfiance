@@ -20,36 +20,36 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class EditOfferController extends Controller
 {
     /**
-     * @Route("/cercles/{id}/admin/offres", name="edit_offer")
+     * @Route("/cercles/{token}/admin/offres", name="edit_offer")
     *
      */
-    public function editOfferAction(Request $request, $id)
+    public function editOfferAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->find($id);
+        $circle = $em->getRepository('AppBundle:Circle')->find($token);
         $form = $this->createForm(CircleType::class, $circle);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($circle);
             $em->flush();
-            return $this->redirectToRoute('admin', ['id'=>$circle->getId()]);
+            return $this->redirectToRoute('admin', ['token'=>$token]);
 
         }
 
             return $this->render('FrontBundle:Admin:adminServices.html.twig',
-                        array("form" => $form->createView(), 'id'=>$id));
+                        array("form" => $form->createView(), 'token'=>$token));
 
     }
 
     /**
-     * @Route("cercles/{id}/admin/offres/delete", name="deleteCircle")
+     * @Route("cercles/{token}/admin/offres/delete", name="deleteCircle")
      *
      */
-    public function deleteAction($id)
+    public function deleteAction($token)
     {
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['id'=>$id]);
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circle->setActive(0);
         $circle->setAvailabilityDate(new \DateTime());
         $em->persist($circle);

@@ -43,9 +43,9 @@
                                                             {% if user.agendaAccess == true %}checked="checked"{% endif %}>
                                 </td>
                                 <td class="tdAction">
-                                    <a href="{{ path('editMember', {'id': id ,'idUser': user.id }) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-warning">Edit</a>
 
-                                    <a href="{{ path('deleteMember', {'id': id ,'idUser': user.id }) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ path('deleteMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}

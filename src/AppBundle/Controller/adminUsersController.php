@@ -28,9 +28,9 @@ class adminUsersController extends Controller
 {
 
     /**
-     * @Route("cercles/{id}/admin/membres", name="listMembers")
+     * @Route("cercles/{token}/admin/membres", name="listMembers")
      */
-    public function listUsersAction(Request $request, $id)
+    public function listUsersAction(Request $request, $token)
     {
         $mail = new User();
 
@@ -42,9 +42,13 @@ class adminUsersController extends Controller
         $form = $form->getForm();
 
         $em = $this->getDoctrine()->getManager();
-        $circleId = $id;
+        $circleToken = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
+        $circleId = $circleToken[0]->getId();
         $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
-
+        $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
+//        var_dump($circleId);
+//        die();
+        $circleToken = $circleId[0]->getToken();
         $form->handleRequest($request);
 
 
@@ -53,24 +57,24 @@ class adminUsersController extends Controller
             $message = new \Swift_Message('Invitation Cercle Confiance');
             $message->setTo($mail->getEmail())
             ->setFrom('cercleconfiance07@gmail.com')
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'id'=>$id)), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'token'=>$circleToken)), 'text/html');
 
 //            $this->renderView('Emails/invitation.html.twig', array('name' => $mail->getName())), 'text/html'
 
 
         $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'id'=>$id, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
 
         }
 
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'id'=>$id, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
     }
 
 
     /**
-     * @Route("cercles/{id}/admin/membres/{idUser}", name="editMember")
+     * @Route("cercles/{token}/admin/membres/{idUser}", name="editMember")
      */
-    public function editUsersAccessAction($id, $idUser, Request $request)
+    public function editUsersAccessAction($token, $idUser, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
@@ -98,21 +102,21 @@ class adminUsersController extends Controller
 
             $em->persist($circleUser);
             $em->flush();
-            return $this->redirectToRoute('listMembers', ['id'=>$id]);
+            return $this->redirectToRoute('listMembers', ['token'=>$token]);
         }
 
         return $this->render('FrontBundle:Admin:editUserAccess.html.twig', [
             'form' => $form->createView(),
             'user' => $circleUser,
-            'id'=>$id,
+            'token'=>$token,
         ]);
     }
 
     /**
-     * @Route("cercles/{id}/admin/membres/{idUser}/delete", name="deleteMember")
+     * @Route("cercles/{token}/admin/membres/{idUser}/delete", name="deleteMember")
      *
      */
-    public function deleteAction($idUser, $id)
+    public function deleteAction($idUser, $token)
     {
         $em = $this->getDoctrine()->getManager();
         $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
@@ -120,7 +124,7 @@ class adminUsersController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('listMembers', ['id'=>$id]);
+        return $this->redirectToRoute('listMembers', ['token'=>$token]);
     }
 
 }

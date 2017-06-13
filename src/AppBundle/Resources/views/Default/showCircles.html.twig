@@ -14,7 +14,7 @@
 
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == 1 %}
-                        <a href="/cercles/{{ CUser.circle.id }}">
+                        <a href="/cercles/{{ CUser.circle.token }}">
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
                                 <h3>{{ CUser.circle.name }}</h3>
                                 <p>
