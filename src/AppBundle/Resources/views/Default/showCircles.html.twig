@@ -13,24 +13,25 @@
                 </div>
 
                 {% for CUser in CUsers %}
-
-                    <a href="/cercles/{{ CUser.circle.id }}">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
-                            <h3>{{ CUser.circle.name }}</h3>
-                            <p>
-                                {% for circleUser in CUser.circle.circleUsers %}
-                                    {% if circleUser.circleCenter == 1 %}
-                                        Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
-                                    {% elseif circleUser.adminCircle == 1 %}
-                                        Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
-                                    {% else %}
-                                        Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
-                                    {% endif %}
-                                {% endfor %}
-                            </p>
-                        </div>
-                    </a>
-
+                    {% if CUser.circle.active == 1 %}
+                        <a href="/cercles/{{ CUser.circle.token }}">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
+                                <h3>{{ CUser.circle.name }}</h3>
+                                <p>
+                                    {% for circleUser in CUser.circle.circleUsers %}
+                                        {% if circleUser.circleCenter == 1 %}
+                                            Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
+                                        {% elseif circleUser.adminCircle == 1 %}
+                                            Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }}
+                                            <br/>
+                                        {% else %}
+                                            Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}<br/>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

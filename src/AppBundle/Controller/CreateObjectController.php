@@ -17,15 +17,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateObjectController extends Controller
 {
-    /**
-     * @Route("/objets")
-     */
-    public function createObjectAction(Request $request){
-
-        $em = $this->getDoctrine()->getManager();
-        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
-        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
-    }
+//    /**
+//     * @Route("/cercles/admin/objets")
+//     */
+//    public function createObjectAction(Request $request){
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $objectWithInfo = $em->getRepository('AppBundle:Model')->findAll();
+//        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
+//    }
 
     /**
      * @Route("/cercles/{id}/admin/objets")
@@ -33,7 +33,10 @@ class CreateObjectController extends Controller
     public function editObjectAction(Request $request, $id){
 
         $em = $this->getDoctrine()->getManager();
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $id));
+        $user = $this->getUser();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user, 'circle'=>$id]);
+        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser));
+
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
 
@@ -42,10 +45,8 @@ class CreateObjectController extends Controller
      */
     public function activateObjectAction(Request $request, $id, $objectId) {
         $em = $this->getDoctrine()->getManager();
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneById($objectId);
-//        if ($objectToActivate->getAccess() == true){
-//
-//        }
+        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneByModelId($objectId);
+
         $objectToActivate->setAccess(!$objectToActivate->getAccess());
         $em->persist($objectToActivate);
         $em->flush();

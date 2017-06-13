@@ -9,9 +9,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
+use AppBundle\Form\Circle_userType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Circle_user;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,9 +28,9 @@ class adminUsersController extends Controller
 {
 
     /**
-     * @Route("cercles/{id}/admin/membres")
+     * @Route("cercles/{token}/admin/membres", name="listMembers")
      */
-    public function listUsersAction(Request $request, $id)
+    public function listUsersAction(Request $request, $token)
     {
         $mail = new User();
 
@@ -38,9 +42,13 @@ class adminUsersController extends Controller
         $form = $form->getForm();
 
         $em = $this->getDoctrine()->getManager();
-        $circleId = $id;
+        $circleToken = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
+        $circleId = $circleToken[0]->getId();
         $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
-
+        $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
+//        var_dump($circleId);
+//        die();
+        $circleToken = $circleId[0]->getToken();
         $form->handleRequest($request);
 
 
@@ -49,27 +57,74 @@ class adminUsersController extends Controller
             $message = new \Swift_Message('Invitation Cercle Confiance');
             $message->setTo($mail->getEmail())
             ->setFrom('cercleconfiance07@gmail.com')
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'id'=>$id)), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'token'=>$circleToken)), 'text/html');
 
 //            $this->renderView('Emails/invitation.html.twig', array('name' => $mail->getName())), 'text/html'
 
 
         $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'id'=>$id, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
 
         }
 
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'id'=>$id, "form" => $form->createView()]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView()]);
     }
 
 
     /**
-     * @Route("cercles/{id}/admin/membres/{idUser}")
+     * @Route("cercles/{token}/admin/membres/{idUser}", name="editMember")
      */
-    public function editUsersAccessAction($id, $idUser)
+    public function editUsersAccessAction($token, $idUser, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
+        $circleUser = $circleUser[0];
+        $formBuilder = $this->createFormBuilder($circleUser);
 
-        return $this->render('FrontBundle:Admin:users:editUserAccess.html.twig');
+
+        $formBuilder->add('callAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false)))
+                    ->add('wallAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false)))
+                    ->add('cloudAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false)))
+                    ->add('agendaAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false)))
+                    ->add('add', SubmitType::class)
+        ;
+
+        $form = $formBuilder->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $circleUser->setCallAccess($form->getData()->getCallAccess());
+            $circleUser->setWallAccess($form->getData()->getWallAccess());
+            $circleUser->setCloudAccess($form->getData()->getCloudAccess());
+            $circleUser->setAgendaAccess($form->getData()->getAgendaAccess());
+
+            $em->persist($circleUser);
+            $em->flush();
+            return $this->redirectToRoute('listMembers', ['token'=>$token]);
+        }
+
+        return $this->render('FrontBundle:Admin:editUserAccess.html.twig', [
+            'form' => $form->createView(),
+            'user' => $circleUser,
+            'token'=>$token,
+        ]);
+    }
+
+    /**
+     * @Route("cercles/{token}/admin/membres/{idUser}/delete", name="deleteMember")
+     *
+     */
+    public function deleteAction($idUser, $token)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
+        $em->remove($circleUser[0]);
+
+        $em->flush();
+
+        return $this->redirectToRoute('listMembers', ['token'=>$token]);
     }
 
 }

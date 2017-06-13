@@ -16,7 +16,7 @@ class DefaultController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/")
+     * @Route("/", name="accueil")
      */
     public function showCircles()
     {
@@ -36,28 +36,28 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{id}")
+     * @Route("/{token}")
      */
-    public function accueilAppliAction($id)
+    public function accueilAppliAction($token)
     {
 //        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 //            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
 //        }
 //        $error = "Erreur!";
-        $param = ['id'=>$id];
+        $param = ['token'=>$token];
         return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
     }
 
     /**
-     * @Route("/{id}/admin", name="admin")
+     * @Route("/{token}/admin", name="admin")
      */
-    public function adminCircleAction($id)
+    public function adminCircleAction($token)
     {
 //        if (true === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 //            return $this->render('FrontBundle:Admin:adminUsers.html.twig');
 //        }
 //        $error = "Erreur!";
-        $param = ['id'=>$id];
+        $param = ['token'=>$token];
         return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 }

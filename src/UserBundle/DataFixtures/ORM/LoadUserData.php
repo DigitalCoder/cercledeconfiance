@@ -39,7 +39,7 @@ class LoadUserData extends AbstractFixture
 
         $user0 = $userManager->createUser();
         $user0->setUsername('admin');
-        $user0->setEmail('julienmartin.opto@gmail.com');
+        $user0->setEmail('test@gmail.com');
         $user0->setPlainPassword('admin');
         $user0->setEnabled(true);
         $user0->addRole('ROLE_SUPER_ADMIN');
@@ -56,7 +56,7 @@ class LoadUserData extends AbstractFixture
 
         $user1 = $userManager->createUser();
         $user1->setUsername('julien');
-        $user1->setEmail('test@gmail.com');
+        $user1->setEmail('julienmartin.opto@gmail.com');
         $user1->setPlainPassword('admin');
         $user1->setEnabled(true);
         $user1->addRole('ROLE_ADMIN');

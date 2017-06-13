@@ -3,5 +3,13 @@
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 
 {% block content %}
-    {{ form(form) }}
+    <div class="container-fluid">
+        {#<h1>Edit {{ user.user.firstname }}</h1>#}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+    </div>
+    <hr/>
+    <a class="btn btn-primary" href="{{ path('listMembers', {'token': token }) }}">Back</a>
 {% endblock %}
