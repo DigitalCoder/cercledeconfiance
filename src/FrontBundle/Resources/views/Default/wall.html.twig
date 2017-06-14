@@ -1,0 +1,27 @@
+{% extends "FrontBundle::layoutFront.html.twig" %}
+
+{% block title %} Mur{% endblock %}
+
+
+{% block content %}
+    <section class="container" style="width: 50%">
+        <div class="row">
+            {% for data in walldatas if data.wall.content is defined %}
+            {% if data.circleuser.wallaccess %}
+            <article class="well">
+                <header>
+                    <div class="col-lg-6">
+                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>{{ data.creationdate|date }}</h3>
+                    </div>
+                </header>
+                <hr />
+                <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
+            </article>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

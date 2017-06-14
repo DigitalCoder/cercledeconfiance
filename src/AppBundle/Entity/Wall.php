@@ -29,7 +29,7 @@ class Wall
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="wall")
+     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="wall", fetch="EAGER")
      */
     private $data_apps;
 
