@@ -67,4 +67,13 @@ class DefaultController extends Controller
         $param = ['token' => $token];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
     }
+
+    /**
+     * @Route("/{token}/cloud", name="cloud")
+     */
+    public function cloud($token)
+    {
+        $param = ['token' => $token];
+        return $this->render('AppBundle:Default:cloud.html.twig', $param);
+    }
 }
