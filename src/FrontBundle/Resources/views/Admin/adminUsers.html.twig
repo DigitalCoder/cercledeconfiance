@@ -19,6 +19,7 @@
 
             <div class="row">
                 <div class="col-xs-6 col-xs-offset-3">
+
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -28,6 +29,11 @@
                             <th class="tdWall">Wall</th>
                             <th class="tdCloud">Cloud</th>
                             <th class="tdAgenda">Agenda</th>
+                            {% for object in objects %}
+                                {% if object.circleuser.adminCircle == true %}
+                                    <th class="{{ object.model.reference }}">{{ object.model.reference }}</th>
+                                {% endif %}
+                            {% endfor %}
                             <th class="tdAction">Action</th>
                         </tr>
                         </thead>
@@ -37,18 +43,32 @@
                             <tr>
                                 <td class="tdFirstname">{{ user.user.firstname }}</td>
                                 <td class="tdName">{{ user.user.name }}</td>
-                                <td class="tdVisio"><input type="checkbox" disabled="disabled"
-                                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
+                                <td class="tdVisio">
+                                    <input type="checkbox" disabled="disabled"
+                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
                                 </td>
-                                <td class="tdWall"><input type="checkbox" disabled="disabled"
-                                                          {% if user.wallAccess == true %}checked="checked"{% endif %}>
+                                <td class="tdWall">
+                                    <input type="checkbox" disabled="disabled"
+                                           {% if user.wallAccess == true %}checked="checked"{% endif %}>
                                 </td>
-                                <td class="tdCloud"><input type="checkbox" disabled="disabled"
-                                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
+                                <td class="tdCloud">
+                                    <input type="checkbox" disabled="disabled"
+                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
                                 </td>
-                                <td class="tdAgenda"><input type="checkbox" disabled="disabled"
-                                                            {% if user.agendaAccess == true %}checked="checked"{% endif %}>
+                                <td class="tdAgenda">
+                                    <input type="checkbox" disabled="disabled"
+                                           {% if user.agendaAccess == true %}checked="checked"{% endif %}>
                                 </td>
+
+                                {% for object in objects %}
+                                    {% if user.id == object.circleuser.id %}
+                                        <td class="{{ object.model.reference }}">
+                                            <input type="checkbox" disabled="disabled"
+                                                   {% if object.access == true %}checked="checked"{% endif %}>
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+
                                 <td class="tdAction">
                                     <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-warning">Edit</a>
 
