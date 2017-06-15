@@ -8,9 +8,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Connected_object;
+use AppBundle\Entity\ConnectedObject;
 use AppBundle\Entity\Model;
-use AppBundle\Form\Connected_objectType;
+use AppBundle\Form\ConnectedObjectType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\ModelType;
@@ -25,7 +25,7 @@ class ConnectedObjectController extends Controller
     public function createObjectAction(Request $request){
 
         $em = $this->getDoctrine()->getManager();
-        $listOfObjects = $em->getRepository('AppBundle:Connected_object');
+        $listOfObjects = $em->getRepository('AppBundle:ConnectedObject');
         $listOfObjects = $listOfObjects->findAll();
 
 //        $model = $em->getRepository('AppBundle:Model');

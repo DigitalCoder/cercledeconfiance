@@ -34,8 +34,8 @@ class CreateObjectController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$user, 'circle'=>$id]);
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser));
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user, 'circle'=>$id]);
+        $objectWithInfo = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser));
 
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
@@ -45,7 +45,7 @@ class CreateObjectController extends Controller
      */
     public function activateObjectAction(Request $request, $id, $objectId) {
         $em = $this->getDoctrine()->getManager();
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findOneById($objectId);
+        $objectToActivate = $em->getRepository('AppBundle:ObjectEntry')->findOneById($objectId);
         if ($objectToActivate->getAccess() == true){
 
         }

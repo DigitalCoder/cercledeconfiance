@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Connected_objectType extends AbstractType
+class ConnectedObjectType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,9 +14,9 @@ class Connected_objectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('data_object', Data_objectType::class)
+            ->add('data_object', DataObjectType::class)
             ->add('model', ModelType::class)
-            ->add('type_object', Type_objectType::class);
+            ->add('type_object', TypeObjectType::class);
     }
     
     /**
@@ -25,7 +25,7 @@ class Connected_objectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Connected_object'
+            'data_class' => 'AppBundle\Entity\ConnectedObject'
         ));
     }
 
@@ -34,7 +34,7 @@ class Connected_objectType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_connected_object';
+        return 'appbundle_connectedObject';
     }
 
 

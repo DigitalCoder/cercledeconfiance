@@ -39,7 +39,7 @@ class adminUsersController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $circleId = $id;
-        $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
+        $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
 
         $form->handleRequest($request);
 

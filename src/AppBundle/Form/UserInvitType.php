@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: sylvain
+ * Date: 09/06/17
+ * Time: 10:55
+ */
 
 namespace AppBundle\Form;
 
@@ -9,8 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Circle_userType extends AbstractType
+class UserInvitType extends AbstractType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -24,20 +31,18 @@ class Circle_userType extends AbstractType
 //                ->add('cloudAccess')
 //                ->add('agendaAccess')
 //                ->add('user', CollectionType::class, array('entry_type'=>RegistrationFormType::class, "label"=>"Renseigner la personne a surveiller"))
-            ->add('user', RegistrationType::class, array("label"=>"Renseigner la personne a surveiller"))
-
+            ->add('user', RegistrationType::class, array("label"=>"S'Enregistrer"))
 //            ->add('address', AddressType::class)
-            ->add('circle', CircleType::class, array("label"=>"Cercle"))
             ->add('save', SubmitType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Circle_user'
+            'data_class' => 'AppBundle\Entity\CircleUser'
         ));
     }
 
@@ -46,7 +51,7 @@ class Circle_userType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_circle_user';
+        return 'appbundle_circleUser';
     }
 
 

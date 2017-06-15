@@ -6,17 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Object_entryType extends AbstractType
+class TypeObjectType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('access')
-            ->add('connected_object', Connected_objectType::class);
-            //->add('circle_user');
+        $builder->add('type');
     }
     
     /**
@@ -25,7 +22,7 @@ class Object_entryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Object_entry'
+            'data_class' => 'AppBundle\Entity\TypeObject'
         ));
     }
 
@@ -34,7 +31,7 @@ class Object_entryType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_object_entry';
+        return 'appbundle_typeObject';
     }
 
 

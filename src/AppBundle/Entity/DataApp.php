@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Data_app
+ * DataApp
  *
- * @ORM\Table(name="data_app")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Data_appRepository")
+ * @ORM\Table(name="DataApp")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DataAppRepository")
  */
-class Data_app
+class DataApp
 {
     /**
      * @var int
@@ -29,22 +29,22 @@ class Data_app
     private $creationDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="dataApps")
      */
-    private $circle_user;
+    private $circleUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="dataApps")
      */
     private $cloud;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Agenda", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Agenda", inversedBy="dataApps")
      */
     private $agenda;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="dataApps")
      */
     private $wall;
 
@@ -63,7 +63,7 @@ class Data_app
      *
      * @param \DateTime $creationDate
      *
-     * @return Data_app
+     * @return DataApp
      */
     public function setCreationDate($creationDate)
     {
@@ -95,7 +95,7 @@ class Data_app
      *
      * @param \AppBundle\Entity\Cloud $cloud
      *
-     * @return Data_app
+     * @return DataApp
      */
     public function setCloud(\AppBundle\Entity\Cloud $cloud = null)
     {
@@ -119,7 +119,7 @@ class Data_app
      *
      * @param \AppBundle\Entity\Agenda $agenda
      *
-     * @return Data_app
+     * @return DataApp
      */
     public function setAgenda(\AppBundle\Entity\Agenda $agenda = null)
     {
@@ -143,7 +143,7 @@ class Data_app
      *
      * @param \AppBundle\Entity\Wall $wall
      *
-     * @return Data_app
+     * @return DataApp
      */
     public function setWall(\AppBundle\Entity\Wall $wall = null)
     {
@@ -166,13 +166,13 @@ class Data_app
     /**
      * Set circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
-     * @return Data_app
+     * @return DataApp
      */
-    public function setCircleUser(\AppBundle\Entity\Circle_user $circleUser = null)
+    public function setCircleUser(\AppBundle\Entity\CircleUser $circleUser = null)
     {
-        $this->circle_user = $circleUser;
+        $this->circleUser = $circleUser;
 
         return $this;
     }
@@ -180,10 +180,10 @@ class Data_app
     /**
      * Get circleUser
      *
-     * @return \AppBundle\Entity\Circle_user
+     * @return \AppBundle\Entity\CircleUser
      */
     public function getCircleUser()
     {
-        return $this->circle_user;
+        return $this->circleUser;
     }
 }

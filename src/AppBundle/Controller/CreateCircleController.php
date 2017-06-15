@@ -8,12 +8,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Circle_user;
-use AppBundle\Entity\Object_entry;
-use AppBundle\Form\Circle_userType;
+use AppBundle\Entity\CircleUser;
+use AppBundle\Entity\ObjectEntry;
+use AppBundle\Form\CircleUserType;
 use AppBundle\Form\CircleType;
-use AppBundle\Form\Object_entryType;
-use AppBundle\Form\User_InvitType;
+use AppBundle\Form\ObjectEntryType;
+use AppBundle\Form\UserInvitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Circle;
@@ -27,8 +27,8 @@ class CreateCircleController extends Controller
      * @Route("cercles/creer")
      */
     public function createCircle(Request $request){
-        $cercle = new Circle_user();
-        $form = $this->createForm(Circle_userType::class, $cercle);
+        $cercle = new CircleUser();
+        $form = $this->createForm(CircleUserType::class, $cercle);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +39,7 @@ class CreateCircleController extends Controller
 
             $idCercle=$cercle->getCircle();
 
-            $adminCircle = new Circle_user();
+            $adminCircle = new CircleUser();
             $adminCircle->setUser($this->getUser());
             $adminCircle->setCircle($idCercle);
             $adminCircle->setAdminCircle(1);
@@ -61,9 +61,9 @@ class CreateCircleController extends Controller
      */
     public function userInvit(Request $request, $id){
 
-        $invit = new Circle_user();
+        $invit = new CircleUser();
 
-        $form = $this->createForm(User_InvitType::class, $invit);
+        $form = $this->createForm(UserInvitType::class, $invit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,7 +75,7 @@ class CreateCircleController extends Controller
             $em->persist($invit);
             $em->flush();
 
-            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user'=>$invit->getId()]);
+            $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$invit->getId()]);
             return $this->render('AppBundle:Default:showCircles.html.twig',
                 ['CUsers'=>$circle_users]);
         }

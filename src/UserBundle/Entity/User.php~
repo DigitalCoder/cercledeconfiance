@@ -27,8 +27,9 @@ class User extends BaseUser implements UserInterface
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255)
+     * @Assert\Image()
      */
-    private $avatar='1';
+    private $avatar;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,9 +89,9 @@ class User extends BaseUser implements UserInterface
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Circle_user", mappedBy="user", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\CircleUser", mappedBy="user", fetch="EAGER")
      */
-    private $circle_users;
+    private $circleUsers;
 
         /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Address", inversedBy="users", cascade={"persist"})
@@ -231,13 +232,13 @@ class User extends BaseUser implements UserInterface
     /**
      * Add circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
      * @return User
      */
-    public function addCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function addCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
-        $this->circle_users[] = $circleUser;
+        $this->circleUsers[] = $circleUser;
 
         return $this;
     }
@@ -245,11 +246,11 @@ class User extends BaseUser implements UserInterface
     /**
      * Remove circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      */
-    public function removeCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function removeCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
-        $this->circle_users->removeElement($circleUser);
+        $this->circleUsers->removeElement($circleUser);
     }
 
     /**
@@ -259,7 +260,7 @@ class User extends BaseUser implements UserInterface
      */
     public function getCircleUsers()
     {
-        return $this->circle_users;
+        return $this->circleUsers;
     }
 
 
@@ -286,4 +287,5 @@ class User extends BaseUser implements UserInterface
     {
         return $this->address;
     }
+
 }
