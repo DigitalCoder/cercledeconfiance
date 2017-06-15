@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Type_object
+ * TypeObject
  *
  * @ORM\Table(name="type_object")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Type_objectRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeObjectRepository")
  */
-class Type_object
+class TypeObject
 {
     /**
      * @var int
@@ -29,7 +29,7 @@ class Type_object
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="Model", mappedBy="type_object")
+     * @ORM\OneToMany(targetEntity="Model", mappedBy="typeObject")
      */
     private $models;
 
@@ -49,7 +49,7 @@ class Type_object
      *
      * @param string $type
      *
-     * @return Type_object
+     * @return TypeObject
      */
     public function setType($type)
     {
@@ -80,7 +80,7 @@ class Type_object
      *
      * @param \AppBundle\Entity\Model $model
      *
-     * @return Type_object
+     * @return TypeObject
      */
     public function addModel(\AppBundle\Entity\Model $model)
     {

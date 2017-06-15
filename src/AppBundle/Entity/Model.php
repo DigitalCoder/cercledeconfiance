@@ -48,9 +48,9 @@ class Model
     private $brand;
 
     /**
-     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="ConnectedObject", mappedBy="model")
      */
-    private $connected_objects;
+    private $connectedObjects;
 
     /**
      * @var float
@@ -60,14 +60,14 @@ class Model
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
+     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models")
      */
-    private $type_object;
+    private $typeObject;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="ObjectEntry", mappedBy="model")
      */
-    private $object_entries;
+    private $objectEntries;
 
     /**
      * Get id
@@ -180,19 +180,19 @@ class Model
      */
     public function __construct()
     {
-        $this->connected_objects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->connectedObjects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add connectedObject
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\ConnectedObject $connectedObject
      *
      * @return Model
      */
-    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function addConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
     {
-        $this->connected_objects[] = $connectedObject;
+        $this->connectedObjects[] = $connectedObject;
 
         return $this;
     }
@@ -200,11 +200,11 @@ class Model
     /**
      * Remove connectedObject
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\ConnectedObject $connectedObject
      */
-    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function removeConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
     {
-        $this->connected_objects->removeElement($connectedObject);
+        $this->connectedObjects->removeElement($connectedObject);
     }
 
     /**
@@ -214,7 +214,7 @@ class Model
      */
     public function getConnectedObjects()
     {
-        return $this->connected_objects;
+        return $this->connectedObjects;
     }
 
     /**
@@ -244,13 +244,13 @@ class Model
     /**
      * Set typeObject
      *
-     * @param \AppBundle\Entity\Type_object $typeObject
+     * @param \AppBundle\Entity\TypeObject $typeObject
      *
      * @return Model
      */
-    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    public function setTypeObject(\AppBundle\Entity\TypeObject $typeObject = null)
     {
-        $this->type_object = $typeObject;
+        $this->typeObject = $typeObject;
 
         return $this;
     }
@@ -258,23 +258,23 @@ class Model
     /**
      * Get typeObject
      *
-     * @return \AppBundle\Entity\Type_object
+     * @return \AppBundle\Entity\TypeObject
      */
     public function getTypeObject()
     {
-        return $this->type_object;
+        return $this->typeObject;
     }
 
     /**
      * Add objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      *
      * @return Model
      */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function addObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries[] = $objectEntry;
+        $this->objectEntries[] = $objectEntry;
 
         return $this;
     }
@@ -282,11 +282,11 @@ class Model
     /**
      * Remove objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function removeObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries->removeElement($objectEntry);
+        $this->objectEntries->removeElement($objectEntry);
     }
 
     /**
@@ -296,6 +296,6 @@ class Model
      */
     public function getObjectEntries()
     {
-        return $this->object_entries;
+        return $this->objectEntries;
     }
 }

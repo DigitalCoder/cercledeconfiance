@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Connected_object
+ * ConnectedObject
  *
  * @ORM\Table(name="connected_object")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Connected_objectRepository")
  */
-class Connected_object
+class ConnectedObject
 {
     /**
      * @var int
@@ -22,12 +22,12 @@ class Connected_object
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Data_object", inversedBy="connected_objects", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="DataObject", inversedBy="connectedObjects", cascade={"all"}, fetch="EAGER")
      */
-    private $data_object;
+    private $dataObject;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Model", inversedBy="connected_objects", cascade={"all"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="connectedObjects", cascade={"all"}, fetch="EAGER")
      */
     private $model;
 
@@ -44,13 +44,13 @@ class Connected_object
     /**
      * Set dataObject
      *
-     * @param \AppBundle\Entity\Data_object $dataObject
+     * @param \AppBundle\Entity\DataObject $dataObject
      *
-     * @return Connected_object
+     * @return ConnectedObject
      */
-    public function setDataObject(\AppBundle\Entity\Data_object $dataObject = null)
+    public function setDataObject(\AppBundle\Entity\DataOject $dataObject = null)
     {
-        $this->data_object = $dataObject;
+        $this->dataObject = $dataObject;
 
         return $this;
     }
@@ -58,11 +58,11 @@ class Connected_object
     /**
      * Get dataObject
      *
-     * @return \AppBundle\Entity\Data_object
+     * @return \AppBundle\Entity\DataObject
      */
     public function getDataObject()
     {
-        return $this->data_object;
+        return $this->dataObject;
     }
 
     /**
@@ -70,7 +70,7 @@ class Connected_object
      *
      * @param \AppBundle\Entity\Model $model
      *
-     * @return Connected_object
+     * @return ConnectedObject
      */
     public function setModel(\AppBundle\Entity\Model $model = null)
     {
@@ -93,7 +93,7 @@ class Connected_object
      */
     public function __construct()
     {
-        $this->object_entries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->objectEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

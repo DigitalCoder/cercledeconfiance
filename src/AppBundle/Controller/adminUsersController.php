@@ -45,10 +45,15 @@ class adminUsersController extends Controller
         $form = $form->getForm();
 
         $em = $this->getDoctrine()->getManager();
+
         $circleToken = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
         $circleId = $circleToken[0]->getId();
-        $users = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
+        $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
         $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
+
+        $circleId = $id;
+        $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
+
 
         $objects = $em->getRepository('AppBundle:Object_entry')->findBy(['circle_user'=>$users]);
 

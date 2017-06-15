@@ -9,6 +9,7 @@
 namespace AppBundle\Form;
 
 
+use AppBundle\EventListener\UserUploadListener;
 use AppBundle\Form\RegistrationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -29,10 +30,8 @@ class EditProfileType extends AbstractType
                 ->add('firstname', TextType::class, ['label'=>'Prénom'])
                 ->add('relation', TextType::class, ['label'=>'Lien avec le centre du cercle'])
                 ->add('phone_number', TextType::class, ['label'=>'Numéro de téléphone'])
-//                ->add('avatar', FileType::class, ['label'=>'Photo'])
-
+                ->add('avatar', FileType::class, ['label'=>'Photo', 'data_class' => null])
         ;
-
     }
 
     public function getParent()

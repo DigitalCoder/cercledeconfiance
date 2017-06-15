@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * File_type
+ * FileType
  *
  * @ORM\Table(name="file_type")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\File_typeRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FileTypeRepository")
  */
-class File_type
+class FileType
 {
     /**
      * @var int
@@ -29,7 +29,7 @@ class File_type
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Cloud", mappedBy="file_type")
+     * @ORM\OneToMany(targetEntity="Cloud", mappedBy="fileType")
      */
     private $clouds;
 
@@ -48,7 +48,7 @@ class File_type
      *
      * @param string $name
      *
-     * @return File_type
+     * @return FileType
      */
     public function setName($name)
     {
@@ -79,7 +79,7 @@ class File_type
      *
      * @param \AppBundle\Entity\Cloud $cloud
      *
-     * @return File_type
+     * @return FileType
      */
     public function addCloud(\AppBundle\Entity\Cloud $cloud)
     {

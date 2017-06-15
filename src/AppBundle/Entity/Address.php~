@@ -77,19 +77,19 @@ class Address
      */
     public function __construct()
     {
-        $this->circle_users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->circleUsers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
      * @return Address
      */
-    public function addCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function addCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
-        $this->circle_users[] = $circleUser;
+        $this->circleUsers[] = $circleUser;
 
         return $this;
     }
@@ -97,11 +97,11 @@ class Address
     /**
      * Remove circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      */
-    public function removeCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function removeCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
-        $this->circle_users->removeElement($circleUser);
+        $this->circleUsers->removeElement($circleUser);
     }
 
     /**
@@ -111,7 +111,7 @@ class Address
      */
     public function getCircleUsers()
     {
-        return $this->circle_users;
+        return $this->circleUsers;
     }
 
     /**

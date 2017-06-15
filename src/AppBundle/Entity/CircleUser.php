@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Repository\CircleUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Circle_user
+ * CircleUser
  *
  * @ORM\Table(name="circle_user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Circle_userRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CircleUserRepository")
  */
-class Circle_user
+class CircleUser
 {
     /**
      * @var int
@@ -68,24 +69,32 @@ class Circle_user
     private $agendaAccess=1;
 
     /**
+<<<<<<< HEAD:src/AppBundle/Entity/Circle_user.php
      * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist", "remove"})
+=======
+     * @ORM\OneToMany(targetEntity="ObjectEntry", mappedBy="circleUser", cascade={"persist"})
+>>>>>>> editUser:src/AppBundle/Entity/CircleUser.php
      */
-    private $object_entries;
+    private $objectEntries;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circle_users", cascade={"persist"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User", inversedBy="circleUsers", cascade={"persist"}, fetch="EAGER")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circle_users", cascade={"persist"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Circle", inversedBy="circleUsers", cascade={"persist"}, fetch="EAGER")
      */
     private $circle;
 
     /**
+<<<<<<< HEAD:src/AppBundle/Entity/Circle_user.php
      * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Data_app", mappedBy="circle_user", cascade={"persist"})
+=======
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\DataApp", mappedBy="circleUser")
+>>>>>>> editUser:src/AppBundle/Entity/CircleUser.php
      */
-    private $data_apps;
+    private $dataApps;
 
     /**
      * Get id
@@ -102,7 +111,7 @@ class Circle_user
      *
      * @param boolean $adminCircle
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setAdminCircle($adminCircle)
     {
@@ -126,7 +135,7 @@ class Circle_user
      *
      * @param boolean $circleCenter
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setCircleCenter($circleCenter)
     {
@@ -150,7 +159,7 @@ class Circle_user
      *
      * @param boolean $callAccess
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setCallAccess($callAccess)
     {
@@ -174,7 +183,7 @@ class Circle_user
      *
      * @param boolean $wallAccess
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setWallAccess($wallAccess)
     {
@@ -198,7 +207,7 @@ class Circle_user
      *
      * @param boolean $cloudAccess
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setCloudAccess($cloudAccess)
     {
@@ -222,7 +231,7 @@ class Circle_user
      *
      * @param boolean $agendaAccess
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setAgendaAccess($agendaAccess)
     {
@@ -245,19 +254,19 @@ class Circle_user
      */
     public function __construct()
     {
-        $this->object_entries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->objectEntries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      *
-     * @return Circle_user
+     * @return CircleUser
      */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function addObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries[] = $objectEntry;
+        $this->objectEntries[] = $objectEntry;
 
         return $this;
     }
@@ -265,11 +274,11 @@ class Circle_user
     /**
      * Remove objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function removeObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries->removeElement($objectEntry);
+        $this->objectEntries->removeElement($objectEntry);
     }
 
     /**
@@ -279,7 +288,7 @@ class Circle_user
      */
     public function getObjectEntries()
     {
-        return $this->object_entries;
+        return $this->objectEntries;
     }
 
     /**
@@ -287,7 +296,7 @@ class Circle_user
      *
      * @param \UserBundle\Entity\User $user
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setUser(\UserBundle\Entity\User $user = null)
     {
@@ -311,7 +320,7 @@ class Circle_user
      *
      * @param \UserBundle\Entity\Address $address
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setAddress(\AppBundle\Entity\Address $address = null)
     {
@@ -335,7 +344,7 @@ class Circle_user
      *
      * @param \AppBundle\Entity\Circle $circle
      *
-     * @return Circle_user
+     * @return CircleUser
      */
     public function setCircle(\AppBundle\Entity\Circle $circle = null)
     {
@@ -357,13 +366,13 @@ class Circle_user
     /**
      * Add dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      *
-     * @return Circle_user
+     * @return CircleUser
      */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps[] = $dataApp;
+        $this->dataApps[] = $dataApp;
 
         return $this;
     }
@@ -371,11 +380,11 @@ class Circle_user
     /**
      * Remove dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function removeDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps->removeElement($dataApp);
+        $this->dataApps->removeElement($dataApp);
     }
 
     /**
@@ -385,6 +394,6 @@ class Circle_user
      */
     public function getDataApps()
     {
-        return $this->data_apps;
+        return $this->dataApps;
     }
 }
