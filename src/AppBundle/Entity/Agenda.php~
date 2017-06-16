@@ -50,12 +50,12 @@ class Agenda
     private $eventEnd;
 
     /**
-     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="agenda")
+     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="agenda")
      */
     private $data_apps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category_event", inversedBy="agendas")
+     * @ORM\ManyToOne(targetEntity="CategoryEvent", inversedBy="agendas")
      */
     private $category_event;
 
@@ -176,13 +176,13 @@ class Agenda
     /**
      * Add dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      *
      * @return Agenda
      */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps[] = $dataApp;
+        $this->dataApps[] = $dataApp;
 
         return $this;
     }
@@ -190,9 +190,9 @@ class Agenda
     /**
      * Remove dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function removeDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
         $this->data_apps->removeElement($dataApp);
     }
@@ -210,13 +210,13 @@ class Agenda
     /**
      * Set categoryEvent
      *
-     * @param \AppBundle\Entity\Category_event $categoryEvent
+     * @param \AppBundle\Entity\CategoryEvent $categoryEvent
      *
      * @return Agenda
      */
-    public function setCategoryEvent(\AppBundle\Entity\Category_event $categoryEvent = null)
+    public function setCategoryEvent(\AppBundle\Entity\CategoryEvent $categoryEvent = null)
     {
-        $this->category_event = $categoryEvent;
+        $this->categoryEvent = $categoryEvent;
 
         return $this;
     }
@@ -224,7 +224,7 @@ class Agenda
     /**
      * Get categoryEvent
      *
-     * @return \AppBundle\Entity\Category_event
+     * @return \AppBundle\Entity\CategoryEvent
      */
     public function getCategoryEvent()
     {

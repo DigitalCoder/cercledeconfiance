@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Object_entry
+ * ObjectEntry
  *
  * @ORM\Table(name="object_entry")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Object_entryRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ObjectEntryRepository")
  */
-class Object_entry
+class ObjectEntry
 {
     /**
      * @var int
@@ -29,12 +29,12 @@ class Object_entry
     private $access=0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="object_entries", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="objectEntries")
      */
-    private $circle_user;
+    private $circleUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Model", inversedBy="object_entries")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="objectEntries")
      */
     private $model;
 
@@ -54,7 +54,7 @@ class Object_entry
      *
      * @param boolean $access
      *
-     * @return Object_entry
+     * @return ObjectEntry
      */
     public function setAccess($access)
     {
@@ -76,13 +76,13 @@ class Object_entry
     /**
      * Set circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
-     * @return Object_entry
+     * @return ObjectEntry
      */
-    public function setCircleUser(\AppBundle\Entity\Circle_user $circleUser = null)
+    public function setCircleUser(\AppBundle\Entity\CircleUser $circleUser = null)
     {
-        $this->circle_user = $circleUser;
+        $this->circleUser = $circleUser;
 
         return $this;
     }
@@ -90,11 +90,11 @@ class Object_entry
     /**
      * Get circleUser
      *
-     * @return \AppBundle\Entity\Circle_user
+     * @return \AppBundle\Entity\CircleUser
      */
     public function getCircleUser()
     {
-        return $this->circle_user;
+        return $this->circleUser;
     }
 
 
@@ -103,7 +103,7 @@ class Object_entry
      *
      * @param \AppBundle\Entity\Model $model
      *
-     * @return Object_entry
+     * @return ObjectEntry
      */
     public function setModel(\AppBundle\Entity\Model $model = null)
     {

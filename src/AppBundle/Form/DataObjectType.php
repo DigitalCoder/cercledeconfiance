@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Data_objectType extends AbstractType
+class DataObjectType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ class Data_objectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Data_object'
+            'data_class' => 'AppBundle\Entity\DataObject'
         ));
     }
 
@@ -31,7 +31,7 @@ class Data_objectType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_data_object';
+        return 'appbundle_dataObject';
     }
 
 

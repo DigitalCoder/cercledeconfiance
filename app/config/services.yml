@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    app.form.profile:
+            class: AppBundle\Form\EditProfileType
+            tags:
+                - { name: form.type, alias: app_user_profile }
     app.form.registration:
             class: AppBundle\Form\RegistrationType
             tags:

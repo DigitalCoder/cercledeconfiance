@@ -95,18 +95,18 @@ interface UserInterface extends \FOS\UserBundle\Model\UserInterface
     /**
      * Add circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
      * @return User
      */
-    public function addCircleUser(\AppBundle\Entity\Circle_user $circleUser);
+    public function addCircleUser(\AppBundle\Entity\CircleUser $circleUser);
 
     /**
      * Remove circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      */
-    public function removeCircleUser(\AppBundle\Entity\Circle_user $circleUser);
+    public function removeCircleUser(\AppBundle\Entity\CircleUser $circleUser);
 
     /**
      * Get circleUsers

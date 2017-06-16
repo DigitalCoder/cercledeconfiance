@@ -15,7 +15,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
@@ -84,3 +84,6 @@ fos_user:
     registration:
             form:
                 type: AppBundle\Form\RegistrationType
+    profile:
+       form:
+           type: AppBundle\Form\EditProfileType

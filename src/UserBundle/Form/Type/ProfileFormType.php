@@ -11,11 +11,15 @@
 
 namespace FOS\UserBundle\Form\Type;
 
+use AppBundle\Form\AddressType;
+use AppBundle\Form\RegistrationType;
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use UserBundle\Entity\User;
 
 class ProfileFormType extends AbstractType
 {
@@ -27,7 +31,7 @@ class ProfileFormType extends AbstractType
     /**
      * @param string $class The User class name
      */
-    public function __construct($class)
+    public function __construct($class=User::class)
     {
         $this->class = $class;
     }
@@ -52,7 +56,9 @@ class ProfileFormType extends AbstractType
             'translation_domain' => 'FOSUserBundle',
             'mapped' => false,
             'constraints' => new UserPassword($constraintsOptions),
-        ));
+        ))
+                ->add('address', RegistrationType::class);
+
     }
 
     /**

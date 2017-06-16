@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category_event
+ * CategoryEvent
  *
  * @ORM\Table(name="category_event")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Category_eventRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryEventRepository")
  */
-class Category_event
+class CategoryEvent
 {
     /**
      * @var int
@@ -36,7 +36,7 @@ class Category_event
     private $color;
 
     /**
-     * @ORM\OneToMany(targetEntity="Agenda", mappedBy="category_event")
+     * @ORM\OneToMany(targetEntity="Agenda", mappedBy="categoryEvent")
      */
     private $agendas;
 
@@ -56,7 +56,7 @@ class Category_event
      *
      * @param string $name
      *
-     * @return Category_event
+     * @return CategoryEvent
      */
     public function setName($name)
     {
@@ -80,7 +80,7 @@ class Category_event
      *
      * @param integer $color
      *
-     * @return Category_event
+     * @return CategoryEvent
      */
     public function setColor($color)
     {
@@ -111,7 +111,7 @@ class Category_event
      *
      * @param \AppBundle\Entity\Agenda $agenda
      *
-     * @return Category_event
+     * @return CategoryEvent
      */
     public function addAgenda(\AppBundle\Entity\Agenda $agenda)
     {

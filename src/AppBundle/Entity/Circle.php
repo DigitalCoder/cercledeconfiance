@@ -42,9 +42,9 @@ class Circle
     private $offer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Circle_user", mappedBy="circle", cascade={"persist"}, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="CircleUser", mappedBy="circle", cascade={"persist"}, fetch="EAGER")
      */
-    private $circle_users;
+    private $circleUsers;
 
     /**
      * @ORM\ManyToOne(targetEntity="Address", inversedBy="circles", cascade={"persist"})
@@ -181,11 +181,11 @@ class Circle
     /**
      * Add circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      *
      * @return Circle
      */
-    public function addCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function addCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
         $this->circle_users[] = $circleUser;
 
@@ -195,9 +195,9 @@ class Circle
     /**
      * Remove circleUser
      *
-     * @param \AppBundle\Entity\Circle_user $circleUser
+     * @param \AppBundle\Entity\CircleUser $circleUser
      */
-    public function removeCircleUser(\AppBundle\Entity\Circle_user $circleUser)
+    public function removeCircleUser(\AppBundle\Entity\CircleUser $circleUser)
     {
         $this->circle_users->removeElement($circleUser);
     }
@@ -209,7 +209,7 @@ class Circle
      */
     public function getCircleUsers()
     {
-        return $this->circle_users;
+        return $this->circleUsers;
     }
 
     /**

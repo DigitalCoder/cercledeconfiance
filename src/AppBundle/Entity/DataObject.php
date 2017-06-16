@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Data_object
+ * DataObject
  *
  * @ORM\Table(name="data_object")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Data_objectRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DataObjectRepository")
  */
-class Data_object
+class DataObject
 {
     /**
      * @var int
@@ -29,9 +29,9 @@ class Data_object
     private $data;
 
     /**
-     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="data_object")
+     * @ORM\OneToMany(targetEntity="ConnectedObject", mappedBy="dataObject")
      */
-    private $connected_objects;
+    private $connectedObjects;
 
     /**
      * Get id
@@ -48,7 +48,7 @@ class Data_object
      *
      * @param string $data
      *
-     * @return Data_object
+     * @return DataObject
      */
     public function setData($data)
     {
@@ -71,19 +71,19 @@ class Data_object
      */
     public function __construct()
     {
-        $this->connected_objects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->connectedObjects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add connectedObject
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\ConnectedObject $connectedObject
      *
-     * @return Data_object
+     * @return DataObject
      */
-    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function addConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
     {
-        $this->connected_objects[] = $connectedObject;
+        $this->connectedObjects[] = $connectedObject;
 
         return $this;
     }
@@ -91,11 +91,11 @@ class Data_object
     /**
      * Remove connectedObject
      *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
+     * @param \AppBundle\Entity\ConnectedObject $connectedObject
      */
-    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
+    public function removeConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
     {
-        $this->connected_objects->removeElement($connectedObject);
+        $this->connectedObjects->removeElement($connectedObject);
     }
 
     /**
@@ -105,6 +105,6 @@ class Data_object
      */
     public function getConnectedObjects()
     {
-        return $this->connected_objects;
+        return $this->connectedObjects;
     }
 }
