@@ -34,7 +34,7 @@ class Data_app
     private $circle_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps")
+     * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps", cascade={"persist"}, fetch="EAGER")
      */
     private $cloud;
 

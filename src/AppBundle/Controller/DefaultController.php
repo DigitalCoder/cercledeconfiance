@@ -2,10 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
+use AppBundle\Entity\Cloud;
+use AppBundle\Entity\Data_app;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Circle_user;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DefaultController
@@ -71,9 +74,52 @@ class DefaultController extends Controller
     /**
      * @Route("/{token}/cloud", name="cloud")
      */
-    public function cloud($token)
+    public function cloud($token, Request $request)
     {
-        $param = ['token' => $token];
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
+        $currentCircleUser = $em->getRepository('AppBundle:Circle_user')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+
+        if (!isset($currentCircleUser)) {
+            return $this->redirectToRoute('accueil');
+        }
+        if ($currentCircleUser->getCloudAccess() == 0) {
+            return $this->render('AppBundle:Default:cloud.html.twig',
+                ['token' => $token,
+                    'error' => 'Vous n\'avez pas accès à cette fonctionnalité.<br/>Contactez l\'administrateur 
+du cercle pour plus d\'informations.']);
+        }
+
+        $circleUsers = $em->getRepository('AppBundle:Circle_user')
+            ->findBy(['circle' => $circle->getId()]);
+
+        $cloud = new Cloud();
+        $dataApp = new Data_app();
+
+        $form = $this->createFormBuilder($cloud)
+            ->add('file_name', null, ['label'=>'Envoyer un fichier'])
+            ->add('Envoyer', SubmitType::class)
+            ->getForm();
+
+        if (isset($_FILES['form']['type']['file_name'])) {
+            $cloud->setFileType($_FILES['form']['type']['file_name']);
+        }
+
+        $form->handleRequest($request);
+        $dataApp->setCloud($cloud);
+        $dataApp->setCircleUser($currentCircleUser);
+        $dataApp->setCreationDate(new \DateTime());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($dataApp);
+            $em->persist($cloud);
+            $em->flush();
+            return $this->redirectToRoute('cloud', ['token' => $token]);
+        }
+
+        $param = ['token' => $token, 'CUsers' => $circleUsers, 'form' => $form->createView()];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
     }
 }

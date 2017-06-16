@@ -23,8 +23,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="paddingLogoNav navbar-brand" href="/"><img width="100px"
-                                                                         src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                    <a class="paddingLogoNav navbar-brand" href="/">
+                        <img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
                                                                          alt="logo_cercle_confiance"></a>
                 </div>
 
@@ -42,6 +42,7 @@
                             </ul>
                         </div>
                         {% if app.user.username is defined %}
+                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="50px">
                             {{ app.user.username }}
                             <a href="/logout">Déconnexion</a>
                         {% endif %}
