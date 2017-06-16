@@ -27,7 +27,7 @@ class Cloud
      * @var string
      *
      * @ORM\Column(name="file_name", type="string", length=255)
-     * @Assert\File(maxSize="20Mi")
+     * @Assert\File(maxSize="20M")
      */
     private $fileName;
 
@@ -37,11 +37,7 @@ class Cloud
     private $dataApps;
 
     /**
-<<<<<<< HEAD
      * @ORM\Column(name="file_type", type="string", length=255)
-=======
-     * @ORM\ManyToOne(targetEntity="FileType", inversedBy="clouds")
->>>>>>> dd4778258c2b6347948023cc844929e52f6f8b39
      */
     private $fileType;
 
@@ -124,19 +120,12 @@ class Cloud
     /**
      * Set fileType
      *
-<<<<<<< HEAD
      * @param string $fileType
      *
      * @return Cloud
      */
     public function setFileType($fileType)
-=======
-     * @param \AppBundle\Entity\FileType $fileType
-     *
-     * @return Cloud
-     */
-    public function setFileType(\AppBundle\Entity\FileType $fileType = null)
->>>>>>> dd4778258c2b6347948023cc844929e52f6f8b39
+
     {
         $this->fileType = $fileType;
 
@@ -146,11 +135,7 @@ class Cloud
     /**
      * Get fileType
      *
-<<<<<<< HEAD
      * @return string
-=======
-     * @return \AppBundle\Entity\FileType
->>>>>>> dd4778258c2b6347948023cc844929e52f6f8b39
      */
     public function getFileType()
     {

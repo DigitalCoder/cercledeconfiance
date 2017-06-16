@@ -26,7 +26,7 @@ class EditOfferController extends Controller
     public function editOfferAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->find($token);
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $form = $this->createForm(CircleType::class, $circle);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

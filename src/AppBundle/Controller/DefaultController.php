@@ -3,10 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cloud;
-use AppBundle\Entity\Data_app;
+use AppBundle\Entity\DataApp;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Circle_user;
+use AppBundle\Entity\CircleUser;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -49,7 +50,7 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
-        $circleUser = $em->getRepository('AppBundle:Circle_user')
+        $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
         $param = ['token' => $token, 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
@@ -82,7 +83,7 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
-        $currentCircleUser = $em->getRepository('AppBundle:Circle_user')
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
         if (!isset($currentCircleUser)) {
@@ -95,14 +96,14 @@ class DefaultController extends Controller
 du cercle pour plus d\'informations.']);
         }
 
-        $circleUsers = $em->getRepository('AppBundle:Circle_user')
+        $circleUsers = $em->getRepository('AppBundle:CircleUser')
             ->findBy(['circle' => $circle->getId()]);
 
         $cloud = new Cloud();
-        $dataApp = new Data_app();
+        $dataApp = new DataApp();
 
         $form = $this->createFormBuilder($cloud)
-            ->add('file_name', null, ['label'=>'Envoyer un fichier'])
+            ->add('file_name', FileType::class, ['label'=>'Envoyer un fichier'])
             ->add('Envoyer', SubmitType::class)
             ->getForm();
 

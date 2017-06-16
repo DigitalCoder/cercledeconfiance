@@ -9,7 +9,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 
-use AppBundle\Entity\Connected_object;
+use AppBundle\Entity\ConnectedObject;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -22,48 +22,48 @@ class LoadConnectedObjectData extends AbstractFixture implements OrderedFixtureI
      */
     public function load(ObjectManager $manager)
     {
-        $datas_object = $manager->getRepository('AppBundle:Data_object')->findAll();
+        $datasObject = $manager->getRepository('AppBundle:DataObject')->findAll();
         $models = $manager->getRepository('AppBundle:Model')->findAll();
 
-        $connected_object0 = new Connected_object();
-        $connected_object0->setDataObject($datas_object[0]);
-        $connected_object0->setModel($models[0]);
-        $manager->persist($connected_object0);
+        $connectedObject0 = new ConnectedObject();
+        $connectedObject0->setDataObject($datasObject[0]);
+        $connectedObject0->setModel($models[0]);
+        $manager->persist($connectedObject0);
 
-        $connected_object1 = new Connected_object();
-        $connected_object1->setDataObject($datas_object[1]);
-        $connected_object1->setModel($models[0]);
-        $manager->persist($connected_object1);
+        $connectedObject1 = new ConnectedObject();
+        $connectedObject1->setDataObject($datasObject[1]);
+        $connectedObject1->setModel($models[0]);
+        $manager->persist($connectedObject1);
 
-        $connected_object2 = new Connected_object();
-        $connected_object2->setDataObject($datas_object[2]);
-        $connected_object2->setModel($models[1]);
-        $manager->persist($connected_object2);
+        $connectedObject2 = new ConnectedObject();
+        $connectedObject2->setDataObject($datasObject[2]);
+        $connectedObject2->setModel($models[1]);
+        $manager->persist($connectedObject2);
 
-        $connected_object3 = new Connected_object();
-        $connected_object3->setDataObject($datas_object[3]);
-        $connected_object3->setModel($models[1]);
-        $manager->persist($connected_object3);
+        $connectedObject3 = new ConnectedObject();
+        $connectedObject3->setDataObject($datasObject[3]);
+        $connectedObject3->setModel($models[1]);
+        $manager->persist($connectedObject3);
 
-        $connected_object4 = new Connected_object();
-        $connected_object4->setDataObject($datas_object[4]);
-        $connected_object4->setModel($models[2]);
-        $manager->persist($connected_object4);
+        $connectedObject4 = new ConnectedObject();
+        $connectedObject4->setDataObject($datasObject[4]);
+        $connectedObject4->setModel($models[2]);
+        $manager->persist($connectedObject4);
 
-        $connected_object5 = new Connected_object();
-        $connected_object5->setDataObject($datas_object[5]);
-        $connected_object5->setModel($models[2]);
-        $manager->persist($connected_object5);
+        $connectedObject5 = new ConnectedObject();
+        $connectedObject5->setDataObject($datasObject[5]);
+        $connectedObject5->setModel($models[2]);
+        $manager->persist($connectedObject5);
 
-        $connected_object6 = new Connected_object();
-        $connected_object6->setDataObject($datas_object[6]);
-        $connected_object6->setModel($models[3]);
-       $manager->persist($connected_object6);
+        $connectedObject6 = new ConnectedObject();
+        $connectedObject6->setDataObject($datasObject[6]);
+        $connectedObject6->setModel($models[3]);
+       $manager->persist($connectedObject6);
 
-        $connected_object7 = new Connected_object();
-        $connected_object7->setDataObject($datas_object[7]);
-        $connected_object7->setModel($models[3]);
-        $manager->persist($connected_object7);
+        $connectedObject7 = new ConnectedObject();
+        $connectedObject7->setDataObject($datasObject[7]);
+        $connectedObject7->setModel($models[3]);
+        $manager->persist($connectedObject7);
 
         $manager->flush();
 

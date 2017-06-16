@@ -29,16 +29,13 @@ class DataApp
     private $creationDate;
 
     /**
+
      * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="dataApps")
      */
     private $circleUser;
 
     /**
-<<<<<<< HEAD:src/AppBundle/Entity/Data_app.php
-     * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="data_apps", cascade={"persist"}, fetch="EAGER")
-=======
      * @ORM\ManyToOne(targetEntity="Cloud", inversedBy="dataApps")
->>>>>>> dd4778258c2b6347948023cc844929e52f6f8b39:src/AppBundle/Entity/DataApp.php~
      */
     private $cloud;
 

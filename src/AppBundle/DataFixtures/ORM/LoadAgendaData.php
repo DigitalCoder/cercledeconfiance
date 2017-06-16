@@ -21,7 +21,7 @@ class LoadAgendaData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $categories_event = $manager->getRepository('AppBundle:Category_event')->findAll();
+        $categories_event = $manager->getRepository('AppBundle:CategoryEvent')->findAll();
 
         $agenda0 = new Agenda();
         $agenda0->setName('Urologue');

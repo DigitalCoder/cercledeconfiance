@@ -46,21 +46,17 @@ class adminUsersController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $circleToken = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
-        $circleId = $circleToken[0]->getId();
-        $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
-        $circleId = $em->getRepository('AppBundle:Circle')->findBy(['id'=>$circleId]);
+        $circleToken = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
+        $circleId = $circleToken->getId();
 
-        $circleId = $id;
         $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
 
 
-        $objects = $em->getRepository('AppBundle:Object_entry')->findBy(['circle_user'=>$users]);
+        $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
 
 //        var_dump($objects);
 //        die();
 
-        $circleToken = $circleId[0]->getToken();
         $form->handleRequest($request);
 
 
@@ -69,7 +65,7 @@ class adminUsersController extends Controller
             $message = new \Swift_Message('Invitation Cercle Confiance');
             $message->setTo($mail->getEmail())
             ->setFrom('cercleconfiance07@gmail.com')
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'token'=>$circleToken)), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'token'=>$token)), 'text/html');
 
 //            $this->renderView('Emails/invitation.html.twig', array('name' => $mail->getName())), 'text/html'
 
@@ -90,11 +86,9 @@ class adminUsersController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['id'=>$idUser]);
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['id'=>$idUser]);
         $circleUser = $circleUser[0];
-        $objects = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser));
-//        var_dump($objects);
-//        die();
+        $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser));
 
         $userAccess = [];
         $formBuilder = $this->createFormBuilder($userAccess);
@@ -158,17 +152,17 @@ class adminUsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findOneBy(['id'=>$idUser]);
-        $data = $em->getRepository('AppBundle:Data_app')->findBy(['circle_user'=>$idUser]);
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['id'=>$idUser]);
+        $data = $em->getRepository('AppBundle:DataApp')->findBy(['circleUser'=>$idUser]);
 
         if ($data != null) {
 
             $circleToken = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
             $circleId = $circleToken->getId();
 
-            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle'=>$circleId, 'adminCircle'=>1]);
+            $admin = $em->getRepository('AppBundle:CircleUser')->findOneBy(['circle'=>$circleId, 'adminCircle'=>1]);
 
-            $data = $em->getRepository('AppBundle:Data_app')->findOneBy(['circle_user'=>$idUser]);
+            $data = $em->getRepository('AppBundle:DataApp')->findOneBy(['circleUser'=>$idUser]);
             $newData = $data->setCircleUser($admin);
             $em->persist($newData);
 
