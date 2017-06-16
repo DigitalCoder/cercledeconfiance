@@ -23,7 +23,7 @@ class LoadModelData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $brands = $manager->getRepository('AppBundle:Brand')->findAll();
-        $type_objects = $manager->getRepository('AppBundle:Type_object')->findAll();
+        $type_objects = $manager->getRepository('AppBundle:TypeObject')->findAll();
 
         $model0 = new Model();
         $model0->setBrand($brands[0]);

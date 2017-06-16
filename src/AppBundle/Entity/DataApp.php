@@ -29,11 +29,8 @@ class DataApp
     private $creationDate;
 
     /**
-<<<<<<< HEAD:src/AppBundle/Entity/Data_app.php
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="data_apps", cascade={"persist"})
-=======
+
      * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="dataApps")
->>>>>>> editUser:src/AppBundle/Entity/DataApp.php
      */
     private $circleUser;
 

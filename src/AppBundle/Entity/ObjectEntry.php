@@ -29,11 +29,7 @@ class ObjectEntry
     private $access=0;
 
     /**
-<<<<<<< HEAD:src/AppBundle/Entity/Object_entry.php
-     * @ORM\ManyToOne(targetEntity="Circle_user", inversedBy="object_entries", cascade={"persist", "remove"})
-=======
-     * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="objectEntries")
->>>>>>> editUser:src/AppBundle/Entity/ObjectEntry.php
+     * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="objectEntries", cascade={"persist", "remove"})
      */
     private $circleUser;
 

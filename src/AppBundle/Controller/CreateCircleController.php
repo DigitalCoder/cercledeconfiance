@@ -76,7 +76,7 @@ class CreateCircleController extends Controller
 
         $circleId = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
         $circleId = $circleId[0]->getId();
-        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
+        $circleUsers = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
 
 
         if (isset($circleUsers) && count($circleUsers) >= 6) {
@@ -95,7 +95,7 @@ class CreateCircleController extends Controller
 
 
             $em->flush();
-            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle' => $circleId, 'adminCircle' => 1]);
+            $admin = $em->getRepository('AppBundle:CircleUser')->findOneBy(['circle' => $circleId, 'adminCircle' => 1]);
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Nouvel utilisateur Cercle Confiance');
             $message->setTo($admin->getUser()->getEmail())

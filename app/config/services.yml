@@ -23,6 +23,10 @@ services:
             class: AppBundle\Services\FileUploader
             arguments: ['%upload_directory%']
 
+    cloud.file_uploader:
+                class: AppBundle\Services\FileUploader
+                arguments: ['%upload_directory%']
+
     user.doctrine_user_listener:
             class: AppBundle\EventListener\UserUploadListener
             arguments: ['@user.file_uploader']
@@ -31,3 +35,12 @@ services:
                 - { name: doctrine.event_listener, event: preUpdate }
                 - { name: doctrine.event_listener, event: postLoad }
                 - { name: doctrine.event_listener, event: preRemove }
+
+    cloud.doctrine_cloud_listener:
+                class: AppBundle\EventListener\CloudUploadListener
+                arguments: ['@cloud.file_uploader']
+                tags:
+                    - { name: doctrine.event_listener, event: prePersist }
+                    - { name: doctrine.event_listener, event: preUpdate }
+                    - { name: doctrine.event_listener, event: postLoad }
+                    - { name: doctrine.event_listener, event: preRemove }

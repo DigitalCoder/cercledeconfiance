@@ -29,6 +29,7 @@ class DataApp
     private $creationDate;
 
     /**
+
      * @ORM\ManyToOne(targetEntity="CircleUser", inversedBy="dataApps")
      */
     private $circleUser;

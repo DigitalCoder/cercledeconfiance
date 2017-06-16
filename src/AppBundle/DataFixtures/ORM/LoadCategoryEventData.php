@@ -8,7 +8,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Category_event;
+use AppBundle\Entity\CategoryEvent;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,25 +21,25 @@ class LoadCategoryEventData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
-        $category_event0 = new Category_event();
-        $category_event0->setName('medical');
-        $category_event0->setColor("#00FF00");
-        $manager->persist($category_event0);
+        $categoryEvent0 = new CategoryEvent();
+        $categoryEvent0->setName('medical');
+        $categoryEvent0->setColor("#00FF00");
+        $manager->persist($categoryEvent0);
 
-        $category_event1 = new Category_event();
-        $category_event1->setName('social');
-        $category_event1->setColor("#FFFF00");
-        $manager->persist($category_event1);
+        $categoryEvent1 = new CategoryEvent();
+        $categoryEvent1->setName('social');
+        $categoryEvent1->setColor("#FFFF00");
+        $manager->persist($categoryEvent1);
 
-        $category_event2 = new Category_event();
-        $category_event2->setName('loisir');
-        $category_event2->setColor("#0000FF");
-        $manager->persist($category_event2);
+        $categoryEvent2 = new CategoryEvent();
+        $categoryEvent2->setName('loisir');
+        $categoryEvent2->setColor("#0000FF");
+        $manager->persist($categoryEvent2);
 
-        $category_event3 = new Category_event();
-        $category_event3->setName('administratif');
-        $category_event3->setColor("#FF0000");
-        $manager->persist($category_event3);
+        $categoryEvent3 = new CategoryEvent();
+        $categoryEvent3->setName('administratif');
+        $categoryEvent3->setColor("#FF0000");
+        $manager->persist($categoryEvent3);
 
         $manager->flush();
 

@@ -69,11 +69,7 @@ class CircleUser
     private $agendaAccess=1;
 
     /**
-<<<<<<< HEAD:src/AppBundle/Entity/Circle_user.php
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="circle_user", cascade={"persist", "remove"})
-=======
-     * @ORM\OneToMany(targetEntity="ObjectEntry", mappedBy="circleUser", cascade={"persist"})
->>>>>>> editUser:src/AppBundle/Entity/CircleUser.php
+     * @ORM\OneToMany(targetEntity="ObjectEntry", mappedBy="circleUser", cascade={"persist", "remove"})
      */
     private $objectEntries;
 
@@ -88,11 +84,8 @@ class CircleUser
     private $circle;
 
     /**
-<<<<<<< HEAD:src/AppBundle/Entity/Circle_user.php
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Data_app", mappedBy="circle_user", cascade={"persist"})
-=======
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\DataApp", mappedBy="circleUser")
->>>>>>> editUser:src/AppBundle/Entity/CircleUser.php
+
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\DataApp", mappedBy="circleUser", cascade={"persist"})
      */
     private $dataApps;
 

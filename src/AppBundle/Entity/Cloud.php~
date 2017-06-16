@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Cloud
@@ -25,6 +27,7 @@ class Cloud
      * @var string
      *
      * @ORM\Column(name="file_name", type="string", length=255)
+     * @Assert\File(maxSize="20M")
      */
     private $fileName;
 
@@ -34,18 +37,11 @@ class Cloud
     private $dataApps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FileType", inversedBy="clouds")
+     * @ORM\Column(name="file_type", type="string", length=255)
      */
     private $fileType;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255)
-     */
-    private $url;
-
-    /**
+       /**
      * Get id
      *
      * @return int
@@ -120,38 +116,16 @@ class Cloud
         return $this->dataApps;
     }
 
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Cloud
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 
     /**
      * Set fileType
      *
-     * @param \AppBundle\Entity\FileType $fileType
+     * @param string $fileType
      *
      * @return Cloud
      */
-    public function setFileType(\AppBundle\Entity\FileType $fileType = null)
+    public function setFileType($fileType)
+
     {
         $this->fileType = $fileType;
 
@@ -161,7 +135,7 @@ class Cloud
     /**
      * Get fileType
      *
-     * @return \AppBundle\Entity\FileType
+     * @return string
      */
     public function getFileType()
     {
