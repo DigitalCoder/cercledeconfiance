@@ -5,7 +5,7 @@
     <li class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
     <li class="scroll"><a href="#serve"> Nos services</a></li>
     <li class="scroll"><a href="#object">Nos objets connectés</a></li>
-    <li class="scroll"><a href="/cercles">Accéder aux cercles</a></li>
+    <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
 {% endblock %}
 
 {% block content %}
@@ -20,11 +20,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
-                                {#<div class="carousel-content">#}
-                                {#<h2><span>Multi</span> is the best Onepage html template</h2>#}
-                                {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>#}
-                                {#<a class="btn btn-primary btn-lg" href="#">Read More</a>#}
-                                {#</div>#}
+
                             </div>
                         </div>
                     </div>
@@ -35,11 +31,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
-                                {#<div class="carousel-content">#}
-                                {#<h2>Beautifully designed <span>free</span> one page template</h2>#}
-                                {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et  dolore magna incididunt ut labore aliqua. </p>#}
-                                {#<a class="btn btn-primary btn-lg" href="#">Read More</a>#}
-                                {#</div>#}
+
                             </div>
                         </div>
                     </div>
@@ -67,7 +59,7 @@
                             </p>
 
 
-                            <div class="btn-section"><a href="/presentation" class="btn-default">En savoir plus</a>
+                            <div class="btn-section"><a href="{{ path('presentation') }}" class="btn-default">En savoir plus</a>
                             </div>
 
                         </div>
@@ -92,7 +84,7 @@
                             <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir                         plus</a>
+                    <div class="btn-section text-center"><a href="{{ path('services') }}" class="btn-default item">En savoir                         plus</a>
                     </div>
 
                 </div>
@@ -185,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir plus</a>
+                    <div class="btn-section text-center"><a href="{{ path('pres_objets') }}" class="btn-default item">En savoir plus</a>
                     </div>
                 </div>
             </div>

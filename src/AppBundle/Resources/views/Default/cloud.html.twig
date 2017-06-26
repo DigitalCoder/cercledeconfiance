@@ -3,14 +3,13 @@
 
 {% block content %}
     <div class="container marginBottom text-center">
-        <a href="/cercles">
+        <a href="{{ path('accueil') }}">
             <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
         </a>
 
-        <a href="/cercles/{{ token }}">
+        <a href="{{ path('appli', {'token': token}) }}">
             <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
         </a>
-        <div class="row">
 
             {% if error is defined %}
                 <h3>{{ error | raw }}</h3>

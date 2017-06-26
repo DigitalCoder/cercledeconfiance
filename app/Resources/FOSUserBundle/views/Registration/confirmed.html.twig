@@ -7,7 +7,7 @@
         <h3>Bienvenue {{ user.username }} !</h3>
     <p>Votre inscription est effectuée !</p>
     {% if targetUrl %}
-    <p><a href="/cercles">Retourner à la page de sélection des cercles</a></p>
+    <p><a href="{{ path('accueil') }}">Retourner à la page de sélection des cercles</a></p>
     {% endif %}
     </div>
 {% endblock fos_user_content %}
