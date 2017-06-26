@@ -18,14 +18,12 @@ class CircleType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array("label"=>"Nom du Cercle"))
-//                ->add('active')
-//                ->add('paid')
+
             ->add('offer', EntityType::class,  [
                 'class'=>Offer::class,
                 'choice_label'=>'name'
             ])
-//                ->add('address')
-//                ->add('data_app')
+
         ;
     }
     

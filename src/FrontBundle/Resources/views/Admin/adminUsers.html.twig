@@ -3,7 +3,6 @@
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 
 {% block content %}
-    {#{{ dump() }}#}
     <section>
         <div class="container-fluid">
             <a href="/cercles">
@@ -80,7 +79,7 @@
                     </table>
                 </div>
             </div>
-            {% if users|length < 6 %}
+            {% if users|length < numberusers %}
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1 text-center">
                         <h3>Ajouter un utilisateur au cercle</h3>
