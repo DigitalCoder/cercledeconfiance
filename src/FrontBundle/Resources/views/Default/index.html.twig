@@ -5,7 +5,7 @@
     <li class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
     <li class="scroll"><a href="#serve"> Nos services</a></li>
     <li class="scroll"><a href="#object">Nos objets connectés</a></li>
-    <li class="scroll"><a href="/cercles">Accéder aux cercles</a></li>
+    <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
 {% endblock %}
 
 {% block content %}
@@ -59,7 +59,7 @@
                             </p>
 
 
-                            <div class="btn-section"><a href="/presentation" class="btn-default">En savoir plus</a>
+                            <div class="btn-section"><a href="{{ path('presentation') }}" class="btn-default">En savoir plus</a>
                             </div>
 
                         </div>
@@ -84,7 +84,7 @@
                             <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir                         plus</a>
+                    <div class="btn-section text-center"><a href="{{ path('services') }}" class="btn-default item">En savoir                         plus</a>
                     </div>
 
                 </div>
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="/services" class="btn-default item">En savoir plus</a>
+                    <div class="btn-section text-center"><a href="{{ path('pres_objets') }}" class="btn-default item">En savoir plus</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
-                    <a href="/cercles/creer" class="thumbnail">
+                    <a href="{{ path('create') }}" class="thumbnail">
 
                         Ajouter un nouveau cercle
                     </a>
@@ -14,7 +14,7 @@
 
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == 1 %}
-                        <a href="/cercles/{{ CUser.circle.token }}">
+                        <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 thumbnail">
                                 <h3>{{ CUser.circle.name }}</h3>
                                 <p>

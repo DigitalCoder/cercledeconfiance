@@ -9,7 +9,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -17,7 +17,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/services")
+     * @Route("/services", name="services")
      */
     public function serviceAction()
     {
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/presentation")
+     * @Route("/presentation", name="presentation")
      */
     public function quiSommesNousAction()
     {
@@ -33,7 +33,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/objets")
+     * @Route("/objets", name="pres_objets")
      */
     public function objetsAction()
     {

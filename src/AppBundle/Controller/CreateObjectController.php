@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateObjectController extends Controller
 {
     /**
-     * @Route("/cercles/{token}/admin/objets")
+     * @Route("/cercles/{token}/admin/objets", name="objets")
      */
     public function editObjectAction(Request $request, $token){
 
@@ -31,7 +31,7 @@ class CreateObjectController extends Controller
     }
 
     /**
-     * @Route("/cercles/{token}/admin/objets/{objectId}")
+     * @Route("/cercles/{token}/admin/objets/{objectId}", name="admin_objets")
      */
     public function activateObjectAction(Request $request, $token, $objectId) {
         $em = $this->getDoctrine()->getManager();
