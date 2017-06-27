@@ -48,7 +48,7 @@ class Model
     private $brand;
 
     /**
-     * @ORM\OneToMany(targetEntity="DataObject", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="DataObject", mappedBy="model", fetch="EAGER")
      */
     private $dataObjects;
 
@@ -67,7 +67,7 @@ class Model
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models")
+     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models", fetch="EAGER")
      */
     private $typeObject;
 

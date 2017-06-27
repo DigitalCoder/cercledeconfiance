@@ -132,6 +132,12 @@ du cercle pour plus d\'informations.']);
      */
     public function showCircleObjectsAction($token)
     {
-        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$token]);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$token, 'currentUser'=>$currentCircleUser]);
     }
 }
