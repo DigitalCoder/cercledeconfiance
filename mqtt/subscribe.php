@@ -21,11 +21,22 @@ $mqtt->close();
 
 function procmsg($topic,$msg){
     $db = new \PDO(DSN, USER, PASS);
-    $req = "INSERT INTO ";
+    $arrayMsg = explode(" ",$msg);
+    $reqModel = "SELECT * FROM model WHERE uniq_id = :uniqId";
+    $prepModel = $db->prepare($reqModel);
+    $prepModel->bindValue(':uniqId', $arrayMsg[0], \PDO::PARAM_STR);
+    $prepModel->execute();
+    $resModel = $prepModel->fetchAll(\PDO::FETCH_OBJ);
+
+    $date = new \DateTime();
+    $stringDate = $date->format('Y-m-d h:i:s');
+    $req = "INSERT INTO data_object(model_id, data, date) VALUES (:model, :data, :date)";
     $prep = $db->prepare($req);
-    $prep->bindValue(':id', $id, \PDO::PARAM_INT);
+    $prep->bindValue(':model', $resModel[0]->id, \PDO::PARAM_INT);
+    $prep->bindValue(':data', $arrayMsg[1], \PDO::PARAM_STR);
+    $prep->bindValue(':date', $stringDate, \PDO::PARAM_STR);
     $prep->execute();
-	echo "Msg Recieved: ".date("r")."\nTopic:{$topic}\n$msg\n";
+	echo "Message reçu et envoyé en base !\n";
 }
 	
 
