@@ -37,14 +37,7 @@ header {
     text-align: center;
 }
 
-/*_____Accueil Cercles_____*/
-.marginTop {
-    margin-top: 150px;
-}
 
-.marginBottom {
-    margin-bottom: 100px;
-}
 
 /*_____FOOTER_____*/
 footer {
@@ -222,4 +215,14 @@ footer {
     border: 1px solid #1C75BC;
     background-color: #3eb0f7;
     hover: white;
+    text-align: center;
+    margin: 10px;
+    line-height: 110px;
+}
+.circle {
+    margin: 15% 0 25% 0;
+}
+.circleTitle {
+    text-align: center;
+    margin-top: 3%;
 }
