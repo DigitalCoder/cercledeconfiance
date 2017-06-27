@@ -24,18 +24,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-
 class WallController extends Controller
 {
     /**
-     * @Route("/cercles/{token}/mur")
+     * @Route("/cercles/{token}/mur", name="wall")
      */
     public function showWallAction(Request $request, $token){
 
         $em = $this->getDoctrine()->getManager();
-        $circleUser = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
 
+        $circleUser = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $wallCircleDatas = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleUser->getId()]);
+
         $circleUserId = array();
         foreach ($wallCircleDatas as $user) {
                 $circleUserId[] = $user->getId();
@@ -44,11 +44,18 @@ class WallController extends Controller
         $dataContent = array();
         foreach ($dataApps as $content) {
             if ($content->getWall() != null) {
-                $dataContent[] = $content->getWall()->getContent();
+                $dataContent['wall'][] = $content->getWall()->getContent();
+            }
+            if ($content->getAgenda() != null) {
+                $dataContent['agenda'][] = $content->getAgenda();
+            }
+            if ($content->getCloud() != null) {
+                $dataContent['cloud'][] = $content->getCloud();
             }
         }
 
         $wall = new Wall();
+        $wall->setContent(null);
         $form = $this->createForm(WallType::class, $wall);
 
         $form->handleRequest($request);
@@ -74,6 +81,7 @@ class WallController extends Controller
 
             $em->persist($formContent);
             $em->flush();
+            return $this->redirectToRoute('wall', ['token'=>$token]);
         }
 
         return $this->render('FrontBundle:Default:wall.html.twig', array(

@@ -2,35 +2,99 @@
 
 {% block title %} Mur{% endblock %}
 
-
 {% block content %}
     <section class="container">
         <div class="row">
             <div class="col-lg-9">
-                {% for data in walldatas if data.wall.content is defined %}
-                    {% if data.circleuser.wallaccess %}
-                        <article class="well">
-                            <header>
-                                <div class="col-lg-6">
-                                    <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h3>{{ data.creationdate|date }}</h3>
-                                </div>
-                            </header>
-                            <hr />
-                            <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
-                        </article>
+                {% for data in walldatas %}
+{# WALL DISPLAY MESSAGE #}
+                    {% if data.wall != null %}
+                        <div class="messages index{{ loop.index0 }}">
+                            <article class="well">
+                                <header>
+                                    <div class="col-lg-6">
+                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h2>{{ data.creationdate|date }}</h2>
+                                    </div>
+                                </header>
+                                <hr />
+                                <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
+                            </article>
+                        </div>
+{# CLOUD DISPLAY MESSAGE #}
+                    {% elseif data.cloud != null %}
+                        <div class="messages index{{ loop.index0 }}">
+                            <article class="well">
+                                <header>
+                                    <div class="col-lg-6">
+                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h2>{{ data.creationdate|date }}</h2>
+                                    </div>
+                                </header>
+                                <hr />
+                        {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
+                                <p>Name: {% if data.cloud.filename is defined %}{{ data.cloud.filename }}{% endif %}</p>
+                                {% if data.cloud.filetype.name == 'lien' %}
+                                    <a href="{{ data.cloud.url }}">{{ data.cloud.url}}</a>
+                                {% elseif  data.cloud.filetype.name == 'image' %}
+                                    <img src="{% if data.cloud.url is defined %}{{ data.cloud.url }}{% endif %}" alt="{{ data.cloud.filename }}">
+                                {% else %}
+                                    <p>{% if data.cloud.url is defined %}{{ data.cloud.url }}{% endif %}</p>
+                                {% endif %}
+                            </article>
+                        </div>
+{# AGENDA DISPLAY MESSAGE #}
+                    {% elseif data.agenda != null %}
+                        <div class="messages index{{ loop.index0 }}">
+                            <article class="well">
+                                <header>
+                                    <div class="col-lg-6">
+                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h2>{{ data.creationdate|date }}</h2>
+                                    </div>
+                                </header>
+                                <hr />
+                                <p><strong>Titre:</strong> {% if data.agenda.name is defined %}{{ data.agenda.name }}{% endif %}</p>
+                                <p><strong>Evenement:</strong> {% if data.agenda.event is defined %}{{ data.agenda.event }}{% endif %}</p>
+                                <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
+                            </article>
+                        </div>
                     {% endif %}
                 {% endfor %}
+                    <button id="affiche" onclick="affichePlus()">voir les messages plus anciens</button>
             </div>
+
             <div class="col-lg-3">
                 <h3>Envoie un message</h3>
-                {#{{ form(form) }}#}
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
             </div>
         </div>
     </section>
+{% endblock %}
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        var displayIndex = 3;
+        $( ".messages" ).hide();
+        $( ".index0" ).show();
+        $( ".index1" ).show();
+        $( ".index2" ).show();
+
+        function affichePlus() {
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+        }
+    </script>
 {% endblock %}
