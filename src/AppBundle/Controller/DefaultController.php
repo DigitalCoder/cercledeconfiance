@@ -126,4 +126,12 @@ du cercle pour plus d\'informations.']);
         $param = ['token' => $token, 'CUsers' => $circleUsers, 'form' => $form->createView()];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
     }
+
+    /**
+     * @Route("/{token}/objects", name="show_objects")
+     */
+    public function showCircleObjectsAction($token)
+    {
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$token]);
+    }
 }
