@@ -48,7 +48,7 @@ class ConnectedObject
      *
      * @return ConnectedObject
      */
-    public function setDataObject(\AppBundle\Entity\DataOject $dataObject = null)
+    public function setDataObject(\AppBundle\Entity\DataObject $dataObject = null)
     {
         $this->dataObject = $dataObject;
 

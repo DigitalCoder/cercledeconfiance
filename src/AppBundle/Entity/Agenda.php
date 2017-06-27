@@ -52,12 +52,12 @@ class Agenda
     /**
      * @ORM\OneToMany(targetEntity="DataApp", mappedBy="agenda")
      */
-    private $data_apps;
+    private $dataApps;
 
     /**
      * @ORM\ManyToOne(targetEntity="CategoryEvent", inversedBy="agendas")
      */
-    private $category_event;
+    private $categoryEvent;
 
 
     /**
