@@ -18,14 +18,14 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateObjectController extends Controller
 {
     /**
-     * @Route("/cercles/{token}/admin/objets")
+     * @Route("/cercles/{token}/admin/objets", name="circleAdminObjects")
      */
     public function editObjectAction(Request $request, $token){
 
         $em = $this->getDoctrine()->getManager();
         $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circleUser = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle'=>$circleId->getId()]);
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser[1]));
+        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser->getId()));
         return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
     }
 
@@ -45,6 +45,6 @@ class CreateObjectController extends Controller
         }
         // TODO change route for buy;
         // TODO add confirmation for remove;
-        return $this->redirect("/cercles/".$token."/admin/objets");
+        return $this->redirectToRoute("circleAdminObjects", array("token"=>$token));
     }
 }
