@@ -16,6 +16,10 @@
 /web/bundles/
 /.idea/
 
+
 .web-server-pid
 
 /web/uploads/
+=======
+/web/uploads
+
