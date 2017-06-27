@@ -31,7 +31,6 @@ class RegistrationType extends AbstractType
         return 'user_registration';
     }
 
-    // For Symfony 2.x
     public function getName()
     {
         return $this->getBlockPrefix();

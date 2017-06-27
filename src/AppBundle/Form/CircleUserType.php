@@ -17,16 +17,7 @@ class CircleUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//                ->add('adminCircle')
-//                ->add('circleCenter')
-//                ->add('callAccess')
-//                ->add('wallAccess')
-//                ->add('cloudAccess')
-//                ->add('agendaAccess')
-//                ->add('user', CollectionType::class, array('entry_type'=>RegistrationFormType::class, "label"=>"Renseigner la personne a surveiller"))
             ->add('user', RegistrationType::class, array("label"=>"Renseigner la personne a surveiller"))
-
-//            ->add('address', AddressType::class)
             ->add('circle', CircleType::class, array("label"=>"Cercle"))
             ->add('save', SubmitType::class);
     }
