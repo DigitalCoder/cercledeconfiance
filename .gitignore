@@ -16,8 +16,7 @@
 /web/bundles/
 /.idea/
 /src/AppBundle/Entity/*~
-
 .web-server-pid
-
 /web/uploads/
+/mqtt/config.php
 
