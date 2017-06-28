@@ -69,9 +69,8 @@ $(document).ready(function() {
                     data: 'delete='+ event.id ,
                     type: "POST"
                 });
-                $('#modal-id').modal('dismiss');
             });
-            $('#fullCalModal').modal();
+            $('#agendaModal').modal();
         },
         events: {
             url: routes.myroutes.json
