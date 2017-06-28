@@ -209,9 +209,9 @@ footer {
 }
 
 /*--------------Circle----------------*/
-section {
+.circleHome {
     filter: brightness(70%);
-    background: transparent url("../img/circle.jpg") no-repeat;
+    background: transparent url("../img/circle.jpg") no-repeat fixed;
     position: relative;
     background-size: cover;
     height: 100vh;
