@@ -14,8 +14,6 @@
             <div class="row">
 
 
-
-
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == 1 %}
                         <a class="" href="{{ path('appli', {'token': CUser.circle.token}) }}">

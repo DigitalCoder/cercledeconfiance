@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Circle;
 use AppBundle\Entity\Cloud;
 use AppBundle\Entity\DataApp;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -130,5 +131,18 @@ du cercle pour plus d\'informations.']);
 
         $param = ['token' => $token, 'CUsers' => $circleUsers, 'form' => $form->createView()];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
+    }
+
+    /**
+     * @Route("/{token}/objects", name="show_objects")
+     */
+    public function showCircleObjectsAction(Circle $circle)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$circle->getToken(), 'currentUser'=>$currentCircleUser]);
     }
 }

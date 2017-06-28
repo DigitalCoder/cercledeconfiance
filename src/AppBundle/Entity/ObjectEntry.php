@@ -34,7 +34,7 @@ class ObjectEntry
     private $circleUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Model", inversedBy="objectEntries")
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="objectEntries", fetch="EAGER")
      */
     private $model;
 
