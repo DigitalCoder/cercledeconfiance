@@ -16,3 +16,4 @@
 /web/bundles/
 /web-server-pid
 /.idea/
+/src/AppBundle/Entity/*~
