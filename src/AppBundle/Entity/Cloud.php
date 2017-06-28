@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Cloud
@@ -25,27 +27,21 @@ class Cloud
      * @var string
      *
      * @ORM\Column(name="file_name", type="string", length=255)
+     * @Assert\File(maxSize="20M")
      */
-    private $file_name;
+    private $fileName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="cloud")
+     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="cloud")
      */
-    private $data_apps;
+    private $dataApps;
 
     /**
-     * @ORM\ManyToOne(targetEntity="File_type", inversedBy="clouds")
+     * @ORM\Column(name="file_type", type="string", length=255)
      */
-    private $file_type;
+    private $fileType;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255)
-     */
-    private $url;
-
-    /**
+       /**
      * Get id
      *
      * @return int
@@ -62,9 +58,9 @@ class Cloud
      *
      * @return Cloud
      */
-    public function setFileName($file_name)
+    public function setFileName($fileName)
     {
-        $this->file_name = $file_name;
+        $this->fileName = $fileName;
 
         return $this;
     }
@@ -76,26 +72,26 @@ class Cloud
      */
     public function getFileName()
     {
-        return $this->file_name;
+        return $this->fileName;
     }
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dataApps = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      *
      * @return Cloud
      */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps[] = $dataApp;
+        $this->dataApps[] = $dataApp;
 
         return $this;
     }
@@ -103,11 +99,11 @@ class Cloud
     /**
      * Remove dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function removeDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps->removeElement($dataApp);
+        $this->dataApps->removeElement($dataApp);
     }
 
     /**
@@ -117,43 +113,21 @@ class Cloud
      */
     public function getDataApps()
     {
-        return $this->data_apps;
+        return $this->dataApps;
     }
 
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Cloud
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 
     /**
      * Set fileType
      *
-     * @param \AppBundle\Entity\File_type $fileType
+     * @param string $fileType
      *
      * @return Cloud
      */
-    public function setFileType(\AppBundle\Entity\File_type $fileType = null)
+    public function setFileType($fileType)
+
     {
-        $this->file_type = $fileType;
+        $this->fileType = $fileType;
 
         return $this;
     }
@@ -161,10 +135,10 @@ class Cloud
     /**
      * Get fileType
      *
-     * @return \AppBundle\Entity\File_type
+     * @return string
      */
     public function getFileType()
     {
-        return $this->file_type;
+        return $this->fileType;
     }
 }

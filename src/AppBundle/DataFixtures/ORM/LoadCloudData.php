@@ -21,24 +21,20 @@ class LoadCloudData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $file_types = $manager->getRepository('AppBundle:File_type')->findAll();
-        
+
         $cloud0 = new Cloud();
-        $cloud0->setFileName('photo1');
-        $cloud0->setUrl('http://static1.terrafemina.com/articles/7/11/61/07/@/110317-les-jeux-video-sont-bons-pour-la-sante-des-personnes-agees-622x0-1.jpg');
-        $cloud0->setFileType($file_types[0]);
+        $cloud0->setFileName('image.png');
+        $cloud0->setFileType('image/jpeg');
         $manager->persist($cloud0);
 
         $cloud1 = new Cloud();
-        $cloud1->setFileName('video1');
-        $cloud1->setUrl('https://www.youtube.com/embed/btIkYYTFqDQ');
-        $cloud1->setFileType($file_types[1]);
+        $cloud1->setFileName('video1.mp4');
+        $cloud1->setFileType('video');
         $manager->persist($cloud1);
 
         $cloud2 = new Cloud();
-        $cloud2->setFileName('doc1');
-        $cloud2->setUrl('http://www.credoc.fr/pdf/Rech/C256.pdf');
-        $cloud2->setFileType($file_types[2]);
+        $cloud2->setFileName('doc1.pdf');
+        $cloud2->setFileType('text/pdf');
         $manager->persist($cloud2);
 
         $manager->flush();

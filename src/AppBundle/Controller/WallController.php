@@ -9,10 +9,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Circle;
-use AppBundle\Entity\Data_app;
+use AppBundle\Entity\DataApp;
 use AppBundle\Entity\Wall;
-use AppBundle\Form\Circle_userType;
-use AppBundle\Form\Data_appType;
+use AppBundle\Form\CircleUserType;
 use AppBundle\Form\WallType;
 use Doctrine\Tests\Common\DataFixtures\TestEntity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,20 +26,20 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class WallController extends Controller
 {
     /**
-     * @Route("/cercles/{token}/mur", name="wall")
+     * @Route("/cercles/{token}/mur", name="mur")
      */
     public function showWallAction(Request $request, Circle $circle){
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $currentCircleUser = $em->getRepository('AppBundle:Circle_User')->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
-        $wallCircleDatas = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circle->getId()]);
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $wallCircleDatas = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circle->getId()]);
 
         $circleUserId = array();
         foreach ($wallCircleDatas as $user) {
                 $circleUserId[] = $user->getId();
         }
-        $dataApps = $em->getRepository('AppBundle:Data_app')->findBy(['circle_user'=>$circleUserId],['creationDate'=>'DESC']);
+        $dataApps = $em->getRepository('AppBundle:DataApp')->findBy(['circleUser'=>$circleUserId],['creationDate'=>'DESC']);
         $dataContent = array();
         foreach ($dataApps as $content) {
             if ($content->getWall() != null) {
@@ -69,7 +68,7 @@ class WallController extends Controller
             $wall = new Wall();
             $wall->setContent($message);
 
-            $formContent = new Data_app();
+            $formContent = new DataApp();
             $formContent->setWall($wall);
             $formContent->setCreationDate(new \DateTime('now'));
             $formContent->setCircleUser($currentCircleUser);

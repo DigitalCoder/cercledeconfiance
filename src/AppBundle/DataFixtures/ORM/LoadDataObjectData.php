@@ -8,7 +8,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Data_object;
+use AppBundle\Entity\DataObject;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,37 +21,55 @@ class LoadDataObjectData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
-        $data_object0 = new Data_object();
-        $data_object0->setData(21.7);
-        $manager->persist($data_object0);
+        $models = $manager->getRepository('AppBundle:Model')->findAll();
 
-        $data_object1 = new Data_object();
-        $data_object1->setData(24.1);
-        $manager->persist($data_object1);
+        $dataObject0 = new DataObject();
+        $dataObject0->setData(21.7);
+        $dataObject0->setDate(new \DateTime());
+        $dataObject0->setModel($models[0]);
+        $manager->persist($dataObject0);
 
-        $data_object2 = new Data_object();
-        $data_object2->setData(87);
-        $manager->persist($data_object2);
+        $dataObject1 = new DataObject();
+        $dataObject1->setData(24.1);
+        $dataObject1->setDate(new \DateTime('+1 min'));
+        $dataObject1->setModel($models[0]);
+        $manager->persist($dataObject1);
 
-        $data_object3 = new Data_object();
-        $data_object3->setData(72);
-        $manager->persist($data_object3);
+        $dataObject2 = new DataObject();
+        $dataObject2->setData(87);
+        $dataObject2->setDate(new \DateTime());
+        $dataObject2->setModel($models[1]);
+        $manager->persist($dataObject2);
 
-        $data_object4 = new Data_object();
-        $data_object4->setData(1);
-        $manager->persist($data_object4);
+        $dataObject3 = new DataObject();
+        $dataObject3->setData(72);
+        $dataObject3->setDate(new \DateTime('+1 min'));
+        $dataObject3->setModel($models[1]);
+        $manager->persist($dataObject3);
 
-        $data_object5 = new Data_object();
-        $data_object5->setData(0);
-        $manager->persist($data_object5);
+        $dataObject4 = new DataObject();
+        $dataObject4->setData(1);
+        $dataObject4->setDate(new \DateTime());
+        $dataObject4->setModel($models[2]);
+        $manager->persist($dataObject4);
 
-        $data_object6 = new Data_object();
-        $data_object6->setData(1);
-        $manager->persist($data_object6);
+        $dataObject5 = new DataObject();
+        $dataObject5->setData(0);
+        $dataObject5->setDate(new \DateTime('+1 min'));
+        $dataObject5->setModel($models[2]);
+        $manager->persist($dataObject5);
 
-        $data_object7 = new Data_object();
-        $data_object7->setData(0);
-        $manager->persist($data_object7);
+        $dataObject6 = new DataObject();
+        $dataObject6->setData(1);
+        $dataObject6->setDate(new \DateTime());
+        $dataObject6->setModel($models[3]);
+        $manager->persist($dataObject6);
+
+        $dataObject7 = new DataObject();
+        $dataObject7->setData(0);
+        $dataObject7->setDate(new \DateTime('+1 min'));
+        $dataObject7->setModel($models[3]);
+        $manager->persist($dataObject7);
 
         $manager->flush();
     }
@@ -62,6 +80,6 @@ class LoadDataObjectData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 0;
+        return 2;
     }
 }

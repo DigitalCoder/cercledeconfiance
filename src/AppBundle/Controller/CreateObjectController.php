@@ -18,33 +18,36 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateObjectController extends Controller
 {
     /**
-     * @Route("/cercles/{token}/admin/objets", name="circleAdminObjects")
+     * @Route("/cercles/{token}/admin/objets", name="objets")
      */
     public function editObjectAction(Request $request, $token){
 
         $em = $this->getDoctrine()->getManager();
         $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle'=>$circleId->getId()]);
-        $objectWithInfo = $em->getRepository('AppBundle:Object_entry')->findBy(array("circle_user" => $circleUser->getId()));
-        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo));
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['circle'=>$circleId->getId()]);
+        $objectWithInfo = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser->getId()));
+        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token'=> $token));
     }
 
     /**
-     * @Route("/cercles/{token}/admin/objets/{objectId}")
+     * @Route("/cercles/{token}/admin/objets/{objectId}", name="admin_objets")
      */
     public function activateObjectAction(Request $request, $token, $objectId) {
         $em = $this->getDoctrine()->getManager();
+
         $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
-        $circleUser = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId->getId()]);
-        $objectToActivate = $em->getRepository('AppBundle:Object_entry')->findBy(['model'=>$objectId, 'circle_user'=>$circleUser]);
-        foreach ($objectToActivate as $value){
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId->getId()]);
+        $objectToActivate = $em->getRepository('AppBundle:ObjectEntry')->findBy(['model'=>$objectId, 'circleUser'=>$circleUser]);
+        foreach ($objectToActivate as $value) {
             $access = $value->getAccess();
             $value->setAccess(!$access);
             $em->persist($value);
             $em->flush();
         }
-        // TODO change route for buy;
-        // TODO add confirmation for remove;
-        return $this->redirectToRoute("circleAdminObjects", array("token"=>$token));
+        $user = $this->getUser();
+        $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user, 'circle'=>$circleId]);
+        $objectWithInfo = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser));
+
+        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token' => $token));
     }
 }

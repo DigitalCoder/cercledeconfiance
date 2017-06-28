@@ -8,7 +8,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Object_entry;
+use AppBundle\Entity\ObjectEntry;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,440 +21,152 @@ class LoadObjectEntryData extends AbstractFixture implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $circle_users = $manager->getRepository('AppBundle:Circle_user')->findAll();
+        $circle_users = $manager->getRepository('AppBundle:CircleUser')->findAll();
         $models = $manager->getRepository('AppBundle:Model')->findAll();
 
-        $object_entry0 = new Object_entry();
-        $object_entry0->setCircleUser($circle_users[0]);
-        $object_entry0->setModel($models[0]);
-        $object_entry0->setAccess(1);
-        $manager->persist($object_entry0);
-
-        $object_entry1 = new Object_entry();
-        $object_entry1->setCircleUser($circle_users[0]);
-        $object_entry1->setModel($models[1]);
-        $object_entry1->setAccess(1);
-        $manager->persist($object_entry1);
-
-        $object_entry2 = new Object_entry();
-        $object_entry2->setCircleUser($circle_users[0]);
-        $object_entry2->setModel($models[2]);
-        $object_entry2->setAccess(1);
-        $manager->persist($object_entry2);
-
-        $object_entry3 = new Object_entry();
-        $object_entry3->setCircleUser($circle_users[0]);
-        $object_entry3->setModel($models[3]);
-        $object_entry3->setAccess(1);
-        $manager->persist($object_entry3);
-
-        $object_entry4 = new Object_entry();
-        $object_entry4->setCircleUser($circle_users[1]);
-        $object_entry4->setModel($models[0]);
-        $object_entry4->setAccess(1);
-        $manager->persist($object_entry4);
-
-        $object_entry5 = new Object_entry();
-        $object_entry5->setCircleUser($circle_users[1]);
-        $object_entry5->setModel($models[1]);
-        $object_entry5->setAccess(1);
-        $manager->persist($object_entry5);
-
-        $object_entry6 = new Object_entry();
-        $object_entry6->setCircleUser($circle_users[1]);
-        $object_entry6->setModel($models[2]);
-        $object_entry6->setAccess(1);
-        $manager->persist($object_entry6);
-
-        $object_entry7 = new Object_entry();
-        $object_entry7->setCircleUser($circle_users[1]);
-        $object_entry7->setModel($models[3]);
-        $object_entry7->setAccess(1);
-        $manager->persist($object_entry7);
-
-        $object_entry8 = new Object_entry();
-        $object_entry8->setCircleUser($circle_users[2]);
-        $object_entry8->setModel($models[0]);
-        $object_entry8->setAccess(0);
-        $manager->persist($object_entry8);
-
-        $object_entry9 = new Object_entry();
-        $object_entry9->setCircleUser($circle_users[2]);
-        $object_entry9->setModel($models[1]);
-        $object_entry9->setAccess(1);
-        $manager->persist($object_entry9);
-
-        $object_entry10 = new Object_entry();
-        $object_entry10->setCircleUser($circle_users[2]);
-        $object_entry10->setModel($models[2]);
-        $object_entry10->setAccess(0);
-        $manager->persist($object_entry10);
-
-        $object_entry11 = new Object_entry();
-        $object_entry11->setCircleUser($circle_users[2]);
-        $object_entry11->setModel($models[3]);
-        $object_entry11->setAccess(1);
-        $manager->persist($object_entry11);
-
-        $object_entry12 = new Object_entry();
-        $object_entry12->setCircleUser($circle_users[3]);
-        $object_entry12->setModel($models[0]);
-        $object_entry12->setAccess(0);
-        $manager->persist($object_entry12);
-
-        $object_entry13 = new Object_entry();
-        $object_entry13->setCircleUser($circle_users[3]);
-        $object_entry13->setModel($models[1]);
-        $object_entry13->setAccess(1);
-        $manager->persist($object_entry13);
-
-        $object_entry14 = new Object_entry();
-        $object_entry14->setCircleUser($circle_users[3]);
-        $object_entry14->setModel($models[2]);
-        $object_entry14->setAccess(1);
-        $manager->persist($object_entry14);
-
-        $object_entry15 = new Object_entry();
-        $object_entry15->setCircleUser($circle_users[3]);
-        $object_entry15->setModel($models[3]);
-        $object_entry15->setAccess(1);
-        $manager->persist($object_entry15);
-
-        $object_entry16 = new Object_entry();
-        $object_entry16->setCircleUser($circle_users[4]);
-        $object_entry16->setModel($models[0]);
-        $object_entry16->setAccess(1);
-        $manager->persist($object_entry16);
-
-        $object_entry17 = new Object_entry();
-        $object_entry17->setCircleUser($circle_users[4]);
-        $object_entry17->setModel($models[1]);
-        $object_entry17->setAccess(1);
-        $manager->persist($object_entry17);
-
-        $object_entry18 = new Object_entry();
-        $object_entry18->setCircleUser($circle_users[4]);
-        $object_entry18->setModel($models[2]);
-        $object_entry18->setAccess(1);
-        $manager->persist($object_entry18);
-
-        $object_entry19 = new Object_entry();
-        $object_entry19->setCircleUser($circle_users[4]);
-        $object_entry19->setModel($models[3]);
-        $object_entry19->setAccess(0);
-        $manager->persist($object_entry19);
-
-        $object_entry20 = new Object_entry();
-        $object_entry20->setCircleUser($circle_users[5]);
-        $object_entry20->setModel($models[0]);
-        $object_entry20->setAccess(1);
-        $manager->persist($object_entry20);
-
-        $object_entry21 = new Object_entry();
-        $object_entry21->setCircleUser($circle_users[5]);
-        $object_entry21->setModel($models[1]);
-        $object_entry21->setAccess(1);
-        $manager->persist($object_entry21);
-
-        $object_entry22 = new Object_entry();
-        $object_entry22->setCircleUser($circle_users[5]);
-        $object_entry22->setModel($models[2]);
-        $object_entry22->setAccess(1);
-        $manager->persist($object_entry22);
-
-        $object_entry23 = new Object_entry();
-        $object_entry23->setCircleUser($circle_users[5]);
-        $object_entry23->setModel($models[3]);
-        $object_entry23->setAccess(1);
-        $manager->persist($object_entry23);
-
-        $object_entry24 = new Object_entry();
-        $object_entry24->setCircleUser($circle_users[6]);
-        $object_entry24->setModel($models[0]);
-        $object_entry24->setAccess(1);
-        $manager->persist($object_entry24);
-
-        $object_entry25 = new Object_entry();
-        $object_entry25->setCircleUser($circle_users[6]);
-        $object_entry25->setModel($models[1]);
-        $object_entry25->setAccess(1);
-        $manager->persist($object_entry25);
-
-        $object_entry26 = new Object_entry();
-        $object_entry26->setCircleUser($circle_users[6]);
-        $object_entry26->setModel($models[2]);
-        $object_entry26->setAccess(1);
-        $manager->persist($object_entry26);
-
-        $object_entry27 = new Object_entry();
-        $object_entry27->setCircleUser($circle_users[6]);
-        $object_entry27->setModel($models[3]);
-        $object_entry27->setAccess(1);
-        $manager->persist($object_entry27);
-
-        $object_entry28 = new Object_entry();
-        $object_entry28->setCircleUser($circle_users[7]);
-        $object_entry28->setModel($models[0]);
-        $object_entry28->setAccess(1);
-        $manager->persist($object_entry28);
-
-        $object_entry29 = new Object_entry();
-        $object_entry29->setCircleUser($circle_users[7]);
-        $object_entry29->setModel($models[1]);
-        $object_entry29->setAccess(1);
-        $manager->persist($object_entry29);
-
-        $object_entry30 = new Object_entry();
-        $object_entry30->setCircleUser($circle_users[7]);
-        $object_entry30->setModel($models[2]);
-        $object_entry30->setAccess(1);
-        $manager->persist($object_entry30);
-
-        $object_entry31 = new Object_entry();
-        $object_entry31->setCircleUser($circle_users[7]);
-        $object_entry31->setModel($models[3]);
-        $object_entry31->setAccess(1);
-        $manager->persist($object_entry31);
-
-        $object_entry32 = new Object_entry();
-        $object_entry32->setCircleUser($circle_users[8]);
-        $object_entry32->setModel($models[0]);
-        $object_entry32->setAccess(0);
-        $manager->persist($object_entry32);
-
-        $object_entry33 = new Object_entry();
-        $object_entry33->setCircleUser($circle_users[8]);
-        $object_entry33->setModel($models[1]);
-        $object_entry33->setAccess(0);
-        $manager->persist($object_entry33);
-
-        $object_entry34 = new Object_entry();
-        $object_entry34->setCircleUser($circle_users[8]);
-        $object_entry34->setModel($models[2]);
-        $object_entry34->setAccess(0);
-        $manager->persist($object_entry34);
-
-        $object_entry35 = new Object_entry();
-        $object_entry35->setCircleUser($circle_users[8]);
-        $object_entry35->setModel($models[3]);
-        $object_entry35->setAccess(0);
-        $manager->persist($object_entry35);
-
-        $object_entry36 = new Object_entry();
-        $object_entry36->setCircleUser($circle_users[9]);
-        $object_entry36->setModel($models[0]);
-        $object_entry36->setAccess(1);
-        $manager->persist($object_entry36);
-
-        $object_entry37 = new Object_entry();
-        $object_entry37->setCircleUser($circle_users[9]);
-        $object_entry37->setModel($models[1]);
-        $object_entry37->setAccess(1);
-        $manager->persist($object_entry37);
-
-        $object_entry38 = new Object_entry();
-        $object_entry38->setCircleUser($circle_users[9]);
-        $object_entry38->setModel($models[2]);
-        $object_entry38->setAccess(1);
-        $manager->persist($object_entry38);
-
-        $object_entry39 = new Object_entry();
-        $object_entry39->setCircleUser($circle_users[9]);
-        $object_entry39->setModel($models[3]);
-        $object_entry39->setAccess(1);
-        $manager->persist($object_entry39);
-
-        $object_entry40 = new Object_entry();
-        $object_entry40->setCircleUser($circle_users[10]);
-        $object_entry40->setModel($models[0]);
-        $object_entry40->setAccess(1);
-        $manager->persist($object_entry40);
-
-        $object_entry41 = new Object_entry();
-        $object_entry41->setCircleUser($circle_users[10]);
-        $object_entry41->setModel($models[1]);
-        $object_entry41->setAccess(0);
-        $manager->persist($object_entry41);
-
-        $object_entry42 = new Object_entry();
-        $object_entry42->setCircleUser($circle_users[10]);
-        $object_entry42->setModel($models[2]);
-        $object_entry42->setAccess(1);
-        $manager->persist($object_entry42);
-
-        $object_entry43 = new Object_entry();
-        $object_entry43->setCircleUser($circle_users[10]);
-        $object_entry43->setModel($models[3]);
-        $object_entry43->setAccess(0);
-        $manager->persist($object_entry43);
-
-        $object_entry44 = new Object_entry();
-        $object_entry44->setCircleUser($circle_users[11]);
-        $object_entry44->setModel($models[0]);
-        $object_entry44->setAccess(1);
-        $manager->persist($object_entry44);
-
-        $object_entry45 = new Object_entry();
-        $object_entry45->setCircleUser($circle_users[11]);
-        $object_entry45->setModel($models[1]);
-        $object_entry45->setAccess(1);
-        $manager->persist($object_entry45);
-
-        $object_entry46 = new Object_entry();
-        $object_entry46->setCircleUser($circle_users[11]);
-        $object_entry46->setModel($models[2]);
-        $object_entry46->setAccess(1);
-        $manager->persist($object_entry46);
-
-        $object_entry47 = new Object_entry();
-        $object_entry47->setCircleUser($circle_users[11]);
-        $object_entry47->setModel($models[3]);
-        $object_entry47->setAccess(1);
-        $manager->persist($object_entry47);
-
-        $object_entry48 = new Object_entry();
-        $object_entry48->setCircleUser($circle_users[12]);
-        $object_entry48->setModel($models[0]);
-        $object_entry48->setAccess(1);
-        $manager->persist($object_entry48);
-
-        $object_entry49 = new Object_entry();
-        $object_entry49->setCircleUser($circle_users[12]);
-        $object_entry49->setModel($models[1]);
-        $object_entry49->setAccess(1);
-        $manager->persist($object_entry49);
-
-        $object_entry50 = new Object_entry();
-        $object_entry50->setCircleUser($circle_users[12]);
-        $object_entry50->setModel($models[2]);
-        $object_entry50->setAccess(1);
-        $manager->persist($object_entry50);
-
-        $object_entry51 = new Object_entry();
-        $object_entry51->setCircleUser($circle_users[12]);
-        $object_entry51->setModel($models[3]);
-        $object_entry51->setAccess(1);
-        $manager->persist($object_entry51);
-
-        $object_entry52 = new Object_entry();
-        $object_entry52->setCircleUser($circle_users[13]);
-        $object_entry52->setModel($models[0]);
-        $object_entry52->setAccess(0);
-        $manager->persist($object_entry52);
-
-        $object_entry53 = new Object_entry();
-        $object_entry53->setCircleUser($circle_users[13]);
-        $object_entry53->setModel($models[1]);
-        $object_entry53->setAccess(0);
-        $manager->persist($object_entry53);
-
-        $object_entry54 = new Object_entry();
-        $object_entry54->setCircleUser($circle_users[13]);
-        $object_entry54->setModel($models[2]);
-        $object_entry54->setAccess(1);
-        $manager->persist($object_entry54);
-
-        $object_entry55 = new Object_entry();
-        $object_entry55->setCircleUser($circle_users[13]);
-        $object_entry55->setModel($models[3]);
-        $object_entry55->setAccess(0);
-        $manager->persist($object_entry55);
-
-        $object_entry56 = new Object_entry();
-        $object_entry56->setCircleUser($circle_users[14]);
-        $object_entry56->setModel($models[0]);
-        $object_entry56->setAccess(1);
-        $manager->persist($object_entry56);
-
-        $object_entry57 = new Object_entry();
-        $object_entry57->setCircleUser($circle_users[14]);
-        $object_entry57->setModel($models[1]);
-        $object_entry57->setAccess(1);
-        $manager->persist($object_entry57);
-
-        $object_entry58 = new Object_entry();
-        $object_entry58->setCircleUser($circle_users[14]);
-        $object_entry58->setModel($models[2]);
-        $object_entry58->setAccess(1);
-        $manager->persist($object_entry58);
-
-        $object_entry59 = new Object_entry();
-        $object_entry59->setCircleUser($circle_users[14]);
-        $object_entry59->setModel($models[3]);
-        $object_entry59->setAccess(1);
-        $manager->persist($object_entry59);
-
-        $object_entry60 = new Object_entry();
-        $object_entry60->setCircleUser($circle_users[15]);
-        $object_entry60->setModel($models[0]);
-        $object_entry60->setAccess(1);
-        $manager->persist($object_entry60);
-
-        $object_entry61 = new Object_entry();
-        $object_entry61->setCircleUser($circle_users[15]);
-        $object_entry61->setModel($models[1]);
-        $object_entry61->setAccess(1);
-        $manager->persist($object_entry61);
-
-        $object_entry62 = new Object_entry();
-        $object_entry62->setCircleUser($circle_users[15]);
-        $object_entry62->setModel($models[2]);
-        $object_entry62->setAccess(1);
-        $manager->persist($object_entry62);
-
-        $object_entry63 = new Object_entry();
-        $object_entry63->setCircleUser($circle_users[15]);
-        $object_entry63->setModel($models[3]);
-        $object_entry63->setAccess(1);
-        $manager->persist($object_entry63);
-
-        $object_entry64 = new Object_entry();
-        $object_entry64->setCircleUser($circle_users[16]);
-        $object_entry64->setModel($models[0]);
-        $object_entry64->setAccess(1);
-        $manager->persist($object_entry64);
-
-        $object_entry65 = new Object_entry();
-        $object_entry65->setCircleUser($circle_users[16]);
-        $object_entry65->setModel($models[1]);
-        $object_entry65->setAccess(1);
-        $manager->persist($object_entry65);
-
-        $object_entry66 = new Object_entry();
-        $object_entry66->setCircleUser($circle_users[16]);
-        $object_entry66->setModel($models[2]);
-        $object_entry66->setAccess(1);
-        $manager->persist($object_entry66);
-
-        $object_entry67 = new Object_entry();
-        $object_entry67->setCircleUser($circle_users[16]);
-        $object_entry67->setModel($models[3]);
-        $object_entry67->setAccess(1);
-        $manager->persist($object_entry67);
-
-        $object_entry68 = new Object_entry();
-        $object_entry68->setCircleUser($circle_users[17]);
-        $object_entry68->setModel($models[0]);
-        $object_entry68->setAccess(0);
-        $manager->persist($object_entry68);
-
-        $object_entry69 = new Object_entry();
-        $object_entry69->setCircleUser($circle_users[17]);
-        $object_entry69->setModel($models[1]);
-        $object_entry69->setAccess(0);
-        $manager->persist($object_entry69);
-
-        $object_entry70 = new Object_entry();
-        $object_entry70->setCircleUser($circle_users[17]);
-        $object_entry70->setModel($models[2]);
-        $object_entry70->setAccess(0);
-        $manager->persist($object_entry70);
-
-        $object_entry71 = new Object_entry();
-        $object_entry71->setCircleUser($circle_users[17]);
-        $object_entry71->setModel($models[3]);
-        $object_entry71->setAccess(0);
-        $manager->persist($object_entry71);
+        $objectEntry0 = new ObjectEntry();
+        $objectEntry0->setCircleUser($circle_users[0]);
+        $objectEntry0->setModel($models[0]);
+        $objectEntry0->setAccess(1);
+        $manager->persist($objectEntry0);
+
+        $objectEntry1 = new ObjectEntry();
+        $objectEntry1->setCircleUser($circle_users[0]);
+        $objectEntry1->setModel($models[1]);
+        $objectEntry1->setAccess(1);
+        $manager->persist($objectEntry1);
+
+        $objectEntry2 = new ObjectEntry();
+        $objectEntry2->setCircleUser($circle_users[0]);
+        $objectEntry2->setModel($models[2]);
+        $objectEntry2->setAccess(1);
+        $manager->persist($objectEntry2);
+
+        $objectEntry3 = new ObjectEntry();
+        $objectEntry3->setCircleUser($circle_users[0]);
+        $objectEntry3->setModel($models[3]);
+        $objectEntry3->setAccess(1);
+        $manager->persist($objectEntry3);
+
+        $objectEntry4 = new ObjectEntry();
+        $objectEntry4->setCircleUser($circle_users[1]);
+        $objectEntry4->setModel($models[0]);
+        $objectEntry4->setAccess(1);
+        $manager->persist($objectEntry4);
+
+        $objectEntry5 = new ObjectEntry();
+        $objectEntry5->setCircleUser($circle_users[1]);
+        $objectEntry5->setModel($models[1]);
+        $objectEntry5->setAccess(1);
+        $manager->persist($objectEntry5);
+
+        $objectEntry6 = new ObjectEntry();
+        $objectEntry6->setCircleUser($circle_users[1]);
+        $objectEntry6->setModel($models[2]);
+        $objectEntry6->setAccess(1);
+        $manager->persist($objectEntry6);
+
+        $objectEntry7 = new ObjectEntry();
+        $objectEntry7->setCircleUser($circle_users[1]);
+        $objectEntry7->setModel($models[3]);
+        $objectEntry7->setAccess(1);
+        $manager->persist($objectEntry7);
+
+        $objectEntry8 = new ObjectEntry();
+        $objectEntry8->setCircleUser($circle_users[2]);
+        $objectEntry8->setModel($models[0]);
+        $objectEntry8->setAccess(0);
+        $manager->persist($objectEntry8);
+
+        $objectEntry9 = new ObjectEntry();
+        $objectEntry9->setCircleUser($circle_users[2]);
+        $objectEntry9->setModel($models[1]);
+        $objectEntry9->setAccess(1);
+        $manager->persist($objectEntry9);
+
+        $objectEntry10 = new ObjectEntry();
+        $objectEntry10->setCircleUser($circle_users[2]);
+        $objectEntry10->setModel($models[2]);
+        $objectEntry10->setAccess(0);
+        $manager->persist($objectEntry10);
+
+        $objectEntry11 = new ObjectEntry();
+        $objectEntry11->setCircleUser($circle_users[2]);
+        $objectEntry11->setModel($models[3]);
+        $objectEntry11->setAccess(1);
+        $manager->persist($objectEntry11);
+
+        $objectEntry12 = new ObjectEntry();
+        $objectEntry12->setCircleUser($circle_users[3]);
+        $objectEntry12->setModel($models[0]);
+        $objectEntry12->setAccess(0);
+        $manager->persist($objectEntry12);
+
+        $objectEntry13 = new ObjectEntry();
+        $objectEntry13->setCircleUser($circle_users[3]);
+        $objectEntry13->setModel($models[1]);
+        $objectEntry13->setAccess(1);
+        $manager->persist($objectEntry13);
+
+        $objectEntry14 = new ObjectEntry();
+        $objectEntry14->setCircleUser($circle_users[3]);
+        $objectEntry14->setModel($models[2]);
+        $objectEntry14->setAccess(1);
+        $manager->persist($objectEntry14);
+
+        $objectEntry15 = new ObjectEntry();
+        $objectEntry15->setCircleUser($circle_users[3]);
+        $objectEntry15->setModel($models[3]);
+        $objectEntry15->setAccess(1);
+        $manager->persist($objectEntry15);
+
+        $objectEntry16 = new ObjectEntry();
+        $objectEntry16->setCircleUser($circle_users[4]);
+        $objectEntry16->setModel($models[0]);
+        $objectEntry16->setAccess(1);
+        $manager->persist($objectEntry16);
+
+        $objectEntry17 = new ObjectEntry();
+        $objectEntry17->setCircleUser($circle_users[4]);
+        $objectEntry17->setModel($models[1]);
+        $objectEntry17->setAccess(1);
+        $manager->persist($objectEntry17);
+
+        $objectEntry18 = new ObjectEntry();
+        $objectEntry18->setCircleUser($circle_users[4]);
+        $objectEntry18->setModel($models[2]);
+        $objectEntry18->setAccess(1);
+        $manager->persist($objectEntry18);
+
+        $objectEntry19 = new ObjectEntry();
+        $objectEntry19->setCircleUser($circle_users[4]);
+        $objectEntry19->setModel($models[3]);
+        $objectEntry19->setAccess(0);
+        $manager->persist($objectEntry19);
+
+        $objectEntry20 = new ObjectEntry();
+        $objectEntry20->setCircleUser($circle_users[5]);
+        $objectEntry20->setModel($models[0]);
+        $objectEntry20->setAccess(1);
+        $manager->persist($objectEntry20);
+
+        $objectEntry21 = new ObjectEntry();
+        $objectEntry21->setCircleUser($circle_users[5]);
+        $objectEntry21->setModel($models[1]);
+        $objectEntry21->setAccess(1);
+        $manager->persist($objectEntry21);
+
+        $objectEntry22 = new ObjectEntry();
+        $objectEntry22->setCircleUser($circle_users[5]);
+        $objectEntry22->setModel($models[2]);
+        $objectEntry22->setAccess(1);
+        $manager->persist($objectEntry22);
+
+        $objectEntry23 = new ObjectEntry();
+        $objectEntry23->setCircleUser($circle_users[5]);
+        $objectEntry23->setModel($models[3]);
+        $objectEntry23->setAccess(1);
+        $manager->persist($objectEntry23);
 
         $manager->flush();
     }

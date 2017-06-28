@@ -38,13 +38,13 @@
                                 <hr />
                         {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
                                 <p>Name: {{ data.cloud.filename }}</p>
-                                {% if 'image' in data.cloud.filetype.name %}
-                                    <img src="{{ data.cloud.url }}" alt="{{ data.cloud.filename }}" />
+                                {% if 'image' in data.cloud.filetype %}
+                                    <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" alt="{{ data.cloud.filename }}" />
                                 {% elseif 'video' in data.cloud.filetype.name %}
                                     <video width="320" height="240" src="{{ data.cloud.url }}">
-                                        <source src="{{ data.cloud.url }}" type="video/mp4">
-                                        <source src="{{ data.cloud.url }}" type="video/ogg">
-                                        <source src="{{ data.cloud.url }}" type="video/webm">
+                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
+                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">
+                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/webm">
                                         bug movies
                                     </video>
                                 {% endif %}
