@@ -10,7 +10,7 @@
 
 {% block javascript %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+    <script src="{{ asset('assets/Chart.js-master/dist/Chart.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             let values = [];
