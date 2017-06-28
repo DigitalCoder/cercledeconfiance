@@ -26,9 +26,9 @@
                 {#<input type="button" class="btn btn-success" value="Agenda"/>#}
             {#</a>#}
 
-            {#<a href="{{ path('objets', {'token': token}) }}">#}
-                {#<input type="button" class="btn btn-success" value="Objets"/>#}
-            {#</a>#}
+            <a href="{{ path('show_objects', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Objets"/>
+            </a>
 
             <a href="{{ path('fos_user_profile_edit', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Editer Profil"/>

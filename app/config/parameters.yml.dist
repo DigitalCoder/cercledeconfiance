@@ -17,3 +17,5 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    base_path: 'localhost:8000/'
+    number_circle_users: 6

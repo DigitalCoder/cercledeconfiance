@@ -29,9 +29,15 @@ class DataObject
     private $data;
 
     /**
-     * @ORM\OneToMany(targetEntity="ConnectedObject", mappedBy="dataObject")
+     * @ORM\Column(name="date", type="datetime")
      */
-    private $connectedObjects;
+    private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Model", inversedBy="dataObjects")
+     *
+     */
+    private $model;
 
     /**
      * Get id
@@ -74,37 +80,52 @@ class DataObject
         $this->connectedObjects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
-     * Add connectedObject
+     * Set date
      *
-     * @param \AppBundle\Entity\ConnectedObject $connectedObject
+     * @param \DateTime $date
      *
      * @return DataObject
      */
-    public function addConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
+    public function setDate($date)
     {
-        $this->connectedObjects[] = $connectedObject;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Remove connectedObject
+     * Get date
      *
-     * @param \AppBundle\Entity\ConnectedObject $connectedObject
+     * @return \DateTime
      */
-    public function removeConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
+    public function getDate()
     {
-        $this->connectedObjects->removeElement($connectedObject);
+        return $this->date;
     }
 
     /**
-     * Get connectedObjects
+     * Set model
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \AppBundle\Entity\Model $model
+     *
+     * @return DataObject
      */
-    public function getConnectedObjects()
+    public function setModel(\AppBundle\Entity\Model $model = null)
     {
-        return $this->connectedObjects;
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return \AppBundle\Entity\Model
+     */
+    public function getModel()
+    {
+        return $this->model;
     }
 }
