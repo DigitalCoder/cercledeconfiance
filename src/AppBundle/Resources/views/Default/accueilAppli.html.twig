@@ -9,23 +9,30 @@
             <a href="/cercles">
                 <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
             </a>
-
+            {% if circleUser.cloudaccess == true %}
             <a href="/cercles/{{ token }}/visio">
                 <input type="button" class="btn btn-success" value="Visio"/>
             </a>
-
+            {% else %}
+            {% endif %}
+            {% if circleUser.cloudaccess == true %}
             <a href="/cercles/{{ token }}/cloud">
                 <input type="button" class="btn btn-success" value="Cloud"/>
             </a>
-
+            {% else %}
+            {% endif %}
+            {% if circleUser.wallaccess == true %}
             <a href="/cercles/{{ token }}/mur">
                 <input type="button" class="btn btn-success" value="Mur"/>
             </a>
-
+            {% else %}
+            {% endif %}
+            {% if circleUser.wallaccess == true %}
             <a href="/cercles/{{ token }}/agenda">
                 <input type="button" class="btn btn-success" value="Agenda"/>
             </a>
-
+            {% else %}
+            {% endif %}
             <a href="/cercles/{{ token }}/objets">
                 <input type="button" class="btn btn-success" value="Objets"/>
             </a>

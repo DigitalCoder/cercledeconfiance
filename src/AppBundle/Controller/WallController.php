@@ -8,7 +8,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Circle_user;
+use AppBundle\Entity\Circle;
 use AppBundle\Entity\Data_app;
 use AppBundle\Entity\Wall;
 use AppBundle\Form\Circle_userType;
@@ -29,12 +29,12 @@ class WallController extends Controller
     /**
      * @Route("/cercles/{token}/mur", name="wall")
      */
-    public function showWallAction(Request $request, $token){
+    public function showWallAction(Request $request, Circle $circle){
 
         $em = $this->getDoctrine()->getManager();
-
-        $circleUser = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
-        $wallCircleDatas = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleUser->getId()]);
+        $user = $this->getUser();
+        $currentCircleUser = $em->getRepository('AppBundle:Circle_User')->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $wallCircleDatas = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circle->getId()]);
 
         $circleUserId = array();
         foreach ($wallCircleDatas as $user) {
@@ -63,9 +63,6 @@ class WallController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
-            $currentCircleUser = $em->getRepository('AppBundle:Circle_User')->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
             $message = $form->getData()->getContent();
 
@@ -81,7 +78,7 @@ class WallController extends Controller
 
             $em->persist($formContent);
             $em->flush();
-            return $this->redirectToRoute('wall', ['token'=>$token]);
+            return $this->redirectToRoute('wall', ['token'=>$circle->getToken()]);
         }
 
         return $this->render('FrontBundle:Default:wall.html.twig', array(
