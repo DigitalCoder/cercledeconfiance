@@ -9,11 +9,10 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Agenda;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\CircleUser;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AgendaController extends Controller
@@ -26,15 +25,70 @@ class AgendaController extends Controller
     public function showAgendaAction(Request $request, $token)
     {
 
+        $em = $this->getDoctrine()->getManager();
+
         if ($request->isXmlHttpRequest()) {
 
-            $rawData = ($request->request->all());
-            var_dump($rawData);
-            die();
+            $postData = ($request->request->all());
+
+            if (isset($postData['delete'])){
+                $eventToDelete = $em->getRepository('AppBundle:Agenda')->findOneBy(['eventId'=>$postData['delete']]);
+                $em->remove($eventToDelete);
+                $em->flush();
+            }
+
+            $event = $em->getRepository('AppBundle:Agenda')->findOneBy(['eventId'=>$postData['id']]);
+
+            if (isset($event)) {
+                $event->setTitle($postData['title']);
+                $event->setDescription($postData['description']);
+                $event->setEventStart($postData['start']);
+                $event->setEventEnd($postData['end']);
+                $em->persist($event);
+                $em->flush();
+            }
+
+            if (!isset($event)) {
+                $newEvent = new Agenda();
+                $newEvent->setEventId($postData['id']);
+                $newEvent->setTitle($postData['title']);
+                $newEvent->setDescription($postData['description']);
+                $newEvent->setEventStart($postData['start']);
+                $newEvent->setEventEnd($postData['end']);
+                $newEvent->setToken($token);
+                $em->persist($newEvent);
+                $em->flush();
+            }
+
+
         }
 
         $param = ['token' => $token];
         return $this->render('AppBundle:Default:agenda.html.twig', $param);
+    }
+
+    /**
+     * @Route("/cercles/{token}/agenda/json", name="json")
+     */
+    public function getJsonAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $events = $em->getRepository('AppBundle:Agenda')->findBy(['token'=>$token]);
+
+        $eventsData = [];
+        $i = 0;
+        foreach ($events as $event){
+            $eventsData[$i]['id']= $event->getEventId();
+            $eventsData[$i]['title']= $event->getTitle();
+            $eventsData[$i]['description']= $event->getDescription();
+            $eventsData[$i]['start']= $event->getEventStart();
+            $eventsData[$i]['end']= $event->getEventEnd();
+            $i++;
+        }
+
+        return new JsonResponse($eventsData);
+
     }
 
 }

@@ -7,7 +7,10 @@
 
 {% block content %}
 
-    <div id="calendar"></div>
+    <div class="row">
+        <div id="calendar" class="col-xs-10 col-xs-offset-1"></div>
+    </div>
+
 
     <div id="fullCalModal" class="modal fade">
         <div class="modal-dialog">
@@ -19,7 +22,7 @@
                 <div id="modalBody" class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
+                    <button type="button" class="btn btn-danger deleteEvent" data-dismiss="modal">Supprimer</button>
                 </div>
             </div>
         </div>
@@ -31,97 +34,15 @@
     {{ parent() }}
     <script src="{{ asset('assets/fullcalendar/js/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('assets/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
-
-    <script>
-
-        $(document).ready(function() {
-
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                defaultDate: moment().format("YYYY/MM/DD"),
-                navLinks: true, // can click day/week names to navigate views
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end) {
-                    start = moment(start).format('YYYY-MM-DD');
-                    end = moment(end).format('YYYY-MM-DD');
-                    var title = prompt('Event Title:');
-                    var description = prompt('Event Description:');
-                    var id = new Date().getTime();
-                    var eventData;
-                    $.ajax({
-                        url: '/cercles/{{ token }}/agenda',
-                        data: 'title='+ title +'&id='+ id +'&description='+ description +'&start='+ start +'&end='+ end ,
-                        type: "POST"
-                    });
-                    if (title) {
-                        eventData = {
-                            title: title,
-                            id: id,
-                            description: description,
-                            start: start,
-                            end: end
-                        };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                    }
-                    $('#calendar').fullCalendar('unselect');
-                },
-                editable: true,
-                eventLimit: true, // allow "more" link when too many events
-                eventDrop: function(event, delta) {
-                    start = moment(event.start).format('YYYY-MM-DD');
-                    end = moment(event.end).format('YYYY-MM-DD');
-                    $.ajax({
-                        url: '/cercles/{{ token }}/agenda',
-                        data: 'title='+ event.title+'&description='+ event.description +'&start='+ start +'&end='+ end +'&id='+ event.id ,
-                        type: "POST"
-                    });
-                },
-                eventResize: function(event) {
-                    start = moment(event.start).format('YYYY-MM-DD');
-                    end = moment(event.end).format('YYYY-MM-DD');
-                    $.ajax({
-                        url: '/cercles/{{ token }}/agenda',
-                        data: 'title='+ event.title+'&description='+ event.description +'&start='+ start +'&end='+ end +'&id='+ event.id ,
-                        type: "POST"
-                    });
-
-                },
-                    eventClick:  function(event, jsEvent, view) {
-                        $('#modalTitle').html(event.title);
-                        $('#modalBody').html(event.description);
-                        $('#fullCalModal').modal();
-                },
-                events: [
-                    {
-                        title: 'All Day Event',
-                        id: 1,
-                        description: 'lllll',
-                        start: '2017-06-25'
-                    },
-                    {
-                        title: 'Long Event',
-                        id: 2,
-                        description: 'mmmmm',
-                        start: '2017-06-26',
-                        end: '2017-06-27'
-                    }
-                ]
-            });
-
-            element.on('select', function (properties) {
-
-                    $('#modal-id').modal('show');
-
-            });
-
-        });
-
-
+    <script type="text/javascript">
+        var routes = {
+            myroutes:{
+                agenda:"{{ path('agenda', {'token': token}, true) }}", // the true permits to use relative path
+                json:"{{ path('json', {'token': token}, true) }}"
+            },
+        };
     </script>
+    <script src="{{ asset('assets/js/agenda.js') }}"></script>
+
 
 {% endblock %}
