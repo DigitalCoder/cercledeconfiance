@@ -16,7 +16,6 @@ class ObjectEntryType extends AbstractType
         $builder
             ->add('access')
             ->add('connectedObject', ConnectedObjectType::class);
-            //->add('circle_user');
     }
     
     /**

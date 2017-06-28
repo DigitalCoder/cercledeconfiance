@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Circle;
 use AppBundle\Entity\Cloud;
 use AppBundle\Entity\DataApp;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +23,7 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="accueil")
      */
-    public function showCircles()
+    public function showCirclesAction()
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -43,7 +44,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/{token}")
+     * @Route("/{token}", name="appli")
      */
     public function accueilAppliAction($token)
     {
@@ -69,7 +70,7 @@ class DefaultController extends Controller
     /**
      * @Route("/{token}/visio", name="visio")
      */
-    public function visio($token)
+    public function visioAction($token)
     {
         $param = ['token' => $token];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
@@ -78,7 +79,7 @@ class DefaultController extends Controller
     /**
      * @Route("/{token}/cloud", name="cloud")
      */
-    public function cloud($token, Request $request)
+    public function cloudAction($token, Request $request)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
@@ -125,5 +126,18 @@ du cercle pour plus d\'informations.']);
 
         $param = ['token' => $token, 'CUsers' => $circleUsers, 'form' => $form->createView()];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
+    }
+
+    /**
+     * @Route("/{token}/objects", name="show_objects")
+     */
+    public function showCircleObjectsAction(Circle $circle)
+    {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$circle->getToken(), 'currentUser'=>$currentCircleUser]);
     }
 }

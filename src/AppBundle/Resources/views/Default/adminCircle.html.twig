@@ -6,23 +6,23 @@
 
     <div class="container">
         <div class="row">
-            <a href="/cercles">
+            <a href="{{ path('accueil') }}">
                 <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
             </a>
 
-            <a href="/cercles/{{ token }}">
+            <a href="{{ path('appli', {'token': token}) }}">
                 <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
             </a>
 
-            <a href="/cercles/{{ token }}/admin/membres">
+            <a href="{{ path('listMembers', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Gerer Membres"/>
             </a>
 
-            <a href="/cercles/{{ token }}/admin/offres">
+            <a href="{{ path('edit_offer', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Gerer Cercle"/>
             </a>
 
-            <a href="/cercles/{{ token }}/admin/objets">
+            <a href="{{ path('objets', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Gerer Objets"/>
             </a>
 

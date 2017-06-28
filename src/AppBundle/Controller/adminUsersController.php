@@ -35,9 +35,9 @@ class adminUsersController extends Controller
      */
     public function listUsersAction(Request $request, $token)
     {
-        $mail = new User();
+        $userToinvite = new User();
 
-        $form = $this->createFormBuilder($mail)
+        $form = $this->createFormBuilder($userToinvite)
             ->add('email', EmailType::class)
             ->add('name', TextType::class)
             ->add('envoyer', SubmitType::class);
@@ -48,14 +48,8 @@ class adminUsersController extends Controller
 
         $circleToken = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circleId = $circleToken->getId();
-
         $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
-
-
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
-
-//        var_dump($objects);
-//        die();
 
         $form->handleRequest($request);
 
@@ -63,12 +57,9 @@ class adminUsersController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Invitation Cercle Confiance');
-            $message->setTo($mail->getEmail())
-            ->setFrom('cercleconfiance07@gmail.com')
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $mail->getName(), 'token'=>$token)), 'text/html');
-
-//            $this->renderView('Emails/invitation.html.twig', array('name' => $mail->getName())), 'text/html'
-
+            $message->setTo($userToinvite->getEmail())
+            ->setFrom($this->getParameter('mailer_user'))
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$token)), 'text/html');
 
         $mailer->send($message);
         return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
@@ -115,9 +106,6 @@ class adminUsersController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-//            var_dump($form->getData());
-//            die();
-
             $circleUser->setCallAccess($form->getData()['callAccess']);
             $circleUser->setWallAccess($form->getData()['wallAccess']);
             $circleUser->setCloudAccess($form->getData()['cloudAccess']);
@@ -132,7 +120,6 @@ class adminUsersController extends Controller
             }
 
             $em->persist($circleUser);
-//            $em->persist($objects);
             $em->flush();
             return $this->redirectToRoute('listMembers', ['token'=>$token]);
         }

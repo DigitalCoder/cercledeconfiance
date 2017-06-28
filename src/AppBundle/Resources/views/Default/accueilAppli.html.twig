@@ -6,35 +6,35 @@
 
     <div class="container">
         <div class="row">
-            <a href="/cercles">
+            <a href="{{ path('accueil') }}">
                 <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
             </a>
 
-            <a href="/cercles/{{ token }}/visio">
+            <a href="{{ path('visio', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Visio"/>
             </a>
 
-            <a href="/cercles/{{ token }}/cloud">
+            <a href="{{ path('cloud', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Cloud"/>
             </a>
 
-            <a href="/cercles/{{ token }}/mur">
-                <input type="button" class="btn btn-success" value="Mur"/>
-            </a>
+            {#<a href="{{ path('mur', {'token': token}) }}">#}
+                {#<input type="button" class="btn btn-success" value="Mur"/>#}
+            {#</a>#}
 
-            <a href="/cercles/{{ token }}/agenda">
-                <input type="button" class="btn btn-success" value="Agenda"/>
-            </a>
+            {#<a href="{{ path('agenda', {'token': token}) }}">#}
+                {#<input type="button" class="btn btn-success" value="Agenda"/>#}
+            {#</a>#}
 
-            <a href="/cercles/{{ token }}/objets">
+            <a href="{{ path('show_objects', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Objets"/>
             </a>
 
-            <a href="/profile/edit">
+            <a href="{{ path('fos_user_profile_edit', {'token': token}) }}">
                 <input type="button" class="btn btn-success" value="Editer Profil"/>
             </a>
             {% if circleUser.adminCircle == 1 %}
-                <a href="/cercles/{{ token }}/admin">
+                <a href="{{ path('admin', {'token': token}) }}">
                     <input type="button" class="btn btn-success" value="Admin"/>
                 </a>
             {% endif %}

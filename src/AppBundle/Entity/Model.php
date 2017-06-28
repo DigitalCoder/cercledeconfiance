@@ -48,9 +48,16 @@ class Model
     private $brand;
 
     /**
-     * @ORM\OneToMany(targetEntity="ConnectedObject", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="DataObject", mappedBy="model", fetch="EAGER")
      */
-    private $connectedObjects;
+    private $dataObjects;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uniq_id", type="string")
+     */
+    private $uniqId;
 
     /**
      * @var float
@@ -60,7 +67,7 @@ class Model
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models")
+     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models", fetch="EAGER")
      */
     private $typeObject;
 
@@ -184,40 +191,6 @@ class Model
     }
 
     /**
-     * Add connectedObject
-     *
-     * @param \AppBundle\Entity\ConnectedObject $connectedObject
-     *
-     * @return Model
-     */
-    public function addConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
-    {
-        $this->connectedObjects[] = $connectedObject;
-
-        return $this;
-    }
-
-    /**
-     * Remove connectedObject
-     *
-     * @param \AppBundle\Entity\ConnectedObject $connectedObject
-     */
-    public function removeConnectedObject(\AppBundle\Entity\ConnectedObject $connectedObject)
-    {
-        $this->connectedObjects->removeElement($connectedObject);
-    }
-
-    /**
-     * Get connectedObjects
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnectedObjects()
-    {
-        return $this->connectedObjects;
-    }
-
-    /**
      * Set price
      *
      * @param float $price
@@ -297,5 +270,63 @@ class Model
     public function getObjectEntries()
     {
         return $this->objectEntries;
+    }
+
+    /**
+     * Set uniqId
+     *
+     * @param string $uniqId
+     *
+     * @return Model
+     */
+    public function setUniqId($uniqId)
+    {
+        $this->uniqId = $uniqId;
+
+        return $this;
+    }
+
+    /**
+     * Get uniqId
+     *
+     * @return string
+     */
+    public function getUniqId()
+    {
+        return $this->uniqId;
+    }
+
+    /**
+     * Add dataObject
+     *
+     * @param \AppBundle\Entity\DataObject $dataObject
+     *
+     * @return Model
+     */
+    public function addDataObject(\AppBundle\Entity\DataObject $dataObject)
+    {
+        $this->dataObjects[] = $dataObject;
+
+        return $this;
+    }
+
+    /**
+     * Remove dataObject
+     *
+     * @param \AppBundle\Entity\DataObject $dataObject
+     */
+    public function removeDataObject(\AppBundle\Entity\DataObject $dataObject)
+    {
+        $this->dataObjects->removeElement($dataObject);
+    }
+
+    /**
+     * Get dataObjects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDataObjects()
+    {
+        return $this->dataObjects;
     }
 }
