@@ -62,7 +62,12 @@ class DefaultController extends Controller
     public function adminCircleAction($token)
     {
 
-        $param = ['token' => $token];
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
+        $circleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $param = ['token' => $token, 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 

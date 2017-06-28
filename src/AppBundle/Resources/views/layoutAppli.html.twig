@@ -13,13 +13,12 @@
 {% endblock %}
 
 {% block navbar %}
-    {{ dump() }}
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="paddingLogoNav navbar-brand" href="/">
-                    <img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
-                         alt="logo_cercle_confiance"></a>
+                    <img src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                         alt="logo_cercle_confiance" class="logo"></a>
 
             </div>
             <div class="collapse navbar-collapse">
@@ -37,7 +36,7 @@
                         {#</ul>#}
                     </div>
                     {% if app.user.username is defined %}
-                        <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="50px">
+                        <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
                         {{ app.user.username }}
                         <a href="/logout">Déconnexion</a>
                     {% endif %}

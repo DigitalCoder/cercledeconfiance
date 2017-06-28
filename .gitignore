@@ -15,7 +15,7 @@
 /vendor/
 /web/bundles/
 /.idea/
-
+/src/AppBundle/Entity/*~
 
 .web-server-pid
 
