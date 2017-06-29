@@ -4,14 +4,17 @@
     <section class="circleHome">
         <div class="container-fluid">
             <div class="row">
-                <h1 class="circleTitle text-primary">Liste de vos cercles</h1>
-                <a class="btn-circle" href="href="{{ path('create') }}">Ajouter un nouveau cercle</a>
+                <h1 class="circleTitle text-primary">Vos cercles</h1>
+                <div class="col-xs-3 col-md-offset-9">
+                    <a class="btn-circle" href="href="{{ path('create') }}">Ajouter un nouveau cercle</a>
+                </div>
             </div>
         </div>
 
         <div class="container-fluid circle">
 
             <div class="row">
+                <div class="">
 
 
                 {% for CUser in CUsers %}
@@ -35,6 +38,7 @@
                         </a>
                     {% endif %}
                 {% endfor %}
+                </div>
             </div>
         </div>
     </section>

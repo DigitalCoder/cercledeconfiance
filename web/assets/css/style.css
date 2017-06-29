@@ -120,7 +120,7 @@ footer {
 .item {
     margin-top: 8%
 }
-.btn-section{
+.btn-section {
     padding-top: 8%;
 }
 .btn-default {
@@ -143,13 +143,6 @@ footer {
     border: 2px solid #1C75BC;
     color: white;
 }
-
-
-/*section {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-*/
 .quote {
     color: #1C75BC;
     text-align: center;
@@ -210,7 +203,7 @@ footer {
 
 /*--------------Circle----------------*/
 .circleHome {
-    filter: brightness(70%);
+    filter: brightness(80%);
     background: transparent url("../img/circle.jpg") no-repeat fixed;
     position: relative;
     background-size: cover;
@@ -248,9 +241,9 @@ footer {
 }
 .circleItem {
     display: inline-block;
-    height: 400px;
-    width: 400px;
-    border-radius: 200px;
+    height: 55vh;
+    width:  55vh;
+    border-radius: calc(55vh/2);
     border: 25px solid #1C75BC;
     hover: white;
     text-align: center;
@@ -261,9 +254,8 @@ footer {
     font-size: 20px;
     background-color: #C2B499;
     vertical-align: top;
-
-
 }
+
 /*.circleLink {*/
 /*position: relative;*/
 /*margin-left: 40%;*/
