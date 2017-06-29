@@ -37,6 +37,7 @@ class CreateObjectController extends Controller
 
         $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId->getId()]);
+
         $objectToActivate = $em->getRepository('AppBundle:ObjectEntry')->findBy(['model'=>$objectId, 'circleUser'=>$circleUser]);
         foreach ($objectToActivate as $value) {
             $access = $value->getAccess();
