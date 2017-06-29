@@ -23,8 +23,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="paddingLogoNav navbar-brand" href="/"><img width="100px"
-                                                                         src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                    <a class="paddingLogoNav navbar-brand" href="/">
+                        <img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
                                                                          alt="logo_cercle_confiance"></a>
                 </div>
 
@@ -34,14 +34,15 @@
                             <ul class="nav navbar-nav">
                                 {% block links %}
                                     <li class="scroll active"><a href="/">Accueil</a></li>
-                                    <li class="scroll"><a href="/presentation">Qui sommes nous ?</a></li>
-                                    <li class="scroll"><a href="/services"> Nos services</a></li>
-                                    <li class="scroll"><a href="/objets">Nos objets connectés</a></li>
-                                    <li class="scroll"><a href="/cercles">Accéder aux cercles</a></li>
+                                    <li class="scroll"><a href="{{ path('presentation') }}">Qui sommes nous ?</a></li>
+                                    <li class="scroll"><a href="{{ path('services') }}"> Nos services</a></li>
+                                    <li class="scroll"><a href="{{ path('pres_objets') }}">Nos objets connectés</a></li>
+                                    <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
                                 {% endblock %}
                             </ul>
                         </div>
                         {% if app.user.username is defined %}
+                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="50px">
                             {{ app.user.username }}
                             <a href="/logout">Déconnexion</a>
                         {% endif %}

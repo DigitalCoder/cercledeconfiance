@@ -29,9 +29,9 @@ class Wall
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="Data_app", mappedBy="wall")
+     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="wall", cascade={"persist"}, fetch="EAGER")
      */
-    private $data_apps;
+    private $dataApps;
 
 
     /**
@@ -72,19 +72,19 @@ class Wall
      */
     public function __construct()
     {
-        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dataApps = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      *
      * @return Wall
      */
-    public function addDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps[] = $dataApp;
+        $this->dataApps[] = $dataApp;
 
         return $this;
     }
@@ -92,11 +92,11 @@ class Wall
     /**
      * Remove dataApp
      *
-     * @param \AppBundle\Entity\Data_app $dataApp
+     * @param \AppBundle\Entity\DataApp $dataApp
      */
-    public function removeDataApp(\AppBundle\Entity\Data_app $dataApp)
+    public function removeDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps->removeElement($dataApp);
+        $this->dataApps->removeElement($dataApp);
     }
 
     /**
@@ -106,6 +106,6 @@ class Wall
      */
     public function getDataApps()
     {
-        return $this->data_apps;
+        return $this->dataApps;
     }
 }

@@ -8,7 +8,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Type_object;
+use AppBundle\Entity\TypeObject;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,21 +21,21 @@ class LoadTypeObjectData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
-        $type_object0 = new Type_object();
-        $type_object0->setType('Temperature sensor');
-        $manager->persist($type_object0);
+        $typeObject0 = new TypeObject();
+        $typeObject0->setType('Temperature sensor');
+        $manager->persist($typeObject0);
 
-        $type_object1 = new Type_object();
-        $type_object1->setType('Humidity sensor');
-        $manager->persist($type_object1);
+        $typeObject1 = new TypeObject();
+        $typeObject1->setType('Humidity sensor');
+        $manager->persist($typeObject1);
 
-        $type_object2 = new Type_object();
-        $type_object2->setType('Opening sensor');
-        $manager->persist($type_object2);
+        $typeObject2 = new TypeObject();
+        $typeObject2->setType('Opening sensor');
+        $manager->persist($typeObject2);
 
-        $type_object3 = new Type_object();
-        $type_object3->setType('Smoke sensor');
-        $manager->persist($type_object3);
+        $typeObject3 = new TypeObject();
+        $typeObject3->setType('Smoke sensor');
+        $manager->persist($typeObject3);
 
         $manager->flush();
     }

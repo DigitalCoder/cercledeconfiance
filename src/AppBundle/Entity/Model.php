@@ -48,9 +48,16 @@ class Model
     private $brand;
 
     /**
-     * @ORM\OneToMany(targetEntity="Connected_object", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="DataObject", mappedBy="model", fetch="EAGER")
      */
-    private $connected_objects;
+    private $dataObjects;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uniq_id", type="string")
+     */
+    private $uniqId;
 
     /**
      * @var float
@@ -60,14 +67,14 @@ class Model
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type_object", inversedBy="models")
+     * @ORM\ManyToOne(targetEntity="TypeObject", inversedBy="models", fetch="EAGER")
      */
-    private $type_object;
+    private $typeObject;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object_entry", mappedBy="model")
+     * @ORM\OneToMany(targetEntity="ObjectEntry", mappedBy="model")
      */
-    private $object_entries;
+    private $objectEntries;
 
     /**
      * Get id
@@ -180,41 +187,7 @@ class Model
      */
     public function __construct()
     {
-        $this->connected_objects = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add connectedObject
-     *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
-     *
-     * @return Model
-     */
-    public function addConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
-    {
-        $this->connected_objects[] = $connectedObject;
-
-        return $this;
-    }
-
-    /**
-     * Remove connectedObject
-     *
-     * @param \AppBundle\Entity\Connected_object $connectedObject
-     */
-    public function removeConnectedObject(\AppBundle\Entity\Connected_object $connectedObject)
-    {
-        $this->connected_objects->removeElement($connectedObject);
-    }
-
-    /**
-     * Get connectedObjects
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getConnectedObjects()
-    {
-        return $this->connected_objects;
+        $this->connectedObjects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -244,13 +217,13 @@ class Model
     /**
      * Set typeObject
      *
-     * @param \AppBundle\Entity\Type_object $typeObject
+     * @param \AppBundle\Entity\TypeObject $typeObject
      *
      * @return Model
      */
-    public function setTypeObject(\AppBundle\Entity\Type_object $typeObject = null)
+    public function setTypeObject(\AppBundle\Entity\TypeObject $typeObject = null)
     {
-        $this->type_object = $typeObject;
+        $this->typeObject = $typeObject;
 
         return $this;
     }
@@ -258,23 +231,23 @@ class Model
     /**
      * Get typeObject
      *
-     * @return \AppBundle\Entity\Type_object
+     * @return \AppBundle\Entity\TypeObject
      */
     public function getTypeObject()
     {
-        return $this->type_object;
+        return $this->typeObject;
     }
 
     /**
      * Add objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      *
      * @return Model
      */
-    public function addObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function addObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries[] = $objectEntry;
+        $this->objectEntries[] = $objectEntry;
 
         return $this;
     }
@@ -282,11 +255,11 @@ class Model
     /**
      * Remove objectEntry
      *
-     * @param \AppBundle\Entity\Object_entry $objectEntry
+     * @param \AppBundle\Entity\ObjectEntry $objectEntry
      */
-    public function removeObjectEntry(\AppBundle\Entity\Object_entry $objectEntry)
+    public function removeObjectEntry(\AppBundle\Entity\ObjectEntry $objectEntry)
     {
-        $this->object_entries->removeElement($objectEntry);
+        $this->objectEntries->removeElement($objectEntry);
     }
 
     /**
@@ -296,6 +269,64 @@ class Model
      */
     public function getObjectEntries()
     {
-        return $this->object_entries;
+        return $this->objectEntries;
+    }
+
+    /**
+     * Set uniqId
+     *
+     * @param string $uniqId
+     *
+     * @return Model
+     */
+    public function setUniqId($uniqId)
+    {
+        $this->uniqId = $uniqId;
+
+        return $this;
+    }
+
+    /**
+     * Get uniqId
+     *
+     * @return string
+     */
+    public function getUniqId()
+    {
+        return $this->uniqId;
+    }
+
+    /**
+     * Add dataObject
+     *
+     * @param \AppBundle\Entity\DataObject $dataObject
+     *
+     * @return Model
+     */
+    public function addDataObject(\AppBundle\Entity\DataObject $dataObject)
+    {
+        $this->dataObjects[] = $dataObject;
+
+        return $this;
+    }
+
+    /**
+     * Remove dataObject
+     *
+     * @param \AppBundle\Entity\DataObject $dataObject
+     */
+    public function removeDataObject(\AppBundle\Entity\DataObject $dataObject)
+    {
+        $this->dataObjects->removeElement($dataObject);
+    }
+
+    /**
+     * Get dataObjects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDataObjects()
+    {
+        return $this->dataObjects;
     }
 }

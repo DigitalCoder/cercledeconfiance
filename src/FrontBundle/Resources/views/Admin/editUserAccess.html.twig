@@ -4,18 +4,18 @@
 
 {% block content %}
     <div class="container-fluid">
-        <a href="/cercles">
+        <a href="{{ path('accueil') }}">
             <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
         </a>
 
-        <a href="/cercles/{{ token }}">
+        <a href="{{ path('appli', {'token': token}) }}">
             <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
         </a>
-        {#<h1>Edit {{ user.user.firstname }}</h1>#}
         {{ form_start(form) }}
         {{ form_widget(form) }}
 
         {{ form_end(form) }}
+
     </div>
     <hr/>
     <a class="btn btn-primary" href="{{ path('listMembers', {'token': token }) }}">Back</a>

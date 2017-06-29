@@ -212,5 +212,4 @@ jQuery(function($) {'use strict';
 		social_tools: false
 	});
 
-
 });

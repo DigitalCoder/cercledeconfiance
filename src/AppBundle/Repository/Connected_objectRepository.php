@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-
 /**
  * Connected_objectRepository
  *
@@ -11,5 +10,4 @@ namespace AppBundle\Repository;
  */
 class Connected_objectRepository extends \Doctrine\ORM\EntityRepository
 {
-
 }

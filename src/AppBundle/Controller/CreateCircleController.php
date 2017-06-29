@@ -8,12 +8,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Circle_user;
-use AppBundle\Entity\Object_entry;
-use AppBundle\Form\Circle_userType;
+use AppBundle\Entity\CircleUser;
+use AppBundle\Entity\ObjectEntry;
+use AppBundle\Form\CircleUserType;
 use AppBundle\Form\CircleType;
-use AppBundle\Form\Object_entryType;
-use AppBundle\Form\User_InvitType;
+use AppBundle\Form\ObjectEntryType;
+use AppBundle\Form\UserInvitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Circle;
@@ -24,12 +24,14 @@ class CreateCircleController extends Controller
 
 
     /**
-     * @Route("cercles/creer")
+     * @Route("cercles/creer", name="create")
      */
-    public function createCircle(Request $request)
-    {
-        $cercle = new Circle_user();
-        $form = $this->createForm(Circle_userType::class, $cercle);
+
+
+    public function createCircleAction(Request $request){
+        $cercle = new CircleUser();
+        $form = $this->createForm(CircleUserType::class, $cercle);
+
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -41,7 +43,7 @@ class CreateCircleController extends Controller
 
             $idCercle = $cercle->getCircle();
 
-            $adminCircle = new Circle_user();
+            $adminCircle = new CircleUser();
             $adminCircle->setUser($this->getUser());
             $adminCircle->setCircle($idCercle);
             $adminCircle->setAdminCircle(1);
@@ -62,22 +64,22 @@ class CreateCircleController extends Controller
      * @Route("{token}/invit")
      */
 
-    public function userInvit(Request $request, $token){
+    public function userInvitAction(Request $request, $token){
 
 
-        $invit = new Circle_user();
+        $invit = new CircleUser();
 
-        $form = $this->createForm(User_InvitType::class, $invit);
+        $form = $this->createForm(UserInvitType::class, $invit);
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
 
         $circleId = $em->getRepository('AppBundle:Circle')->findBy(['token'=>$token]);
         $circleId = $circleId[0]->getId();
-        $circleUsers = $em->getRepository('AppBundle:Circle_user')->findBy(['circle'=>$circleId]);
+        $circleUsers = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
 
 
-        if (isset($circleUsers) && count($circleUsers) >= 6) {
+        if (isset($circleUsers) && count($circleUsers) >= $this->getParameter('number_circle_users')) {
             return $this->render('FrontBundle:Admin:invitUser.html.twig', array('error' => 'Le nombre maximal d\'utilisateurs pour ce cercle est atteint', "form" => $form->createView()));
         }
 
@@ -91,17 +93,21 @@ class CreateCircleController extends Controller
             $invit->getUser()->setEnabled(true);
             $em->persist($invit);
 
+
             $em->flush();
-            $admin = $em->getRepository('AppBundle:Circle_user')->findOneBy(['circle' => $circleId, 'adminCircle' => 1]);
+            $admin = $em->getRepository('AppBundle:CircleUser')->findOneBy(['circle' => $circleId, 'adminCircle' => 1]);
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Nouvel utilisateur Cercle Confiance');
             $message->setTo($admin->getUser()->getEmail())
-                ->setFrom('cercleconfiance07@gmail.com')
+                ->setFrom($this->getParameter('mailer_user'))
                 ->setBody($this->renderView('confirmation.html.twig', array('adminName' => $admin->getUser()->getUsername(), 'invitName' => $invit->getUser()->getUsername())), 'text/html');
             $mailer->send($message);
 
-            $circle_users = $em->getRepository('AppBundle:Circle_user')->findBy(['user' => $invit->getUser()->getId()]);
-            return $this->redirectToRoute('accueil', ['CUsers' => $circle_users]);
+
+            $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$invit->getId()]);
+            return $this->redirectToRoute('accueil',
+                ['CUsers'=>$circle_users]);
+
         }
         return $this->render('FrontBundle:Admin:invitUser.html.twig', array("form" => $form->createView()));
 

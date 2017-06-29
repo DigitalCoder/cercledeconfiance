@@ -36,15 +36,11 @@ header {
 .navbar .navbar-collapse {
     text-align: center;
 }
-
-/*_____Accueil Cercles_____*/
-.marginTop {
-    margin-top: 150px;
+.logo {
+    width: 100px;
 }
 
-.marginBottom {
-    margin-bottom: 100px;
-}
+
 
 /*_____FOOTER_____*/
 footer {
@@ -204,4 +200,76 @@ footer {
 .offerform h3 {
     font-size: 35px;
     margin-top: 15%;
+}
+
+/*______________ CLOUD ____________*/
+
+#dropzone {
+    border: 3px dashed black;
+}
+
+/*--------------Circle----------------*/
+section {
+    filter: brightness(70%);
+    background: transparent url("../img/circle.jpg") no-repeat;
+    position: relative;
+    background-size: cover;
+    height: 100vh;
+}
+.btn-circle {
+    display: block;
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    border: 15px solid #1C75BC;
+    background-color: #C2B499;
+    hover: white;
+    text-align: center;
+    margin: 10px;
+    margin-top: 3%;
+    padding: 30px;
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    animation: pulse 10s infinite;
+    vertical-align: top;
+
+}
+.circle {
+    margin: 12% 0 0 0;
+}
+.circleTitle {
+    text-align: center;
+    margin-top: 3%;
+    font-size: 90px;
+
+}
+.circleItem {
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    border: 25px solid #1C75BC;
+    hover: white;
+    text-align: center;
+    margin: 10px;
+    margin-left: 17%;
+    padding: 20px;
+    color: black;
+    font-size: 20px;
+    background-color: #C2B499;
+    vertical-align: top;
+
+
+}
+/*.circleLink {*/
+/*position: relative;*/
+/*margin-left: 40%;*/
+/*padding: 10%;*/
+/*----------------layoutAppli------------*/
+
+.avatar{
+    width: 50px;
 }
