@@ -1,0 +1,22 @@
+{% extends 'FrontBundle::layoutFront.html.twig' %}
+
+{% block title %}Gérer utilisateurs du Cercle{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <a href="{{ path('accueil') }}">
+            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+        </a>
+
+        <a href="{{ path('appli', {'token': token}) }}">
+            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+        </a>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        {{ form_end(form) }}
+
+    </div>
+    <hr/>
+    <a class="btn btn-primary" href="{{ path('listMembers', {'token': token }) }}">Back</a>
+{% endblock %}

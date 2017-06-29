@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.transitions.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+    {{ parent() }}
+{% endblock %}
+
+{% block navbar %}
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="paddingLogoNav navbar-brand" href="/">
+                        <img width="100px" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                                                                         alt="logo_cercle_confiance"></a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <ul class="nav navbar-nav">
+                                {% block links %}
+                                    <li class="scroll active"><a href="/">Accueil</a></li>
+                                    <li class="scroll"><a href="{{ path('presentation') }}">Qui sommes nous ?</a></li>
+                                    <li class="scroll"><a href="{{ path('services') }}"> Nos services</a></li>
+                                    <li class="scroll"><a href="{{ path('pres_objets') }}">Nos objets connectés</a></li>
+                                    <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
+                                {% endblock %}
+                            </ul>
+                        </div>
+                        {% if app.user.username is defined %}
+                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="50px">
+                            {{ app.user.username }}
+                            <a href="/logout">Déconnexion</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+    </header><!--/header-->
+{% endblock %}
+
+{% block content %}{% endblock %}
+

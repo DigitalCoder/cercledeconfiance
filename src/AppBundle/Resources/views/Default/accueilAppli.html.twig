@@ -1,0 +1,50 @@
+{% extends 'AppBundle::layoutAppli.html.twig' %}
+
+{% block title %}Bienvenue sur le Cercle{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <a href="{{ path('accueil') }}">
+                <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+            </a>
+            <a href="{{ path('visio', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Visio"/>
+            </a>
+            {% if circleUser.cloudaccess == true %}
+            <a href="{{ path('cloud', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Cloud"/>
+            </a>
+            {% else %}
+            {% endif %}
+            {% if circleUser.wallaccess == true %}
+            <a href="{{ path('mur', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Mur"/>
+            </a>
+            {% else %}
+            {% endif %}
+            {% if circleUser.agendaaccess == true %}
+            <a href="{{ path('agenda', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Agenda"/>
+            </a>
+            {% else %}
+            {% endif %}
+
+            <a href="{{ path('show_objects', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Objets"/>
+            </a>
+
+            <a href="{{ path('fos_user_profile_edit', {'token': token}) }}">
+                <input type="button" class="btn btn-success" value="Editer Profil"/>
+            </a>
+            {% if circleUser.adminCircle == 1 %}
+                <a href="{{ path('admin', {'token': token}) }}">
+                    <input type="button" class="btn btn-success" value="Admin"/>
+                </a>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

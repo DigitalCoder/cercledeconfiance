@@ -1,0 +1,60 @@
+{% extends "FrontBundle::layoutFront.html.twig" %}
+
+{% block title %}Services{% endblock %}
+
+{% block content %}
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center wow fadeInDown">Nos Services</h2>
+                <p class="text-center wow fadeInDown">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="wow zoomIn" data-wow-duration="400ms" data-wow-delay="0ms">
+                        <ul class="pricing">
+                            <li class="plan-header">
+                                <div class="price-duration">
+                                    <span class="price">50€</span>
+                                    <span class="duration">par mois</span>
+                                </div>
+
+                                <div class="plan-name">
+                                    Confiance
+                                </div>
+                            </li>
+                            <li style="text-transform:uppercase"><strong>6</strong> Personnes dans mon cercle</li>
+                            <li style="text-transform:uppercase">Installation des équipements au domicile</li>
+                            <li style="text-transform:uppercase">Forfait unique de 100€ à la première installation.</li>
+                            <li style="visibility: hidden">Forfait unique de 100€ à la première installation.</li>
+                            <li class="plan-purchase"><a class="btn-lg btn-primary" href="{{ path('create') }}">Souscrire a l'Offre</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="wow zoomIn" data-wow-duration="400ms" data-wow-delay="200ms">
+                        <ul class="pricing">
+                            <li class="plan-header">
+                                <div class="price-duration">
+                                    <span class="price">60€</span>
+                                    <span class="duration">par mois</span>
+                                </div>
+
+                                <div class="plan-name">
+                                    Secours
+                                </div>
+                            </li>
+                            <li style="text-transform:uppercase"><strong>6</strong> Personnes dans mon cercle</li>
+                            <li style="text-transform:uppercase">Service de téléassistance 7j7 et 24h/24</li>
+                            <li style="text-transform:uppercase">Installation des équipements au domicile</li>
+                            <li style="text-transform:uppercase">Forfait unique de 100€ à la première installation.</li>
+                            <li class="plan-purchase"><a class="btn-lg btn-primary" href="{{ path('create') }}">Souscrire a l'Offre</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section><!--/#pricing-->
+{% endblock %}

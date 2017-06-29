@@ -1,0 +1,39 @@
+{% extends "FrontBundle::layoutFront.html.twig" %}
+{% block content %}
+    <div class="container">
+        <a href="{{ path('accueil') }}">
+            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+        </a>
+
+        <a href="{{ path('appli', {'token': token}) }}">
+            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+        </a>
+        <h1>Vos Objets Connectés</h1>
+        <div class="row">
+            {% for object in objects %}
+            {% if loop.index0%3 == 0 %}
+                </div>
+                <div class="row">
+            {% endif %}
+                    <div class="col-lg-4">
+                        <br />
+                        <div class="col-lg-5 text-center">
+                            <img src="http://via.placeholder.com/64x64" alt="placeholder" class="left"><br /><br />
+                        {% if object.access == 1 %}
+                            <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-danger">Désactivé</button></a>
+                        {% else %}
+                            <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-primary">Activé</button></a>
+                        {% endif %}
+                            </div>
+                        <div class="col-lg-7">
+                            Reference: {{ object.model.reference }}<br />
+                            Description: {{ object.model.description }}<br />
+                            DocUrl: <a href="{{ object.model.docurl }}">Documentation</a><br />
+                            Price : {{ object.model.price }}<br /><br />
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <br />
+    </div>
+{% endblock %}

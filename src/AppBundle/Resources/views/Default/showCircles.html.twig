@@ -1,0 +1,43 @@
+{% extends 'FrontBundle::layoutFront.html.twig' %}
+
+{% block content %}
+    <section>
+        <div class="container marginTop marginBottom">
+            <div class="row">
+                <div class="col-xs-3 col-xs-offset-9">
+
+                    <a href="{{ path('create') }}" class="thumbnail">
+
+                        Ajouter un nouveau cercle
+                    </a>
+
+                </div>
+            </div>
+            <div class="row">
+
+
+                {% for CUser in CUsers %}
+                    {% if CUser.circle.active == 1 %}
+                        <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
+                            <div class="thumbnail text-center" style="margin: 5%; display: inline-block; vertical-align: middle; height: 25vw; width: 25vw; border-radius: calc(25vw/2); ">
+                                <h3>{{ CUser.circle.name }}</h3>
+                                <p>
+                                    {% for circleUser in CUser.circle.circleUsers %}
+                                        {% if circleUser.circleCenter == 1 %}
+                                            Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <br/>
+                                        {% elseif circleUser.adminCircle == 1 %}
+                                            Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="25px">
+                                            <br/>
+                                        {% else %}
+                                            Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}  <br/>
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
