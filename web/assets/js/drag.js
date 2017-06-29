@@ -12,9 +12,8 @@ $(document).ready(function () {
         e.preventDefault();
         e.stopPropagation();
         let files = e.originalEvent.dataTransfer.files;
-        if ($('#form_file_name') === '' || $('#form_fie_name')=== undefined) {
-            $('#form_file_name').val(files[0]);
-        }
+        console.log(files[0]);
+        $('#form_file_name').val(files[0]);
         $(this).css('border', '3px dashed blue');
     });
 

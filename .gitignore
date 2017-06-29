@@ -14,6 +14,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web-server-pid
 /.idea/
 /src/AppBundle/Entity/*~
 .web-server-pid

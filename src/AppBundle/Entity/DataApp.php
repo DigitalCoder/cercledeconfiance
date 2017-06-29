@@ -45,7 +45,7 @@ class DataApp
     private $agenda;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="dataApps")
+     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="dataApps", cascade={"persist"}, fetch="EAGER")
      */
     private $wall;
 

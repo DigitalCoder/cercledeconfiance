@@ -9,9 +9,7 @@
                     <a class="btn-circle" href="href="{{ path('create') }}">Ajouter un nouveau cercle</a>
                 </div>
             </div>
-        </div>
 
-        <div class="container-fluid circle">
 
             <div class="row">
                 <div class="">
@@ -19,8 +17,8 @@
 
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == 1 %}
-                        <a class="" href="{{ path('appli', {'token': CUser.circle.token}) }}">
-                            <div class="circleItem">
+                        <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
+                            <div class="thumbnail text-center" style="margin: 5%; display: inline-block; vertical-align: middle; height: 25vw; width: 25vw; border-radius: calc(25vw/2); ">
                                 <h3>{{ CUser.circle.name }}</h3>
                                 <p>
                                     {% for circleUser in CUser.circle.circleUsers %}
