@@ -29,7 +29,7 @@ class Wall
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="wall")
+     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="wall", cascade={"persist"}, fetch="EAGER")
      */
     private $dataApps;
 
@@ -72,7 +72,7 @@ class Wall
      */
     public function __construct()
     {
-        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dataApps = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -84,7 +84,7 @@ class Wall
      */
     public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->data_apps[] = $dataApp;
+        $this->dataApps[] = $dataApp;
 
         return $this;
     }
