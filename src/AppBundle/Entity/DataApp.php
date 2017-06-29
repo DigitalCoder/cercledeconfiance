@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DataApp
  *
- * @ORM\Table(name="DataApp")
+ * @ORM\Table(name="Data_app")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\DataAppRepository")
  */
 class DataApp
@@ -45,7 +45,7 @@ class DataApp
     private $agenda;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="dataApps")
+     * @ORM\ManyToOne(targetEntity="Wall", inversedBy="dataApps", cascade={"persist"}, fetch="EAGER")
      */
     private $wall;
 

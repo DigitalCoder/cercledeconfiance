@@ -84,8 +84,7 @@ class CircleUser
     private $circle;
 
     /**
-
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\DataApp", mappedBy="circleUser", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\DataApp", mappedBy="circleUser", cascade={"persist"}, fetch="EAGER")
      */
     private $dataApps;
 

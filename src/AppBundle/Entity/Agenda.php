@@ -24,46 +24,69 @@ class Agenda
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="eventId", type="string")
      */
-    private $name;
+    private $eventId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="event", type="text")
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $event;
+    private $title;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="event_start", type="datetime")
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="event_start", type="string", length=255)
      */
     private $eventStart;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="event_end", type="datetime")
+     * @ORM\Column(name="event_end", type="string", length=255)
      */
     private $eventEnd;
 
     /**
      * @ORM\OneToMany(targetEntity="DataApp", mappedBy="agenda")
      */
-    private $data_apps;
+    private $dataApps;
 
     /**
      * @ORM\ManyToOne(targetEntity="CategoryEvent", inversedBy="agendas")
      */
-    private $category_event;
+    private $categoryEvent;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255)
+     */
+    private $token;
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -71,57 +94,81 @@ class Agenda
     }
 
     /**
-     * Set name
+     * Set eventId
      *
-     * @param string $name
+     * @param integer $eventId
      *
      * @return Agenda
      */
-    public function setName($name)
+    public function setEventId($eventId)
     {
-        $this->name = $name;
+        $this->eventId = $eventId;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get eventId
      *
-     * @return string
+     * @return integer
      */
-    public function getName()
+    public function getEventId()
     {
-        return $this->name;
+        return $this->eventId;
     }
 
     /**
-     * Set event
+     * Set title
      *
-     * @param string $event
+     * @param string $title
      *
      * @return Agenda
      */
-    public function setEvent($event)
+    public function setTitle($title)
     {
-        $this->event = $event;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get event
+     * Get title
      *
      * @return string
      */
-    public function getEvent()
+    public function getTitle()
     {
-        return $this->event;
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Agenda
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
      * Set eventStart
      *
-     * @param \DateTime $eventStart
+     * @param string $eventStart
      *
      * @return Agenda
      */
@@ -135,7 +182,7 @@ class Agenda
     /**
      * Get eventStart
      *
-     * @return \DateTime
+     * @return string
      */
     public function getEventStart()
     {
@@ -145,7 +192,7 @@ class Agenda
     /**
      * Set eventEnd
      *
-     * @param \DateTime $eventEnd
+     * @param string $eventEnd
      *
      * @return Agenda
      */
@@ -159,18 +206,11 @@ class Agenda
     /**
      * Get eventEnd
      *
-     * @return \DateTime
+     * @return string
      */
     public function getEventEnd()
     {
         return $this->eventEnd;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->data_apps = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -182,7 +222,7 @@ class Agenda
      */
     public function addDataApp(\AppBundle\Entity\DataApp $dataApp)
     {
-        $this->dataApps[] = $dataApp;
+        $this->data_apps[] = $dataApp;
 
         return $this;
     }
@@ -216,7 +256,7 @@ class Agenda
      */
     public function setCategoryEvent(\AppBundle\Entity\CategoryEvent $categoryEvent = null)
     {
-        $this->categoryEvent = $categoryEvent;
+        $this->category_event = $categoryEvent;
 
         return $this;
     }
@@ -229,5 +269,29 @@ class Agenda
     public function getCategoryEvent()
     {
         return $this->category_event;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Agenda
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

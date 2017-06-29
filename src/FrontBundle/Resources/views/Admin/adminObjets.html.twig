@@ -21,8 +21,8 @@
                             <img src="http://via.placeholder.com/64x64" alt="placeholder" class="left"><br /><br />
                         {% if object.access == 1 %}
                             <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-danger">Désactivé</button></a>
-                            {% else %}
-                                <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-primary">Activé</button></a>
+                        {% else %}
+                            <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-primary">Activé</button></a>
                         {% endif %}
                             </div>
                         <div class="col-lg-7">
