@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Data_appType extends AbstractType
+class DataAppType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,14 +15,14 @@ class Data_appType extends AbstractType
     {
         $builder->add('creationDate')->add('circle_user')->add('cloud')->add('agenda')->add('wall');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Data_app'
+            'data_class' => 'AppBundle\Entity\DataApp'
         ));
     }
 
