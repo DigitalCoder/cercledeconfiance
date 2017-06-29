@@ -231,29 +231,30 @@ footer {
 
 }
 .circle {
-    margin: 12% 0 0 0;
+    margin: 5px auto;
 }
 .circleTitle {
     text-align: center;
     margin-top: 3%;
     font-size: 90px;
-
 }
 .circleItem {
     display: inline-block;
-    height: 55vh;
-    width:  55vh;
-    border-radius: calc(55vh/2);
+    height: 25vw;
+    width:  25vw;
+    border-radius: calc(25vw/2);
     border: 25px solid #1C75BC;
     hover: white;
     text-align: center;
-    margin: 10px;
-    margin-left: 17%;
+    margin: 15% 3%;
     padding: 20px;
     color: black;
     font-size: 20px;
     background-color: #C2B499;
     vertical-align: top;
+}
+.circleImg {
+    width: 25px;
 }
 
 /*.circleLink {*/
