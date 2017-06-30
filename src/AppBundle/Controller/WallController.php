@@ -40,18 +40,6 @@ class WallController extends Controller
                 $circleUserId[] = $user->getId();
         }
         $dataApps = $em->getRepository('AppBundle:DataApp')->findBy(['circleUser'=>$circleUserId],['creationDate'=>'DESC']);
-        $dataContent = array();
-        foreach ($dataApps as $content) {
-            if ($content->getWall() != null) {
-                $dataContent['wall'][] = $content->getWall()->getContent();
-            }
-            if ($content->getAgenda() != null) {
-                $dataContent['agenda'][] = $content->getAgenda();
-            }
-            if ($content->getCloud() != null) {
-                $dataContent['cloud'][] = $content->getCloud();
-            }
-        }
 
         $wall = new Wall();
         $wall->setContent(null);
@@ -77,11 +65,13 @@ class WallController extends Controller
 
             $em->persist($formContent);
             $em->flush();
-            return $this->redirectToRoute('wall', ['token'=>$circle->getToken()]);
+            return $this->redirectToRoute('mur', ['token'=>$circle->getToken()]);
         }
 
         return $this->render('FrontBundle:Default:wall.html.twig', array(
             'walldatas'=>$dataApps,
+            'circleUser'=>$currentCircleUser,
+            'token'=>$circle->getToken(),
             'form'=>$form->createView()
         ));
 
