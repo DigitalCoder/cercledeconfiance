@@ -65,7 +65,7 @@ class WallController extends Controller
 
             $em->persist($formContent);
             $em->flush();
-            return $this->redirectToRoute('wall', ['token'=>$circle->getToken()]);
+            return $this->redirectToRoute('mur', ['token'=>$circle->getToken()]);
         }
 
         return $this->render('FrontBundle:Default:wall.html.twig', array(

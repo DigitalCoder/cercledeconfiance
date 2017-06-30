@@ -32,7 +32,7 @@ class DefaultController extends Controller
         $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user->getId()]);
 
         return $this->render('AppBundle:Default:showCircles.html.twig',
-            ['CUsers' => $circle_users]);
+            ['CUsers' => $circle_users, 'circleUser'=>$user]);
     }
 
     /**
