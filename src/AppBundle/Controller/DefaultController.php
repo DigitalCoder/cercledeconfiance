@@ -75,20 +75,23 @@ class DefaultController extends Controller
     /**
      * @Route("/{token}/visio", name="visio")
      */
-    public function visioAction($token)
+    public function visioAction(Circle $circle)
     {
-        $param = ['token' => $token];
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $param = ['token' => $circle->getToken(), 'circleUser'=>$currentCircleUser];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
     }
 
     /**
      * @Route("/{token}/cloud", name="cloud")
      */
-    public function cloudAction($token, Request $request)
+    public function cloudAction(Circle $circle, Request $request)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
@@ -97,9 +100,10 @@ class DefaultController extends Controller
         }
         if ($currentCircleUser->getCloudAccess() == 0) {
             return $this->render('AppBundle:Default:cloud.html.twig',
-                ['token' => $token,
+                ['token' => $circle->getToken(),
                     'error' => 'Vous n\'avez pas accès à cette fonctionnalité.<br/>Contactez l\'administrateur 
-du cercle pour plus d\'informations.']);
+du cercle pour plus d\'informations.',
+                    'circleUser'=>$currentCircleUser]);
         }
 
         $circleUsers = $em->getRepository('AppBundle:CircleUser')
@@ -126,10 +130,11 @@ du cercle pour plus d\'informations.']);
             $em->persist($dataApp);
             $em->persist($cloud);
             $em->flush();
-            return $this->redirectToRoute('cloud', ['token' => $token]);
+            return $this->redirectToRoute('cloud', ['token' => $circle->getToken()]);
         }
 
-        $param = ['token' => $token, 'CUsers' => $circleUsers, 'form' => $form->createView()];
+        $param = ['token' => $circle->getToken(), 'CUsers' => $circleUsers, 'form' => $form->createView(),
+            'circleUser'=>$currentCircleUser];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
     }
 
@@ -143,6 +148,6 @@ du cercle pour plus d\'informations.']);
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
-        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$circle->getToken(), 'currentUser'=>$currentCircleUser]);
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$circle->getToken(), 'circleUser'=>$currentCircleUser]);
     }
 }

@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Agenda;
+use AppBundle\Entity\Circle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,11 +23,13 @@ class AgendaController extends Controller
     /**
      * @Route("/cercles/{token}/agenda", name="agenda")
      */
-    public function showAgendaAction(Request $request, $token)
+    public function showAgendaAction(Request $request, Circle $circle)
     {
 
         $em = $this->getDoctrine()->getManager();
-
+        $user = $this->getUser();
+        $circleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
         if ($request->isXmlHttpRequest()) {
 
             $postData = ($request->request->all());
@@ -55,7 +58,7 @@ class AgendaController extends Controller
                 $newEvent->setDescription($postData['description']);
                 $newEvent->setEventStart($postData['start']);
                 $newEvent->setEventEnd($postData['end']);
-                $newEvent->setToken($token);
+                $newEvent->setToken($circle->getToken());
                 $em->persist($newEvent);
                 $em->flush();
             }
@@ -63,7 +66,7 @@ class AgendaController extends Controller
 
         }
 
-        $param = ['token' => $token];
+        $param = ['token' => $circle->getToken(), 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:agenda.html.twig', $param);
     }
 
