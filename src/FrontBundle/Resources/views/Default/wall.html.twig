@@ -1,4 +1,4 @@
-{% extends "FrontBundle::layoutFront.html.twig" %}
+{% extends "AppBundle::layoutAppli.html.twig" %}
 
 {% block title %} Mur{% endblock %}
 
@@ -45,7 +45,7 @@
                                 <p>Name: {{ data.cloud.filename }}</p>
                                 {% if 'image' in data.cloud.filetype %}
                                     <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" alt="{{ data.cloud.filename }}" />
-                                {% elseif 'video' in data.cloud.filetype.name %}
+                                {% elseif 'video' in data.cloud.filetype %}
                                     <video width="320" height="240" src="{{ data.cloud.url }}">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">

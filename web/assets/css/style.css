@@ -5,7 +5,9 @@
 header {
     font-size: 25px;
 }
-
+.stopPadding {
+    margin-top: -100px;
+}
 #main-menu.navbar-default {
     background-color: white;
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
@@ -302,5 +304,22 @@ footer {
     margin-right: -100px;
 }
 
+/*___________________Accueil Appli________________*/
 
+.navAppli {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
+}
 
+.navImage {
+    background-color: rgba(54,171,226,0.2);
+    border: none;
+    box-shadow: black;
+    margin: 1% auto;
+    font-size: 200px;
+}
+
+.navImageTitle {
+    font-size: 20px;
+    text-decoration: none;
+}
