@@ -40,7 +40,7 @@
                                 <p>Name: {{ data.cloud.filename }}</p>
                                 {% if 'image' in data.cloud.filetype %}
                                     <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" alt="{{ data.cloud.filename }}" />
-                                {% elseif 'video' in data.cloud.filetype.name %}
+                                {% elseif 'video' in data.cloud.filetype %}
                                     <video width="320" height="240" src="{{ data.cloud.url }}">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">
@@ -63,8 +63,8 @@
                                     </div>
                                 </header>
                                 <hr />
-                                <p><strong>Titre:</strong> {% if data.agenda.name is defined %}{{ data.agenda.name }}{% endif %}</p>
-                                <p><strong>Evenement:</strong> {% if data.agenda.event is defined %}{{ data.agenda.event }}{% endif %}</p>
+                                <p><strong>Titre:</strong> {% if data.agenda.title is defined %}{{ data.agenda.title }}{% endif %}</p>
+                                <p><strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description }}{% endif %}</p>
                                 <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
                             </article>
                         </div>
