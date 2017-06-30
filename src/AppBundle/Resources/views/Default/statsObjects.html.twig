@@ -1,4 +1,4 @@
-{% extends 'FrontBundle::layoutFront.html.twig' %}
+{% extends 'AppBundle::layoutAppli.html.twig' %}
 
 {% block content %}
     <div class="container">
@@ -14,7 +14,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             let values = [];
-            {% for object in currentUser.objectEntries %}
+            {% for object in circleUser.objectEntries %}
                 {% for datas in object.model.dataObjects %}
                     {% if object.model.typeObject.type == "Temperature sensor" and object.access == 1 %}
                         values.push({{ datas.data }});
