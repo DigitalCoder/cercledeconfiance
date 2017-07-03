@@ -74,6 +74,9 @@ footer {
 .qsnSectionHeader{
     padding-bottom: 50px;
 }
+.morepadding{
+    padding-left: 5%;
+}
 
 /*_____Page Services_____*/
 #pricing ul.pricing {
