@@ -10,12 +10,9 @@
 
 {% block content %}
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-
-
     <section id="main-slider">
         <div class="owl-carousel">
-            <div class="item" style="background-image: url(http://www.auplod.com/u/ulpoad980e6.jpeg);">
+            <div class="item firstItem">
                 <div class="slider-inner">
                     <div class="container">
                         <div class="row">
@@ -26,7 +23,7 @@
                     </div>
                 </div>
             </div><!--/.item-->
-            <div class="item" style="background-image: url(http://www.auplod.com/u/duploa980e9.jpeg);">
+            <div class="item secondItem">
                 <div class="slider-inner">
                     <div class="container">
                         <div class="row">
@@ -39,152 +36,177 @@
             </div>
         </div>
     </section>
-    <section>
+
+    <section class="text-center">
         <div id="intro">
-            <div class="container">
+            <div class="container text-center">
                 <div class="section-header">
                     <h2 class="section-title text-center wow fadeInDown">Qui sommes nous ?</h2>
-
                     <div class="row item">
-
                         <!-- /.intro image -->
                         <div class="col-md-6 intro-pic wow slideInLeft">
-                            <img src="{{ asset('http://www.auplod.com/u/lapuod980eb.jpeg') }}" alt="image" class="img-responsive">
+                            <img src="{{ asset('http://www.auplod.com/u/lapuod980eb.jpeg') }}" alt="image"
+                                 class="img-responsive medal">
                         </div>
-
                         <!-- /.intro content -->
                         <div class="col-md-6 wow slideInRight">
-                            <h2>Optimize performance through advanced targeting solutions</h2>
-                            <p>Good marketing makes the company look smart. <a href="#">Great marketing</a> makes the customer feel smart, - Joe Chernov. Never doubt a small group of thoughtful, committed people can change the world. Indeed, it is the only thing that ever has, - Margaret Mead. The best way to predict the future is to create it, - Peter Drucker.
+                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquam beatae commodi
+                                cumque dolore explicabo facilis illum, iste, laborum laudantium modi nihil perferendis
+                                praesentium quasi quis tempore voluptas voluptatibus. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Beatae commodi consequatur distinctio ea, eius error eum
+                                fuga id inventore neque odit officia officiis perspiciatis quae, quos repudiandae
+                                sapiente vel, velit.
                             </p>
-
-
-                            <div class="btn-section"><a href="{{ path('presentation') }}" class="btn-default">En savoir plus</a>
-                            </div>
-
+                            <a href="{{ path('presentation') }}" class="btn-default">En savoir plus</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div id="serve">
-            <div class="container">
+            <div class="container text-center">
                 <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown">Nos Services</h2>
-
+                    <h2 class="section-title wow fadeInDown">Nos Services</h2>
                     <div class="row item">
-                        <div class="col-md-5 col-md-offset-2 wow slideInLeft">
-                            <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                            <h2>Marketing Box #1</h2>
-                            <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+                        <div class="col-md-4 col-md-offset-1 wow slideInLeft">
+                            <img class="img-circle img-responsive img-center medal"
+                                 src="http://www.nettoyage-bureaux-65.fr/userfiles/2233/Maison_Nickel-aide_a_la_personne.jpg"
+                                 alt="">
+                            <h2>Service confiance</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta exercitationem facilis
+                                nesciunt sit vel? Ab assumenda, cumque, distinctio dolore dolorem facere fugiat iusto,
+                                odio quidem repudiandae sed soluta velit voluptatum! Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Cupiditate deserunt explicabo facere facilis illum impedit
+                                magni, maxime minus numquam placeat porro quae qui repellendus repudiandae sunt vel
+                                velit! Eum, fuga.</p>
                         </div>
-                        <div class="col-md-5 wow slideInRight">
-                            <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                            <h2>Marketing Box #2</h2>
-                            <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                        <div class="col-md-4 col-md-offset-2 wow slideInRight">
+                            <img class="img-circle img-responsive img-center medal"
+                                 src="https://logicielsolutioncentrefrance.files.wordpress.com/2014/03/call-center_6844_9207959.jpg"
+                                 alt="">
+                            <h2>Service secours</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut autem esse
+                                eveniet incidunt iste nostrum pariatur quibusdam, quo similique tempore totam,
+                                voluptatem. Ab dolore molestias quibusdam rem suscipit, temporibus?Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. A accusantium alias aliquid architecto at autem
+                                corporis culpa dolor doloremque illo nobis placeat quisquam quos repellat, sit veniam
+                                voluptas. Nostrum, tempora!</p>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="{{ path('services') }}" class="btn-default item">En savoir                         plus</a>
-                    </div>
-
+                    <a href="{{ path('services') }}" class="btn-default item">En savoir plus</a>
                 </div>
             </div>
-            <div id="object">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
+        </div>
 
-                        <div class="row item">
-
-                            <div class="features">
-                                <h3>Visio</h3>
-                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
-                                    <div class="media service-box">
-                                        <div class="pull-left">
-                                            <i class="fa fa-line-chart"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Camera de Visioconférence</h4>
-                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
-                                    <div class="media service-box">
-                                        <div class="pull-left">
-                                            <i class="fa fa-cubes"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Camera supplémentaire</h4>
-                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
-                                    <div class="media service-box">
-                                        <div class="pull-left">
-                                            <i class="fa fa-cubes"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Camera supplémentaire</h4>
-                                            <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+        <div id="object">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
                     <div class="row item">
-
                         <div class="features">
-                            <h3>Confort</h3>
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                                 data-wow-delay="0ms">
                                 <div class="media service-box">
                                     <div class="pull-left">
                                         <i class="fa fa-line-chart"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Capteur de température</h4>
-                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-                                    </div>
-                                </div>
-                            </div><!--/.col-md-4-->
-
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-cubes"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Capteur incendie</h4>
-                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                        <h4 class="media-heading">Camera de Visioconférence</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                                 data-wow-delay="100ms">
                                 <div class="media service-box">
                                     <div class="pull-left">
                                         <i class="fa fa-cubes"></i>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">Capteur incendie</h4>
-                                        <p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
+                                        <h4 class="media-heading">Camera supplémentaire</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur
+                                            eius, error fuga fugit incidunt ipsa iure optio quae qui quos saepe
+                                            similique totam ut voluptatibus? Fugiat quis sunt voluptas?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                                 data-wow-delay="100ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-cubes"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Camera supplémentaire</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
+                                            exercitationem explicabo hic illo magni nisi sequi totam, ullam! At corporis
+                                            delectus explicabo facere laborum nam placeat reiciendis rem soluta
+                                            tempora.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="btn-section text-center"><a href="{{ path('pres_objets') }}" class="btn-default item">En savoir plus</a>
+                </div>
+
+                <div class="row item">
+                    <div class="features">
+                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                            <div class="media service-box">
+                                <div class="pull-left">
+                                    <i class="fa fa-line-chart"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Capteur de température</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
+                                        alias aliquid aut commodi distinctio, impedit maxime minus nam natus pariatur
+                                        quasi qui quos repellat repellendus tempore velit veritatis voluptates?</p>
+                                </div>
+                            </div>
+                        </div><!--/.col-md-4-->
+
+                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                             data-wow-delay="100ms">
+                            <div class="media service-box">
+                                <div class="pull-left">
+                                    <i class="fa fa-cubes"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Capteur incendie</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci
+                                        autem cum cupiditate distinctio enim exercitationem impedit maxime non nulla
+                                        perspiciatis quam quidem quis recusandae sequi similique soluta, totam
+                                        veniam?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                             data-wow-delay="100ms">
+                            <div class="media service-box">
+                                <div class="pull-left">
+                                    <i class="fa fa-cubes"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Capteur incendie</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi corporis
+                                        deserunt dignissimos nobis porro praesentium provident similique suscipit?
+                                        Delectus dolor earum esse excepturi explicabo maiores obcaecati, optio
+                                        perspiciatis quasi voluptatum?</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <a href="{{ path('pres_objets') }}" class="btn-default item">En savoir plus</a>
             </div>
         </div>
-
     </section>
-
 
     <section id="testi">
         <div class="container">
@@ -208,37 +230,49 @@
                                 <div class="item">
                                     <div class="profile-circle" style="background-color: rgba(0,0,0,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                                 <div class="item">
                                     <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                                 <div class="active item">
                                     <div class="profile-circle" style="background-color: rgba(145,169,216,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                                 <div class="item">
                                     <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                                 <div class="item">
                                     <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                                 <div class="item">
                                     <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
                                     <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
+                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
+                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
                                     </blockquote>
                                 </div>
                             </div>

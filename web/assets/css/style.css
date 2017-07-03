@@ -11,7 +11,6 @@ h2 {
     font-size: 17px;
     height: 50px;
     line-height: 20px;
-    margin: 10% 10px 10px 0;
     padding: 15px 35px;
     transition: all 0.4s ease 0s;
 }
@@ -98,18 +97,21 @@ footer {
 
 /*________Home________*/
 
-.section-header {
-    margin-bottom: 15%;
+.firstItem {
+    background-image: url(http://www.auplod.com/u/ulpoad980e6.jpeg);
 }
 
-.btn-section{
-    padding-top: 8%;
+.secondItem {
+    background-image: url(http://www.auplod.com/u/duploa980e9.jpeg);
+}
+
+.medal {
+    display: inline;
 }
 
 .quote {
     color: #1C75BC;
     text-align: center;
-    margin-bottom: 30px;
 }
 
 /*-------------------------------*/
@@ -220,10 +222,7 @@ footer {
 
 
 }
-/*.circleLink {*/
-/*position: relative;*/
-/*margin-left: 40%;*/
-/*padding: 10%;*/
+
 /*----------------layoutAppli------------*/
 
 .avatar{
