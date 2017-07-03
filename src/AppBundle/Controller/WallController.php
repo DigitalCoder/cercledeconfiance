@@ -70,6 +70,8 @@ class WallController extends Controller
 
         return $this->render('FrontBundle:Default:wall.html.twig', array(
             'walldatas'=>$dataApps,
+            'circleUser'=>$currentCircleUser,
+            'token'=>$circle->getToken(),
             'form'=>$form->createView()
         ));
 
