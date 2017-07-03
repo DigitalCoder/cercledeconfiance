@@ -75,6 +75,16 @@ footer {
 }
 
 
+/*_____Page ObjetsCo_____*/
+
+.objetsTitleFront {
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+#objects {
+    padding: 30px 0 70px;
+}
 
 
 
@@ -113,15 +123,15 @@ footer {
     transition: all .8s ease;
 }
 */
-#intro {
-    margin-top: 10%;
-}
-.section-header {
-    margin-bottom: 15%;
-}
-.item {
-    margin-top: 8%
-}
+/*#intro {*/
+    /*margin-top: 10%;*/
+/*}*/
+/*.section-header {*/
+    /*margin-bottom: 15%;*/
+/*}*/
+/*.item {*/
+    /*margin-top: 8%*/
+/*}*/
 .btn-section{
     padding-top: 8%;
 }
