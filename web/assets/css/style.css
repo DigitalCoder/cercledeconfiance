@@ -275,7 +275,34 @@ footer {
 .avatar{
     width: 50px;
 }
+/*--------------Wall----------------*/
+.wallContent{
+    margin: 20px auto;
+}
 
+.messages>.well{
+    background-color: aliceblue;
+}
+.messagesRight{
+    margin-right: 0;
+    text-align: right;
+}
+.messagesLeft{
+    margin-right: 0;
+    text-align: left;
+}
+#affiche{
+    text-align: center;
+    width: 40%;
+    height: auto;
+    margin: 0 35%;
+}
+#retour{
+    text-align: right;
+    width: 200px;
+    height: auto;
+    margin-right: -100px;
+}
 /*___________________Accueil Appli________________*/
 
 .navAppli {
