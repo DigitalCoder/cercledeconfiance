@@ -28,9 +28,11 @@ h2 {
 header {
     font-size: 25px;
 }
+
 .stopPadding {
     margin-top: -100px;
 }
+
 #main-menu.navbar-default {
     background-color: white;
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
@@ -84,16 +86,58 @@ footer {
     color: #777;
     margin-top: 4%;
 }
+/*_____Register_____*/
+.registerform{
+    margin-bottom: 70px;
+    margin-top: 30px;
+}
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
 }
+#about{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.qsnSectionHeader{
+    padding-bottom: 50px;
+}
+.morepadding{
+    padding-left: 5%;
+}
 
 /*_____Page Services_____*/
-#pricing ul.pricing {
-    background-color: #ffffcc;
-
+.serviceTitle {
+    margin-bottom: 5%;
+    margin-top: 3%;
 }
+
+.plan-purchase {
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    width: 100%;
+    left: 0px;
+}
+
+#pricing ul.pricing {
+    background-color: #45aed6;
+    height: 500px;
+}
+
+
+#pricing {
+    padding: 30px 0 70px;
+}
+
+
+/*_____Page ObjetsCo_____*/
+
+.objetsTitleFront {
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
 
 /*________Home________*/
 
@@ -103,6 +147,7 @@ footer {
 
 .marginTitle {
     margin-top: 30px;
+
 }
 
 .marginButtonHome {
@@ -241,7 +286,34 @@ footer {
 .avatar{
     width: 50px;
 }
+/*--------------Wall----------------*/
+.wallContent{
+    margin: 20px auto;
+}
 
+.messages>.well{
+    background-color: aliceblue;
+}
+.messagesRight{
+    margin-right: 0;
+    text-align: right;
+}
+.messagesLeft{
+    margin-right: 0;
+    text-align: left;
+}
+#affiche{
+    text-align: center;
+    width: 40%;
+    height: auto;
+    margin: 0 35%;
+}
+#retour{
+    text-align: right;
+    width: 200px;
+    height: auto;
+    margin-right: -100px;
+}
 /*___________________Accueil Appli________________*/
 
 .navAppli {

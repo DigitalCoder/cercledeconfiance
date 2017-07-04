@@ -3,7 +3,7 @@
 {% block title %} Mur{% endblock %}
 
 {% block content %}
-    <section class="container">
+    <section class="container wallContent">
         <div class="row">
             <div class="col-lg-9">
                 {% for data in walldatas %}
@@ -12,15 +12,19 @@
                         <div class="messages index{{ loop.index0 }}">
                             <article class="well">
                                 <header>
-                                    <div class="col-lg-6">
-                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                    <div class="col-lg-6 messagesLeft">
+                                        <h3><i class="fa fa-folder-open wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                        <hr />
                                     </div>
-                                    <div class="col-lg-6">
-                                        <h2>{{ data.creationdate|date }}</h2>
+                                    <div class="col-lg-6 messagesRight">
+                                        <h3>{{ data.creationdate|date }}</h3>
                                     </div>
                                 </header>
-                                <hr />
-                                <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
+                                    </div>
+                                </div>
                             </article>
                         </div>
 {# CLOUD DISPLAY MESSAGE #}
@@ -28,11 +32,12 @@
                         <div class="messages index{{ loop.index0 }}">
                             <article class="well">
                                 <header>
-                                    <div class="col-lg-6">
-                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                    <div class="col-lg-6 messagesLeft">
+                                        <h3><i class="fa fa-cloud wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                        <hr />
                                     </div>
-                                    <div class="col-lg-6">
-                                        <h2>{{ data.creationdate|date }}</h2>
+                                    <div class="col-lg-6 messagesRight">
+                                        <h3>{{ data.creationdate|date }}</h3>
                                     </div>
                                 </header>
                                 <hr />
@@ -41,7 +46,7 @@
                                 {% if 'image' in data.cloud.filetype %}
                                     <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" alt="{{ data.cloud.filename }}" />
                                 {% elseif 'video' in data.cloud.filetype %}
-                                    <video width="320" height="240" src="{{ data.cloud.url }}">
+                                    <video width="320" height="240" src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">
                                         <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/webm">
@@ -55,27 +60,36 @@
                         <div class="messages index{{ loop.index0 }}">
                             <article class="well">
                                 <header>
-                                    <div class="col-lg-6">
-                                        <h3>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <h2>{{ data.creationdate|date }}</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6 messageLeft">
+                                            <h3><i class="fa fa-calendar wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
+                                            <hr />
+                                        </div>
+                                        <div class="col-lg-6 messagesRight">
+                                            <h3>{{ data.creationdate|date }}</h3>
+                                        </div>
                                     </div>
                                 </header>
-                                <hr />
-                                <p><strong>Titre:</strong> {% if data.agenda.title is defined %}{{ data.agenda.title }}{% endif %}</p>
-                                <p><strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description }}{% endif %}</p>
-                                <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
+                                <div class="row">
+                                    <div class="col-lg-6 messagesLeft">
+                                        <p><strong>Titre:</strong> {% if data.agenda.title is defined %}{{ data.agenda.title }}{% endif %}</p>
+                                        <p><strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description  }}{% endif %}</p>
+                                        <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
+                                    </div>
+                                </div>
                             </article>
                         </div>
                     {% endif %}
                 {% endfor %}
-                    <button id="affiche" onclick="affichePlus()">voir les messages plus anciens</button>
+                    <button id="affiche" class="btn-default" onclick="affichePlus()">Voir les messages plus anciens</button>
             </div>
-
             <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-9">
+                        <button id="retour" class="btn-default">Retour au cercle</button>
+                    </div>
+                </div>
                 <h3>Envoie un message</h3>
-
                 {{ form_start(form) }}
                 {{ form_widget(form.content,{ 'attr': {'cols': '50','rows': '5'} }) }}
                 {{ form_widget(form.save) }}
