@@ -67,6 +67,16 @@ footer {
 .qsn {
     margin: 3% 0;
 }
+#about{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.qsnSectionHeader{
+    padding-bottom: 50px;
+}
+.morepadding{
+    padding-left: 5%;
+}
 
 /*_____Page Services_____*/
 #pricing ul.pricing {
@@ -115,9 +125,6 @@ footer {
 */
 #intro {
     margin-top: 10%;
-}
-.section-header {
-    margin-bottom: 15%;
 }
 .item {
     margin-top: 8%
