@@ -19,8 +19,9 @@
                         <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
                             <div class="row text-center navAppli">
                                 <div class="col-md-4 col-md-offset-2">
+                                    <i class="fa fa-users"></i>
 
-                                <div class="thumbnail circleItem">
+                                    <div class="thumbnail circleItem">
                                     <h3>{{ CUser.circle.name }}</h3>
                                     <p>
                                         {% for circleUser in CUser.circle.circleUsers %}

@@ -238,19 +238,7 @@ footer {
 }
 
 .circleItem {
-    /*background-color: rgba(54,171,226,0.2);*/
-    /*border: none;*/
-    /*box-shadow: black;*/
-    /*margin: 1% auto;*/
-    /*font-size: 30px;*/
-    /*top: 10px;*/
-    /*left: 0;*/
-    /*position: fixed;*/
-    /*margin-left: 20px;*/
-    /*margin-right: 20px;*/
-    /*right: 0;*/
-    /*z-index: 2;*/
-    /*padding: 0 10px;*/
+
     background-color: rgba(54,171,226,0.5);
     border: none;
     border-radius: 25px;
