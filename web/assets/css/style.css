@@ -319,7 +319,7 @@ footer {
     text-decoration: none;
 }
 
-/*___________________Accueil Appli________________*/
+/*___________________Admin Appli________________*/
 
 .navAdminAppli {
     margin-top: 50px ;
@@ -332,5 +332,17 @@ footer {
     box-shadow: black;
     margin: 3%;
     font-size: 200px;
+}
+
+/*___________________Agenda________________*/
+
+.agendaTitle {
+    font-size: 50px;
+    text-decoration: none;
+}
+
+#calendar {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
 }
 

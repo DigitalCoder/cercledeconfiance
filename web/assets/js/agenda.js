@@ -13,6 +13,10 @@ $(document).ready(function() {
         defaultDate: moment().format("YYYY/MM/DD"),
         defaultView: 'agendaWeek',
         locale: 'fr',
+        // height: $(window).height()*0.635,
+        contentHeight: 'auto',
+        minTime: '07:00:00',
+        maxTime: '23:00:00',
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectHelper: true,
@@ -85,5 +89,6 @@ $(document).ready(function() {
         $('#modal-id').modal('show');
 
     });
+
 
 });
