@@ -353,8 +353,9 @@ footer {
 .colorForAdmin{
     background-color: rgba(94, 187, 231, 0.5);
 }
-.colorForAdmin>td{
+.colorForAdmin>td {
     background-color: rgba(94, 187, 231, 0.5);
+}
 
 /*___________________Accueil Appli________________*/
 
@@ -370,4 +371,7 @@ footer {
     margin: 3%;
     font-size: 200px;
 }
+
+/*___________________Accueil Appli________________*/
+
 
