@@ -27,7 +27,7 @@ use AppBundle\Form\ObjectAccessTypeType;
 
 
 
-class adminUsersController extends Controller
+class AdminUsersController extends Controller
 {
 
     /**
