@@ -6,25 +6,46 @@
 
     <div class="container">
         <div class="row">
-            <a href="{{ path('accueil') }}">
-                <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-            </a>
+            <div class="col-xs-10 col-xs-offset-1 col-md-4">
+                <a href="{{ path('accueil') }}">
+                    <i class="fa fa-arrow-circle-o-left"></i> Retourner aux cercles
+                </a>
+            </div>
+        </div>
 
-            <a href="{{ path('appli', {'token': token}) }}">
-                <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-            </a>
 
-            <a href="{{ path('listMembers', {'token': token}) }}">
-                <input type="button" class="btn btn-success" value="Gerer Membres"/>
-            </a>
+        <div class="row text-center navAdminAppli">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                <a class="thumbnail navAdminImage" href="{{ path('listMembers', {'token': token}) }}"
+                   data-toggle="tooltip" data-placement="top" title="Gestion Membres">
+                    <i class="fa fa-user-plus"></i>
+                    <p class="navImageTitle">Gerer Membres</p>
+                </a>
+            </div>
 
-            <a href="{{ path('edit_offer', {'token': token}) }}">
-                <input type="button" class="btn btn-success" value="Gerer Cercle"/>
-            </a>
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                <a class="thumbnail navAdminImage" href="{{ path('edit_offer', {'token': token}) }}"
+                   data-toggle="tooltip" data-placement="top" title="Gestion Cercle">
+                    <i class="fa fa-check-circle-o"></i>
+                    <p class="navImageTitle">Gerer Cercle</p>
+                </a>
+            </div>
 
-            <a href="{{ path('objets', {'token': token}) }}">
-                <input type="button" class="btn btn-success" value="Gerer Objets"/>
-            </a>
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                <a class="thumbnail navAdminImage" href="{{ path('objets', {'token': token}) }}"
+                   data-toggle="tooltip" data-placement="top" title="Gestion Objets">
+                    <i class="fa fa-video-camera"></i>
+                    <p class="navImageTitle">Gerer les Objets</p>
+                </a>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <a href="{{ path('appli', {'token': token}) }}">
+                        <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+                    </a>
+                </div>
+            </div>
 
         </div>
     </div>
