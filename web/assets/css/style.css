@@ -329,6 +329,18 @@ footer {
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
+    padding: 0 20px;
+}
+.btn-edit{
+    background-color: white;
+    font-size: 15px;
+    margin: 5px;
+    padding: 10px;
+}
+.btn-delete{
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
 }
 .addUserForm{
     padding: 0;
@@ -349,5 +361,11 @@ footer {
 }
 .colorForAdmin>td{
     background-color: rgba(94, 187, 231, 0.5);
+}
+.formEditUser{
+    width: 200px;
+}
+.editUserBlock{
+    margin-top: 50px;
 }
 
