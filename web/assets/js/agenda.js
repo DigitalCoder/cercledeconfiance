@@ -13,7 +13,6 @@ $(document).ready(function() {
         defaultDate: moment().format("YYYY/MM/DD"),
         defaultView: 'agendaWeek',
         locale: 'fr',
-        // height: $(window).height()*0.635,
         contentHeight: 'auto',
         minTime: '07:00:00',
         maxTime: '23:00:00',
