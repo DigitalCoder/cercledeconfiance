@@ -40,7 +40,8 @@ class adminUsersController extends Controller
         $form = $this->createFormBuilder($userToinvite)
             ->add('email', EmailType::class)
             ->add('name', TextType::class)
-            ->add('envoyer', SubmitType::class);
+            ->add('envoyer', SubmitType::class, array(
+                    'attr' => array('class' => 'btn btn-default btn-submit-resize')));
 
         $form = $form->getForm();
 
@@ -53,6 +54,27 @@ class adminUsersController extends Controller
 
         $form->handleRequest($request);
 
+        $userAdmin = null;
+        $userCenter = null;
+        $userOther = null;
+
+        foreach($users as $user){
+            if(true == $user->getAdminCircle()){
+                $userAdmin = $user;
+            }
+            elseif(true == $user->getCircleCenter()){
+                $userCenter = $user;
+            }else{
+                $userOther[] = $user;
+            }
+        }
+        $usersWithAdminFirst[] = $userAdmin;
+        $usersWithAdminFirst[] = $userCenter;
+        foreach ($userOther as $user) {
+            $usersWithAdminFirst[] = $user;
+        }
+        $usersWithAdminFirst[0]->getUser()->setFirstname($usersWithAdminFirst[0]->getUser()->getFirstname().' (Admin)');
+        $usersWithAdminFirst[1]->getUser()->setFirstname($usersWithAdminFirst[1]->getUser()->getFirstname().' (centre)');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mailer = $this->get('mailer');
@@ -62,11 +84,9 @@ class adminUsersController extends Controller
             ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$token)), 'text/html');
 
         $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
-
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
         }
-
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$users, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
     }
 
 
