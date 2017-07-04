@@ -17,6 +17,7 @@
 /web-server-pid
 /.idea/
 /src/AppBundle/Entity/*~
+/src/UserBundle/Entity/*~
 .web-server-pid
 /web/uploads/
 /src/UserBundle/Entity/*~

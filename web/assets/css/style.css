@@ -1,13 +1,38 @@
 /*_____GENERAL_____*/
+h2 {
+    font-size: 44px;
+}
 
+.btn-default {
+    background: transparent none repeat scroll 0 0;
+    border: 2px solid #45aed6;
+    border-radius: 100px;
+    color: #45aed6;
+    font-size: 17px;
+    height: 50px;
+    line-height: 20px;
+    padding: 15px 35px;
+    transition: all 0.4s ease 0s;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default:active {
+    background: #1C75BC;
+    border: 2px solid #1C75BC;
+    color: white;
+}
 
 /*_____NAVBAR_____*/
 header {
     font-size: 25px;
 }
+
 .stopPadding {
     margin-top: -100px;
 }
+
 #main-menu.navbar-default {
     background-color: white;
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
@@ -41,6 +66,7 @@ header {
 .logo {
     width: 100px;
 }
+<<<<<<< HEAD
 /*@media (max-width: 1110px) {*/
     /*.navbar-header {*/
         /*float: none;*/
@@ -84,6 +110,8 @@ header {
     /*}*/
 /*}*/
 
+=======
+>>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 
 /*_____FOOTER_____*/
 footer {
@@ -104,20 +132,51 @@ footer {
     color: #777;
     margin-top: 4%;
 }
+/*_____Register_____*/
+.registerform{
+    margin-bottom: 70px;
+    margin-top: 30px;
+}
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
 }
+#about{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.qsnSectionHeader{
+    padding-bottom: 50px;
+}
+.morepadding{
+    padding-left: 5%;
+}
 
 /*_____Page Services_____*/
-#pricing ul.pricing {
-    background-color: #ffffcc;
+.serviceTitle {
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
 
+.plan-purchase {
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    width: 100%;
+    left: 0px;
+}
+
+#pricing ul.pricing {
+    background-color: #45aed6;
+    height: 500px;
 }
 
 
+#pricing {
+    padding: 30px 0 70px;
+}
 
-
+<<<<<<< HEAD
 #intro {
     margin-top: 10%;
 }
@@ -129,27 +188,46 @@ footer {
 }
 .btn-section {
     padding-top: 8%;
+=======
+
+/*_____Page ObjetsCo_____*/
+
+.objetsTitleFront {
+    margin-bottom: 5%;
+    margin-top: 3%;
 }
-.btn-default {
-    background: transparent none repeat scroll 0 0;
-    border: 2px solid #45aed6;
-    border-radius: 100px;
-    color: #45aed6;
-    font-size: 17px;
-    height: 50px;
-    line-height: 20px;
-    margin: 10% 10px 10px 0;
-    padding: 15px 35px;
-    transition: all 0.4s ease 0s;
+
+
+/*________Home________*/
+
+.paddAnchor {
+    padding-top: 100px;
 }
-.btn-default:hover,
-.btn-default:focus,
-.btn-default:active,
-.btn-default:active {
-    background: #1C75BC;
-    border: 2px solid #1C75BC;
-    color: white;
+
+.marginTitle {
+    margin-top: 30px;
+>>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 }
+
+.marginButtonHome {
+    margin-top: 50px;
+}
+
+.firstItem {
+    background-image: url(../images/slider/slider1.jpeg);
+}
+<<<<<<< HEAD
+=======
+
+.secondItem {
+    background-image: url(../images/slider/slider2.jpeg);
+}
+
+.medal {
+    display: inline;
+}
+
+>>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 .quote {
     color: #1C75BC;
     text-align: center;
@@ -286,16 +364,46 @@ footer {
     width: 25px;
 }
 
+<<<<<<< HEAD
 /*.circleLink {*/
 /*position: relative;*/
 /*margin-left: 40%;*/
 /*padding: 10%;*/
+=======
+>>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 /*----------------layoutAppli------------*/
 
 .avatar{
     width: 50px;
 }
+/*--------------Wall----------------*/
+.wallContent{
+    margin: 20px auto;
+}
 
+.messages>.well{
+    background-color: aliceblue;
+}
+.messagesRight{
+    margin-right: 0;
+    text-align: right;
+}
+.messagesLeft{
+    margin-right: 0;
+    text-align: left;
+}
+#affiche{
+    text-align: center;
+    width: 40%;
+    height: auto;
+    margin: 0 35%;
+}
+#retour{
+    text-align: right;
+    width: 200px;
+    height: auto;
+    margin-right: -100px;
+}
 /*___________________Accueil Appli________________*/
 
 .navAppli {
@@ -315,3 +423,42 @@ footer {
     font-size: 20px;
     text-decoration: none;
 }
+/*--------------adminUser----------------*/
+.btn-return{
+    margin: 30px 10px;
+}
+.addUserForm{
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.btn-submit-resize{
+    margin-top: 20px;
+}
+.colorForCenter{
+    background-color: rgba(94, 187, 231, 0.3);
+}
+.colorForCenter>td{
+    background-color: rgba(94, 187, 231, 0.3);
+}
+.colorForAdmin{
+    background-color: rgba(94, 187, 231, 0.5);
+}
+.colorForAdmin>td{
+    background-color: rgba(94, 187, 231, 0.5);
+
+/*___________________Accueil Appli________________*/
+
+.navAdminAppli {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
+}
+
+.navAdminImage {
+    background-color: rgba(54,171,226,0.2);
+    border: none;
+    box-shadow: black;
+    margin: 3%;
+    font-size: 200px;
+}
+
