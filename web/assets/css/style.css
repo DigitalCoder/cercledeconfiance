@@ -5,9 +5,11 @@
 header {
     font-size: 25px;
 }
+
 .stopPadding {
     margin-top: -100px;
 }
+
 #main-menu.navbar-default {
     background-color: white;
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
@@ -42,8 +44,6 @@ header {
     width: 100px;
 }
 
-
-
 /*_____FOOTER_____*/
 footer {
     font-size: 25px;
@@ -63,21 +63,30 @@ footer {
     color: #777;
     margin-top: 4%;
 }
+/*_____Register_____*/
+.registerform{
+    margin-bottom: 70px;
+    margin-top: 30px;
+}
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
+}
+#about{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.qsnSectionHeader{
+    padding-bottom: 50px;
+}
+.morepadding{
+    padding-left: 5%;
 }
 
 /*_____Page Services_____*/
 #pricing ul.pricing {
     background-color: #ffffcc;
-
 }
-
-
-
-
-
 
 
 /*******HOMEFRONT******/
@@ -114,9 +123,6 @@ footer {
 */
 #intro {
     margin-top: 10%;
-}
-.section-header {
-    margin-bottom: 15%;
 }
 .item {
     margin-top: 8%
