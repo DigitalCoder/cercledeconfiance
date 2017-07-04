@@ -332,6 +332,29 @@ footer {
     font-size: 20px;
     text-decoration: none;
 }
+/*--------------adminUser----------------*/
+.btn-return{
+    margin: 30px 10px;
+}
+.addUserForm{
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+.btn-submit-resize{
+    margin-top: 20px;
+}
+.colorForCenter{
+    background-color: rgba(94, 187, 231, 0.3);
+}
+.colorForCenter>td{
+    background-color: rgba(94, 187, 231, 0.3);
+}
+.colorForAdmin{
+    background-color: rgba(94, 187, 231, 0.5);
+}
+.colorForAdmin>td{
+    background-color: rgba(94, 187, 231, 0.5);
 
 /*___________________Accueil Appli________________*/
 
