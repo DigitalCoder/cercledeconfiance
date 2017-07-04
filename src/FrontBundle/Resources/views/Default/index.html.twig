@@ -1,10 +1,10 @@
 {% extends "FrontBundle::layoutFront.html.twig" %}
 
 {% block links %}
-    <li class="scroll active"><a href="/">Accueil</a></li>
-    <li class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
-    <li class="scroll"><a href="#serve"> Nos services</a></li>
-    <li class="scroll"><a href="#object">Nos objets connectés</a></li>
+    <li id="navAcc" class="scroll active"><a href="/">Accueil</a></li>
+    <li id="navQSN" class="scroll"><a href="#intro">Qui sommes nous ?</a></li>
+    <li id="navServ" class="scroll"><a href="#serve"> Nos services</a></li>
+    <li id="navObj" class="scroll"><a href="#object">Nos objets connectés</a></li>
     <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
 {% endblock %}
 
@@ -38,11 +38,11 @@
     </section>
 
     <section class="text-center">
-        <div id="intro">
+        <div id="intro" class="paddAnchor">
             <div class="container text-center">
                 <div class="section-header">
                     <h2 class="section-title text-center wow fadeInDown">Qui sommes nous ?</h2>
-                    <div class="row item">
+                    <div class="row item marginTitle">
                         <!-- /.intro image -->
                         <div class="col-md-6 intro-pic wow slideInLeft">
                             <img src="{{ asset('http://www.auplod.com/u/lapuod980eb.jpeg') }}" alt="image"
@@ -58,23 +58,24 @@
                                 fuga id inventore neque odit officia officiis perspiciatis quae, quos repudiandae
                                 sapiente vel, velit.
                             </p>
-                            <a href="{{ path('presentation') }}" class="btn-default">En savoir plus</a>
+                            <a href="{{ path('presentation') }}" class="btn btn-default marginButtonHome">En savoir
+                                plus</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="serve">
+        <div id="serve" class="paddAnchor">
             <div class="container text-center">
                 <div class="section-header">
                     <h2 class="section-title wow fadeInDown">Nos Services</h2>
-                    <div class="row item">
+                    <div class="row item marginTitle">
                         <div class="col-md-4 col-md-offset-1 wow slideInLeft">
                             <img class="img-circle img-responsive img-center medal"
                                  src="http://www.nettoyage-bureaux-65.fr/userfiles/2233/Maison_Nickel-aide_a_la_personne.jpg"
                                  alt="">
-                            <h2>Service confiance</h2>
+                            <h3>Service confiance</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta exercitationem facilis
                                 nesciunt sit vel? Ab assumenda, cumque, distinctio dolore dolorem facere fugiat iusto,
                                 odio quidem repudiandae sed soluta velit voluptatum! Lorem ipsum dolor sit amet,
@@ -86,7 +87,7 @@
                             <img class="img-circle img-responsive img-center medal"
                                  src="https://logicielsolutioncentrefrance.files.wordpress.com/2014/03/call-center_6844_9207959.jpg"
                                  alt="">
-                            <h2>Service secours</h2>
+                            <h3>Service secours</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut autem esse
                                 eveniet incidunt iste nostrum pariatur quibusdam, quo similique tempore totam,
                                 voluptatem. Ab dolore molestias quibusdam rem suscipit, temporibus?Lorem ipsum dolor sit
@@ -95,17 +96,17 @@
                                 voluptas. Nostrum, tempora!</p>
                         </div>
                     </div>
-                    <a href="{{ path('services') }}" class="btn-default item">En savoir plus</a>
+                    <a href="{{ path('services') }}" class="btn btn-default marginButtonHome">En savoir plus</a>
                 </div>
             </div>
         </div>
 
-        <div id="object">
+        <div id="object" class="paddAnchor">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
-                    <div class="row item">
-                        <div class="features">
+                    <div class="row item marginTitle">
+                        <div class="features marginTitle">
                             <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
                                  data-wow-delay="0ms">
                                 <div class="media service-box">
@@ -129,9 +130,9 @@
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">Camera supplémentaire</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad consequuntur
-                                            eius, error fuga fugit incidunt ipsa iure optio quae qui quos saepe
-                                            similique totam ut voluptatibus? Fugiat quis sunt voluptas?</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
                                     </div>
                                 </div>
                             </div>
@@ -144,75 +145,69 @@
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">Camera supplémentaire</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-                                            exercitationem explicabo hic illo magni nisi sequi totam, ullam! At corporis
-                                            delectus explicabo facere laborum nam placeat reiciendis rem soluta
-                                            tempora.</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="features">
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-line-chart"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Capteur de température</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
+                                    </div>
+                                </div>
+                            </div><!--/.col-md-4-->
+
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                                 data-wow-delay="100ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-cubes"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Capteur incendie</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
+                                 data-wow-delay="100ms">
+                                <div class="media service-box">
+                                    <div class="pull-left">
+                                        <i class="fa fa-cubes"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Capteur incendie</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
+                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
+                                            Amet exercitationem necessitatibus nesciunt.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="row item">
-                    <div class="features">
-                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
-                            <div class="media service-box">
-                                <div class="pull-left">
-                                    <i class="fa fa-line-chart"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Capteur de température</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium
-                                        alias aliquid aut commodi distinctio, impedit maxime minus nam natus pariatur
-                                        quasi qui quos repellat repellendus tempore velit veritatis voluptates?</p>
-                                </div>
-                            </div>
-                        </div><!--/.col-md-4-->
-
-                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                             data-wow-delay="100ms">
-                            <div class="media service-box">
-                                <div class="pull-left">
-                                    <i class="fa fa-cubes"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Capteur incendie</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci
-                                        autem cum cupiditate distinctio enim exercitationem impedit maxime non nulla
-                                        perspiciatis quam quidem quis recusandae sequi similique soluta, totam
-                                        veniam?</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                             data-wow-delay="100ms">
-                            <div class="media service-box">
-                                <div class="pull-left">
-                                    <i class="fa fa-cubes"></i>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Capteur incendie</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi corporis
-                                        deserunt dignissimos nobis porro praesentium provident similique suscipit?
-                                        Delectus dolor earum esse excepturi explicabo maiores obcaecati, optio
-                                        perspiciatis quasi voluptatum?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="{{ path('pres_objets') }}" class="btn-default item">En savoir plus</a>
+                <a href="{{ path('pres_objets') }}" class="btn btn-default">En savoir plus</a>
             </div>
         </div>
     </section>
 
-    <section id="testi">
+    <section id="testi" class="paddAnchor">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">Les Témoignages</h2>
-                <div class="row">
+                <div class="row item marginTitle">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
                         <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
