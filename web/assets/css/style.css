@@ -147,7 +147,6 @@ footer {
 
 .marginTitle {
     margin-top: 30px;
-
 }
 
 .marginButtonHome {
@@ -333,3 +332,19 @@ footer {
     font-size: 20px;
     text-decoration: none;
 }
+
+/*___________________Accueil Appli________________*/
+
+.navAdminAppli {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
+}
+
+.navAdminImage {
+    background-color: rgba(54,171,226,0.2);
+    border: none;
+    box-shadow: black;
+    margin: 3%;
+    font-size: 200px;
+}
+
