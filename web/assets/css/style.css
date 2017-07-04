@@ -66,52 +66,6 @@ header {
 .logo {
     width: 100px;
 }
-<<<<<<< HEAD
-/*@media (max-width: 1110px) {*/
-    /*.navbar-header {*/
-        /*float: none;*/
-    /*}*/
-
-    /*.navbar-toggle {*/
-        /*display: block;*/
-    /*}*/
-
-    /*.navbar-collapse.collapse {*/
-        /*display: none !important;*/
-    /*}*/
-
-    /*.navbar-nav {*/
-        /*float: none !important;*/
-        /*margin: 7.5px -15px;*/
-    /*}*/
-
-    /*.navbar-nav > li {*/
-        /*float: none;*/
-    /*}*/
-
-    /*.navbar-nav > li > a {*/
-        /*padding-top: 10px;*/
-        /*padding-bottom: 10px;*/
-    /*}*/
-
-    /*.collapse.in {*/
-        /*display: block !important;*/
-    /*}*/
-/*}*/
-/*@media (min-width: 1110px) {*/
-
-    /*.navbar-nav > li > a {*/
-        /*font-family: 'Circula-Medium', sans-serif !important;*/
-    /*}*/
-
-    /*.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {*/
-        /*color: #ed7a21 !important;*/
-        /*background-color: transparent !important;*/
-    /*}*/
-/*}*/
-
-=======
->>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 
 /*_____FOOTER_____*/
 footer {
@@ -176,19 +130,8 @@ footer {
     padding: 30px 0 70px;
 }
 
-<<<<<<< HEAD
-#intro {
-    margin-top: 10%;
-}
-.section-header {
-    margin-bottom: 15%;
-}
-.item {
-    margin-top: 8%
-}
-.btn-section {
-    padding-top: 8%;
-=======
+
+
 
 /*_____Page ObjetsCo_____*/
 
@@ -206,7 +149,6 @@ footer {
 
 .marginTitle {
     margin-top: 30px;
->>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 }
 
 .marginButtonHome {
@@ -216,8 +158,7 @@ footer {
 .firstItem {
     background-image: url(../images/slider/slider1.jpeg);
 }
-<<<<<<< HEAD
-=======
+
 
 .secondItem {
     background-image: url(../images/slider/slider2.jpeg);
@@ -227,7 +168,6 @@ footer {
     display: inline;
 }
 
->>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 .quote {
     color: #1C75BC;
     text-align: center;
@@ -324,12 +264,7 @@ footer {
     margin: 1% auto;
     font-size: 40px;
 }
-    /*filter: brightness(80%);*/
-    /*background: transparent url("") no-repeat;*/
-    /*position: relative;*/
-    /*background-size: 900px;*/
-    /*height: 100vh;*/
-/*}*/
+
 .btn-circle {
     display: block;
     height: 180px;
@@ -363,14 +298,6 @@ footer {
 .circleImg {
     width: 25px;
 }
-
-<<<<<<< HEAD
-/*.circleLink {*/
-/*position: relative;*/
-/*margin-left: 40%;*/
-/*padding: 10%;*/
-=======
->>>>>>> b5d01d6578b2272b1cd8527f45dc0d0ed60e4d16
 /*----------------layoutAppli------------*/
 
 .avatar{
@@ -444,9 +371,9 @@ footer {
 .colorForAdmin{
     background-color: rgba(94, 187, 231, 0.5);
 }
-.colorForAdmin>td{
+.colorForAdmin>td {
     background-color: rgba(94, 187, 231, 0.5);
-
+}
 /*___________________Accueil Appli________________*/
 
 .navAdminAppli {
