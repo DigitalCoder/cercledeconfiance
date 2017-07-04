@@ -1,57 +1,54 @@
 {% extends 'FrontBundle::layoutFront.html.twig' %}
 
 {% block content %}
-    <section class="circleHome">
-        <div class="container-fluid">
+    <section>
+        <div class="circleHome"></div>
+        <div class="container-fluid circle">
 
-        <div class="container marginTop marginBottom">
-            <div class="row">
-                <h1 class="circleTitle text-primary">Vos cercles</h1>
-                <div class="col-xs-3 col-md-offset-9">
-                    <a class="btn-circle" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
+                <div class="row">
+                    <h1 class="circleTitle text-primary">Vos cercles</h1>
+                    <div class="col-xs-3 col-md-offset-9">
+                        <a class="btn" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="container circle">
-            {#<div class="row">#}
-                {#<div class="col-xs-3 col-xs-offset-9">#}
-
-
-                    {#<a href="{{ path('create') }}" class="thumbnail">#}
-
-                        {#Ajouter un nouveau cercle#}
-                    {#</a>#}
-
-                {#</div>#}
-            {#</div>#}
-            <div class="row">
 
 
 
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == 1 %}
                         <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
-                            <div class="thumbnail text-center circleItem">
-                                <h3>{{ CUser.circle.name }}</h3>
-                                <p>
-                                    {% for circleUser in CUser.circle.circleUsers %}
-                                        {% if circleUser.circleCenter == 1 %}
-                                            Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="circleImg" ><br/>
-                                        {% elseif circleUser.adminCircle == 1 %}
-                                            Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="circleImg" >
-                                            <br/>
-                                        {% else %}
-                                            Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}  <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}"class="circleImg" ><br/>
-                                        {% endif %}
-                                    {% endfor %}
-                                </p>
+                            <div class="row text-center navAppli">
+                                <div class="col-md-4 col-md-offset-2">
+
+                                <div class="thumbnail circleItem">
+                                    <h3>{{ CUser.circle.name }}</h3>
+                                    <p>
+                                        {% for circleUser in CUser.circle.circleUsers %}
+                                            {% if circleUser.circleCenter == 1 %}
+                                                Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="circleImg" ><br/>
+                                            {% elseif circleUser.adminCircle == 1 %}
+                                                Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="circleImg" >
+                                                <br/>
+                                            {% else %}
+                                                Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}  <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}"class="circleImg" ><br/>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
                             </div>
                         </a>
                     {% endif %}
                 {% endfor %}
-                </div>
             </div>
+        </div>
 
     </section>
 {% endblock %}
+{#<div class="row text-center navAppli">#}
+    {#<div class="col-xs-4">#}
+        {#<a class="thumbnail navImage" href="{{ path('visio', {'token': token}) }}"#}
+           {#data-toggle="tooltip" data-placement="top" title="Visio">#}
+            {#<i class="fa fa-users"></i>#}
+            {#<p class="navImageTitle">Appel visio</p>#}
+        {#</a>#}
+    {#</div>#}

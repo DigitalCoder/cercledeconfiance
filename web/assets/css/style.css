@@ -41,7 +41,48 @@ header {
 .logo {
     width: 100px;
 }
+/*@media (max-width: 1110px) {*/
+    /*.navbar-header {*/
+        /*float: none;*/
+    /*}*/
 
+    /*.navbar-toggle {*/
+        /*display: block;*/
+    /*}*/
+
+    /*.navbar-collapse.collapse {*/
+        /*display: none !important;*/
+    /*}*/
+
+    /*.navbar-nav {*/
+        /*float: none !important;*/
+        /*margin: 7.5px -15px;*/
+    /*}*/
+
+    /*.navbar-nav > li {*/
+        /*float: none;*/
+    /*}*/
+
+    /*.navbar-nav > li > a {*/
+        /*padding-top: 10px;*/
+        /*padding-bottom: 10px;*/
+    /*}*/
+
+    /*.collapse.in {*/
+        /*display: block !important;*/
+    /*}*/
+/*}*/
+/*@media (min-width: 1110px) {*/
+
+    /*.navbar-nav > li > a {*/
+        /*font-family: 'Circula-Medium', sans-serif !important;*/
+    /*}*/
+
+    /*.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {*/
+        /*color: #ed7a21 !important;*/
+        /*background-color: transparent !important;*/
+    /*}*/
+/*}*/
 
 
 /*_____FOOTER_____*/
@@ -77,42 +118,6 @@ footer {
 
 
 
-
-
-
-
-/*******HOMEFRONT******/
-
-/*.form-header input {
-    position: relative;
-    padding: 5px 15px;
-}
-.form-header .form-control {
-    border-radius: 0;
-    border: solid 1px #dadada;
-    background-color: #fff;
-    color: #333;
-    height: 55px;
-}
-.form-header .btn {
-    border-radius: 0;
-    height: 55px;
-    width: 100%;
-    background-color: #3eb0f7;
-    color: white;
-    font-size: 17px !important;
-    padding: 0 33px;
-    border: none;
-    margin: 0;
-    -webkit-transition: all .8s ease;
-    transition: all .8s ease;
-}
-.form-header .btn:hover {
-    background-color: #1f96e0;
-    -webkit-transition: all .8s ease;
-    transition: all .8s ease;
-}
-*/
 #intro {
     margin-top: 10%;
 }
@@ -200,17 +205,65 @@ footer {
 /*______________ CLOUD ____________*/
 
 #dropzone {
-    border: 3px dashed black;
+    border: 3px dashed #1C75BC;
+    margin: 5%;
+}
+.btnCloud {
+    text-align: left;
+    display: inline-block;
+}
+.cloudTitle {
+    font-size: 44px;
+}
+.cloudContent {
+    font-size: 19px;
+}
+.downloadFile > p{
+    font-size: 30px;
+}
+.itemCloud {
+    width: 100%;
+}
+/*--------------Circle----------------*/
+.circlehome {
+    background-image: url("../img/logos/logo-CERCLE-CONFIANCE-quadri.png");
+    background-size: cover;
+    display: block;
+    /*filter: brightness(10%);*/
+    height: 800px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1;
 }
 
-/*--------------Circle----------------*/
-.circleHome {
-    filter: brightness(80%);
-    background: transparent url("../img/circle.jpg") no-repeat fixed;
-    position: relative;
-    background-size: cover;
-    height: 100vh;
+.circleItem {
+    /*background-color: rgba(54,171,226,0.2);*/
+    /*border: none;*/
+    /*box-shadow: black;*/
+    /*margin: 1% auto;*/
+    /*font-size: 30px;*/
+    /*top: 10px;*/
+    /*left: 0;*/
+    /*position: fixed;*/
+    /*margin-left: 20px;*/
+    /*margin-right: 20px;*/
+    /*right: 0;*/
+    /*z-index: 2;*/
+    /*padding: 0 10px;*/
+    background-color: rgba(54,171,226,0.5);
+    border: none;
+    border-radius: 25px;
+    box-shadow: black;
+    margin: 1% auto;
+    font-size: 40px;
 }
+    /*filter: brightness(80%);*/
+    /*background: transparent url("") no-repeat;*/
+    /*position: relative;*/
+    /*background-size: 900px;*/
+    /*height: 100vh;*/
+/*}*/
 .btn-circle {
     display: block;
     height: 180px;
@@ -240,21 +293,7 @@ footer {
     margin-top: 3%;
     font-size: 90px;
 }
-.circleItem {
-    display: inline-block;
-    height: 25vw;
-    width:  25vw;
-    border-radius: calc(25vw/2);
-    border: 25px solid #1C75BC;
-    hover: white;
-    text-align: center;
-    margin: 15% 3%;
-    padding: 20px;
-    color: black;
-    font-size: 20px;
-    background-color: #C2B499;
-    vertical-align: top;
-}
+
 .circleImg {
     width: 25px;
 }
