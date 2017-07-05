@@ -259,8 +259,8 @@ footer {
     text-align: center;
     margin-top: 3%;
     font-size: 90px;
-
 }
+
 .circleItem {
     display: inline-block;
     height: 400px;
@@ -353,8 +353,9 @@ footer {
 .colorForAdmin{
     background-color: rgba(94, 187, 231, 0.5);
 }
-.colorForAdmin>td{
+.colorForAdmin>td {
     background-color: rgba(94, 187, 231, 0.5);
+}
 
 /*___________________Accueil Appli________________*/
 
