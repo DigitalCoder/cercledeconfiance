@@ -284,3 +284,7 @@
         </div>
     </section>
 {% endblock %}
+{% block javascript %}
+{{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/scroll.js') }}"></script>
+{% endblock %}

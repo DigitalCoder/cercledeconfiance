@@ -125,8 +125,16 @@ footer {
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 100px;
 }
+
+/*________Login________*/
+
+.marginBtnRegister {
+    margin: 30px auto 50px auto;
+}
+
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
@@ -289,21 +297,6 @@ footer {
     max-height: 321px;
 }
 /*--------------Circle----------------*/
-/*.circlehome {*/
-    /*background-image: url("../img/logos/logo-CERCLE-CONFIANCE-quadri.png");*/
-    /*background-size: cover;*/
-    /*display: block;*/
-    /*!*filter: brightness(10%);*!*/
-    /*height: 800px;*/
-    /*left: 0;*/
-    /*position: fixed;*/
-    /*right: 0;*/
-    /*z-index: 1;*/
-/*}*/
-/*.circleHome {*/
-    /*margin-left: 55%;*/
-    /*margin-bottom: 5%;*/
-/*}*/
 .circleSub {
     text-align: center;
 }
@@ -313,7 +306,6 @@ footer {
     width: 440px;
     height: 440px;
     border-radius: 220px;
-    /*margin-left: 10%;*/
     vertical-align: top;
     position: relative;
     z-index: -1;
@@ -326,7 +318,6 @@ footer {
     height: 110px;
     border-radius: 55px;
     display: inline-block;
-    /*position: absolute;*/
     margin-top: -10%;
     border: 10px solid #C2B499;
 
@@ -341,7 +332,6 @@ footer {
     background-color: #36ABE2;
     hover: white;
     text-align: center;
-    /*margin: 10px;*/
     margin-top: 0px;
     padding: 30px;
     color: black;
@@ -420,6 +410,18 @@ footer {
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
+    padding: 0 20px;
+}
+.btn-edit{
+    background-color: white;
+    font-size: 15px;
+    margin: 5px;
+    padding: 10px;
+}
+.btn-delete{
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
 }
 .addUserForm{
     padding: 0;
@@ -441,7 +443,8 @@ footer {
 .colorForAdmin>td {
     background-color: rgba(94, 187, 231, 0.5);
 }
-/*___________________Accueil Appli________________*/
+
+/*___________________Admin Appli________________*/
 
 .navAdminAppli {
     margin-top: 50px ;
@@ -456,3 +459,21 @@ footer {
     font-size: 200px;
 }
 
+.formEditUser{
+    width: 200px;
+}
+.editUserBlock{
+    margin-top: 50px;
+}
+
+/*___________________Agenda________________*/
+
+.agendaTitle {
+    font-size: 50px;
+    text-decoration: none;
+}
+
+#calendar {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
+}
