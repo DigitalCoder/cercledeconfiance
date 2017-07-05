@@ -1,22 +1,25 @@
 {% extends 'FrontBundle::layoutFront.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+    <div class="container-fluid text-center editUserBlock">
+        <a href="{{ path('listMembers', {'token': token }) }}">
+            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left">  Back</i></button>
         </a>
-
         <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i></button>
         </a>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
 
-        {{ form_end(form) }}
+        <div class="formEditUser center-block">
+            {{ form_start(form) }}
+            {% for widget in form.children %}
+                {{ form_row(widget) }}
+                <br />
+            {% endfor %}
+            {{ form_end(form) }}
+        </div>
 
     </div>
-    <hr/>
-    <a class="btn btn-primary" href="{{ path('listMembers', {'token': token }) }}">Back</a>
 {% endblock %}
