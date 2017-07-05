@@ -15,11 +15,14 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use UserBundle\Entity\User;
 
 class UserUploadListener
 {
     private $uploader;
+
     public function __construct(FileUploader $uploader)
     {
         $this->uploader = $uploader;
