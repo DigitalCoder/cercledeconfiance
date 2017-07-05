@@ -11,12 +11,17 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: moment().format("YYYY/MM/DD"),
+        defaultView: 'agendaWeek',
+        locale: 'fr',
+        contentHeight: 'auto',
+        minTime: '07:00:00',
+        maxTime: '23:00:00',
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectHelper: true,
         select: function(start, end) {
-            start = moment(start).format('YYYY-MM-DD');
-            end = moment(end).format('YYYY-MM-DD');
+            start = moment(start).format();
+            end = moment(end).format();
             var title = prompt('Event Title:');
             var description = prompt('Event Description:');
             var id = new Date().getTime();
@@ -32,7 +37,8 @@ $(document).ready(function() {
                     id: id,
                     description: description,
                     start: start,
-                    end: end
+                    end: end,
+                    allDay: false
                 };
                 $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
             }
@@ -41,8 +47,8 @@ $(document).ready(function() {
         editable: true,
         eventLimit: true, // allow "more" link when too many events
         eventDrop: function(event, delta) {
-            start = moment(event.start).format('YYYY-MM-DD');
-            end = moment(event.end).format('YYYY-MM-DD');
+            start = moment(event.start).format();
+            end = moment(event.end).format();
             $.ajax({
                 url: routes.myroutes.agenda,
                 data: 'title='+ event.title+'&description='+ event.description +'&start='+ start +'&end='+ end +'&id='+ event.id ,
@@ -50,8 +56,8 @@ $(document).ready(function() {
             });
         },
         eventResize: function(event) {
-            start = moment(event.start).format('YYYY-MM-DD');
-            end = moment(event.end).format('YYYY-MM-DD');
+            start = moment(event.start).format();
+            end = moment(event.end).format();
             $.ajax({
                 url: routes.myroutes.agenda,
                 data: 'title='+ event.title+'&description='+ event.description +'&start='+ start +'&end='+ end +'&id='+ event.id ,
@@ -82,5 +88,6 @@ $(document).ready(function() {
         $('#modal-id').modal('show');
 
     });
+
 
 });

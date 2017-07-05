@@ -91,6 +91,13 @@ footer {
     margin-bottom: 70px;
     margin-top: 30px;
 }
+
+/*________Login________*/
+
+.marginBtnRegister {
+    margin: 30px auto 50px auto;
+}
+
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
@@ -357,7 +364,7 @@ footer {
     background-color: rgba(94, 187, 231, 0.5);
 }
 
-/*___________________Accueil Appli________________*/
+/*___________________Admin Appli________________*/
 
 .navAdminAppli {
     margin-top: 50px ;
@@ -370,5 +377,17 @@ footer {
     box-shadow: black;
     margin: 3%;
     font-size: 200px;
+}
+
+/*___________________Agenda________________*/
+
+.agendaTitle {
+    font-size: 50px;
+    text-decoration: none;
+}
+
+#calendar {
+    margin-top: 50px ;
+    margin-bottom: 50px ;
 }
 
