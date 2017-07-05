@@ -1,4 +1,9 @@
 /*_____GENERAL_____*/
+
+body {
+    font-size: 20px;
+}
+
 h2 {
     font-size: 44px;
 }
@@ -289,9 +294,45 @@ footer {
 
 /*----------------layoutAppli------------*/
 
+.circleLink, .circleLink:hover, .circleLink:active, .circleLink:visited, .circleLink:focus {
+    text-decoration: none;
+}
+
+.paddAuth {
+    padding-top: 20px;
+}
+
+.stopPaddLink {
+    padding: 0;
+}
+
 .avatar{
     width: 50px;
 }
+
+@media screen and (max-width: 768px){
+    .paddAuth {
+        padding-top: 10px;
+    }
+
+    .respNavApp {
+        font-size: 25px;
+    }
+
+    .respLink {
+        font-size: 15px;
+    }
+
+    .logo {
+        width: 70px;
+        padding-top: 15px;
+    }
+
+    .avatar {
+        width: 40px;
+    }
+}
+
 /*--------------Wall----------------*/
 .wallContent{
     margin: 20px auto;
@@ -336,7 +377,8 @@ footer {
 }
 
 .navImageTitle {
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: bold;
     text-decoration: none;
 }
 /*--------------adminUser----------------*/
