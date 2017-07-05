@@ -66,6 +66,42 @@ header {
 .logo {
     width: 100px;
 }
+@media (max-width: 1700px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
 
 /*_____FOOTER_____*/
 footer {
@@ -222,19 +258,25 @@ footer {
 
 /*______________ CLOUD ____________*/
 
-#dropzone {
-    border: 3px dashed #1C75BC;
-    margin: 5%;
+/*#dropzone {*/
+    /*border: 3px dashed #C2B499;*/
+    /*margin: 5%;*/
+/*}*/
+.imgCloud{
+    background-image: url("../img/cloud.png");
 }
 .btnCloud {
     text-align: left;
     display: inline-block;
+    margin-top:3%;
 }
 .cloudTitle {
     font-size: 44px;
+    margin-top: 25%;
 }
 .cloudContent {
     font-size: 19px;
+    margin-top: 5%;
 }
 .downloadFile > p{
     font-size: 30px;
@@ -242,27 +284,52 @@ footer {
 .itemCloud {
     width: 100%;
 }
+.imgFile {
+    max-width: 429px;
+    max-height: 321px;
+}
 /*--------------Circle----------------*/
-.circlehome {
-    background-image: url("../img/logos/logo-CERCLE-CONFIANCE-quadri.png");
-    background-size: cover;
-    display: block;
-    /*filter: brightness(10%);*/
-    height: 800px;
-    left: 0;
-    position: fixed;
-    right: 0;
-    z-index: 1;
+/*.circlehome {*/
+    /*background-image: url("../img/logos/logo-CERCLE-CONFIANCE-quadri.png");*/
+    /*background-size: cover;*/
+    /*display: block;*/
+    /*!*filter: brightness(10%);*!*/
+    /*height: 800px;*/
+    /*left: 0;*/
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*z-index: 1;*/
+/*}*/
+/*.circleHome {*/
+    /*margin-left: 55%;*/
+    /*margin-bottom: 5%;*/
+/*}*/
+.circleSub {
+    text-align: center;
 }
 
 .circleItem {
 
-    background-color: rgba(54,171,226,0.5);
-    border: none;
-    border-radius: 25px;
-    box-shadow: black;
-    margin: 1% auto;
-    font-size: 40px;
+    width: 440px;
+    height: 440px;
+    border-radius: 220px;
+    /*margin-left: 10%;*/
+    vertical-align: top;
+    position: relative;
+    z-index: -1;
+    border: 10px solid #C2B499;
+    margin: auto;
+
+}
+.circleMember{
+    width: 110px;
+    height: 110px;
+    border-radius: 55px;
+    display: inline-block;
+    /*position: absolute;*/
+    margin-top: -10%;
+    border: 10px solid #C2B499;
+
 }
 
 .btn-circle {
@@ -270,12 +337,12 @@ footer {
     height: 180px;
     width: 180px;
     border-radius: 50%;
-    border: 15px solid #1C75BC;
-    background-color: #C2B499;
+    border: 10px solid #C2B499;
+    background-color: #36ABE2;
     hover: white;
     text-align: center;
-    margin: 10px;
-    margin-top: 3%;
+    /*margin: 10px;*/
+    margin-top: 0px;
     padding: 30px;
     color: black;
     font-size: 20px;

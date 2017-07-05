@@ -42,12 +42,11 @@
                             </ul>
                         </div>
                         {% if app.user.username is defined %}
-                        <div class="test">
-                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="50px">
+                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
                             {{ app.user.username }}
                             <a href="/logout">Déconnexion</a>
                             {% endif %}
-                        </div>
+
                     </div>
                 </div>
             </div><!--/.container-->
