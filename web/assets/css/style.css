@@ -329,6 +329,7 @@ footer {
     width: 50px;
 }
 
+
 @media screen and (max-width: 768px){
     .paddAuth {
         padding-top: 10px;
@@ -389,23 +390,28 @@ footer {
 }
 
 .navImage {
-    background-color: rgba(54,171,226,0.2);
+    background-color: rgba(194, 180, 153,0.4);
     box-shadow: black;
     margin: 3% auto;
     font-size: 180px;
-    border: 10px solid rgb(194, 180, 153);
+    border: 10px solid rgb(28, 117, 188);
     border-radius: 50%;
     padding: 10%;
 }
 
-.navImage:hover {
+.navImage:hover, .navImage:focus, .navImage:active {
     text-decoration: none;
+    border: 10px solid rgb(194, 180, 153);
 }
 
 .navImageTitle {
     font-size: 25px;
     font-weight: bold;
     text-decoration: none;
+}
+
+.pictoColor {
+    color: rgb(28, 117, 188);
 }
 
 @media screen and (max-width: 768px) {
