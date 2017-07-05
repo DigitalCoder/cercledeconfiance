@@ -1,12 +1,11 @@
 {% extends 'AppBundle::layoutAppli.html.twig' %}
 
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
-
 {% block content %}
     <section>
         <div class="container-fluid text-center">
             <a href="{{ path('appli', {'token': token}) }}">
-                <input type="button" class="btn btn-default btn-return" value="Retourner à l'appli"/>
+                <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i></button>
             </a>
             <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
                 <h3>Liste des utilisateurs du Cercle</h3>
@@ -72,9 +71,8 @@
                                 {% endfor %}
                                 {% if user.adminCircle == false %}
                                 <td class="tdAction">
-                                    <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-warning">Edit</a>
-
-                                    <a href="{{ path('deleteMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-default btn-edit"><i class="fa fa-edit"></i>  Edit</a>
+                                    <a href="{{ path('deleteMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-default btn-delete"><i class="fa fa-trash-o"></i>  Delete</a>
                                 </td>
                                     {% else %}
                                     <td class="tdAction"></td>

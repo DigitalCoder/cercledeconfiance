@@ -47,10 +47,12 @@ class AdminUsersController extends Controller
         $form = $form->getForm();
 
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
 
         $circleId = $circle->getId();
         $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['user' => $user->getId(), 'circle' => $circleId]);
 
         $form->handleRequest($request);
 
@@ -91,6 +93,7 @@ class AdminUsersController extends Controller
         return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
         }
         return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
+
     }
 
 

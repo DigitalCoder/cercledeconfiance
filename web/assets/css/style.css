@@ -113,7 +113,8 @@ footer {
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 100px;
 }
 
 /*________Login________*/
@@ -423,6 +424,18 @@ footer {
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
+    padding: 0 20px;
+}
+.btn-edit{
+    background-color: white;
+    font-size: 15px;
+    margin: 5px;
+    padding: 10px;
+}
+.btn-delete{
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
 }
 .addUserForm{
     padding: 0;
@@ -448,6 +461,13 @@ footer {
 /*___________________Admin Appli________________*/
 
 
+.formEditUser{
+    width: 200px;
+}
+.editUserBlock{
+    margin-top: 50px;
+}
+
 /*___________________Agenda________________*/
 
 .agendaTitle {
@@ -459,4 +479,3 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
-
