@@ -89,7 +89,8 @@ footer {
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 100px;
 }
 
 /*________Login________*/
