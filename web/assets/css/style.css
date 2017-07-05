@@ -331,6 +331,7 @@ footer {
     .avatar {
         width: 40px;
     }
+
 }
 
 /*--------------Wall----------------*/
@@ -370,17 +371,30 @@ footer {
 
 .navImage {
     background-color: rgba(54,171,226,0.2);
-    border: none;
     box-shadow: black;
-    margin: 1% auto;
-    font-size: 200px;
+    margin: 3% auto;
+    font-size: 180px;
+    border: 10px solid rgb(194, 180, 153);
+    border-radius: 50%;
+    padding: 10%;
+}
+
+.navImage:hover {
+    text-decoration: none;
 }
 
 .navImageTitle {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+    .navImageTitle {
+        font-size: 20px;
+    }
+}
+
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
@@ -408,18 +422,6 @@ footer {
 
 /*___________________Admin Appli________________*/
 
-.navAdminAppli {
-    margin-top: 50px ;
-    margin-bottom: 50px ;
-}
-
-.navAdminImage {
-    background-color: rgba(54,171,226,0.2);
-    border: none;
-    box-shadow: black;
-    margin: 3%;
-    font-size: 200px;
-}
 
 /*___________________Agenda________________*/
 

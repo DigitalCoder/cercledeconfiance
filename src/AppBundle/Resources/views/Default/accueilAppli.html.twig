@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container">
         <div class="row text-center navAppli">
-            <div class="col-xs-4">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                 <a class="thumbnail navImage" href="{{ path('visio', {'token': token}) }}"
                    data-toggle="tooltip" data-placement="top" title="Visio">
                     <i class="fa fa-users"></i>
@@ -13,7 +13,7 @@
                 </a>
             </div>
             {% if circleUser.cloudaccess == true %}
-                <div class="col-xs-4">
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                     <a class="thumbnail navImage" href="{{ path('cloud', {'token': token}) }}">
                         <i class="fa fa-folder-open"></i>
                         <p class="navImageTitle">Partage de fichier</p>
@@ -22,7 +22,7 @@
             {% else %}
             {% endif %}
             {% if circleUser.wallaccess == true %}
-                <div class="col-xs-4">
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                     <a class="thumbnail navImage" href="{{ path('mur', {'token': token}) }}">
                         <i class="fa fa-comments-o"></i>
                         <p class="navImageTitle">Mur</p>
@@ -31,7 +31,7 @@
             {% else %}
             {% endif %}
             {% if circleUser.agendaaccess == true %}
-                <div class="col-xs-4">
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                     <a class="thumbnail navImage" href="{{ path('agenda', {'token': token}) }}">
                         <i class="fa fa-calendar"></i>
                         <p class="navImageTitle">Agenda</p>
@@ -39,14 +39,14 @@
                 </div>
             {% else %}
             {% endif %}
-            <div class="col-xs-4">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                 <a class="thumbnail navImage" href="{{ path('show_objects', {'token': token}) }}">
                     <i class="fa fa-bar-chart-o"></i>
                     <p class="navImageTitle">Tableau de bord</p>
                 </a>
             </div>
             {% if circleUser.adminCircle == 1 %}
-                <div class="col-xs-4">
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                     <a class="thumbnail navImage" href="{{ path('admin', {'token': token}) }}">
                         <i class="fa fa-cogs"></i>
                         <p class="navImageTitle">Administration</p>
