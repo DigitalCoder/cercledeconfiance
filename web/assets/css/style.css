@@ -1,11 +1,30 @@
 /*_____GENERAL_____*/
 
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Fresca';
+    src: url('../fonts/Fresca/Fresca-Regular.ttf') format('truetype');
+}
+
 body {
     font-size: 20px;
+    font-family: Poppins;
+}
+
+h1, h2, h3 {
+    font-family: Fresca;
 }
 
 h2 {
     font-size: 44px;
+}
+
+h3 {
+    font-weight: bold;
 }
 
 .btn-default {

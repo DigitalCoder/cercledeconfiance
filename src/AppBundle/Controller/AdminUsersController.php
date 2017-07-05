@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
+use AppBundle\Entity\Circle;
 use AppBundle\Form\Circle_userType;
 use AppBundle\Form\ObjectAccessType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -33,7 +34,7 @@ class AdminUsersController extends Controller
     /**
      * @Route("cercles/{token}/admin/membres", name="listMembers")
      */
-    public function listUsersAction(Request $request, $token)
+    public function listUsersAction(Request $request, Circle $circle)
     {
         $userToinvite = new User();
 
@@ -47,8 +48,7 @@ class AdminUsersController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $circleToken = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
-        $circleId = $circleToken->getId();
+        $circleId = $circle->getId();
         $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
 
@@ -76,17 +76,21 @@ class AdminUsersController extends Controller
         $usersWithAdminFirst[0]->getUser()->setFirstname($usersWithAdminFirst[0]->getUser()->getFirstname().' (Admin)');
         $usersWithAdminFirst[1]->getUser()->setFirstname($usersWithAdminFirst[1]->getUser()->getFirstname().' (centre)');
 
+        $currentUser = $this->getUser();
+        $circleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['circle'=>$circle->getId(), 'user'=>$currentUser->getId()]);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Invitation Cercle Confiance');
             $message->setTo($userToinvite->getEmail())
             ->setFrom($this->getParameter('mailer_user'))
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$token)), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
 
         $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
         }
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$token, "form" => $form->createView(), 'objects'=>$objects]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
     }
 
 
