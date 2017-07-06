@@ -2,7 +2,7 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block content %}
-    <div class="container marginBottom text-center">
+    <div class="btnCloud">
         <a href="{{ path('accueil') }}">
             <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
         </a>
@@ -10,49 +10,55 @@
         <a href="{{ path('appli', {'token': token}) }}">
             <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
         </a>
+    </div>
+    <div class="container-fluid marginBottom text-center section-header">
+        <h2 class="cloudTitle section-title">Partage de fichiers</h2>
+            <p class="cloudContent">Vous avez la possibilité d'envoyer des fichiers pour les autres membres du cercle.</p>
 
-            {% if error is defined %}
-                <h3>{{ error | raw }}</h3>
-            {% else %}
-                <div class="col-xs-12 marginBottom" id="dropzone">
-                    {{ form(form) }}
-                </div>
-                {% for CUser in CUsers %}
-                    {% for dataApp in CUser.dataApps|sort|reverse %}
-                        {% if dataApp.cloud is not null %}
-                            <div class="col-xs-6">
-                                <div class="thumbnail">
-                                    {% if "image" in dataApp.cloud.fileType %}
-                                        <img src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                             alt="{{ dataApp.cloud.fileName }}" width="100%"><br/>
-                                        <a href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                           download="{{ dataApp.cloud.fileName }}">
-                                            Télécharger le fichier
-                                        </a>
-                                    {% elseif "video" in dataApp.cloud.fileType %}
-                                        <video controls src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" width="100%">
-                                        </video><br/>
-                                        <a href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                           download="{{ dataApp.cloud.fileName }}">
-                                            Télécharger le fichier
-                                        </a>
-                                    {% elseif "application" in dataApp.cloud.fileType %}
-                                        <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" width="100%">
-                                        </iframe><br/>
-                                        <a href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                           download="{{ dataApp.cloud.fileName }}">
-                                            Télécharger le fichier
-                                        </a>
-                                    {% endif %}
-                                    <h4>{{ dataApp.circleUser.user.username }}</h4>
-                                    <h4>{{ dataApp.creationDate|date("d-m-Y H:i") }}</h4>
-                                </div>
+        {% if error is defined %}
+            <h3>{{ error | raw }}</h3>
+        {% else %}
+                <div class="imgCloud"></div>
+
+                {{ form(form) }}
+
+            {% for CUser in CUsers %}
+                {% for dataApp in CUser.dataApps|sort|reverse %}
+                    {% if dataApp.cloud is not null %}
+                        <div class="col-xs-6 col-lg-3">
+
+                            <div class="thumbnail imgFile">
+                                {% if "image" in dataApp.cloud.fileType %}
+                                    <img src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                         alt="{{ dataApp.cloud.fileName }}" class="itemCloud"><br/>
+                                    <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                       download="{{ dataApp.cloud.fileName }}">
+                                        <p>Télécharger le fichier</p>
+                                    </a>
+                                {% elseif "video" in dataApp.cloud.fileType %}
+                                    <video controls src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" class="itemCloud">
+                                    </video><br/>
+                                    <a href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                       download="{{ dataApp.cloud.fileName }}">
+                                        Télécharger le fichier
+                                    </a>
+                                {% elseif "application" in dataApp.cloud.fileType %}
+                                    <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" class="itemCloud">
+                                    </iframe><br/>
+                                    <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                       download="{{ dataApp.cloud.fileName }}">
+                                        <p>Télécharger le fichier</p>
+                                    </a>
+                                {% endif %}
+                                <h4>{{ dataApp.circleUser.user.username }}</h4>
+                                <h4>{{ dataApp.creationDate|date("d-m-Y H:i") }}</h4>
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
-            {% endif %}
-        </div>
+            {% endfor %}
+        {% endif %}
+    </div>
     </div>
 
 {% endblock %}

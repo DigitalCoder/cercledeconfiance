@@ -21,7 +21,8 @@ class CircleType extends AbstractType
 
             ->add('offer', EntityType::class,  [
                 'class'=>Offer::class,
-                'choice_label'=>'name'
+                'choice_label'=>'name',
+                "label"=>"Choisir une Offre"
             ])
 
         ;
