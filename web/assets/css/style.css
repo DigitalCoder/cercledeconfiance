@@ -1,6 +1,30 @@
 /*_____GENERAL_____*/
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Fresca';
+    src: url('../fonts/Fresca/Fresca-Regular.ttf') format('truetype');
+}
+
+body {
+    font-size: 20px;
+    font-family: Poppins;
+}
+
+h1, h2, h3 {
+    font-family: Fresca;
+}
+
 h2 {
     font-size: 44px;
+}
+
+h3 {
+    font-weight: bold;
 }
 
 .btn-default {
@@ -267,8 +291,8 @@ footer {
     text-align: center;
     margin-top: 3%;
     font-size: 90px;
-
 }
+
 .circleItem {
     display: inline-block;
     height: 400px;
@@ -290,9 +314,47 @@ footer {
 
 /*----------------layoutAppli------------*/
 
+.circleLink, .circleLink:hover, .circleLink:active, .circleLink:visited, .circleLink:focus {
+    text-decoration: none;
+}
+
+.paddAuth {
+    padding-top: 20px;
+}
+
+.stopPaddLink {
+    padding: 0;
+}
+
 .avatar{
     width: 50px;
 }
+
+
+@media screen and (max-width: 768px){
+    .paddAuth {
+        padding-top: 10px;
+    }
+
+    .respNavApp {
+        font-size: 25px;
+    }
+
+    .respLink {
+        font-size: 15px;
+    }
+
+    .logo {
+        width: 70px;
+        padding-top: 15px;
+    }
+
+    .avatar {
+        width: 40px;
+    }
+
+}
+
 /*--------------Wall----------------*/
 .wallContent{
     margin: 20px auto;
@@ -329,17 +391,36 @@ footer {
 }
 
 .navImage {
-    background-color: rgba(54,171,226,0.2);
-    border: none;
+    background-color: rgba(194, 180, 153,0.4);
     box-shadow: black;
-    margin: 1% auto;
-    font-size: 200px;
+    margin: 3% auto;
+    font-size: 180px;
+    border: 10px solid rgb(28, 117, 188);
+    border-radius: 50%;
+    padding: 10%;
+}
+
+.navImage:hover, .navImage:focus, .navImage:active {
+    text-decoration: none;
+    border: 10px solid rgb(194, 180, 153);
 }
 
 .navImageTitle {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
     text-decoration: none;
 }
+
+.pictoColor {
+    color: rgb(28, 117, 188);
+}
+
+@media screen and (max-width: 768px) {
+    .navImageTitle {
+        font-size: 20px;
+    }
+}
+
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
@@ -379,18 +460,6 @@ footer {
 
 /*___________________Admin Appli________________*/
 
-.navAdminAppli {
-    margin-top: 50px ;
-    margin-bottom: 50px ;
-}
-
-.navAdminImage {
-    background-color: rgba(54,171,226,0.2);
-    border: none;
-    box-shadow: black;
-    margin: 3%;
-    font-size: 200px;
-}
 
 .formEditUser{
     width: 200px;
