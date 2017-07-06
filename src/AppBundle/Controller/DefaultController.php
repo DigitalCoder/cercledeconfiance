@@ -150,6 +150,7 @@ du cercle pour plus d\'informations.',
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
-        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser]);
+        return $this->render('AppBundle:Default:statsObjects.html.twig',
+            ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser]);
     }
 }
