@@ -597,6 +597,10 @@ footer {
     }
 }
 
+/*___________________Gerer Membre________________*/
+.thumbMember{
+    margin: 25px 35px;
+}
 /*___________________Creation Cercle________________*/
 
 .labelFormCC {
