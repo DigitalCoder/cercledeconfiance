@@ -23,7 +23,7 @@ h2 {
     font-size: 44px;
 }
 
-h3 {
+h3, h4 {
     font-weight: bold;
 }
 
@@ -63,11 +63,6 @@ header {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
 }
 
-.navbar.navbar-default .paddingLogoNav {
-    height: auto;
-    padding: 5% 5% 5% 5%;
-    margin-left: 5%;
-}
 
 #main-menu.navbar-default .navbar-nav > li.active > a, #main-menu.navbar-default .navbar-nav > li.open > a, #main-menu.navbar-default .navbar-nav > li:hover > a {
     border-top: none;
@@ -87,45 +82,17 @@ header {
 .navbar .navbar-collapse {
     text-align: center;
 }
+
 .logo {
     width: 100px;
 }
-@media (max-width: 1700px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-fixed-top {
-        top: 0;
-        border-width: 0 0 1px;
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin-top: 7.5px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .collapse.in{
-        display:block !important;
-    }
+
+.navbar.navbar-default .paddingLogoNav {
+    height: auto;
+    padding: 5% 5% 5% 5%;
+    margin-left: 5%;
 }
+
 
 /*_____FOOTER_____*/
 footer {
@@ -560,6 +527,88 @@ footer {
     margin-bottom: 50px ;
 }
 
+/*________ Visio ________*/
+
+.visioTitle {
+    margin-top: 30px;
+}
+
+.blockVisio {
+    position: relative;
+    padding: 0;
+}
+
+#receive {
+    width: 100%;
+    border: 5px solid rgb(194, 180, 153);
+    border-radius: 20px;
+}
+
+#send {
+    width: 20%;
+    position: absolute;
+    right: 0;
+    border: 5px solid rgb(28, 117, 188);
+    border-radius: 20px;
+}
+
+.visioMembers {
+    background-color: rgba(194, 180, 153,0.4);
+    border: 5px solid rgb(28, 117, 188);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.miniAvatar {
+    width: 25px;
+}
+
+.listUser {
+    list-style: none;
+}
+
+.listUser .backVisioMembers {
+    background-color: rgba(194, 180, 153,0.2);
+    border-radius: 40px;
+}
+
+.marginLinkMembers {
+    margin: 10px auto 10px auto;
+}
+
+@media screen and (max-width: 1300px) {
+    .backVisioMembers {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .backVisioMembers {
+        display: inline;
+    }
+
+    .blockVisio {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .section-header .visioTitle {
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section-header .visioTitle {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .section-header .visioTitle {
+        font-size: 18px;
+    }
+}
+
 /*___________________Creation Cercle________________*/
 
 .labelFormCC {
@@ -583,5 +632,18 @@ footer {
 .hiddenFormCC {
     visibility: hidden;
 }
-
+.btnOffer {
+    margin-top: 5%;
+}
+.btnDelet {
+    background-color: #f44242;
+}
+.btnDelet:hover,
+.btnDelet:focus,
+.btnDelet:active,
+.btnDelet:active {
+    background: #f44242;
+    border: 2px solid #1C75BC;
+    color: white;
+}
 
