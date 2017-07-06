@@ -524,7 +524,6 @@ footer {
 
 /*___________________Admin Appli________________*/
 
-
 .formEditUser{
     width: 200px;
 }
@@ -543,3 +542,28 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
+
+/*___________________Creation Cercle________________*/
+
+.labelFormCC {
+    margin-top: 15px;
+}
+
+.labelTitleFormCC {
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.submitFormCC {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.createCircleTitle {
+    margin-top: 50px;
+}
+
+.hiddenFormCC {
+    visibility: hidden;
+}
+

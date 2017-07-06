@@ -9,10 +9,59 @@
 
 
         <div class="container text-center">
-            <h3>Créer un cercle</h3>
+            <div class="section-header wow fadeInDown createCircleTitle">
+                <h2 class="section-title text-center">Créer un cercle</h2>
+            </div>
 
             {{ form_start(form) }}
 
+            {{ form_label(form.user, 'Renseigner la personne a surveiller', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
+
+            {{ form_label(form.user.name, 'Nom', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.name) }}
+            {{ form_widget(form.user.name) }}
+
+            {{ form_label(form.user.firstname, 'Prénom', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.firstname) }}
+            {{ form_widget(form.user.firstname) }}
+
+            {{ form_widget(form.user.address, {'attr': {'class': 'labelFormCC'}}) }}
+
+            {{ form_errors(form.user.address) }}
+
+            {{ form_label(form.user.phone_number, 'Numéro de téléphone', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.phone_number) }}
+            {{ form_widget(form.user.phone_number) }}
+
+            {{ form_label(form.user.email, 'Email', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.email) }}
+            {{ form_widget(form.user.email) }}
+
+            {{ form_label(form.user.avatar, 'Photo', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.avatar) }}
+            {{ form_widget(form.user.avatar) }}
+
+            {{ form_label(form.user.username, 'Nom d\'utilisateur', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.user.username) }}
+            {{ form_widget(form.user.username) }}
+
+            {{ form_errors(form.user.plainPassword) }}
+            {{ form_widget(form.user.plainPassword, {'attr': {'class': 'labelFormCC'}}) }}
+
+            {{ form_widget(form.user.relation, {'attr': {'value': 'center', 'class': 'hiddenFormCC'}}) }}
+
+
+            {{ form_label(form.circle, 'Le Cercle', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
+
+            {{ form_label(form.circle.name, 'Nom du Cercle', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.circle.name) }}
+            {{ form_widget(form.circle.name) }}
+
+            {{ form_label(form.circle.offer, 'Choisir une Offre', {'label_attr': {'class': 'labelFormCC'}})}}
+            {{ form_errors(form.circle.offer) }}
+            {{ form_widget(form.circle.offer) }}
+
+            {{ form_row(form.save, { 'label': 'Créer le Cercle', 'attr': {'class': 'submitFormCC btn btn-default'} }) }}
 
             {{ form_end(form) }}
         </div>
