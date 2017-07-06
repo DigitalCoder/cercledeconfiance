@@ -90,6 +90,42 @@ header {
 .logo {
     width: 100px;
 }
+@media (max-width: 1700px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
 
 /*_____FOOTER_____*/
 footer {
@@ -163,6 +199,8 @@ footer {
 }
 
 
+
+
 /*_____Page ObjetsCo_____*/
 
 .objetsTitleFront {
@@ -188,6 +226,7 @@ footer {
 .firstItem {
     background-image: url(../images/slider/slider1.jpeg);
 }
+
 
 .secondItem {
     background-image: url(../images/slider/slider2.jpeg);
@@ -251,29 +290,70 @@ footer {
 
 /*______________ CLOUD ____________*/
 
-#dropzone {
-    border: 3px dashed black;
+
+.imgCloud{
+    background-image: url("../img/cloud.png");
+}
+.btnCloud {
+    text-align: left;
+    display: inline-block;
+    margin-top:3%;
+}
+.cloudTitle {
+    font-size: 44px;
+    margin-top: 25%;
+}
+.cloudContent {
+    font-size: 19px;
+    margin-top: 5%;
+}
+.downloadFile > p{
+    font-size: 30px;
+}
+.itemCloud {
+    width: 100%;
+}
+.imgFile {
+    max-width: 429px;
+    max-height: 321px;
+}
+/*--------------Circle----------------*/
+.circleSub {
+    text-align: center;
 }
 
-/*--------------Circle----------------*/
-.circleHome {
-    filter: brightness(70%);
-    background: transparent url("../img/circle.jpg") no-repeat;
+.circleItem {
+
+    width: 440px;
+    height: 440px;
+    border-radius: 220px;
+    vertical-align: top;
     position: relative;
-    background-size: cover;
-    height: 100vh;
+    z-index: -1;
+    border: 10px solid #C2B499;
+    margin: auto;
+
 }
+.circleMember{
+    width: 110px;
+    height: 110px;
+    border-radius: 55px;
+    display: inline-block;
+    margin-top: -10%;
+    border: 10px solid #C2B499;
+
+}
+
 .btn-circle {
     display: block;
     height: 180px;
     width: 180px;
     border-radius: 50%;
-    border: 15px solid #1C75BC;
-    background-color: #C2B499;
+    border: 10px solid #C2B499;
+    background-color: #36ABE2;
     hover: white;
     text-align: center;
-    margin: 10px;
-    margin-top: 3%;
+    margin-top: 0px;
     padding: 30px;
     color: black;
     font-size: 20px;
@@ -285,14 +365,13 @@ footer {
 
 }
 .circle {
-    margin: 12% 0 0 0;
+    margin: 5px auto;
 }
 .circleTitle {
     text-align: center;
     margin-top: 3%;
     font-size: 90px;
 }
-
 .circleItem {
     display: inline-block;
     height: 400px;
@@ -309,9 +388,9 @@ footer {
     background-color: #C2B499;
     vertical-align: top;
 
-
+.circleImg {
+    width: 25px;
 }
-
 /*----------------layoutAppli------------*/
 
 .circleLink, .circleLink:hover, .circleLink:active, .circleLink:visited, .circleLink:focus {
