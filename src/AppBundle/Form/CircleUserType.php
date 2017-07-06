@@ -17,8 +17,8 @@ class CircleUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', RegistrationType::class, array("label"=>"Renseigner la personne a surveiller"))
-            ->add('circle', CircleType::class, array("label"=>"Cercle"))
+            ->add('user', RegistrationType::class)
+            ->add('circle', CircleType::class)
             ->add('save', SubmitType::class);
     }
     

@@ -16,22 +16,35 @@
     <nav class="navbar navbar-default stopPadding">
         <div class="container-fluid">
             <div class="row">
-            <div class="navbar-header col-xs-2">
-                <a class="paddingLogoNav navbar-brand" href="/">
-                    <img src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
-                         alt="logo_cercle_confiance" class="logo">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
+                <div class="navbar-header col-xs-2">
+                    <a class="paddingLogoNav navbar-brand" href="/">
+                        <img src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                             alt="logo_cercle_confiance" class="logo">
+                    </a>
+                </div>
+                <div class="navbar-collapse">
                     <div class="col-xs-8">
-                        <h1>{{ circleUser.circle.name }}</h1>
+                        <a class="circleLink respLink" href="{{ path('accueil') }}">
+                            <h1 class="respNavApp">{{ circleUser.circle.name }}</h1>
+                            <i class="fa fa-arrow-circle-o-left"></i> Changer de cercle
+                        </a>
                     </div>
                     {% if app.user.username is defined %}
-                        <div class="col-xs-2">
-                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
-                            {{ app.user.username }}<br/>
-                            <a href="{{ path('fos_user_profile_edit', {'token': token}) }}">Mon profil </a>
-                            <a href="/logout"> Déconnexion</a>
+                        <div class="col-xs-1 col-sm-2 paddAuth">
+                            <div class="row">
+                                <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">
+                                {{ app.user.username }}
+                            </div>
+                            <div class="row text-center respLink">
+                                <div class="col-sm-2 col-sm-offset-4 col-xs-6 stopPaddLink">
+                                    <a href="{{ path('fos_user_profile_edit', {'token': token}) }}"><i
+                                                class="fa fa-address-card-o"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-3 stopPaddLink">
+                                    <a href="/logout"> <i class="fa fa-sign-out"></i></a>
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
                 </div>
@@ -41,3 +54,6 @@
         </div>
     </nav>
 {% endblock %}
+
+{% block footer %}{% endblock %}
+
