@@ -83,6 +83,10 @@ header {
     text-align: center;
 }
 
+.logo {
+    width: 100px;
+}
+
 @media (max-width: 1700px) {
     .navbar-header {
         float: none;
