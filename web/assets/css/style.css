@@ -286,13 +286,23 @@ footer {
     max-height: 321px;
 }
 /*--------------Circle----------------*/
+
+.circletest {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.circleHome {
+    background: url("../img/circle.jpg") no-repeat fixed;
+    background-size: cover;
+    z-index: 1;
+}
 .circleSub {
     text-align: center;
 }
 .circleOwner{
-    margin-top: 100px;
-    padding-top: 50px;
-    line-height: 90px;
+    margin-top: 40px;
+    padding-top: 20px;
+    z-index: 1;
+    position: relative;
 }
 .circleItem {
 
@@ -312,6 +322,8 @@ footer {
     margin-top: -10%;
     border: 10px solid #C2B499;
     margin-right: -23px;
+    z-index: 4;
+    position: relative;
 }
 
 .btn-circle {
@@ -330,7 +342,7 @@ footer {
     position: absolute;
     top: 0px;
     right: 10px;
-    animation: pulse 10s infinite;
+    animation: pulse 1s infinite;
     vertical-align: top;
 
 }
