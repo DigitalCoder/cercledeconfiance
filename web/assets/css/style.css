@@ -479,3 +479,85 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
+
+/*________ Visio ________*/
+
+.visioTitle {
+    margin-top: 30px;
+}
+
+.blockVisio {
+    position: relative;
+    padding: 0;
+}
+
+#receive {
+    width: 100%;
+    border: 5px solid rgb(194, 180, 153);
+    border-radius: 20px;
+}
+
+#send {
+    width: 20%;
+    position: absolute;
+    right: 0;
+    border: 5px solid rgb(28, 117, 188);
+    border-radius: 20px;
+}
+
+.visioMembers {
+    background-color: rgba(194, 180, 153,0.4);
+    border: 5px solid rgb(28, 117, 188);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.miniAvatar {
+    width: 25px;
+}
+
+.listUser {
+    list-style: none;
+}
+
+.listUser .backVisioMembers {
+    background-color: rgba(194, 180, 153,0.2);
+    border-radius: 40px;
+}
+
+.marginLinkMembers {
+    margin: 10px auto 10px auto;
+}
+
+@media screen and (max-width: 1300px) {
+    .backVisioMembers {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 992px) {
+    .backVisioMembers {
+        display: inline;
+    }
+
+    .blockVisio {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .section-header .visioTitle {
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section-header .visioTitle {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .section-header .visioTitle {
+        font-size: 18px;
+    }
+}

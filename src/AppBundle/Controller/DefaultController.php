@@ -29,10 +29,10 @@ class DefaultController extends Controller
         $user = $this->getUser();
 
 
-        $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user->getId()]);
+        $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user' => $user->getId()]);
 
         return $this->render('AppBundle:Default:showCircles.html.twig',
-            ['CUsers' => $circle_users, 'circleUser'=>$user]);
+            ['CUsers' => $circle_users, 'circleUser' => $user]);
     }
 
     /**
@@ -81,7 +81,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
-        $param = ['token' => $circle->getToken(), 'circleUser'=>$currentCircleUser];
+        $cUsers = $em->getRepository('AppBundle:CircleUser')
+            ->findBy(['circle' => $circle->getId()]);
+        $param = ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser, 'CUsers' => $cUsers];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
     }
 
@@ -103,7 +105,7 @@ class DefaultController extends Controller
                 ['token' => $circle->getToken(),
                     'error' => 'Vous n\'avez pas accès à cette fonctionnalité.<br/>Contactez l\'administrateur 
 du cercle pour plus d\'informations.',
-                    'circleUser'=>$currentCircleUser]);
+                    'circleUser' => $currentCircleUser]);
         }
 
         $circleUsers = $em->getRepository('AppBundle:CircleUser')
@@ -113,7 +115,7 @@ du cercle pour plus d\'informations.',
         $dataApp = new DataApp();
 
         $form = $this->createFormBuilder($cloud)
-            ->add('file_name', FileType::class, ['label'=>'Envoyer un fichier'])
+            ->add('file_name', FileType::class, ['label' => 'Envoyer un fichier'])
             ->add('Envoyer', SubmitType::class)
             ->getForm();
 
@@ -134,7 +136,7 @@ du cercle pour plus d\'informations.',
         }
 
         $param = ['token' => $circle->getToken(), 'CUsers' => $circleUsers, 'form' => $form->createView(),
-            'circleUser'=>$currentCircleUser];
+            'circleUser' => $currentCircleUser];
         return $this->render('AppBundle:Default:cloud.html.twig', $param);
     }
 
@@ -148,6 +150,6 @@ du cercle pour plus d\'informations.',
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
-        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token'=>$circle->getToken(), 'circleUser'=>$currentCircleUser]);
+        return $this->render('AppBundle:Default:statsObjects.html.twig', ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser]);
     }
 }
