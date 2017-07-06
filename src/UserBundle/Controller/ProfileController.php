@@ -58,10 +58,10 @@ class ProfileController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
+        $oldfile = $user->getAvatar();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-//        $form = $this->createForm(CircleType::class, $circle);
 
         /** @var $dispatcher EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
@@ -80,6 +80,9 @@ class ProfileController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
+        if ($user->getAvatar() === null) {
+            $user->setAvatar($oldfile);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var $userManager UserManagerInterface */
@@ -91,7 +94,7 @@ class ProfileController extends Controller
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
+                $url = $this->generateUrl('accueil');
                 $response = new RedirectResponse($url);
             }
 
