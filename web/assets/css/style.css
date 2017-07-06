@@ -251,9 +251,25 @@ footer {
 /*    Formulaire Services         */
 /*-------------------------------*/
 
-.offerform h3 {
-    font-size: 35px;
-    margin-top: 15%;
+.btnOffer {
+    margin-top: 5%;
+}
+.btnDelet {
+    background-color: #f44242;
+}
+.btnDelet:hover,
+.btnDelet:focus,
+.btnDelet:active,
+.btnDelet:active {
+    background: #f44242;
+    border: 2px solid #1C75BC;
+    color: #F0F4F5;
+}
+.offerPage {
+    margin:10% auto;
+}
+.offerTitle{
+    margin-top: 6%;
 }
 
 /*______________ CLOUD ____________*/
@@ -738,6 +754,7 @@ footer {
 .hiddenFormCC {
     visibility: hidden;
 }
+
 /*___________________Services________________*/
 
 .btnOffer {
