@@ -18,9 +18,6 @@
                     <a class="btn-circle" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
                 </div>
             </div>
-
-
-
             <div class="row text-center">
 
                 {% for CUser in CUsers %}
@@ -33,8 +30,6 @@
                         {% endif %}
 
                         <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
-
-
 
                             {% for circleUser in CUser.circle.circleUsers %}
                                 {% if circleUser.circleCenter == true %}
