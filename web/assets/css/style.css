@@ -146,6 +146,11 @@ footer {
     color: #777;
     margin-top: 4%;
 }
+
+.footerLinks {
+    margin-top: 2%;
+}
+
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
@@ -214,10 +219,6 @@ footer {
 .paddAnchor {
     padding-top: 100px;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> e81f39625322102db265b468671c3e53d1bc8343
 .marginTitle {
     margin-top: 30px;
 }
@@ -229,11 +230,6 @@ footer {
 .firstItem {
     background-image: url(../images/slider/slider1.jpeg);
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e81f39625322102db265b468671c3e53d1bc8343
 .secondItem {
     background-image: url(../images/slider/slider2.jpeg);
 }
@@ -241,10 +237,6 @@ footer {
 .medal {
     display: inline;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> e81f39625322102db265b468671c3e53d1bc8343
 .quote {
     color: #1C75BC;
     text-align: center;
@@ -380,22 +372,6 @@ footer {
     text-align: center;
     margin-top: 3%;
     font-size: 90px;
-}
-.circleItem {
-    display: inline-block;
-    height: 400px;
-    width: 400px;
-    border-radius: 200px;
-    border: 25px solid #1C75BC;
-    hover: white;
-    text-align: center;
-    margin: 10px;
-    margin-left: 17%;
-    padding: 20px;
-    color: black;
-    font-size: 20px;
-    background-color: #C2B499;
-    vertical-align: top;
 }
 
 .circleImg {
@@ -549,7 +525,6 @@ footer {
 
 /*___________________Admin Appli________________*/
 
-
 .formEditUser{
     width: 200px;
 }
@@ -568,3 +543,28 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
+
+/*___________________Creation Cercle________________*/
+
+.labelFormCC {
+    margin-top: 15px;
+}
+
+.labelTitleFormCC {
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.submitFormCC {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.createCircleTitle {
+    margin-top: 50px;
+}
+
+.hiddenFormCC {
+    visibility: hidden;
+}
+
