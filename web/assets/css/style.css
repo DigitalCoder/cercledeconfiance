@@ -332,11 +332,10 @@ footer {
 
 /*--------------Circle----------------*/
 .circleSub {
-    text-align: center;
+    margin-bottom: 50px;
 }
 
 .circleItem {
-
     width: 440px;
     height: 440px;
     border-radius: 220px;
@@ -345,7 +344,6 @@ footer {
     z-index: -1;
     border: 10px solid #C2B499;
     margin: auto;
-
 }
 .circleMember{
     width: 110px;
@@ -354,7 +352,14 @@ footer {
     display: inline-block;
     margin-top: -10%;
     border: 10px solid #C2B499;
+}
 
+.linkCircle, .linkCircle:hover, .linkCircle:focus, .linkCircle:active {
+    text-decoration: none;
+}
+
+.margFooter {
+    margin-bottom: 50px;
 }
 
 .btn-circle {
@@ -363,25 +368,18 @@ footer {
     width: 180px;
     border-radius: 50%;
     border: 10px solid #C2B499;
-    background-color: #36ABE2;
-    hover: white;
+    background-color: rgba(28, 117, 188, 0.6);
     text-align: center;
-    margin-top: 0px;
+    margin-top: 3%;
     padding: 30px;
     color: black;
     font-size: 20px;
-    position: absolute;
-    top: 0px;
-    right: 10px;
     animation: pulse 10s infinite;
-    vertical-align: top;
-
 }
 .circle {
     margin: 5px auto;
 }
 .circleTitle {
-    text-align: center;
     margin-top: 3%;
     font-size: 90px;
 }
