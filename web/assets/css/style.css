@@ -63,11 +63,6 @@ header {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
 }
 
-.navbar.navbar-default .paddingLogoNav {
-    height: auto;
-    padding: 5% 5% 5% 5%;
-    margin-left: 5%;
-}
 
 #main-menu.navbar-default .navbar-nav > li.active > a, #main-menu.navbar-default .navbar-nav > li.open > a, #main-menu.navbar-default .navbar-nav > li:hover > a {
     border-top: none;
@@ -87,9 +82,7 @@ header {
 .navbar .navbar-collapse {
     text-align: center;
 }
-.logo {
-    width: 100px;
-}
+
 @media (max-width: 1700px) {
     .navbar-header {
         float: none;
@@ -124,6 +117,64 @@ header {
     }
     .collapse.in{
         display:block !important;
+    }
+
+    .scroll {
+        margin-top: 10px;
+    }
+
+    .desktopLogout {
+        display: none;
+    }
+
+    .navbar.navbar-default .paddingLogoNav {
+        height: auto;
+        padding: 1% 1% 1% 1%;
+        margin-left: 5%;
+    }
+
+    .blockLogout{
+        margin-top: 20px;
+    }
+
+    .btnLogout {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .logoFront {
+        width: 70px;
+        padding-top: 5px;
+    }
+
+    .navbar.navbar-default .navbar-toggle {
+        margin-top: 20px;
+    }
+
+}
+
+@media (min-width: 1700px) {
+    .responsiveLogout {
+        display: none;
+    }
+
+    .navbar.navbar-default .paddingLogoNav {
+        height: auto;
+        padding: 5% 5% 5% 5%;
+        margin-left: 5%;
+    }
+
+    .blockLogout{
+        margin-top: 1%;
+    }
+
+    .btnLogout {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .logoFront {
+        width: 100px;
     }
 }
 
