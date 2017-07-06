@@ -20,5 +20,7 @@
 /src/UserBundle/Entity/*~
 .web-server-pid
 /web/uploads/
+/src/UserBundle/Entity/*~
+
 /mqtt/config.php
 

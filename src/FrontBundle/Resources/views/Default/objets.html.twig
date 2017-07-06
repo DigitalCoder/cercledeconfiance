@@ -1,7 +1,13 @@
 {% extends "FrontBundle::layoutFront.html.twig" %}
 
 {% block title %}Objets Connectés{% endblock %}
-
+{% block links %}
+    <li class="scroll"><a href="/">Accueil</a></li>
+    <li class="scroll"><a href="{{ path('presentation') }}">Qui sommes nous ?</a></li>
+    <li class="scroll"><a href="{{ path('services') }}"> Nos services</a></li>
+    <li class="scroll active"><a href="{{ path('pres_objets') }}">Nos objets connectés</a></li>
+    <li class="scroll"><a href="{{ path('accueil') }}">Accéder aux cercles</a></li>
+{% endblock %}
 {% block content %}
     <section id="objects" >
         <div class="container">
