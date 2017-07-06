@@ -6,12 +6,11 @@
 
 
 {% block content %}
-    {#{{ dump() }}#}
 
-        <div class="container text-center">
-            <div class="section-header wow fadeInDown createCircleTitle">
-                <h2 class="section-title text-center">Créer un cercle</h2>
-            </div>
+    <div class="container text-center col-md-4 col-md-offset-4 registerform">
+        <header class="section-header">
+            <h2 class="section-title text-center wow fadeInDown">Créer un compte</h2>
+        </header>
 
             {{ form_start(form) }}
 
@@ -25,7 +24,7 @@
             {{ form_errors(form.user.firstname) }}
             {{ form_widget(form.user.firstname) }}
 
-            {{ form_widget(form.user.address) }}
+            {{ form_widget(form.user.address, {'attr': {'class': 'labelFormCC'}}) }}
             {{ form_errors(form.user.address) }}
 
             {{ form_label(form.user.phone_number, 'Numéro de téléphone', {'label_attr': {'class': 'labelFormCC'}})}}
@@ -44,10 +43,10 @@
             {{ form_errors(form.user.username) }}
             {{ form_widget(form.user.username) }}
 
-            {{ form_widget(form.user.plainPassword) }}
+            {{ form_errors(form.user.plainPassword) }}
+            {{ form_widget(form.user.plainPassword, {'attr': {'class': 'labelFormCC'}}) }}
 
-            {% do form.user.relation.setRendered %}
-
+            {{ form_widget(form.user.relation, {'attr': {'value': 'center', 'class': 'hiddenFormCC'}}) }}
 
             {{ form_label(form.circle, 'Le Cercle', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
 
@@ -59,8 +58,7 @@
             {{ form_errors(form.circle.offer) }}
             {{ form_widget(form.circle.offer) }}
 
-            {{ form_label(form.save, 'Créer le Cercle', {'label_attr': {'class': 'submitFormCC btn btn-default'}})}}
-            {{ form_widget(form.save, {'attr': {'class': 'submitFormCC btn btn-default'}}) }}
+            {{ form_row(form.save, { 'label': 'Créer le Cercle', 'attr': {'class': 'submitFormCC btn btn-default'} }) }}
 
             {{ form_end(form) }}
         </div>

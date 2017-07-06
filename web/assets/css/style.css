@@ -543,15 +543,15 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
-/*___________________Accueil Appli________________*/
+/*___________________Creation Cercle________________*/
 
 .labelFormCC {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .labelTitleFormCC {
-    margin-top: 15px;
-    font-size: 30px;
+    margin-top: 20px;
+    font-size: 25px;
 }
 
 .submitFormCC {
@@ -561,4 +561,8 @@ footer {
 
 .createCircleTitle {
     margin-top: 50px;
+}
+
+.hiddenFormCC {
+    visibility: hidden;
 }
