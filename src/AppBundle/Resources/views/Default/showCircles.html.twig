@@ -28,10 +28,10 @@
 
                             <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
 
-                                {{ CUser.circle.name }}
 
                                 {% for circleUser in CUser.circle.circleUsers %}
                                     {% if circleUser.circleCenter == true %}
+                                        <h3>{{ CUser.circle.name }}</h3>
                                         {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleItem" >
                                     {% elseif circleUser.adminCircle == true %}
                                         <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleMember" >
