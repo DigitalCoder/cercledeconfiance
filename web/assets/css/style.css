@@ -511,6 +511,8 @@ footer {
 
 .itemWallVideo {
     margin-left: 33%;
+    width: 33%;
+    z-index: 10;
 }
 
 @media screen and (min-device-width: 768px){
