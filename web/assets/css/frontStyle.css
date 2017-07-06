@@ -1,0 +1,94 @@
+@media (max-width: 1700px) {
+    .navbar-header {
+    float: none;
+    }
+    .navbar-left,.navbar-right {
+    float: none !important;
+    }
+    .navbar-toggle {
+    display: block;
+    }
+    .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+    display: none!important;
+    }
+    .navbar-nav {
+    float: none!important;
+    margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+    float: none;
+    }
+    .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    }
+    .collapse.in{
+    display:block !important;
+    }
+
+    .scroll {
+        margin-top: 10px;
+    }
+
+    .desktopLogout {
+        display: none;
+    }
+
+    .navbar.navbar-default .paddingLogoNavFront {
+        height: auto;
+        padding: 1% 1% 1% 1%;
+        margin-left: 5%;
+    }
+
+    .blockLogout{
+        margin-top: 20px;
+    }
+
+    .btnLogout {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .logoFront {
+        width: 70px;
+        padding-top: 5px;
+    }
+
+    .navbar.navbar-default .navbar-toggle {
+    margin-top: 20px;
+    }
+
+}
+
+@media (min-width: 1700px) {
+    .responsiveLogout {
+        display: none;
+    }
+
+    .navbar.navbar-default .paddingLogoNavFront {
+        height: auto;
+        padding: 5% 5% 5% 5%;
+        margin-left: 5%;
+    }
+
+    .blockLogout{
+        margin-top: 1%;
+    }
+
+    .btnLogout {
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+
+    .logoFront {
+        width: 100px;
+    }
+}
