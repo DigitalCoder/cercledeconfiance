@@ -297,8 +297,7 @@ footer {
 }
 .itemCloud {
     width: 300px;
-    margin-top: 100px;
-    margin-left: 18%;
+    margin: 100px auto 0 auto;
 }
 .imgFile {
     max-width: 429px;
@@ -504,6 +503,14 @@ footer {
     height: auto;
     margin-right: auto;
     margin-left: auto;
+}
+
+.itemWall {
+    margin: 0 auto;
+}
+
+.itemWallVideo {
+    margin-left: 33%;
 }
 
 @media screen and (min-device-width: 768px){
@@ -828,6 +835,7 @@ footer {
 }
 .btnDelet {
     background-color: #f44242;
+    color: white;
 }
 .btnDelet:hover,
 .btnDelet:focus,
