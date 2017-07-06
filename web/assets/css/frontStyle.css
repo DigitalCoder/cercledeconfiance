@@ -36,6 +36,8 @@
 
     .scroll {
         margin-top: 10px;
+        text-align: center;
+        margin-left: 48%;
     }
 
     .desktopLogout {
