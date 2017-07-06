@@ -276,15 +276,39 @@ footer {
     margin-top: 5%;
 }
 .downloadFile > p{
-    font-size: 30px;
+    font-size: 20px;
+    text-decoration: none;
 }
 .itemCloud {
-    width: 100%;
+    width: 300px;
 }
 .imgFile {
     max-width: 429px;
     max-height: 321px;
 }
+
+.marginCloud {
+    margin-top: 75px;
+}
+
+.cloudBorder {
+    border: solid 5px #36ABE2;
+}
+
+.thumbCloud {
+    margin-top: 1%;
+}
+
+.cloudBack {
+    border: solid 2px #36ABE2;
+    background-color: #36ABE2;
+}
+
+.cloudListTitle {
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
 /*--------------Circle----------------*/
 .circleSub {
     text-align: center;
@@ -388,6 +412,8 @@ footer {
 }
 
 /*--------------Wall----------------*/
+
+
 .wallContent{
     margin: 20px auto;
 }
