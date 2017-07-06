@@ -33,7 +33,7 @@
                                             Centre : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <br/>
                                         {% elseif circleUser.adminCircle == 1 %}
                                             Administrateur : {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ app.user.avatar) }}" width="25px">
-                                            <br/>
+                                            <br />
                                         {% else %}
                                             Membre : {{ circleUser.user.name }} {{ circleUser.user.firstname }}  <br/>
                                         {% endif %}
