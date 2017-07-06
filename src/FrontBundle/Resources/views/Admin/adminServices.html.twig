@@ -19,7 +19,7 @@
 
             <h3 class="section-header section-title text-center">Choisissez Votre Service</h3>
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+                {{ form_widget(form.name, { 'attr': {'class': 'offerForm'} }) }}
             <div class="form-group">
                  <input class="btn btn-default form-control btnOffer" type="submit" name="add" value="Modifiez votre service"/>
                 <a class="btn btn-default form-control btnOffer btnDelet" type="submit" name="delete" data-toggle="modal" data-target="#confirm">Supprimer le cercle</a>

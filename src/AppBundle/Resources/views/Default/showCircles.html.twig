@@ -10,8 +10,8 @@
     <section>
         <div class="container-fluid circle">
 
-            <div class="row">
-                <h1 class="circleTitle text-primary">Mes Cercles</h1>
+            <div class="row section-header">
+                <h1 class="circleTitle text-primary section-title">Mes Cercles</h1>
                 <h2 class="circleSub">Liste des cercles dont vous faites partie</h2>
                 <div class="col-xs-3 col-md-offset-9">
                     <a class="btn-circle" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
@@ -29,10 +29,12 @@
                             <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
 
 
+
                                 {% for circleUser in CUser.circle.circleUsers %}
                                     {% if circleUser.circleCenter == true %}
-                                        <h3>{{ CUser.circle.name }}</h3>
-                                        {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleItem" >
+                                        <div class="circleOwner">
+                                        <h3>{{ CUser.circle.name }} {{ circleUser.user.name }} {{ circleUser.user.firstname }}</h3><img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleItem" >
+                                        </div>
                                     {% elseif circleUser.adminCircle == true %}
                                         <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleMember" >
                                     {% elseif circleUser.circleCenter == false %}

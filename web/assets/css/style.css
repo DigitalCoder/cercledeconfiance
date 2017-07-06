@@ -289,27 +289,29 @@ footer {
 .circleSub {
     text-align: center;
 }
-
+.circleOwner{
+    margin-top: 100px;
+    padding-top: 50px;
+    line-height: 90px;
+}
 .circleItem {
 
     width: 440px;
     height: 440px;
-    border-radius: 220px;
     vertical-align: top;
     position: relative;
     z-index: -1;
     border: 10px solid #C2B499;
     margin: auto;
-
+    line-height: 90px;
 }
 .circleMember{
     width: 110px;
     height: 110px;
-    border-radius: 55px;
     display: inline-block;
     margin-top: -10%;
     border: 10px solid #C2B499;
-
+    margin-right: -23px;
 }
 
 .btn-circle {
