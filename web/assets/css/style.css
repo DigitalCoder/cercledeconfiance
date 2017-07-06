@@ -1,6 +1,30 @@
 /*_____GENERAL_____*/
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Fresca';
+    src: url('../fonts/Fresca/Fresca-Regular.ttf') format('truetype');
+}
+
+body {
+    font-size: 20px;
+    font-family: Poppins;
+}
+
+h1, h2, h3 {
+    font-family: Fresca;
+}
+
 h2 {
     font-size: 44px;
+}
+
+h3 {
+    font-weight: bold;
 }
 
 .btn-default {
@@ -125,8 +149,16 @@ footer {
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
-    margin-top: 30px;
+    margin-top: 0px;
+    padding-top: 100px;
 }
+
+/*________Login________*/
+
+.marginBtnRegister {
+    margin: 30px auto 50px auto;
+}
+
 /*_____Page QuiSommesNous_____*/
 .qsn {
     margin: 3% 0;
@@ -286,21 +318,6 @@ footer {
     max-height: 321px;
 }
 /*--------------Circle----------------*/
-/*.circlehome {*/
-    /*background-image: url("../img/logos/logo-CERCLE-CONFIANCE-quadri.png");*/
-    /*background-size: cover;*/
-    /*display: block;*/
-    /*!*filter: brightness(10%);*!*/
-    /*height: 800px;*/
-    /*left: 0;*/
-    /*position: fixed;*/
-    /*right: 0;*/
-    /*z-index: 1;*/
-/*}*/
-/*.circleHome {*/
-    /*margin-left: 55%;*/
-    /*margin-bottom: 5%;*/
-/*}*/
 .circleSub {
     text-align: center;
 }
@@ -322,7 +339,6 @@ footer {
     height: 110px;
     border-radius: 55px;
     display: inline-block;
-    /*position: absolute;*/
     margin-top: -10%;
     border: 10px solid #C2B499;
 
@@ -337,7 +353,6 @@ footer {
     background-color: #36ABE2;
     hover: white;
     text-align: center;
-    /*margin: 10px;*/
     margin-top: 0px;
     padding: 30px;
     color: black;
@@ -357,15 +372,68 @@ footer {
     margin-top: 3%;
     font-size: 90px;
 }
+.circleItem {
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    border-radius: 200px;
+    border: 25px solid #1C75BC;
+    hover: white;
+    text-align: center;
+    margin: 10px;
+    margin-left: 17%;
+    padding: 20px;
+    color: black;
+    font-size: 20px;
+    background-color: #C2B499;
+    vertical-align: top;
 
 .circleImg {
     width: 25px;
 }
 /*----------------layoutAppli------------*/
 
+.circleLink, .circleLink:hover, .circleLink:active, .circleLink:visited, .circleLink:focus {
+    text-decoration: none;
+}
+
+.paddAuth {
+    padding-top: 20px;
+}
+
+.stopPaddLink {
+    padding: 0;
+}
+
 .avatar{
     width: 50px;
 }
+
+
+@media screen and (max-width: 768px){
+    .paddAuth {
+        padding-top: 10px;
+    }
+
+    .respNavApp {
+        font-size: 25px;
+    }
+
+    .respLink {
+        font-size: 15px;
+    }
+
+    .logo {
+        width: 70px;
+        padding-top: 15px;
+    }
+
+    .avatar {
+        width: 40px;
+    }
+
+}
+
 /*--------------Wall----------------*/
 .wallContent{
     margin: 20px auto;
@@ -402,20 +470,51 @@ footer {
 }
 
 .navImage {
-    background-color: rgba(54,171,226,0.2);
-    border: none;
+    background-color: rgba(194, 180, 153,0.4);
     box-shadow: black;
-    margin: 1% auto;
-    font-size: 200px;
+    margin: 3% auto;
+    font-size: 180px;
+    border: 10px solid rgb(28, 117, 188);
+    border-radius: 50%;
+    padding: 10%;
+}
+
+.navImage:hover, .navImage:focus, .navImage:active {
+    text-decoration: none;
+    border: 10px solid rgb(194, 180, 153);
 }
 
 .navImageTitle {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
     text-decoration: none;
 }
+
+.pictoColor {
+    color: rgb(28, 117, 188);
+}
+
+@media screen and (max-width: 768px) {
+    .navImageTitle {
+        font-size: 20px;
+    }
+}
+
 /*--------------adminUser----------------*/
 .btn-return{
     margin: 30px 10px;
+    padding: 0 20px;
+}
+.btn-edit{
+    background-color: white;
+    font-size: 15px;
+    margin: 5px;
+    padding: 10px;
+}
+.btn-delete{
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
 }
 .addUserForm{
     padding: 0;
@@ -437,18 +536,25 @@ footer {
 .colorForAdmin>td {
     background-color: rgba(94, 187, 231, 0.5);
 }
-/*___________________Accueil Appli________________*/
 
-.navAdminAppli {
+/*___________________Admin Appli________________*/
+
+
+.formEditUser{
+    width: 200px;
+}
+.editUserBlock{
+    margin-top: 50px;
+}
+
+/*___________________Agenda________________*/
+
+.agendaTitle {
+    font-size: 50px;
+    text-decoration: none;
+}
+
+#calendar {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
-
-.navAdminImage {
-    background-color: rgba(54,171,226,0.2);
-    border: none;
-    box-shadow: black;
-    margin: 3%;
-    font-size: 200px;
-}
-

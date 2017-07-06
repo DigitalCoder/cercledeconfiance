@@ -51,7 +51,7 @@ class AgendaController extends Controller
                 $em->flush();
             }
 
-            if (!isset($event)) {
+            if (!isset($event) && $postData['title'] !== null) {
                 $newEvent = new Agenda();
                 $newEvent->setEventId($postData['id']);
                 $newEvent->setTitle($postData['title']);
@@ -87,6 +87,7 @@ class AgendaController extends Controller
             $eventsData[$i]['description']= $event->getDescription();
             $eventsData[$i]['start']= $event->getEventStart();
             $eventsData[$i]['end']= $event->getEventEnd();
+            $eventsData[$i]['allDay']= false;
             $i++;
         }
 
