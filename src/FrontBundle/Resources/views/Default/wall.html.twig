@@ -3,117 +3,127 @@
 {% block title %} Mur{% endblock %}
 
 {% block content %}
+
     <section class="container wallContent">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="btnModal">
+                <button type="button" id="openModal" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i> Ecrire</button>
+                <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default righter"><i class="fa fa-arrow-left"></i></a>
+            </div>
+            <br />
+            <div class="col-lg-12 col-xs-12">
+                <!-- Trigger the modal with a button -->
                 {% for data in walldatas %}
 {# WALL DISPLAY MESSAGE #}
                     {% if data.wall != null %}
-                        <div class="messages index{{ loop.index0 }}">
-                            <article class="well">
-                                <header>
-                                    <div class="col-lg-6 messagesLeft">
-                                        <h3><i class="fa fa-folder-open wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
-                                        <hr />
-                                    </div>
-                                    <div class="col-lg-6 messagesRight">
-                                        <h3>{{ data.creationdate|date }}</h3>
-                                    </div>
-                                </header>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <p>{% if data.wall.content is defined %}{{ data.wall.content }}{% endif %}</p>
+                        <div class="row messages index{{ loop.index0 }}">
+                            <div class="wallBorder">
+                                <div class="wallTitle">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-3">
+                                            <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}" class="wallAvatar img-circle" height="90px" width="90px" alt="avatar.png">
+                                        </div>
+                                        <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
+                                            <h5><i class="fa fa-folder-open wallIcon"></i><strong> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong></h5>
+                                            <p>{{ data.creationdate|date }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </article>
+                                <div class="wallMsgContent">
+                                    <p>{% if data.wall.content is defined %} {{ data.wall.content }} {% endif %}</p>
+                                </div>
+                            </div>
                         </div>
 {# CLOUD DISPLAY MESSAGE #}
                     {% elseif data.cloud != null %}
-                        <div class="messages index{{ loop.index0 }}">
-                            <article class="well">
-                                <header>
-                                    <div class="col-lg-6 messagesLeft">
-                                        <h3><i class="fa fa-cloud wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
-                                        <hr />
+                        <div class="row messages index{{ loop.index0 }}">
+                            <div class="wallBorder">
+                                <div class="wallTitle">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-xs-3">
+                                            <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}" class="wallAvatar img-circle" height="90px" width="90px" alt="avatar.png">
+                                        </div>
+                                        <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
+                                            <h5><i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong></h5>
+                                            <p>{{ data.creationdate|date }}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-6 messagesRight">
-                                        <h3>{{ data.creationdate|date }}</h3>
-                                    </div>
-                                </header>
-                                <hr />
-                        {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
+                                </div>
+                    {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
                                 <p>Name: {{ data.cloud.filename }}</p>
-                                {% if 'image' in data.cloud.filetype %}
-                                    <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" alt="{{ data.cloud.filename }}" />
-                                {% elseif 'video' in data.cloud.filetype %}
-                                    <video width="320" height="240" src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}">
-                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
-                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">
-                                        <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/webm">
-                                        bug movies
-                                    </video>
-                                {% endif %}
-                            </article>
+                            {% if 'image' in data.cloud.filetype %}
+                                <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="img-responsive" alt="{{ data.cloud.filename }}" />
+                            {% elseif 'video' in data.cloud.filetype %}
+                                <video width="320" height="240" src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}">
+                                    <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/mp4">
+                                    <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/ogg">
+                                    <source src="{{ asset("uploads/" ~ data.cloud.fileName) }}" type="video/webm">
+                                    bug movies
+                                </video>
+                        {% endif %}
+                            </div>
                         </div>
 {# AGENDA DISPLAY MESSAGE #}
                     {% elseif data.agenda != null %}
-                        <div class="messages index{{ loop.index0 }}">
-                            <article class="well">
-                                <header>
+                        <div class="row messages index{{ loop.index0 }}">
+                            <div class="wallBorder">
+                                <div class="wallTitle">
                                     <div class="row">
-                                        <div class="col-lg-6 messageLeft">
-                                            <h3><i class="fa fa-calendar wallIcon"></i> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</h3>
-                                            <hr />
+                                        <div class="col-lg-3 col-xs-3">
+                                            <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}" class="wallAvatar img-circle" height="90px" width="90px" alt="avatar.png">
                                         </div>
-                                        <div class="col-lg-6 messagesRight">
-                                            <h3>{{ data.creationdate|date }}</h3>
+                                        <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
+                                            <h5><i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong></h5>
+                                            <p>{{ data.creationdate|date }}</p>
                                         </div>
-                                    </div>
-                                </header>
-                                <div class="row">
-                                    <div class="col-lg-6 messagesLeft">
-                                        <p><strong>Titre:</strong> {% if data.agenda.title is defined %}{{ data.agenda.title }}{% endif %}</p>
-                                        <p><strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description  }}{% endif %}</p>
-                                        <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
                                     </div>
                                 </div>
-                            </article>
+                                <div class="wallMsgContent">
+                                    <p><strong>Titre:</strong> {% if data.agenda.title is defined %}{{ data.agenda.title }}{% endif %}</p>
+                                    <p><strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description  }}{% endif %}</p>
+                                    <p><strong>Date de l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}</p>
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
                 {% endfor %}
-                    <button id="affiche" class="btn-default" onclick="affichePlus()">Voir les messages plus anciens</button>
             </div>
-            <div class="col-lg-3">
+
+            <div class="col-lg-offset-3 col-lg-6 col-xs-12">
                 <div class="row">
-                    <div class="col-lg-3 col-lg-offset-9">
-                        <button id="retour" class="btn-default">Retour au cercle</button>
+                    <a href="#affichePlus">
+                        <button id="affiche" class="btn-default center-block">Voir les messages plus anciens</button>
+                    </a>
+                    <br />
+                    <a href="#top">
+                        <button title="Go to top" class="center-block btn-default"><i class="fa fa-arrow-up"></i></button>
+                    </a>
+                </div>
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button id="btnCloseModal" type="button" class="fa fa-close" data-dismiss="modal"></button>
+                                <h4 class="modal-title">Ecrire un Message</h4>
+                            </div>
+                            <div class="modal-body">
+                                {{ form_start(form) }}
+                                {{ form_widget(form.content,{ 'attr': {'cols': '50','rows': '5'} }) }}
+                                <br />
+                                <br />
+                                <input type="submit" name="save" class="btn btn-default">
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <h3>Envoie un message</h3>
-                {{ form_start(form) }}
-                {{ form_widget(form.content,{ 'attr': {'cols': '50','rows': '5'} }) }}
-                {{ form_widget(form.save) }}
-                {{ form_end(form) }}
             </div>
         </div>
     </section>
 {% endblock %}
 {% block javascript %}
     {{ parent() }}
-    <script>
-        var displayIndex = 3;
-        $( ".messages" ).hide();
-        $( ".index0" ).show();
-        $( ".index1" ).show();
-        $( ".index2" ).show();
-
-        function affichePlus() {
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-        }
-    </script>
+    <script src="{{ asset('assets/js/wall.js') }}"></script>
 {% endblock %}
