@@ -186,7 +186,6 @@ footer {
 .paddAnchor {
     padding-top: 100px;
 }
-
 .marginTitle {
     margin-top: 30px;
 }
@@ -198,8 +197,6 @@ footer {
 .firstItem {
     background-image: url(../images/slider/slider1.jpeg);
 }
-
-
 .secondItem {
     background-image: url(../images/slider/slider2.jpeg);
 }
@@ -207,7 +204,6 @@ footer {
 .medal {
     display: inline;
 }
-
 .quote {
     color: #1C75BC;
     text-align: center;
@@ -742,5 +738,21 @@ footer {
 .hiddenFormCC {
     visibility: hidden;
 }
+/*___________________Services________________*/
 
+
+.btnOffer {
+    margin-top: 5%;
+}
+.btnDelet {
+    background-color: #f44242;
+}
+.btnDelet:hover,
+.btnDelet:focus,
+.btnDelet:active,
+.btnDelet:active {
+    background: #f44242;
+    border: 2px solid #1C75BC;
+    color: white;
+}
 
