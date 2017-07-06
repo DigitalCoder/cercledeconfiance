@@ -542,6 +542,7 @@ footer {
     margin-top: 50px ;
     margin-bottom: 50px ;
 }
+
 /*___________________Creation Cercle________________*/
 
 .labelFormCC {
@@ -565,3 +566,4 @@ footer {
 .hiddenFormCC {
     visibility: hidden;
 }
+
