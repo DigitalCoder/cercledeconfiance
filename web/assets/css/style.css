@@ -281,6 +281,8 @@ footer {
 }
 .itemCloud {
     width: 300px;
+    margin-top: 100px;
+    margin-left: 18%;
 }
 .imgFile {
     max-width: 429px;
@@ -288,20 +290,23 @@ footer {
 }
 
 .marginCloud {
-    margin-top: 75px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .cloudBorder {
     border: solid 5px #36ABE2;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-.thumbCloud {
-    margin-top: 1%;
-}
 
 .cloudBack {
     border: solid 2px #36ABE2;
     background-color: #36ABE2;
+    margin-left: -5px;
+    margin-top: -5px;
+    border-radius: 5px;
 }
 
 .cloudListTitle {

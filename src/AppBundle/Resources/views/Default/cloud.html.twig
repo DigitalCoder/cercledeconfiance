@@ -52,7 +52,7 @@
                                              alt="{{ dataApp.cloud.fileName }}" class="itemCloud img-responsive"><br/>
                                         <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                            download="{{ dataApp.cloud.fileName }}">
-                                            <p>Télécharger le fichier</p>
+                                            <p class="text-center">Télécharger le fichier</p>
                                         </a>
                                     {% elseif "video" in dataApp.cloud.fileType %}
                                         <video controls src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" class="itemCloud">
@@ -66,7 +66,7 @@
                                         </iframe><br/>
                                         <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                            download="{{ dataApp.cloud.fileName }}">
-                                            <p>Télécharger le fichier</p>
+                                            <p class="text-center">Télécharger le fichier</p>
                                         </a>
                                     {% endif %}
                                 </div>
