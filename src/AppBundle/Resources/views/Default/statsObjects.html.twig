@@ -19,7 +19,7 @@
             <!-- Tab panes -->
             <div class="tab-content col-sm-8 col-sm-offset-1 col-xs-12">
                 {% for object in circleUser.objectEntries if object.access == true %}
-                    <div role="tabpanel" class="tab-pane fade{% if loop.index == 1 %} in active{% endif %}"
+                    <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
                          id="{{ object.model.reference }}">
                         {% if object.model.typeObject.type == "Temperature sensor" %}
                             <canvas id="myChart"></canvas>
