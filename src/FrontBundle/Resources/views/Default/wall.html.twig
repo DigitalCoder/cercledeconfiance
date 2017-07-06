@@ -91,10 +91,13 @@
 
             <div class="col-lg-offset-3 col-lg-6 col-xs-12">
                 <div class="row">
-                    <button id="affiche" class="btn-default center-block" onclick="affichePlus()">Voir les messages plus anciens</button>
+                    <a href="#affichePlus">
+                        <button id="affiche" class="btn-default center-block">Voir les messages plus anciens</button>
+                    </a>
                     <br />
-                    {#<a href="" class="center-block btn btn-default"><i class="fa fa-arrow-up"></i></a>#}
-                    <button onclick="topFunction()" id="myBtn" title="Go to top" class="center-block btn-default"><i class="fa fa-arrow-up"></i></button>
+                    <a href="#top">
+                        <button title="Go to top" class="center-block btn-default"><i class="fa fa-arrow-up"></i></button>
+                    </a>
                 </div>
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -122,27 +125,5 @@
 {% endblock %}
 {% block javascript %}
     {{ parent() }}
-    <script>
-        var displayIndex = 3;
-        $( ".messages" ).hide();
-        $( ".index0" ).show();
-        $( ".index1" ).show();
-        $( ".index2" ).show();
-
-        function affichePlus() {
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-            $( ".index"+displayIndex ).show();
-            displayIndex++;
-        }
-        $('#myModal').on('shown.bs.modal', function () {
-            $('#appbundle_wall_content').focus();
-        })
-        function topFunction() {
-            document.body.scrollTop = 0; // For Chrome, Safari and Opera
-            document.documentElement.scrollTop = 0; // For IE and Firefox
-        }
-    </script>
+    <script src="{{ asset('assets/js/wall.js') }}"></script>
 {% endblock %}
