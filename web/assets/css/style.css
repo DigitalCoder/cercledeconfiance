@@ -146,6 +146,11 @@ footer {
     color: #777;
     margin-top: 4%;
 }
+
+.footerLinks {
+    margin-top: 2%;
+}
+
 /*_____Register_____*/
 .registerform{
     margin-bottom: 70px;
