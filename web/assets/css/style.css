@@ -258,10 +258,7 @@ footer {
 
 /*______________ CLOUD ____________*/
 
-/*#dropzone {*/
-    /*border: 3px dashed #C2B499;*/
-    /*margin: 5%;*/
-/*}*/
+
 .imgCloud{
     background-image: url("../img/cloud.png");
 }
