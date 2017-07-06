@@ -24,8 +24,17 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="paddingLogoNav navbar-brand" href="/">
-                        <img class="logo" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                        <img class="logoFront" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
                              alt="logo_cercle_confiance"></a>
+                    <div class="responsiveLogout">
+                        {% if app.user.username is defined %}
+                            <div class="row blockLogout text-center">
+                                <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
+                                {{ app.user.username }}
+                                <a class="btnLogout" href="/logout"><i class="fa fa-sign-out"></i></a>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="collapse navbar-collapse">
@@ -42,11 +51,15 @@
                                 {% endblock %}
                             </ul>
                         </div>
+                        <div class="desktopLogout">
                         {% if app.user.username is defined %}
+                            <div class="row blockLogout">
                             <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
-                            {{ app.user.username }}
-                            <a href="/logout">Déconnexion</a>
+                                {{ app.user.username }}
+                                <a class="btnLogout" href="/logout"><i class="fa fa-sign-out"></i></a>
+                            </div>
                             {% endif %}
+                        </div>
 
                     </div>
                 </div>
