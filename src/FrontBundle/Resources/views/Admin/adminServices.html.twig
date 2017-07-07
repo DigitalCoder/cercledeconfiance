@@ -6,21 +6,16 @@
 
 
 {% block content %}
-    <div class="container-fluid">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-        </a>
+    <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
 
-        <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-        </a>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 section-header offerTitle">
 
             <h2 class="section-title text-center">Choisissez Votre Service</h2>
             <h4 class="text-center">Modifiez votre offre de service et supprimez un cercle</h4>
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+                {{ form_widget }}
             <div class="form-group">
                  <input class="btn btn-default form-control btnOffer" type="submit" name="add" value="Modifiez votre service"/>
                 <a class="btn btn-default form-control btnOffer btnDelet" type="submit" name="delete" data-toggle="modal" data-target="#confirm">Supprimer le cercle</a>

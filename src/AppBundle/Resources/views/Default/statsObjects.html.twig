@@ -1,6 +1,8 @@
 {% extends 'AppBundle::layoutAppli.html.twig' %}
 
 {% block content %}
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
+
     <div class="container">
         <div class="row text-center titleStats section-header">
             <h2 class="respStat section-title">Les objets connectés</h2>
