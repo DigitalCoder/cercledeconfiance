@@ -5,10 +5,6 @@
 {% block content %}
 
     <section class="container wallContent">
-        <div class="section-header">
-            <h2 class="section-title text-center">Le Mur</h2>
-            <h4 class="text-center">Vous avez la possibilité d'envoyer des messages aux autres membres du cercle</h4>
-        </div>
         <div class="row">
             <div class="btnModal">
                 <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default"><i
@@ -16,6 +12,10 @@
                 <button type="button" id="openModal" class="btn btn-default" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-pencil"></i> Ecrire
                 </button>
+            </div>
+            <div class="section-header">
+                <h2 class="section-title text-center">Le Mur</h2>
+                <h4 class="text-center">Vous avez la possibilité d'envoyer des messages aux autres membres du cercle</h4>
             </div>
             <br/>
             <div class="col-lg-12 col-xs-12">
