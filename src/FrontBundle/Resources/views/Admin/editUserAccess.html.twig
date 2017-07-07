@@ -6,6 +6,11 @@
 {% block content %}
     <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
     <div class="container-fluid text-center editUserBlock">
+
+        <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
+            <h2>Gérer les droits d'accès</h2>
+        </div>
+
         <div class="formEditUser center-block">
             {{ form_start(form) }}
             {% for widget in form.children %}

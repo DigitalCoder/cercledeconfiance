@@ -8,8 +8,8 @@
 {% endblock %}
 {% block content %}
     <section>
-        <div class="container-fluid circle">
-
+        <div class="circletest"></div>
+        <div class="container-fluid circleHome">
             <div class="row text-center circleSub">
                 <div class="col-md-6 col-md-offset-3 col-sm-9 col-xs-12">
                     <h1 class="circleTitle">Mes Cercles</h1>
@@ -25,7 +25,12 @@
 
                 {% for CUser in CUsers %}
                     {% if CUser.circle.active == true %}
-                        <div class="col-md-4 col-md-offset-1">
+                        {% if CUsers|length > 2 %}
+
+                         <div class="col-md-4 col-md-offset-1">
+                         {% else %}
+                        <div class="col-md-4 col-md-offset-4">
+                        {% endif %}
                             <a href="{{ path('appli', {'token': CUser.circle.token}) }}" class="linkCircle">
                                 {{ CUser.circle.name }}
                                 {% for circleUser in CUser.circle.circleUsers %}
