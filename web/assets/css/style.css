@@ -830,6 +830,7 @@ footer {
     visibility: hidden;
 }
 
+
 /*___________________Services________________*/
 
 .btnOffer {
@@ -847,7 +848,6 @@ footer {
     border: 2px solid #1C75BC;
     color: white;
 }
-
 
 /*________ Stats Objets ________*/
 
@@ -895,5 +895,3 @@ footer {
 .objCoBtn {
     margin-bottom: 1%;
 }
-
-
