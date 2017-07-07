@@ -251,9 +251,25 @@ footer {
 /*    Formulaire Services         */
 /*-------------------------------*/
 
-.offerform h3 {
-    font-size: 35px;
-    margin-top: 15%;
+.btnOffer {
+    margin-top: 5%;
+}
+.btnDelet {
+    background-color: #f44242;
+}
+.btnDelet:hover,
+.btnDelet:focus,
+.btnDelet:active,
+.btnDelet:active {
+    background: #f44242;
+    border: 2px solid #1C75BC;
+    color: #F0F4F5;
+}
+.offerPage {
+    margin:10% auto;
+}
+.offerTitle{
+    margin-top: 6%;
 }
 
 /*______________ CLOUD ____________*/
@@ -276,15 +292,43 @@ footer {
     margin-top: 5%;
 }
 .downloadFile > p{
-    font-size: 30px;
+    font-size: 20px;
+    text-decoration: none;
 }
 .itemCloud {
-    width: 100%;
+    width: 300px;
+    margin: 100px auto 0 auto;
 }
 .imgFile {
     max-width: 429px;
     max-height: 321px;
 }
+
+.marginCloud {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cloudBorder {
+    border: solid 5px #36ABE2;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+.cloudBack {
+    border: solid 2px #36ABE2;
+    background-color: #36ABE2;
+    margin-left: -5px;
+    margin-top: -5px;
+    border-radius: 5px;
+}
+
+.cloudListTitle {
+    margin-top: 3%;
+    margin-bottom: 2%;
+}
+
 /*--------------Circle----------------*/
 
 .circletest {
@@ -292,7 +336,7 @@ footer {
 }
 
 .circleSub {
-    text-align: center;
+    margin-bottom: 50px;
 }
 .circleOwner{
     position: relative;
@@ -301,7 +345,6 @@ footer {
     line-height: 90px;
 }
 .circleItem {
-
     width: 440px;
     height: 440px;
     vertical-align: top;
@@ -310,6 +353,7 @@ footer {
     border: 10px solid #C2B499;
     margin: auto;
     line-height: 90px;
+
 }
 .circleMember{
     width: 110px;
@@ -318,6 +362,15 @@ footer {
     margin-top: -10%;
     border: 10px solid #C2B499;
     margin-right: -23px;
+
+}
+
+.linkCircle, .linkCircle:hover, .linkCircle:focus, .linkCircle:active {
+    text-decoration: none;
+}
+
+.margFooter {
+    margin-bottom: 50px;
 }
 
 .btn-circle {
@@ -326,10 +379,9 @@ footer {
     width: 180px;
     border-radius: 50%;
     border: 10px solid #C2B499;
-    background-color: #36ABE2;
-    hover: white;
+    background-color: rgba(28, 117, 188, 0.6);
     text-align: center;
-    margin-top: 0px;
+    margin-top: 3%;
     padding: 30px;
     color: black;
     font-size: 20px;
@@ -337,13 +389,11 @@ footer {
     top: 0px;
     right: 10px;
     vertical-align: top;
-
 }
 .circle {
     margin: 5px auto;
 }
 .circleTitle {
-    text-align: center;
     margin-top: 3%;
     font-size: 90px;
 }
@@ -395,6 +445,8 @@ footer {
 }
 
 /*--------------Wall----------------*/
+
+
 .wallContent{
     margin: 20px auto;
 }
@@ -420,6 +472,8 @@ footer {
     border-radius: 50px;
     margin-left: -30px;
     margin-top: -17px;
+    width: 90px;
+    height: 90px;
 }
 
 .wallMsgContent{
@@ -466,6 +520,16 @@ footer {
     height: auto;
     margin-right: auto;
     margin-left: auto;
+}
+
+.itemWall {
+    margin: 0 auto;
+}
+
+.itemWallVideo {
+    margin-left: 33%;
+    width: 33%;
+    z-index: 10;
 }
 
 @media screen and (min-device-width: 768px){
@@ -722,6 +786,43 @@ footer {
     }
 }
 
+/*___________________Gerer Membre________________*/
+
+.memberAvatar {
+    width: 150px;
+    height: 150px;
+}
+
+#tabMember > li.active > a, #tabMember > li.active > a:hover, #tabMember > li.active > a:focus {
+    background-color: rgba(194, 180, 153, 1);
+    border-radius: 50%;
+}
+
+#tabMember {
+    border: none;
+}
+
+#tabMember li {
+    float: none;
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.paneColor .tab-content {
+    margin-top: 30px;
+    border: none;
+    background-color: rgba(94, 187, 231, 0.5);
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 768px){
+    .memberAvatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
 /*___________________Creation Cercle________________*/
 
 .labelFormCC {
@@ -745,14 +846,16 @@ footer {
 .hiddenFormCC {
     visibility: hidden;
 }
-/*___________________Services________________*/
 
+
+/*___________________Services________________*/
 
 .btnOffer {
     margin-top: 5%;
 }
 .btnDelet {
     background-color: #f44242;
+    color: white;
 }
 .btnDelet:hover,
 .btnDelet:focus,
@@ -763,4 +866,49 @@ footer {
     color: white;
 }
 
+/*________ Stats Objets ________*/
 
+.titleStats {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#myChart {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .respStat {
+        font-size: 30px;
+    }
+
+    .respDoc {
+        font-size: 18px;
+    }
+}
+
+/*___________________Admin objets Co________________*/
+
+.objetThumb {
+    height: 400px;
+}
+
+.objCoPicto {
+    margin: 3% auto;
+    font-size: 180px;
+    padding: 10%;
+}
+
+.objImg {
+    margin-top: 0.5%;
+}
+
+.objCoTitle {
+    font-size: 50px;
+    text-decoration: none;
+    margin-bottom: 2%;
+}
+
+.objCoBtn {
+    margin-bottom: 1%;
+}

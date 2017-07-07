@@ -3,94 +3,97 @@
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 {% block content %}
     <section>
-        <div class="container-fluid text-center">
-            <a href="{{ path('appli', {'token': token}) }}">
-                <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i></button>
-            </a>
-            <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
-                <h3>Liste des utilisateurs du Cercle</h3>
-                <br />
-            </div>
-
+        <div class="container text-center">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 col-xs-12">
-
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th class="tdFirstname">Firstname</th>
-                            <th class="tdName">Name</th>
-                            <th class="tdVisio">Visio</th>
-                            <th class="tdWall">Wall</th>
-                            <th class="tdCloud">Cloud</th>
-                            <th class="tdAgenda">Agenda</th>
-                            {% for object in objects %}
-                                {% if object.circleuser.adminCircle == true %}
-                                    <th class="{{ object.model.reference }}">{{ object.model.reference }}</th>
-                                {% endif %}
-                            {% endfor %}
-                            <th class="tdAction">Action</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        {% for user in users %}
-                            {% if user.circleCenter == true %}
-                                <tr class="colorForCenter">
-                                {% elseif user.adminCircle == true %}
-                                <tr class="colorForAdmin">
-                                {% else %}
-                                <tr>
-                            {% endif %}
-                                <td class="tdFirstname">{{ user.user.firstname }}</td>
-                                <td class="tdName">{{ user.user.name }}</td>
-                                <td class="tdVisio">
-                                    <input type="checkbox" disabled="disabled"
-                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
-                                </td>
-                                <td class="tdWall">
-                                    <input type="checkbox" disabled="disabled"
-                                           {% if user.wallAccess == true %}checked="checked"{% endif %}>
-                                </td>
-                                <td class="tdCloud">
-                                    <input type="checkbox" disabled="disabled"
-                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
-                                </td>
-                                <td class="tdAgenda">
-                                    <input type="checkbox" disabled="disabled"
-                                           {% if user.agendaAccess == true %}checked="checked"{% endif %}>
-                                </td>
-
-                                {% for object in objects %}
-                                    {% if user.id == object.circleuser.id %}
-                                        <td class="{{ object.model.reference }}">
-                                            <input type="checkbox" disabled="disabled"
-                                                   {% if object.access == true %}checked="checked"{% endif %}>
-                                        </td>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if user.adminCircle == false %}
-                                <td class="tdAction">
-                                    <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-default btn-edit"><i class="fa fa-edit"></i>  Edit</a>
-                                    <a href="{{ path('deleteMember', {'token': token ,'idUser': user.id }) }}" class="btn btn-default btn-delete"><i class="fa fa-trash-o"></i>  Delete</a>
-                                </td>
-                                    {% else %}
-                                    <td class="tdAction"></td>
-                                {% endif %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <a href="{{ path('appli', {'token': token}) }}">
+                    <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i>
+                    </button>
+                </a>
+                <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
+                    <h2>Liste des membres du Cercle</h2>
                 </div>
             </div>
+
+            <div class="row text-center paneColor">
+                <div class="col-xs-12">
+                    {% for user in users %}
+                        {% if loop.first %}
+                            <ul class="nav nav-tabs" role="tablist" id="tabMember">{% endif %}
+                        <li role="presentation" {% if loop.first %}class="active"{% endif %}>
+                            <a href="#{{ user.user.username }}"
+                               aria-controls="{{ user.user.username }}"
+                               role="tab" data-toggle="tab">
+                                <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-responsive img-circle"
+                                     alt="avatar.png">
+                            </a>
+                        </li>
+                        {% if loop.last %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="tab-content col-sm-8 col-sm-offset-2 col-xs-12">
+
+                    {% for user in users %}
+                        <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
+                             id="{{ user.user.username }}">
+                            <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-circle"
+                                 alt="avatar.png">
+                            <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label for="visio">Visio</label>
+                                    <input id="visio" type="checkbox" disabled="disabled"
+                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="cloud">Cloud</label>
+                                    <input id="cloud" type="checkbox" disabled="disabled"
+                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="agenda">Agenda</label>
+                                    <input id="agenda" type="checkbox" disabled="disabled"
+                                           {% if user.agendaAccess == true %}checked="checked"{% endif %}>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="wall">Wall</label>
+                                    <input id="wall" type="checkbox" disabled="disabled"
+                                           {% if user.wallAccess == true %}checked="checked"{% endif %}>
+                                </li>
+                                {% for userObj in user.objectEntries %}
+                                    <li class="list-group-item">
+                                        <label for="{{ userObj.model.id }}">{{ userObj.model.reference }}</label>
+                                        <input id="{{ userObj.model.id }}" type="checkbox" disabled="disabled"
+                                               {% if userObj.Access == true %}checked="checked"{% endif %}>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% if user.adminCircle == false %}
+                                <div>
+                                    <a href="{{ path('editMember', {'token': token ,'idUser': user.id }) }}"
+                                       class="btn btn-default btn-edit"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ path('deleteMember', {'token': token ,'idUser': user.id }) }}"
+                                       class="btn btn-default btn-delete"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
             {% if users|length < numberusers %}
                 <div class="row addUserForm">
-                    <div class="col-xs-10 col-xs-offset-1 text-center">
+                    <div class="col-md-6 col-md-offset-3 col-xs-12 text-center">
                         <h3>Ajouter un utilisateur au cercle</h3>
                         <p>Renseigner le mail de la personne a inviter</p>
                         {{ form_start(form) }}
+                        <div class="form-group">
                         {{ form_row(form.email) }}
+                        </div>
+                        <div class="form-group">
                         {{ form_row(form.name) }}
+                        </div>
                         {{ form_row(form.envoyer) }}
                         {{ form_end(form) }}
                     </div>
@@ -105,4 +108,16 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabMember a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
 {% endblock %}

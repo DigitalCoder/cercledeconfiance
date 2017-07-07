@@ -2,8 +2,40 @@
 
 {% block content %}
     <div class="container">
-        <div class="row text-center" id="temperature">
-            <canvas id="myChart" width="50vw" height="10vh"></canvas>
+        <div class="row text-center titleStats">
+            <h2 class="respStat">Les objets connectés</h2>
+            <h4 class="respDoc">Sélectionner l'objet dont vous voulez voir le détail</h4>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-2 col-xs-12">
+                <ul class="nav nav-tabs nav-stacked" role="tablist" id="myTabs">
+                    {% for object in circleUser.objectEntries if object.access == true %}
+                        <li role="presentation" {% if loop.index == 1 %}class="active"{% endif %}>
+                            <a href="#{{ object.model.reference }}" aria-controls="{{ object.model.reference }}"
+                               role="tab" data-toggle="tab">{{ object.model.reference }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content col-sm-8 col-sm-offset-1 col-xs-12">
+                {% for object in circleUser.objectEntries if object.access == true %}
+                    <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
+                         id="{{ object.model.reference }}">
+                        {% if object.model.typeObject.type == "Temperature sensor" %}
+                            <canvas id="myChart"></canvas>
+                        {% elseif object.model.typeObject.type == "Smoke sensor" %}
+                            {% if object.model.dataObjects|last.data == 0 %}
+                                <i class="fa fa-check text-success"></i>
+                                <h3 class="text-success">Aucune fumée n'est détectée !</h3>
+                            {% else %}
+                                <i class="fa fa-close text-danger"></i>
+                                <h3 class="text-danger">Attention ! De la fumée est présente ! Incendie possible !</h3>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
         </div>
     </div>
 {% endblock %}
@@ -13,50 +45,54 @@
     <script src="{{ asset('assets/Chart.js-master/dist/Chart.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#myTabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
             let values = [];
             {% for object in circleUser.objectEntries %}
-                {% for datas in object.model.dataObjects %}
-                    {% if object.model.typeObject.type == "Temperature sensor" and object.access == 1 %}
-                        values.push({{ datas.data }});
-                    {% endif %}
-                {% endfor %}
+            {% for datas in object.model.dataObjects %}
+            {% if object.model.typeObject.type == "Temperature sensor" and object.access == true %}
+            values.push({{ datas.data }});
+            {% endif %}
+            {% endfor %}
             {% endfor %}
             if (values.length == 0) {
                 $('#temperature').prepend("<h3>Vous n\'avez pas accès à ces données</h3>");
-            }
-            values = values.slice(values.length - 10);
-            let ctx = document.getElementById("myChart").getContext('2d');
-            let myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ["", "", "", "", "", "", "", "", "", ""],
-                    pointStyle: 'circle',
-                    datasets: [{
-                        label: 'Relevé de temperature',
-                        data: values,
-                        backgroundColor: [
-                            'rgba(54, 171, 226, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(28, 117, 188, 1)',
-                        ],
-                        borderWidth: 3
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
+            } else {
+                values = values.slice(values.length - 10);
+                let ctx = document.getElementById("myChart").getContext('2d');
+                let myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["", "", "", "", "", "", "", "", "", ""],
+                        pointStyle: 'circle',
+                        datasets: [{
+                            label: 'Relevé de temperature',
+                            data: values,
+                            backgroundColor: [
+                                'rgba(54, 171, 226, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(28, 117, 188, 1)',
+                            ],
+                            borderWidth: 3
                         }]
                     },
-                    tooltips: {
-                        mode: 'point'
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            mode: 'point'
+                        }
                     }
-                }
-            });
-
+                });
+            }
         });
     </script>
 {% endblock %}

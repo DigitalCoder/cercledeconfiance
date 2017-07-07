@@ -26,7 +26,7 @@ class CreateObjectController extends Controller
         $circleId = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['circle'=>$circleId->getId()]);
         $objectWithInfo = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser->getId()));
-        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token'=> $token));
+        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token'=> $token, 'circleUser'=>$circleUser));
     }
 
     /**
@@ -49,6 +49,6 @@ class CreateObjectController extends Controller
         $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user, 'circle'=>$circleId]);
         $objectWithInfo = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser));
 
-        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token' => $token));
+        return $this->render('FrontBundle:Admin:adminObjets.html.twig', array("objects" => $objectWithInfo, 'token' => $token, 'circleUser'=>$circleUser[0]));
     }
 }

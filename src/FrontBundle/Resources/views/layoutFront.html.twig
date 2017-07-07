@@ -30,7 +30,7 @@
                     <div class="responsiveLogout">
                         {% if app.user.username is defined %}
                             <div class="blockLogout text-center">
-                                <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
+                                <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">
                                 {{ app.user.username }}
                                 <a class="btnLogout" href="/logout"><i class="fa fa-sign-out"></i></a>
                             </div>
@@ -55,7 +55,7 @@
                         <div class="desktopLogout">
                         {% if app.user.username is defined %}
                             <div class="blockLogout">
-                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar">
+                            <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">
                                 {{ app.user.username }}
                                 <a class="btnLogout" href="/logout"><i class="fa fa-sign-out"></i></a>
                             </div>
@@ -74,7 +74,6 @@
 
 {% block javascript %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/nav.js') }}"></script>
 
 {% endblock %}
 

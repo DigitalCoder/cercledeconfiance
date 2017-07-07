@@ -39,8 +39,8 @@ class AdminUsersController extends Controller
         $userToinvite = new User();
 
         $form = $this->createFormBuilder($userToinvite)
-            ->add('email', EmailType::class)
-            ->add('name', TextType::class)
+            ->add('email', EmailType::class, ['label'=>'Email : ', 'attr'=>['class'=>'form-control']])
+            ->add('name', TextType::class, ['label'=>'Nom : ', 'attr'=>['class'=>'form-control']])
             ->add('envoyer', SubmitType::class, array(
                     'attr' => array('class' => 'btn btn-default btn-submit-resize')));
 

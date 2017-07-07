@@ -1,39 +1,62 @@
-{% extends "FrontBundle::layoutFront.html.twig" %}
+{% extends 'AppBundle::layoutAppli.html.twig' %}
 {% block content %}
     <div class="container">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-        </a>
-
-        <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-        </a>
-        <h1>Vos Objets Connectés</h1>
+        <div class="row">
+            <h2 class="objCoTitle text-center">Vos Objets Connectés</h2>
+        </div>
         <div class="row">
             {% for object in objects %}
             {% if loop.index0%3 == 0 %}
-                </div>
-                <div class="row">
+        </div>
+        <div class="row">
             {% endif %}
-                    <div class="col-lg-4">
-                        <br />
-                        <div class="col-lg-5 text-center">
-                            <img src="http://via.placeholder.com/64x64" alt="placeholder" class="left"><br /><br />
-                        {% if object.access == 1 %}
-                            <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-danger">Désactivé</button></a>
-                        {% else %}
-                            <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-primary">Activé</button></a>
-                        {% endif %}
-                            </div>
-                        <div class="col-lg-7">
-                            Reference: {{ object.model.reference }}<br />
-                            Description: {{ object.model.description }}<br />
-                            DocUrl: <a href="{{ object.model.docurl }}">Documentation</a><br />
-                            Price : {{ object.model.price }}<br /><br />
+            <div class="col-lg-4">
+                <div class="thumbnail text-center objetThumb">
+                    <img src="http://via.placeholder.com/150x150" alt="placeholder" class="left objImg">
+                    <div class="caption">
+                        <div>
+                            <p>Reference: {{ object.model.reference }}</p>
+                            <p>{{ object.model.description }}</p>
+                            <p><a href="{{ object.model.docurl }}">Documentation</a></p>
+                            {% if object.access == 1 %}
+                                <p>Statut : Activé</p>
+                            {% else %}
+                                <p>Statut : Désactivé</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            {% if object.access == 1 %}
+                                <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-danger">Désactiver L'objet pour mon Cercle</button></a>
+                            {% else %}
+                                <a href="{{ path('admin_objets', {'token': object.circleuser.circle.token, 'objectId': object.model.id}) }}"><button class="btn btn-success">Réactiver L'objet pour mon Cercle</button></a>
+                            {% endif %}
                         </div>
                     </div>
+                </div>
+            </div>
             {% endfor %}
+            <div class="col-lg-4">
+                <div class="thumbnail text-center objetThumb">
+                    <i class="fa fa-shopping-cart objCoPicto" aria-hidden="true"></i>
+                    <div class="caption">
+                        <div>
+                            <a href=""><button class="btn btn-default">Acheter un nouvel objet</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <br />
+        <div class="row objCoBtn">
+            <div class="col-xs-8 col-xs-offset-3">
+            <a href="{{ path('accueil') }}">
+                <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
+            </a>
+
+            <a href="{{ path('appli', {'token': token}) }}">
+                <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
+            </a>
+            </div>
+        </div>
     </div>
 {% endblock %}
