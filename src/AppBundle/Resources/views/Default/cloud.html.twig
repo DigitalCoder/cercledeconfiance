@@ -2,15 +2,7 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block content %}
-    <div class="btnCloud">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-        </a>
-
-        <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-        </a>
-    </div>
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
     <div class="container-fluid marginBottom text-center section-header">
         <h2 class="cloudTitle section-title">Partage de fichiers</h2>
         <p class="cloudContent">Vous avez la possibilité d'envoyer des fichiers pour les autres membres du cercle.</p>

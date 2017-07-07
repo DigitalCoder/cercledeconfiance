@@ -6,14 +6,9 @@
 
 
 {% block content %}
-    <div class="container-fluid">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-        </a>
+    <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
 
-        <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-        </a>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 section-header offerTitle">
 
