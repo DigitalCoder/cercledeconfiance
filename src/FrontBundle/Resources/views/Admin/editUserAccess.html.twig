@@ -4,14 +4,8 @@
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 
 {% block content %}
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
     <div class="container-fluid text-center editUserBlock">
-        <a href="{{ path('listMembers', {'token': token }) }}">
-            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left">  Back</i></button>
-        </a>
-        <a href="{{ path('appli', {'token': token}) }}">
-            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i></button>
-        </a>
-
         <div class="formEditUser center-block">
             {{ form_start(form) }}
             {% for widget in form.children %}
