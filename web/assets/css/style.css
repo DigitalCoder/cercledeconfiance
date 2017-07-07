@@ -330,27 +330,39 @@ footer {
 }
 
 /*--------------Circle----------------*/
+
+.circletest {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
 .circleSub {
     margin-bottom: 50px;
 }
-
+.circleOwner{
+    position: relative;
+    margin-top: 100px;
+    padding-top: 50px;
+    line-height: 90px;
+}
 .circleItem {
     width: 440px;
     height: 440px;
-    border-radius: 220px;
     vertical-align: top;
     position: relative;
     z-index: -1;
     border: 10px solid #C2B499;
     margin: auto;
+    line-height: 90px;
+
 }
 .circleMember{
     width: 110px;
     height: 110px;
-    border-radius: 55px;
     display: inline-block;
     margin-top: -10%;
     border: 10px solid #C2B499;
+    margin-right: -23px;
+
 }
 
 .linkCircle, .linkCircle:hover, .linkCircle:focus, .linkCircle:active {
@@ -373,7 +385,10 @@ footer {
     padding: 30px;
     color: black;
     font-size: 20px;
-    animation: pulse 10s infinite;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    vertical-align: top;
 }
 .circle {
     margin: 5px auto;

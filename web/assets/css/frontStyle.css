@@ -1,4 +1,4 @@
-@media (max-width: 1700px) {
+@media (max-width: 1200px) {
     .navbar-header {
     float: none;
     }
@@ -70,7 +70,7 @@
 
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1200px) {
     .responsiveLogout {
         display: none;
     }
