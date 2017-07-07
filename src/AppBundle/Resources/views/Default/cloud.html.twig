@@ -2,15 +2,8 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block content %}
-    <div class="btnCloud">
-        <a href="{{ path('accueil') }}">
-            <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-        </a>
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
 
-        <a href="{{ path('appli', {'token': token}) }}">
-            <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-        </a>
-    </div>
     <div class="container text-center section-header">
         <div class="row marginBottom">
             <div class="col-xs-12">

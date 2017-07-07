@@ -508,6 +508,10 @@ footer {
     margin-right: 20px;
     float: right;
 }
+.padder{
+    margin-top: 20px;
+    margin-left: 50px;
+}
 .lefter{
     margin-right: 20px;
     float: left;
