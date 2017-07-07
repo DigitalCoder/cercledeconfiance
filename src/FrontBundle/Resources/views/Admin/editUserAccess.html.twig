@@ -6,13 +6,6 @@
 {% block content %}
     <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
     <div class="container-fluid text-center editUserBlock">
-
-        <a href="{{ path('listMembers', {'token': token }) }}">
-            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left">  Back</i></button>
-        </a>
-        <a href="{{ path('appli', {'token': token}) }}">
-            <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i></button>
-        </a>
         <div class="section-header text-center">
         <h2 class="section-title">Droits d'accès aux objets connectés</h2>
         <h4>Vous pouvez ajouter ou retirer des droits aux membres sur les différents objets connectés</h4>

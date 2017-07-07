@@ -905,6 +905,9 @@ footer {
 
 .objetThumb {
     height: 400px;
+    background-color: rgba(194, 180, 153, 0.2);
+    border: 5px solid rgb(28, 117, 188);
+    border-radius: 20px;
 }
 
 .objCoPicto {
