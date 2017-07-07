@@ -10,42 +10,41 @@
     <section>
         <div class="container-fluid circle">
 
-            <div class="row">
-                <h1 class="circleTitle text-primary">Mes Cercles</h1>
-                <h2 class="circleSub">Liste des cercles dont vous faites partie</h2>
-                <div class="col-xs-3 col-md-offset-9">
+            <div class="row text-center circleSub">
+                <div class="col-md-6 col-md-offset-3 col-sm-9 col-xs-12">
+                    <h1 class="circleTitle">Mes Cercles</h1>
+                    <h3>Sélectionnez un cercle</h3>
+                </div>
+                <div class="col-sm-3 col-sm-offset-0 col-xs-6 col-xs-offset-3">
                     <a class="btn-circle" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
                 </div>
             </div>
 
 
+            <div class="row text-center margFooter">
 
-            <div class="row text-center">
-
-            {% for CUser in CUsers %}
-                {% if CUser.circle.active == true %}
+                {% for CUser in CUsers %}
+                    {% if CUser.circle.active == true %}
                         <div class="col-md-4 col-md-offset-1">
-
-                            <a href="{{ path('appli', {'token': CUser.circle.token}) }}">
-
+                            <a href="{{ path('appli', {'token': CUser.circle.token}) }}" class="linkCircle">
                                 {{ CUser.circle.name }}
-
                                 {% for circleUser in CUser.circle.circleUsers %}
                                     {% if circleUser.circleCenter == true %}
-                                        {{ circleUser.user.name }} {{ circleUser.user.firstname }} <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleItem" >
-                                    {% elseif circleUser.adminCircle == true %}
-                                        <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleMember" >
-                                    {% elseif circleUser.circleCenter == false %}
-                                        <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle img-responsive circleMember" >
+                                        {{ circleUser.user.firstname }} {{ circleUser.user.name }}
+                                        <hr/>
+                                        <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}"
+                                             class="img-circle img-responsive circleItem">
+                                    {% else %}
+                                        <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}"
+                                             class="img-circle img-responsive circleMember">
                                     {% endif %}
                                 {% endfor %}
                             </a>
                         </div>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
             </div>
 
-        </div>
         </div>
 
     </section>
