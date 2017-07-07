@@ -112,18 +112,18 @@ class AdminUsersController extends Controller
         $formBuilder = $this->createFormBuilder($userAccess);
 
 
-        $formBuilder->add('callAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getCallAccess()))
-                    ->add('wallAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getWallAccess()))
-                    ->add('cloudAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getCloudAccess()))
-                    ->add('agendaAccess', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getAgendaAccess()))
+        $formBuilder->add('Visio', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getCallAccess()))
+                    ->add('Mur', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getWallAccess()))
+                    ->add('Cloud', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getCloudAccess()))
+                    ->add('Agenda', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $circleUser->getAgendaAccess()))
                 ;
 
                     foreach ($objects as $object){
-                        $formBuilder->add(''.$object->getModel()->getReference().'Access', ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $object->getAccess()));
+                        $formBuilder->add(''.$object->getModel()->getReference(), ChoiceType::class, array('choices' => array('Autoriser l\'acces'=>true, 'Refuser l\'acces'=>false), 'data' => $object->getAccess()));
                     }
                 ;
 
-        $formBuilder->add('add', SubmitType::class);
+        $formBuilder->add('Valider', SubmitType::class);
 
 
         $form = $formBuilder->getForm();
@@ -133,14 +133,14 @@ class AdminUsersController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-            $circleUser->setCallAccess($form->getData()['callAccess']);
-            $circleUser->setWallAccess($form->getData()['wallAccess']);
-            $circleUser->setCloudAccess($form->getData()['cloudAccess']);
-            $circleUser->setAgendaAccess($form->getData()['agendaAccess']);
+            $circleUser->setCallAccess($form->getData()['Visio']);
+            $circleUser->setWallAccess($form->getData()['Mur']);
+            $circleUser->setCloudAccess($form->getData()['Cloud']);
+            $circleUser->setAgendaAccess($form->getData()['Agenda']);
 
             foreach ($objects as $object){
 
-                $fct = ''.$object->getModel()->getReference().'Access';
+                $fct = ''.$object->getModel()->getReference();
                 $object->setAccess($form->getData()[$fct]);
                 $em->persist($object);
 

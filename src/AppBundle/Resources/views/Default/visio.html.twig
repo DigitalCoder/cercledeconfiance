@@ -1,6 +1,8 @@
 {% extends 'AppBundle::layoutAppli.html.twig' %}
 
 {% block content %}
+    <a href="{{ path('appli',{ 'token': token }) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
+
     <div class="container-fluid marginBottom marginTop text-center">
         <div class="row">
             <div class="col-xs-12 section-header visioTitle">

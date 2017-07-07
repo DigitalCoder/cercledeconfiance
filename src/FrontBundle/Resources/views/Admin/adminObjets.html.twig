@@ -1,5 +1,7 @@
 {% extends 'AppBundle::layoutAppli.html.twig' %}
 {% block content %}
+    <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
+
     <div class="container">
         <div class="row">
             <h2 class="objCoTitle text-center">Vos Objets Connectés</h2>
@@ -44,18 +46,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <br />
-        <div class="row objCoBtn">
-            <div class="col-xs-8 col-xs-offset-3">
-            <a href="{{ path('accueil') }}">
-                <input type="button" class="btn btn-default" value="Retourner aux cercles"/>
-            </a>
-
-            <a href="{{ path('appli', {'token': token}) }}">
-                <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-            </a>
             </div>
         </div>
     </div>

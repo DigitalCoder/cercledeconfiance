@@ -3,6 +3,7 @@
 {% block title %}Bienvenue sur le Cercle{% endblock %}
 
 {% block content %}
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
 
     <div class="container">
 
@@ -30,15 +31,6 @@
                     <p class="navImageTitle">Gerer les Objets</p>
                 </a>
             </div>
-
-            <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                    <a href="{{ path('appli', {'token': token}) }}">
-                        <input type="button" class="btn btn-default" value="Retourner à l'appli"/>
-                    </a>
-                </div>
-            </div>
-
         </div>
     </div>
 

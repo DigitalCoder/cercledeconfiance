@@ -3,12 +3,9 @@
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 {% block content %}
     <section>
+        <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
         <div class="container text-center">
             <div class="row">
-                <a href="{{ path('appli', {'token': token}) }}">
-                    <button class="btn btn-default btn-return"><i class="fa fa-arrow-left"> Retour a l'Appli</i>
-                    </button>
-                </a>
                 <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
                     <h2>Liste des membres du Cercle</h2>
                 </div>
