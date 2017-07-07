@@ -769,3 +769,30 @@ footer {
     color: white;
 }
 
+/*___________________Admin objets Co________________*/
+
+.objetThumb {
+    height: 400px;
+}
+
+.objCoPicto {
+    margin: 3% auto;
+    font-size: 180px;
+    padding: 10%;
+}
+
+.objImg {
+    margin-top: 0.5%;
+}
+
+.objCoTitle {
+    font-size: 50px;
+    text-decoration: none;
+    margin-bottom: 2%;
+}
+
+.objCoBtn {
+    margin-bottom: 1%;
+}
+
+
