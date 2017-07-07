@@ -15,7 +15,7 @@
             <h2 class="section-title text-center">Choisissez Votre Service</h2>
             <h4 class="text-center">Modifiez votre offre de service et supprimez un cercle</h4>
             {{ form_start(form) }}
-                {{ form_widget }}
+                {{ form_widget(form) }}
             <div class="form-group">
                  <input class="btn btn-default form-control btnOffer" type="submit" name="add" value="Modifiez votre service"/>
                 <a class="btn btn-default form-control btnOffer btnDelet" type="submit" name="delete" data-toggle="modal" data-target="#confirm">Supprimer le cercle</a>
