@@ -800,6 +800,27 @@ footer {
     color: white;
 }
 
+/*________ Stats Objets ________*/
+
+.titleStats {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#myChart {
+    width: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .respStat {
+        font-size: 30px;
+    }
+
+    .respDoc {
+        font-size: 18px;
+    }
+}
+
 /*___________________Admin objets Co________________*/
 
 .objetThumb {
@@ -825,5 +846,3 @@ footer {
 .objCoBtn {
     margin-bottom: 1%;
 }
-
-
