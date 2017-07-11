@@ -27,14 +27,14 @@ class Circle
      *
      * @ORM\Column(name="active", type="boolean")
      */
-    private $active=0;
+    private $active=1;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="paid", type="boolean")
      */
-    private $paid=0;
+    private $paid=1;
 
     /**
      * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles", cascade={"persist"})
