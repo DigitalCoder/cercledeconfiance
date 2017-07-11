@@ -17,6 +17,7 @@ use AppBundle\Form\UserInvitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Circle;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreateCircleController extends Controller
@@ -66,6 +67,51 @@ class CreateCircleController extends Controller
         }
 
         return $this->render('FrontBundle:Default:createCircle.html.twig', array("form" => $form->createView()));
+    }
+
+    /**
+     * @Route("cercles/creer/centreAdmin", name="centreAdmin")
+     */
+
+    public function createCenterAdminAction(Request $request){
+        $cercle = new Circle();
+        $form = $this->createForm(CircleType::class, $cercle);
+        $form->add('save', SubmitType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $cercle->setToken(md5(uniqid()));
+            $em->persist($cercle);
+            $em->flush();
+
+
+            $idCercle = $em->getRepository('AppBundle:Circle')->findOneBy(['id'=>$cercle->getId()]);
+
+            $centerCircle = new CircleUser();
+            $centerCircle->setUser($this->getUser());
+            $centerCircle->setCircle($idCercle);
+            $centerCircle->setAdminCircle(1);
+            $centerCircle->setCircleCenter(1);
+            $centerCircle->setCallAccess(1);
+            $centerCircle->setWallAccess(1);
+            $centerCircle->setAgendaAccess(1);
+            $centerCircle->setCloudAccess(1);
+
+            $em->persist($centerCircle);
+            $em->flush();
+
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            $circle_users = $em->getRepository('AppBundle:CircleUser')->findBy(['user'=>$user->getId()]);
+
+            return $this->render('AppBundle:Default:showCircles.html.twig',
+                ['CUsers' => $circle_users, 'circleUser'=>$user]);
+        }
+
+        return $this->render('FrontBundle:Default:centerAdmin.html.twig', array("form" => $form->createView()));
     }
 
     /**
