@@ -3,7 +3,6 @@
 {% block title %} Mur{% endblock %}
 
 {% block content %}
-
     <section class="container wallContent">
         <div class="row">
             <div class="btnModal">
@@ -63,7 +62,6 @@
                                     </div>
                                 </div>
                                 {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
-                                <p>Name: {{ data.cloud.filename }}</p>
                                 {% if 'image' in data.cloud.filetype %}
                                     <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="img-responsive itemWall"
                                          alt="{{ data.cloud.filename }}"/>
@@ -71,6 +69,10 @@
                                     <video controls
                                            src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="itemWallVideo">
                                     </video>
+                                {% elseif 'application' in data.cloud.filetype %}
+                                    <iframe src="{{ asset("uploads/" ~ data.cloud.fileName) }}"
+                                            class="itemWallPdf">
+                                    </iframe>
                                 {% endif %}
                             </div>
                         </div>
