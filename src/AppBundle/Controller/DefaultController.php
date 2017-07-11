@@ -83,7 +83,14 @@ class DefaultController extends Controller
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
         $cUsers = $em->getRepository('AppBundle:CircleUser')
             ->findBy(['circle' => $circle->getId()]);
-        $param = ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser, 'CUsers' => $cUsers];
+        $cUserWithoutThis = array();
+        // Exclude the current user from array
+        foreach ($cUsers as $cUser){
+            if ($cUser->getId() != $user->getId()){
+                $cUserWithoutThis[] = $cUser;
+            }
+        }
+        $param = ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser, 'CUsers' => $cUserWithoutThis];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
     }
 
