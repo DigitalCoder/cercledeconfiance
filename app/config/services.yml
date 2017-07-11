@@ -5,6 +5,11 @@ services:
             autowire: true
             autoconfigure: true
             public: false
+
+    AppBundle\:
+            resource: '../../src/AppBundle/*'
+            exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
+
     app.form.profile:
             class: AppBundle\Form\EditProfileType
             tags:
