@@ -719,7 +719,12 @@ footer {
 }
 
 /*________ Visio ________*/
-
+.green{
+    color: greenyellow;
+}
+.red{
+    color: darkred;
+}
 .visioTitle {
     margin-top: 30px;
 }
