@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Agenda;
 use AppBundle\Entity\Circle;
+use AppBundle\Entity\DataApp;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -49,6 +50,13 @@ class AgendaController extends Controller
                 $event->setEventEnd($postData['end']);
                 $em->persist($event);
                 $em->flush();
+
+                $dataApp = $em->getRepository('AppBundle:DataApp')->findOneBy(['circleUser'=>$circleUser->getId() , 'agenda'=>$event->getId()]);
+                $dataApp->setCreationDate(new \DateTime('now'));
+                $dataApp->setAgenda($event);
+                $em->persist($dataApp);
+                $em->flush();
+
             }
 
             if (!isset($event) && $postData['title'] !== null) {
@@ -60,6 +68,13 @@ class AgendaController extends Controller
                 $newEvent->setEventEnd($postData['end']);
                 $newEvent->setToken($circle->getToken());
                 $em->persist($newEvent);
+                $em->flush();
+
+                $dataApp = new DataApp();
+                $dataApp->setCreationDate(new \DateTime('now'));
+                $dataApp->setCircleUser($circleUser);
+                $dataApp->setAgenda($newEvent);
+                $em->persist($dataApp);
                 $em->flush();
             }
 
