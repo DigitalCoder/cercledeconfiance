@@ -1,0 +1,36 @@
+{% extends "FrontBundle::layoutFront.html.twig" %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block title %} Créer un Cercle{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="container text-center">
+        <div class="section-header wow fadeInDown createCircleTitle">
+            <h2 class="section-title text-center">Créer un cercle</h2>
+        </div>
+
+
+        {{ form_start(form) }}
+
+        {{ form_label(form, 'Le Cercle', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
+
+        {{ form_label(form.name, 'Nom du Cercle', {'label_attr': {'class': 'labelFormCC'}})}}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+
+        {{ form_label(form.offer, 'Choisir une Offre', {'label_attr': {'class': 'labelFormCC'}})}}
+        {{ form_errors(form.offer) }}
+        {{ form_widget(form.offer) }}
+
+        {{ form_row(form.save, { 'label': 'Créer le Cercle', 'attr': {'class': 'submitFormCC btn btn-default'} }) }}
+
+        {{ form_end(form) }}
+    </div>
+
+
+
+{% endblock %}
