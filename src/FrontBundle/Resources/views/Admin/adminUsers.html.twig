@@ -40,30 +40,40 @@
                             <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <label for="visio">Visio</label>
-                                    <input id="visio" type="checkbox" disabled="disabled"
-                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Visio <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Visio <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="cloud">Cloud</label>
-                                    <input id="cloud" type="checkbox" disabled="disabled"
-                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Cloud <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Cloud <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="agenda">Agenda</label>
-                                    <input id="agenda" type="checkbox" disabled="disabled"
-                                           {% if user.agendaAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Agenda <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Agenda <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="wall">Wall</label>
-                                    <input id="wall" type="checkbox" disabled="disabled"
-                                           {% if user.wallAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Mur <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Mur <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 {% for userObj in user.objectEntries %}
                                     <li class="list-group-item">
-                                        <label for="{{ userObj.model.id }}">{{ userObj.model.reference }}</label>
-                                        <input id="{{ userObj.model.id }}" type="checkbox" disabled="disabled"
-                                               {% if userObj.Access == true %}checked="checked"{% endif %}>
+                                        {% if userObj.Access == true %}
+                                            <h3>{{ userObj.model.reference }} <a class="fa fa-check green"></a></h3>
+                                        {% else %}
+                                            <h3>{{ userObj.model.reference }} <a class="fa fa-close red"></a></h3>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>
