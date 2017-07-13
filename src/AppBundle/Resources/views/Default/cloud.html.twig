@@ -61,9 +61,9 @@
                                             Télécharger le fichier
                                         </a>
                                     {% elseif "application" in dataApp.cloud.fileType %}
-                                        <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                                class="itemCloud">
-                                        </iframe><br/>
+                                            <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                                    class="itemCloud">
+                                            </iframe><br/>
                                         <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                            download="{{ dataApp.cloud.fileName }}">
                                             <p class="text-center">Télécharger le fichier</p>

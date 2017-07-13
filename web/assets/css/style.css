@@ -460,7 +460,11 @@ footer {
 .wallContent{
     margin: 20px auto;
 }
-
+.wallIframePdf{
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+}
 .wallTitle{
     position: absolute;
     color: white;
@@ -543,6 +547,11 @@ footer {
 .itemWallVideo {
     margin-left: 33%;
     width: 33%;
+    z-index: 10;
+}
+.itemWallPdf {
+    width: 100%;
+    height: 400px;
     z-index: 10;
 }
 
