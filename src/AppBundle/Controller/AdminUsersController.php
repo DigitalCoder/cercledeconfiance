@@ -71,9 +71,11 @@ class AdminUsersController extends Controller
             }
         }
         $usersWithAdminFirst[0] = $userAdmin;
+
         if (isset($userCenter)) {
-        $usersWithAdminFirst[1] = $userCenter;
+            $usersWithAdminFirst[1] = $userCenter;
         }
+        
         if (count($userOther) > 0) {
             foreach ($userOther as $user) {
                 $usersWithAdminFirst[] = $user;
