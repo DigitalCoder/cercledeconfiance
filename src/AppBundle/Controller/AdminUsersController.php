@@ -72,8 +72,10 @@ class AdminUsersController extends Controller
         }
         $usersWithAdminFirst[] = $userAdmin;
         $usersWithAdminFirst[] = $userCenter;
-        foreach ($userOther as $user) {
-            $usersWithAdminFirst[] = $user;
+        if (count($userOther) > 0) {
+            foreach ($userOther as $user) {
+                $usersWithAdminFirst[] = $user;
+            }
         }
         $usersWithAdminFirst[0]->getUser()->setFirstname($usersWithAdminFirst[0]->getUser()->getFirstname().' (Admin)');
         $usersWithAdminFirst[1]->getUser()->setFirstname($usersWithAdminFirst[1]->getUser()->getFirstname().' (centre)');
