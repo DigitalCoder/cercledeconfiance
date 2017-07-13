@@ -48,6 +48,11 @@ h3, h4 {
     color: white;
 }
 
+.error {
+    height: 65vh;
+    padding-top: 20vh;
+}
+
 /*_____NAVBAR_____*/
 header {
     font-size: 25px;
