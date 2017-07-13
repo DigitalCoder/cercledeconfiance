@@ -84,7 +84,8 @@ class CreateCircleController extends Controller
      * @Route("cercles/creer/centreAdmin", name="centreAdmin")
      */
 
-    public function createCenterAdminAction(Request $request){
+    public function createCenterAdminAction (Request $request, ModelSetter $modelSetter)
+    {
         $cercle = new Circle();
         $form = $this->createForm(CircleType::class, $cercle);
         $form->add('save', SubmitType::class);
@@ -113,6 +114,16 @@ class CreateCircleController extends Controller
 
             $em->persist($centerCircle);
             $em->flush();
+
+            $models = $modelSetter->setModels($em);
+            foreach ($models as $model) {
+                $objectEntry = new ObjectEntry();
+                $objectEntry->setCircleUser($centerCircle);
+                $objectEntry->setModel($model);
+                $objectEntry->setAccess(1);
+                $em->persist($objectEntry);
+                $em->flush();
+            }
 
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
