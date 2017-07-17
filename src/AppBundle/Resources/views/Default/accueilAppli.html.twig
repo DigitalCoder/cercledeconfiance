@@ -5,13 +5,15 @@
 {% block content %}
     <div class="container">
         <div class="row text-center navAppli">
-            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
-                <a class="thumbnail navImage" href="{{ path('visio', {'token': token}) }}"
-                   data-toggle="tooltip" data-placement="top" title="Visio">
-                    <i class="fa fa-users pictoColor"></i>
+            {% if circleUser.callaccess == true %}
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                    <a class="thumbnail navImage" href="{{ path('visio', {'token': token}) }}"
+                       data-toggle="tooltip" data-placement="top" title="Visio">
+                        <i class="fa fa-users pictoColor"></i>
                         <p class="navImageTitle">Appel visio</p>
-                </a>
-            </div>
+                    </a>
+                </div>
+            {% endif %}
             {% if circleUser.cloudaccess == true %}
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                     <a class="thumbnail navImage" href="{{ path('cloud', {'token': token}) }}">
@@ -19,7 +21,6 @@
                         <p class="navImageTitle">Vos fichiers</p>
                     </a>
                 </div>
-            {% else %}
             {% endif %}
             {% if circleUser.wallaccess == true %}
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
@@ -28,7 +29,6 @@
                         <p class="navImageTitle">Mur</p>
                     </a>
                 </div>
-            {% else %}
             {% endif %}
             {% if circleUser.agendaaccess == true %}
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
@@ -37,7 +37,6 @@
                         <p class="navImageTitle">Agenda</p>
                     </a>
                 </div>
-            {% else %}
             {% endif %}
             <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                 <a class="thumbnail navImage" href="{{ path('show_objects', {'token': token}) }}">

@@ -25,8 +25,8 @@
                          id="{{ object.model.reference }}">
                         {% if object.model.typeObject.type == "Temperature sensor" %}
                             <canvas id="myChart"></canvas>
-                        {% elseif object.model.typeObject.type == "Smoke sensor" %}
-                            {% if object.model.dataObjects|last.data == 0 %}
+                        {% elseif object.model.typeObject.type == "Smoke sensor" and object.access == true %}
+                            {% if object.model.dataObjects|length > 0 and object.model.dataObjects|last.data == 0 %}
                                 <i class="fa fa-check text-success"></i>
                                 <h3 class="text-success">Aucune fumée n'est détectée !</h3>
                             {% else %}

@@ -3,7 +3,6 @@
 {% block title %} Mur{% endblock %}
 
 {% block content %}
-
     <section class="container wallContent">
         <div class="row">
             <div class="btnModal">
@@ -63,7 +62,6 @@
                                     </div>
                                 </div>
                                 {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
-                                <p>Name: {{ data.cloud.filename }}</p>
                                 {% if 'image' in data.cloud.filetype %}
                                     <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="img-responsive itemWall"
                                          alt="{{ data.cloud.filename }}"/>
@@ -71,6 +69,10 @@
                                     <video controls
                                            src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="itemWallVideo">
                                     </video>
+                                {% elseif 'application' in data.cloud.filetype %}
+                                    <iframe src="{{ asset("uploads/" ~ data.cloud.fileName) }}"
+                                            class="itemWallPdf">
+                                    </iframe>
                                 {% endif %}
                             </div>
                         </div>
@@ -147,5 +149,37 @@
 {% endblock %}
 {% block javascript %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/wall.js') }}"></script>
+    <script>
+        var displayIndex = 3;
+        $( ".messages" ).hide();
+        $( ".index0" ).show();
+        $( ".index1" ).show();
+        $( ".index2" ).show();
+
+        initWall();
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#appbundle_wall_content').focus();
+        });
+
+        $("a[href='#top']").click(function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
+        });
+
+        $("a[href='#affichePlus']").click(function () {
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+            $( ".index"+displayIndex ).show();
+            displayIndex++;
+            initWall();
+        });
+
+        function initWall() {
+            if( displayIndex >= {{ walldatas|length }} ){
+                $('#affiche').hide();
+            }
+        }
+    </script>
 {% endblock %}

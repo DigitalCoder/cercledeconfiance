@@ -26,9 +26,9 @@
                 {% for CUser in CUsers %}
                 {% if CUser.circle.active == true %}
                 {% if CUsers|length > 2 %}
-                <div class="col-md-4 col-md-offset-1">
+                <div class="col-md-4 col-md-offset-1 marginBottom">
                     {% else %}
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-4 col-md-offset-4 marginBottom">
                         {% endif %}
                         <a href="{{ path('appli', {'token': CUser.circle.token}) }}" class="linkCircle">
                             {{ CUser.circle.name }}

@@ -13,7 +13,12 @@
                 <h2 class="section-title text-center">Créer un cercle</h2>
             </div>
 
+            <div class="row">
+                <p>Si vous souhaitez créer un cercle dont vous etes le centre <a href="{{ path('centreAdmin') }}" class="btn btn-primary">Cliquez ici</a></p>
+            </div>
+
             {{ form_start(form) }}
+
 
             {{ form_label(form.user, 'Renseigner la personne à surveiller', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
 
@@ -50,7 +55,6 @@
 
             {{ form_widget(form.user.relation, {'attr': {'value': 'center', 'class': 'hiddenFormCC'}}) }}
 
-
             {{ form_label(form.circle, 'Le Cercle', {'label_attr': {'class': 'labelTitleFormCC'}})}}<br/>
 
             {{ form_label(form.circle.name, 'Nom du Cercle', {'label_attr': {'class': 'labelFormCC'}})}}
@@ -65,5 +69,7 @@
 
             {{ form_end(form) }}
         </div>
+
+
 
     {% endblock %}
