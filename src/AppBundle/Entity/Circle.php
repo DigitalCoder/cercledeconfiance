@@ -27,7 +27,7 @@ class Circle
      *
      * @ORM\Column(name="active", type="boolean")
      */
-    private $active=0;
+    private $active=1;
 
     /**
      * @var bool

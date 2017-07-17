@@ -18,10 +18,11 @@
                         {% if loop.first %}
                             <ul class="nav nav-tabs" role="tablist" id="tabMember">{% endif %}
                         <li role="presentation" {% if loop.first %}class="active"{% endif %}>
-                            <a href="#{{ user.user.username }}"
-                               aria-controls="{{ user.user.username }}"
+                            <a href="#{{ user.user.id }}"
+                               aria-controls="{{ user.user.id }}"
                                role="tab" data-toggle="tab">
-                                <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-responsive img-circle"
+                                <img src="{{ asset("uploads/" ~ user.user.avatar) }}"
+                                     class="memberAvatar img-responsive img-circle"
                                      alt="avatar.png">
                             </a>
                         </li>
@@ -34,36 +35,46 @@
 
                     {% for user in users %}
                         <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
-                             id="{{ user.user.username }}">
+                             id="{{ user.user.id }}">
                             <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-circle"
                                  alt="avatar.png">
                             <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <label for="visio">Visio</label>
-                                    <input id="visio" type="checkbox" disabled="disabled"
-                                           {% if user.callAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Visio <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Visio <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="cloud">Cloud</label>
-                                    <input id="cloud" type="checkbox" disabled="disabled"
-                                           {% if user.cloudAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Cloud <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Cloud <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="agenda">Agenda</label>
-                                    <input id="agenda" type="checkbox" disabled="disabled"
-                                           {% if user.agendaAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Agenda <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Agenda <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="wall">Wall</label>
-                                    <input id="wall" type="checkbox" disabled="disabled"
-                                           {% if user.wallAccess == true %}checked="checked"{% endif %}>
+                                    {% if user.callAccess == true %}
+                                        <h3>Mur <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Mur <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
                                 </li>
                                 {% for userObj in user.objectEntries %}
                                     <li class="list-group-item">
-                                        <label for="{{ userObj.model.id }}">{{ userObj.model.reference }}</label>
-                                        <input id="{{ userObj.model.id }}" type="checkbox" disabled="disabled"
-                                               {% if userObj.Access == true %}checked="checked"{% endif %}>
+                                        {% if userObj.Access == true %}
+                                            <h3>{{ userObj.model.reference }} <a class="fa fa-check green"></a></h3>
+                                        {% else %}
+                                            <h3>{{ userObj.model.reference }} <a class="fa fa-close red"></a></h3>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -87,10 +98,10 @@
                         <p>Renseigner le mail de la personne a inviter</p>
                         {{ form_start(form) }}
                         <div class="form-group">
-                        {{ form_row(form.email) }}
+                            {{ form_row(form.email) }}
                         </div>
                         <div class="form-group">
-                        {{ form_row(form.name) }}
+                            {{ form_row(form.name) }}
                         </div>
                         {{ form_row(form.envoyer) }}
                         {{ form_end(form) }}
