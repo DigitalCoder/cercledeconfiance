@@ -18,10 +18,11 @@
                         {% if loop.first %}
                             <ul class="nav nav-tabs" role="tablist" id="tabMember">{% endif %}
                         <li role="presentation" {% if loop.first %}class="active"{% endif %}>
-                            <a href="#{{ user.user.username }}"
-                               aria-controls="{{ user.user.username }}"
+                            <a href="#{{ user.user.id }}"
+                               aria-controls="{{ user.user.id }}"
                                role="tab" data-toggle="tab">
-                                <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-responsive img-circle"
+                                <img src="{{ asset("uploads/" ~ user.user.avatar) }}"
+                                     class="memberAvatar img-responsive img-circle"
                                      alt="avatar.png">
                             </a>
                         </li>
@@ -34,7 +35,7 @@
 
                     {% for user in users %}
                         <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
-                             id="{{ user.user.username }}">
+                             id="{{ user.user.id }}">
                             <img src="{{ asset("uploads/" ~ user.user.avatar) }}" class="memberAvatar img-circle"
                                  alt="avatar.png">
                             <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
@@ -97,10 +98,10 @@
                         <p>Renseigner le mail de la personne a inviter</p>
                         {{ form_start(form) }}
                         <div class="form-group">
-                        {{ form_row(form.email) }}
+                            {{ form_row(form.email) }}
                         </div>
                         <div class="form-group">
-                        {{ form_row(form.name) }}
+                            {{ form_row(form.name) }}
                         </div>
                         {{ form_row(form.envoyer) }}
                         {{ form_end(form) }}

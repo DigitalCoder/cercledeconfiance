@@ -156,6 +156,7 @@
         $( ".index1" ).show();
         $( ".index2" ).show();
 
+        initWall();
         $('#myModal').on('shown.bs.modal', function () {
             $('#appbundle_wall_content').focus();
         });
@@ -172,9 +173,13 @@
             displayIndex++;
             $( ".index"+displayIndex ).show();
             displayIndex++;
+            initWall();
+        });
+
+        function initWall() {
             if( displayIndex >= {{ walldatas|length }} ){
                 $('#affiche').hide();
             }
-        });
+        }
     </script>
 {% endblock %}

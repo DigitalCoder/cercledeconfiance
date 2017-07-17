@@ -31,7 +31,7 @@ class ProfileFormType extends AbstractType
     /**
      * @param string $class The User class name
      */
-    public function __construct($class=User::class)
+    public function __construct($class = User::class)
     {
         $this->class = $class;
     }
@@ -57,8 +57,7 @@ class ProfileFormType extends AbstractType
             'mapped' => false,
             'constraints' => new UserPassword($constraintsOptions),
         ))
-                ->add('address', RegistrationType::class);
-
+            ->add('address', RegistrationType::class);
     }
 
     /**
@@ -75,6 +74,7 @@ class ProfileFormType extends AbstractType
     }
 
     // BC for SF < 3.0
+
     /**
      * {@inheritdoc}
      */
@@ -95,13 +95,13 @@ class ProfileFormType extends AbstractType
      * Builds the embedded form representing the user.
      *
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
-            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-        ;
+            ->add('username', null, array('label' => 'form.username',
+                'translation_domain' => 'FOSUserBundle'))
+            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'));
     }
 }
