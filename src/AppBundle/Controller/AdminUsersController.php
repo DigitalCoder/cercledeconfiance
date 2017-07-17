@@ -70,15 +70,17 @@ class AdminUsersController extends Controller
                 $userOther[] = $user;
             }
         }
-        $usersWithAdminFirst[] = $userAdmin;
-        $usersWithAdminFirst[] = $userCenter;
+        $usersWithAdminFirst[0] = $userAdmin;
+
+        if (isset($userCenter)) {
+            $usersWithAdminFirst[1] = $userCenter;
+        }
+        
         if (count($userOther) > 0) {
             foreach ($userOther as $user) {
                 $usersWithAdminFirst[] = $user;
             }
         }
-        $usersWithAdminFirst[0]->getUser()->setFirstname($usersWithAdminFirst[0]->getUser()->getFirstname().' (Admin)');
-        $usersWithAdminFirst[1]->getUser()->setFirstname($usersWithAdminFirst[1]->getUser()->getFirstname().' (centre)');
 
         $currentUser = $this->getUser();
         $circleUser = $em->getRepository('AppBundle:CircleUser')

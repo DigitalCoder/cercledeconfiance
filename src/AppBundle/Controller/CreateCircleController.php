@@ -53,12 +53,12 @@ class CreateCircleController extends Controller
             $adminCircle = new CircleUser();
             $adminCircle->setUser($user);
             $adminCircle->setCircle($idCercle);
-            $adminCircle->setAdminCircle(1);
-            $adminCircle->setCircleCenter(0);
-            $adminCircle->setCallAccess(1);
-            $adminCircle->setWallAccess(1);
-            $adminCircle->setAgendaAccess(1);
-            $adminCircle->setCloudAccess(1);
+            $adminCircle->setAdminCircle(true);
+            $adminCircle->setCircleCenter(false);
+            $adminCircle->setCallAccess(true);
+            $adminCircle->setWallAccess(true);
+            $adminCircle->setAgendaAccess(true);
+            $adminCircle->setCloudAccess(true);
             $em->persist($adminCircle);
             $em->flush();
 
@@ -69,7 +69,7 @@ class CreateCircleController extends Controller
                     $objectEntry = new ObjectEntry();
                     $objectEntry->setCircleUser($CUser);
                     $objectEntry->setModel($model);
-                    $objectEntry->setAccess(1);
+                    $objectEntry->setAccess(true);
                     $em->persist($objectEntry);
                     $em->flush();
                 }
@@ -84,7 +84,8 @@ class CreateCircleController extends Controller
      * @Route("cercles/creer/centreAdmin", name="centreAdmin")
      */
 
-    public function createCenterAdminAction(Request $request){
+    public function createCenterAdminAction (Request $request, ModelSetter $modelSetter)
+    {
         $cercle = new Circle();
         $form = $this->createForm(CircleType::class, $cercle);
         $form->add('save', SubmitType::class);
@@ -104,15 +105,25 @@ class CreateCircleController extends Controller
             $centerCircle = new CircleUser();
             $centerCircle->setUser($this->getUser());
             $centerCircle->setCircle($idCercle);
-            $centerCircle->setAdminCircle(1);
-            $centerCircle->setCircleCenter(1);
-            $centerCircle->setCallAccess(1);
-            $centerCircle->setWallAccess(1);
-            $centerCircle->setAgendaAccess(1);
-            $centerCircle->setCloudAccess(1);
+            $centerCircle->setAdminCircle(true);
+            $centerCircle->setCircleCenter(true);
+            $centerCircle->setCallAccess(true);
+            $centerCircle->setWallAccess(true);
+            $centerCircle->setAgendaAccess(true);
+            $centerCircle->setCloudAccess(true);
 
             $em->persist($centerCircle);
             $em->flush();
+
+            $models = $modelSetter->setModels($em);
+            foreach ($models as $model) {
+                $objectEntry = new ObjectEntry();
+                $objectEntry->setCircleUser($centerCircle);
+                $objectEntry->setModel($model);
+                $objectEntry->setAccess(true);
+                $em->persist($objectEntry);
+                $em->flush();
+            }
 
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
@@ -162,7 +173,7 @@ class CreateCircleController extends Controller
                 $objectEntry = new ObjectEntry();
                 $objectEntry->setCircleUser($invit);
                 $objectEntry->setModel($model);
-                $objectEntry->setAccess(0);
+                $objectEntry->setAccess(false);
                 $em->persist($objectEntry);
                 $em->flush();
             }
