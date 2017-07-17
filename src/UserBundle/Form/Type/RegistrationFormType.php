@@ -42,18 +42,19 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'Email', 'translation_domain' => 'FOSUserBundle'))
+            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'),
+                array('label' => 'Email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'Nom d\'utilisateur', 'translation_domain' => 'FOSUserBundle'))
-            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'),
+                array(
                 'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
                 'options' => array('translation_domain' => 'FOSUserBundle'),
                 'first_options' => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Confirmation du mot de passe'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-            ->add('avatar', FileType::class, ['label'=>'Photo',
-            'required'=>false])
-        ;
+            ->add('avatar', FileType::class, ['label' => 'Photo',
+                'required' => false]);
     }
 
     /**
@@ -70,6 +71,7 @@ class RegistrationFormType extends AbstractType
     }
 
     // BC for SF < 3.0
+
     /**
      * {@inheritdoc}
      */
