@@ -27,6 +27,12 @@ class User extends BaseUser implements UserInterface
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     maxHeight="1000",
+     *     maxWidth="1000",
+     *     maxHeightMessage="La taille de votre image est trop grande, la hauteur maximum autorisée est de 1000px.",
+     *     maxWidthMessage="La taille de votre image est trop grande, la largeur maximum autorisée est de 1000px."
+     * )
      */
     private $avatar;
 
@@ -37,8 +43,8 @@ class User extends BaseUser implements UserInterface
      * @Assert\Length(
      *     min=3,
      *     max=255,
-     *     minMessage="The name is too short.",
-     *     maxMessage="The name is too long.",
+     *     minMessage="Le nom est trop court..",
+     *     maxMessage="Le nom est trop long.",
      *     groups={"Registration", "Profile"}
      * )
      */
@@ -52,8 +58,8 @@ class User extends BaseUser implements UserInterface
      * @Assert\Length(
      *     min=3,
      *     max=255,
-     *     minMessage="The name is too short.",
-     *     maxMessage="The name is too long.",
+     *     minMessage="Le nom est trop court.",
+     *     maxMessage="Le nom est trop long.",
      *     groups={"Registration", "Profile"}
      * )
      */
@@ -66,8 +72,8 @@ class User extends BaseUser implements UserInterface
      * @Assert\Length(
      *     min=3,
      *     max=255,
-     *     minMessage="The name is too short.",
-     *     maxMessage="The name is too long.",
+     *     minMessage="Le nom est trop court..",
+     *     maxMessage="Le nom est trop long.",
      *     groups={"Registration", "Profile"}
      * )
      */
@@ -78,10 +84,10 @@ class User extends BaseUser implements UserInterface
      *
      * @Assert\NotBlank(message="Numero Telephone", groups={"Registration", "Profile"})
      * @Assert\Length(
-     *     min=3,
-     *     max=255,
-     *     minMessage="The name is too short.",
-     *     maxMessage="The name is too long.",
+     *     min=10,
+     *     max=10,
+     *     minMessage="Le numéro de téléphone n'est pas complet.",
+     *     maxMessage="Le numéro de téléphone est trop long.",
      *     groups={"Registration", "Profile"}
      * )
      */

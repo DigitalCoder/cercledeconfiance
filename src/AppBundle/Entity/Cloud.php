@@ -25,9 +25,13 @@ class Cloud
 
     /**
      * @var string
-     *
      * @ORM\Column(name="file_name", type="string", length=255)
-     * @Assert\File(maxSize="20M")
+     * @Assert\File(maxSize = "20M",
+     *     mimeTypes = {"video/mpeg", "video/mp4", "video/quicktime", "video/x-ms-wmv",
+     *   "video/x-msvideo", "video/x-flv", "application/pdf", "application/x-pdf", "image/png",
+     *  "image/jpeg", "image/jpg", "image/gif"},
+     *    mimeTypesMessage = "Le format de votre fichier n'est pas valide",
+
      */
     private $fileName;
 
@@ -38,6 +42,8 @@ class Cloud
 
     /**
      * @ORM\Column(name="file_type", type="string", length=255)
+     *
+     *
      */
     private $fileType;
 
@@ -54,7 +60,7 @@ class Cloud
     /**
      * Set name
      *
-     * @param string $file_name
+     * @param string $fileName
      *
      * @return Cloud
      */
