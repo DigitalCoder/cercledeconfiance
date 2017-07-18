@@ -22,7 +22,7 @@ class DefaultController extends Controller
     /**
      * @Route("/error", name="errorAccess")
      */
-    public function errorAccess()
+    public function errorAccessAction()
     {
         return $this->render('AppBundle:Default:errorAccess.html.twig');
     }
