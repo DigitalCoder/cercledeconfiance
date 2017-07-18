@@ -96,8 +96,16 @@ class AdminUsersController extends Controller
             ->setFrom($this->getParameter('mailer_user'))
             ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
 
-        $mailer->send($message);
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
+            $mailer->send($message);
+
+        if ($mailer->send($message)) {
+            $mailSent = true;
+        } else {
+            $mailSent = false;
+        }
+
+
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser, 'mailSent'=>$mailSent]);
         }
         return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
 
