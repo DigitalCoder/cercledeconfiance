@@ -151,6 +151,12 @@ footer {
     padding-left: 5%;
 }
 
+.img-qsn {
+    width: 900px;
+    height: 400px;
+    margin: auto;
+}
+
 /*_____Page Services_____*/
 .serviceTitle {
     margin-bottom: 5%;
@@ -396,13 +402,10 @@ footer {
     border: 10px solid #C2B499;
     background-color: rgba(28, 117, 188, 0.6);
     text-align: center;
-    margin-top: 3%;
+    margin: 0 auto;
     padding: 30px;
     color: black;
     font-size: 20px;
-    position: absolute;
-    top: 0px;
-    right: 10px;
     vertical-align: top;
 }
 .circle {
