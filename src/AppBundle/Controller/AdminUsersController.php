@@ -54,6 +54,9 @@ class AdminUsersController extends Controller
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['user' => $user->getId(), 'circle' => $circleId]);
 
+        if ($currentCircleUser == null || $currentCircleUser->getAdminCircle() == false) {
+            return $this->redirectToRoute('accueil');
+        }
         $form->handleRequest($request);
 
         $userAdmin = null;
@@ -104,13 +107,19 @@ class AdminUsersController extends Controller
     /**
      * @Route("cercles/{token}/admin/membres/{idUser}", name="editMember")
      */
-    public function editUsersAccessAction($token, $idUser, Request $request)
+    public function editUsersAccessAction(Circle $circle, $idUser, Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
         $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['id'=>$idUser]);
         $circleUser = $circleUser[0];
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(array("circleUser" => $circleUser));
+        $user = $this->getUser();
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        if ($currentCircleUser == null || $currentCircleUser->getAdminCircle() == false) {
+            return $this->redirectToRoute('accueil');
+        }
 
         $userAccess = [];
         $formBuilder = $this->createFormBuilder($userAccess);
@@ -152,13 +161,13 @@ class AdminUsersController extends Controller
 
             $em->persist($circleUser);
             $em->flush();
-            return $this->redirectToRoute('listMembers', ['token'=>$token]);
+            return $this->redirectToRoute('listMembers', ['token'=>$circle->getToken()]);
         }
 
         return $this->render('FrontBundle:Admin:editUserAccess.html.twig', [
             'form' => $form->createView(),
             'user' => $circleUser,
-            'token'=>$token,
+            'token'=>$circle->getToken(),
         ]);
     }
 

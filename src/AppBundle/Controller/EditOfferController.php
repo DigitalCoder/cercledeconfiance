@@ -23,25 +23,27 @@ class EditOfferController extends Controller
      * @Route("/cercles/{token}/admin/offres", name="edit_offer")
     *
      */
-    public function editOfferAction(Request $request, $token)
+    public function editOfferAction(Request $request, Circle $circle)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
         $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        if ($circleUser == null || $circleUser->getAdminCircle() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
         $form = $this->createForm(CircleType::class, $circle);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($circle);
             $em->flush();
-            return $this->redirectToRoute('admin', ['token'=>$token, 'circleUser'=>$circleUser] );
+            return $this->redirectToRoute('admin', ['token'=>$circle->getToken(), 'circleUser'=>$circleUser] );
 
         }
 
             return $this->render('FrontBundle:Admin:adminServices.html.twig',
-                        array("form" => $form->createView(), 'token'=>$token, 'circleUser'=>$circleUser));
+                        array("form" => $form->createView(), 'token'=>$circle->getToken(), 'circleUser'=>$circleUser));
 
     }
 
@@ -49,10 +51,9 @@ class EditOfferController extends Controller
      * @Route("cercles/{token}/admin/offres/delete", name="deleteCircle")
      *
      */
-    public function deleteAction($token)
+    public function deleteAction(Circle $circle)
     {
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token'=>$token]);
         $circle->setActive(0);
         $circle->setAvailabilityDate(new \DateTime());
         $em->persist($circle);
