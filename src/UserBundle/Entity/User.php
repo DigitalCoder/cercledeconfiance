@@ -27,11 +27,6 @@ class User extends BaseUser implements UserInterface
      * @var string
      *
      * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
-     * @Assert\Image(
-     *     allowSquare= true,
-     *     allowLandscape= false,
-     *     allowPortrait= false
-     * )
      */
     private $avatar;
 
