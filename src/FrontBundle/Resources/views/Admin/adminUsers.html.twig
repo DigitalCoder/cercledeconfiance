@@ -41,33 +41,34 @@
                             <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    {% if user.callAccess == true %}
+                                    {% if user.CallAccess == true %}
                                         <h3>Visio <a class="fa fa-check green"></a></h3>
                                     {% else %}
                                         <h3>Visio <a class="fa fa-close red"></a></h3>
                                     {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    {% if user.callAccess == true %}
+                                    {% if user.wallAccess == true %}
+                                        <h3>Mur <a class="fa fa-check green"></a></h3>
+                                    {% else %}
+                                        <h3>Mur <a class="fa fa-close red"></a></h3>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item">
+                                    {% if user.cloudAccess == true %}
                                         <h3>Cloud <a class="fa fa-check green"></a></h3>
                                     {% else %}
                                         <h3>Cloud <a class="fa fa-close red"></a></h3>
                                     {% endif %}
                                 </li>
                                 <li class="list-group-item">
-                                    {% if user.callAccess == true %}
+                                    {% if user.agendaAccess == true %}
                                         <h3>Agenda <a class="fa fa-check green"></a></h3>
                                     {% else %}
                                         <h3>Agenda <a class="fa fa-close red"></a></h3>
                                     {% endif %}
                                 </li>
-                                <li class="list-group-item">
-                                    {% if user.callAccess == true %}
-                                        <h3>Mur <a class="fa fa-check green"></a></h3>
-                                    {% else %}
-                                        <h3>Mur <a class="fa fa-close red"></a></h3>
-                                    {% endif %}
-                                </li>
+
                                 {% for userObj in user.objectEntries %}
                                     <li class="list-group-item">
                                         {% if userObj.Access == true %}
