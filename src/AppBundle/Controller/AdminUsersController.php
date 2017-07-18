@@ -173,7 +173,7 @@ class AdminUsersController extends Controller
 
     /**
      * @Route("cercles/{token}/admin/membres/{idUser}/delete", name="deleteMember")
-     *
+     * @Method("POST")
      */
     public function deleteAction($idUser, $token)
     {

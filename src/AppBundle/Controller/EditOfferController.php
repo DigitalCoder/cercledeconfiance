@@ -12,6 +12,7 @@ use AppBundle\Entity\Circle;
 use AppBundle\Entity\Offer;
 use AppBundle\Form\CircleType;
 use AppBundle\Form\OfferType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +50,7 @@ class EditOfferController extends Controller
 
     /**
      * @Route("cercles/{token}/admin/offres/delete", name="deleteCircle")
-     *
+     * @Method("POST")
      */
     public function deleteAction(Circle $circle)
     {
