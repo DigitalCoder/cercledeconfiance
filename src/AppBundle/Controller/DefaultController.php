@@ -83,7 +83,7 @@ class DefaultController extends Controller
         $cUserWithoutThis = array();
         // Exclude the current user from array
         foreach ($cUsers as $cUser){
-            if ($cUser->getId() != $user->getId()){
+            if ($cUser->getUser()->getId() != $user->getId()){
                 $cUserWithoutThis[] = $cUser;
             }
         }
