@@ -31,6 +31,7 @@ class Cloud
      *   "video/x-msvideo", "video/x-flv", "application/pdf", "application/x-pdf", "image/png",
      *  "image/jpeg", "image/jpg", "image/gif"},
      *    mimeTypesMessage = "Le format de votre fichier n'est pas valide",
+     *     maxSizeMessage="Le fichier est trop volumineux",)
 
      */
     private $fileName;
