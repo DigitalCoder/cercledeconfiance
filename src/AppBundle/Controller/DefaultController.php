@@ -20,6 +20,14 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
+     * @Route("/error", name="errorAccess")
+     */
+    public function errorAccessAction()
+    {
+        return $this->render('AppBundle:Default:errorAccess.html.twig');
+    }
+
+    /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="accueil")
      */
@@ -33,39 +41,35 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/create")
-     */
-    public function createAction()
-    {
-        return $this->render('FrontBundle:Default:createCircle.html.twig');
-    }
-
-    /**
      * @Route("/{token}", name="appli")
      */
-    public function accueilAppliAction($token)
+    public function accueilAppliAction(Circle $circle)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
         $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
-        $param = ['token' => $token, 'circleUser' => $circleUser];
+        if ($circleUser == null) {
+            return $this->redirectToRoute('errorAccess');
+        }
+        $param = ['token' => $circle->getToken(), 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:accueilAppli.html.twig', $param);
     }
 
     /**
      * @Route("/{token}/admin", name="admin")
      */
-    public function adminCircleAction($token)
+    public function adminCircleAction(Circle $circle)
     {
 
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $circle = $em->getRepository('AppBundle:Circle')->findOneBy(['token' => $token]);
         $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
-        $param = ['token' => $token, 'circleUser' => $circleUser];
+        if ($circleUser == null || $circleUser->getAdminCircle() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
+        $param = ['token' => $circle->getToken(), 'circleUser' => $circleUser];
         return $this->render('AppBundle:Default:adminCircle.html.twig', $param);
     }
 
@@ -78,6 +82,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        if ($currentCircleUser == null || $currentCircleUser->getCallAccess() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
         $cUsers = $em->getRepository('AppBundle:CircleUser')
             ->findBy(['circle' => $circle->getId()]);
         $cUserWithoutThis = array();
@@ -101,15 +108,8 @@ class DefaultController extends Controller
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
 
-        if (!isset($currentCircleUser)) {
-            return $this->redirectToRoute('accueil');
-        }
-        if ($currentCircleUser->getCloudAccess() == 0) {
-            return $this->render('AppBundle:Default:cloud.html.twig',
-                ['token' => $circle->getToken(),
-                    'error' => 'Vous n\'avez pas accès à cette fonctionnalité.<br/>Contactez l\'administrateur 
-du cercle pour plus d\'informations.',
-                    'circleUser' => $currentCircleUser]);
+        if ($currentCircleUser == null || $currentCircleUser->getCloudAccess() == false) {
+            return $this->redirectToRoute('errorAccess');
         }
 
         $circleUsers = $em->getRepository('AppBundle:CircleUser')
@@ -153,8 +153,11 @@ du cercle pour plus d\'informations.',
         $em = $this->getDoctrine()->getManager();
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
-
+        if ($currentCircleUser == null) {
+            return $this->redirectToRoute('errorAccess');
+        }
         return $this->render('AppBundle:Default:statsObjects.html.twig',
             ['token' => $circle->getToken(), 'circleUser' => $currentCircleUser]);
     }
+
 }

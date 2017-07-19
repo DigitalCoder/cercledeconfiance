@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Circle
@@ -55,6 +57,7 @@ class Circle
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez obligatoirement renseigner un nom.")
      */
     private $name;
 

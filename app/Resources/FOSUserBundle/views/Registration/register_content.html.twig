@@ -6,6 +6,7 @@
     </header>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
+    {{ form_errors(form.phone_number) }}
     <div>
         <input class="btn-default" type="submit" value="{{ 'Créer !'|trans }}" />
     </div>

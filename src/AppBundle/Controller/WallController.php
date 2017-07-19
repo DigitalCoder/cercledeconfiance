@@ -32,7 +32,11 @@ class WallController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        if ($currentCircleUser == null || $currentCircleUser->getWallAccess() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
         $wallCircleDatas = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circle->getId()]);
 
         $circleUserId = array();

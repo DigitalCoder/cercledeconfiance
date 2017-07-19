@@ -31,6 +31,9 @@ class AgendaController extends Controller
         $user = $this->getUser();
         $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+        if ($circleUser == null || $circleUser->getAgendaAccess() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
         if ($request->isXmlHttpRequest()) {
 
             $postData = ($request->request->all());
