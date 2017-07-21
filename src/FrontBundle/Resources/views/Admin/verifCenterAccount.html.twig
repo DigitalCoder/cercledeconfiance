@@ -1,0 +1,14 @@
+{% extends "FrontBundle::layoutFront.html.twig" %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block title %} Créer un Cercle{% endblock %}
+
+
+{% block content %}
+<div class="container text-center marginBottom marginTitle">
+    <div class="row">
+        {{ form(form) }}
+    </div>
+</div>
+{% endblock %}
