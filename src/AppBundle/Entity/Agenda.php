@@ -57,7 +57,7 @@ class Agenda
     private $eventEnd;
 
     /**
-     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="agenda")
+     * @ORM\OneToMany(targetEntity="DataApp", mappedBy="agenda", cascade={"persist", "remove"})
      */
     private $dataApps;
 

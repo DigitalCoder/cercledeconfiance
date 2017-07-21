@@ -40,7 +40,7 @@ class DataApp
     private $cloud;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Agenda", inversedBy="dataApps")
+     * @ORM\ManyToOne(targetEntity="Agenda", inversedBy="dataApps", cascade={"persist", "remove"})
      */
     private $agenda;
 

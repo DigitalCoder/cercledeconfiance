@@ -12,6 +12,7 @@
     </div>
 
     <div class="container text-center marginBottom marginTop">
+        <a href="{{ path('verif_account', {'token': token}) }}" class="btn btn-default">J'ai déjà un compte</a>
         {% if error is defined %}
             <h2>{{ error }}</h2>
         {% else %}
