@@ -50,7 +50,7 @@ class EditOfferController extends Controller
 
     /**
      * @Route("cercles/{token}/admin/offres/delete", name="deleteCircle")
-     * @Method("POST")
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Circle $circle)
     {
