@@ -60,14 +60,29 @@
                                            download="{{ dataApp.cloud.fileName }}">
                                             Télécharger le fichier
                                         </a>
-                                    {% elseif "application" in dataApp.cloud.fileType %}
+                                    {% elseif ("application" in dataApp.cloud.fileType) or ("text" in dataApp.cloud.fileType) %}
+                                        {% if ".doc" in dataApp.cloud.fileName %}
+                                            <p class="cloudDoc">Document Word</p>
+                                            <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                               download="{{ dataApp.cloud.fileName }}">
+                                                <p class="text-center">Télécharger le fichier</p>
+                                            </a>
+                                        {% elseif ".xls" in dataApp.cloud.fileName %}
+                                            <p class="cloudDoc">Document Excel</p>
+                                            <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                               download="{{ dataApp.cloud.fileName }}">
+                                                <p class="text-center">Télécharger le fichier</p>
+                                            </a>
+                                        {% else %}
                                             <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                                     class="itemCloud">
                                             </iframe><br/>
-                                        <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
-                                           download="{{ dataApp.cloud.fileName }}">
-                                            <p class="text-center">Télécharger le fichier</p>
-                                        </a>
+                                            <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                               download="{{ dataApp.cloud.fileName }}">
+                                                <p class="text-center">Télécharger le fichier</p>
+                                            </a>
+                                        {% endif %}
+
                                     {% endif %}
                                 </div>
                             </div>
