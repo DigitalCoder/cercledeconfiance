@@ -14,8 +14,10 @@
             </div>
 
             <div class="row">
-                <p>Si vous souhaitez créer un cercle dont vous etes le centre <a href="{{ path('centreAdmin') }}" class="btn btn-primary">Cliquez ici</a></p>
-                <a href="{{ path('verif_center_account') }}" class="btn btn-default">Le centre a déjà un compte</a>
+                <p>Si vous voulez créer un « Cercle Confiance » dont vous serez le centre <a href="{{ path('centreAdmin') }}" class="btn btn-primary">Cliquez ici</a></p>
+                <p>Si vous voulez créer un « Cercle Confiance » dont le centre sera une personne déjà inscrite
+                    et dont vous connaissez les identifiants
+                <a href="{{ path('verif_center_account') }}" class="btn btn-primary">Cliquez ici</a></p>
             </div>
 
             {{ form_start(form) }}
