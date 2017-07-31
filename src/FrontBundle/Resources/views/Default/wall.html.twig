@@ -46,38 +46,40 @@
                         </div>
                         {# CLOUD DISPLAY MESSAGE #}
                     {% elseif data.cloud != null %}
-                        <div class="row messages index{{ loop.index0 }}">
-                            <div class="wallBorder">
-                                <div class="wallTitle">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-xs-3">
-                                            <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}"
-                                                 class="wallAvatar img-circle" alt="avatar.png">
-                                        </div>
-                                        <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
-                                            <h5>
-                                                <i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
-                                            </h5>
-                                            <p>{{ data.creationdate|date }}</p>
+                        {% if 'image' in data.cloud.filetype or 'application/pdf' in data.cloud.filetype or 'video' in data.cloud.filetype %}
+                            <div class="row messages index{{ loop.index0 }}">
+                                <div class="wallBorder">
+                                    <div class="wallTitle">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-xs-3">
+                                                <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}"
+                                                     class="wallAvatar img-circle" alt="avatar.png">
+                                            </div>
+                                            <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
+                                                <h5>
+                                                    <i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
+                                                </h5>
+                                                <p>{{ data.creationdate|date }}</p>
+                                            </div>
                                         </div>
                                     </div>
+                                    {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
+                                    {% if 'image' in data.cloud.filetype %}
+                                        <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="img-responsive itemWall"
+                                             alt="{{ data.cloud.filename }}"/>
+                                    {% elseif 'video' in data.cloud.filetype %}
+                                        <video controls
+                                               src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="itemWallVideo">
+                                        </video>
+                                    {% elseif 'application/pdf' in data.cloud.filetype %}
+                                        <iframe src="{{ asset("uploads/" ~ data.cloud.fileName) }}"
+                                                class="itemWallPdf">
+                                        </iframe>
+                                    {% endif %}
                                 </div>
-                                {# Check if type of data is 'lien' and switch <p> for <a href>'> #}
-                                {% if 'image' in data.cloud.filetype %}
-                                    <img src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="img-responsive itemWall"
-                                         alt="{{ data.cloud.filename }}"/>
-                                {% elseif 'video' in data.cloud.filetype %}
-                                    <video controls
-                                           src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="itemWallVideo">
-                                    </video>
-                                {% elseif 'application' in data.cloud.filetype %}
-                                    <iframe src="{{ asset("uploads/" ~ data.cloud.fileName) }}"
-                                            class="itemWallPdf">
-                                    </iframe>
-                                {% endif %}
                             </div>
-                        </div>
-                        {# AGENDA DISPLAY MESSAGE #}
+                        {% endif %}
+                            {# AGENDA DISPLAY MESSAGE #}
                     {% elseif data.agenda != null %}
                         <div class="row messages index{{ loop.index0 }}">
                             <div class="wallBorder">
