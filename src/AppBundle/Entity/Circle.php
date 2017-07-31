@@ -36,7 +36,7 @@ class Circle
      *
      * @ORM\Column(name="paid", type="boolean")
      */
-    private $paid=0;
+    private $paid=1;
 
     /**
      * @ORM\ManyToOne(targetEntity="Offer", inversedBy="circles", cascade={"persist"})
