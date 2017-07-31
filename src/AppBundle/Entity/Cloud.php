@@ -28,7 +28,8 @@ class Cloud
      * @ORM\Column(name="file_name", type="string", length=255)
      * @Assert\File(maxSize = "20M",
      *     mimeTypes = {"video/mpeg", "video/mp4", "video/quicktime", "video/x-ms-wmv",
-     *   "video/x-msvideo", "video/x-flv", "application/pdf", "application/x-pdf", "image/png",
+     *   "video/x-msvideo", "video/x-flv", "application/pdf","application/msword", "application/vnd.ms-powerpoint", "application/vnd.ms-excel",
+     *    "text/plain", "application/x-pdf", "image/png",
      *  "image/jpeg", "image/jpg", "image/gif"},
      *    mimeTypesMessage = "Le format de votre fichier n'est pas valide",
      *     maxSizeMessage="Le fichier est trop volumineux")

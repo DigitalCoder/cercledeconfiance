@@ -22,8 +22,8 @@ $(document).ready(function() {
         select: function(start, end) {
             start = moment(start).format();
             end = moment(end).format();
-            var title = prompt('Event Title:');
-            var description = prompt('Event Description:');
+            var title = prompt('Titre de l\'évènement:');
+            var description = prompt('Description:');
             var id = new Date().getTime();
             var eventData;
             $.ajax({
