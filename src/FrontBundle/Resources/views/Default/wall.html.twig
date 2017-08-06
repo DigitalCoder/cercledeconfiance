@@ -35,7 +35,7 @@
                                             <h5>
                                                 <i class="fa fa-folder-open wallIcon"></i><strong> {{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
                                             </h5>
-                                            <p>{{ data.creationdate|date }}</p>
+                                            <p>{{ data.creationdate|date("d/m/Y h:i") }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                         {# CLOUD DISPLAY MESSAGE #}
                     {% elseif data.cloud != null %}
                         {% if 'image' in data.cloud.filetype or 'application/pdf' in data.cloud.filetype
-                        or 'video' in data.cloud.filetype or 'text' in data.cloud.filetype %}
+                        or 'video' in data.cloud.filetype %}
                             <div class="row messages index{{ loop.index0 }}">
                                 <div class="wallBorder">
                                     <div class="wallTitle">
@@ -60,7 +60,7 @@
                                                 <h5>
                                                     <i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
                                                 </h5>
-                                                <p>{{ data.creationdate|date }}</p>
+                                                <p>{{ data.creationdate|date("d/m/Y h:i") }}</p>
                                             </div>
 
                                         </div>
@@ -95,7 +95,7 @@
                                             <h5>
                                                 <i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
                                             </h5>
-                                            <p>{{ data.creationdate|date }}</p>
+                                            <p>{{ data.creationdate|date("d/m/Y h:i") }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                         <strong>Evenement:</strong> {% if data.agenda.description is defined %}{{ data.agenda.description }}{% endif %}
                                     </p>
                                     <p><strong>Date de
-                                            l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date }}{% endif %}
+                                            l'evenement:</strong> {% if data.agenda.eventStart is defined %}{{ data.agenda.eventStart|date("d/m/Y h:i") }}{% endif %}
                                     </p>
                                 </div>
                             </div>
