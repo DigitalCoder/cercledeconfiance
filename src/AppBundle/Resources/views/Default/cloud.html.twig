@@ -39,7 +39,7 @@
                                             <h5>
                                                 <i class="fa fa-folder-open wallIcon"></i><strong> {{ dataApp.circleuser.user.firstname }} {{ dataApp.circleuser.user.name }}</strong>
                                             </h5>
-                                            <p>{{ dataApp.creationdate|date }}</p>
+                                            <p>{{ dataApp.creationdate|date("d/m/Y h:i") }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -73,10 +73,16 @@
                                                download="{{ dataApp.cloud.fileName }}">
                                                 <p class="text-center">Télécharger le fichier</p>
                                             </a>
-                                        {% else %}
+                                        {% elseif ".pdf" in dataApp.cloud.fileName or ".txt" in dataApp.cloud.fileName %}
                                             <iframe src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                                     class="itemCloud">
                                             </iframe><br/>
+                                            <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
+                                               download="{{ dataApp.cloud.fileName }}">
+                                                <p class="text-center">Télécharger le fichier</p>
+                                            </a>
+                                        {% else %}
+                                            <p class="cloudDoc">Document divers</p>
                                             <a class="downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"
                                                download="{{ dataApp.cloud.fileName }}">
                                                 <p class="text-center">Télécharger le fichier</p>
