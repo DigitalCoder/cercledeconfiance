@@ -39,8 +39,18 @@ class ModelSetter
         $model1->setDocUrl('http://www.chirped.org/c/c3/thermometres%20et%20prise%20de%20temperature.pdf');
         $manager->persist($model1);
 
+        $model2 = new Model();
+        $model2->setBrand($brands[1]);
+        $model2->setDescription('Ceci est un robot de surveillance');
+        $model2->setReference('SysPo');
+        $model2->setUniqId(md5(uniqid()));
+        $model2->setPrice(5.5);
+        $model2->setTypeObject($type_objects[2]);
+        $model2->setDocUrl('http://www.chirped.org/c/c3SysPo.pdf');
+        $manager->persist($model2);
+
         $manager->flush();
 
-        return [$model0, $model1];
+        return [$model0, $model1, $model2];
     }
 }

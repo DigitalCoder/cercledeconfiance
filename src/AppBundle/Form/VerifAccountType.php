@@ -25,7 +25,7 @@ class VerifAccountType extends AbstractType
     {
         $builder->add('username', TextType::class, ['label' => 'Nom d\'utilisateur'])
             ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
-            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-default']]);
+            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-default'],'label' => 'Valider']);
     }
 
     /**

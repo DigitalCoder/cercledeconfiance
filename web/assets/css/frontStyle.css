@@ -1,8 +1,11 @@
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 992px) {
 
-    .navbar-header {
-    float: none;
+    /*.navbar-header {
+      float: none;
+    }*/
+    .container-fluid>.navbar-header {
+        width: 100%;
     }
     .navbar-left,.navbar-right {
     float: none !important;
@@ -21,25 +24,28 @@
     .navbar-collapse.collapse {
     display: none!important;
     }
-    .navbar-nav {
-    float: none!important;
-    margin-top: 7.5px;
-    }
+    /*.navbar-nav {
+        float: none!important;
+        margin-top: 64px;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+    }*/
     .navbar-nav>li {
-    float: none;
+        float: none;
+        display: block;
     }
     .navbar-nav>li>a {
     padding-top: 10px;
     padding-bottom: 10px;
+        width: 100%;display: block;
     }
     .collapse.in{
     display:block !important;
     }
 
     .scroll {
-        margin-top: 10px;
+        /*margin-top: 10px;*/
         text-align: center;
-        margin-left: 48%;
+        /*margin-left: 48%;*/
     }
 
     .desktopLogout {
@@ -48,7 +54,7 @@
 
     .navbar.navbar-default .paddingLogoNavFront {
         height: auto;
-        padding: 1% 1% 1% 1%;
+        padding: 1%;
         margin-left: 5%;
     }
 
@@ -73,20 +79,28 @@
 }
 
 
-@media screen and (min-width: 1250px) {
+@media screen and (min-width: 768px) {
 
+    /*.container-fluid>.navbar-header {
+        width: 100%;
+    }*/
     .responsiveLogout {
-        display: none;
+        display: block;
     }
 
     .navbar.navbar-default .paddingLogoNavFront {
         height: auto;
-        padding: 5% 5% 5% 5%;
+        padding: 1%;
         margin-left: 5%;
     }
 
     .blockLogout{
         margin-top: 1%;
+    }
+    .blockLogout strong, .blockLogout .avatar {
+        display: inline-block;
+        margin: auto;
+        font-size: .5em;
     }
 
     .btnLogout {
@@ -95,6 +109,310 @@
     }
 
     .logoFront {
+        width: 70px;
+    }
+}
+.collapse #item {
+    background: #fff;
+}
+@media screen and (min-width: 992px)  {
+
+  .collapse #item {
+      width: 75%;
+      float: left;
+  }
+}
+@media screen  and (orientation: portrait) {
+    .collapse #item {
+      /*width: 100%;*/
+      /*float: none;*/
+      /*height: 100em;*/
+    }
+}
+@media screen and (min-width: 992px)  and (orientation: landscape) {
+    .responsiveLogout {
+        display: none;
+    }
+    .navbar.navbar-default .paddingLogoNavFront {
+        height: auto;
+        padding: 5% 5% 5% 5%;
+        margin-left: 5%;
+    }
+    .logoFront {
         width: 100px;
+    }
+}
+
+.circleBlock {
+  padding-bottom: 1em;
+}
+/*.circleBlock .linkCircle strong {
+  margin-bottom: -.85em;
+  display: block;
+  padding: .25em 0;
+  background: rgb(28, 117, 188);
+  color: #fff;
+  border-radius: 1em 1em 0 0;
+}*/
+.circleBlock .linkCircle hr {
+    margin-top: -0.5em;
+}
+.circleBlock img.circleItem {
+    display: block;
+    max-width: 300px;
+    max-height: 300px;
+    border-color: rgb(28, 117, 188);
+    opacity: .85;
+    -webkit-transition-property: opacity;
+    -ms-transition-property: opacity;
+    transition-property: opacity;
+}
+.circleBlock img.circleMember {
+    width: 20%;
+    height: auto;
+    border-width: 5px;
+    min-height: 69px;
+    margin-right: -5%;
+}
+.circleBlock .only-one {
+    margin-left: -5%;
+}
+@media screen and (min-width: 768px) {
+  .circleBlock img.circleMember {
+    width: 23%;
+  }
+}
+.linkCircle:hover >  img.circleItem, .linkCircle:focus >  img.circleItem {
+    border: 10px solid rgba(54, 171, 226, 0.8);
+    opacity: 1;
+    -webkit-transition-property: opacity;
+    -ms-transition-property: opacity;
+    transition-property: opacity;
+}
+.navbar .navbar-nav {
+    display: block;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+    .collapse.in {
+        margin: 3em -15px 0;
+    }
+}
+@media screen and (min-width: 992px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+    }
+}
+
+.navbar .navbar-nav>li>a {
+    background: #fff;
+    font-size: 0.875em;
+    padding: .75em 0.25em;
+}
+@media screen and (max-width: 768px) {
+    .navbar .navbar-nav>li>a {
+        /*line-height: .5em;*/
+        line-height: 1.25em;
+    }
+}
+
+.navbar .navbar-nav>li.active > a {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1.25em;
+}
+.navAppli {
+  margin: 0 15px .5em;
+}
+@media screen and (min-width: 768px) {
+    .navAppli {
+        padding: inherit;
+    }
+}
+.navAppli .navImage {
+    font-size: inherit;
+    border: 10px solid rgb(28, 117, 188);
+    border-radius: 50em;
+    padding: 2em 0em 0;
+    min-height: 14em;
+    min-width: 14em;
+    max-width: 14em;
+    line-height: 2.5em;
+}
+.navAppli .navImage .fa {
+    font-size: 6em;
+}
+
+.navAppli .navImage .navImageTitle {
+  font-size: 1.25em;
+}
+/*.circle {
+    margin: 1em auto;
+}
+@media screen and (min-width: 768px) {
+    .circle {
+        margin: 2em auto;
+    }
+}
+@media screen and (min-width: 768px) and (orientation: portrait)  {
+    .circle {
+        margin: 3em auto;
+    }
+}*/
+.circle .btn-add {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1.33;
+    color: #fff;
+    background-color: #5cb85c;
+    /*border-color: #4cae4c;*/
+    border-color: rgba(255, 255, 255, .25);
+    border-width: 5px;
+    border-radius: 4em;
+    padding: 1.5em 0em;
+    min-height: 6em;
+    width: 7.5em;
+    white-space: inherit;
+}
+.circle .btn-add:hover, .circle .btn-add:active, .circle .btn-add:focus {
+    color: #5cb85c;
+    background-color: rgba(255, 255, 255, .25);
+    border-color: #5cb85c;
+}
+@media screen and (min-width: 768px) {
+    .circle .btn-add {
+        font-size: 18px;
+    }
+    #tabMember li {
+      float:left;
+    }
+}
+#tabMember li a {
+  padding: 0
+}
+#tabMember li .memberAvatar {
+    width: 100%;
+    height: auto;
+}
+#tabMember > li.active > a, #tabMember > li.active > a:hover, #tabMember > li.active > a:focus {
+    background: transparent;
+    border: 10px solid rgba(194, 180, 153, 1);
+    border-radius: 50%;
+}
+.padder {
+  position: absolute;
+  margin-top: 1.5em;
+  margin-left: 2em;
+  position: absolute;
+}
+#main-menu.navbar-default .navbar-nav > li.open > a, #main-menu.navbar-default .navbar-nav > li:hover > a {
+    padding-top: 40px;
+    padding-bottom: 37px;
+    color: #45aed6;
+}
+#main-menu.navbar-default .navbar-nav > li.active > a{
+    padding-bottom: 33px;
+    padding-top: 37px;
+}
+#main-menu.navbar-default .navbar-nav > li.active:hover > a {
+    color: #FFF;
+}
+@media only screen and (min-width: 992px) {
+    #main-menu.navbar-default .navbar-nav > li > a {
+        padding-right: 0.5em;
+        padding-left: 0.5em;
+    }
+}
+header + section {
+    margin: 0;
+    padding: 2em 0px;
+}
+.footerLinks {
+    margin-top: 1%;
+}
+@media only screen and (max-width: 992px) {
+    header + section {
+        margin: 0;
+        padding: 0 0 2em;
+    }
+}
+@media only screen and (max-width: 768px) {
+    #footer {
+        padding: 0.5em 0
+    }
+    .footerLinks {
+        margin-top: 2%;
+    }
+}
+header + section > .container .section-header {
+    margin-bottom: 0;
+}
+
+/* login box */
+.login-box {
+    background: #fff;
+    border-radius: 25px;
+    border-color: #45aed6;
+    border-width: 2px;
+}
+.login-box input {
+    border-color: #45aed6;
+}
+.btn-not_yet {
+    /* background-color: #C2B499; */
+    /* border-color: #C2B499; */
+    border-radius: 5em;
+    height: 7em;
+    padding: 1.75em 0.5em 0;
+    width: 7em;
+    margin: auto;
+    font-size: 1em;
+}
+@media only screen and (min-width: 768px) {
+    .btn-not_yet {
+        font-size: 1.5em;
+        margin-top: 1.5em;
+    }
+}
+@media only screen and (min-width: 768px) {
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        padding: 0;
+    }
+    header + section {
+        margin-bottom:100px;
+    }
+}
+/* pricing */
+#pricing ul.pricing {
+    background-color: rgba(54, 171, 226, 0.8);
+    height: auto;
+    padding-bottom: 70px;
+}
+#pricing ul.pricing li {
+    color: #fff;
+}
+@media only screen and (min-width: 768px) {
+    #pricing ul.pricing {
+        min-height: 500px;
+        margin: 5em 0 0;
+        padding: 0 15px;
+    }
+}
+#pricing ul.pricing li.plan-header .price-duration > span.price {
+    margin-top: 25px;
+}
+#pricing ul.pricing li.plan-header .price-duration {
+    top: -15px;
+}
+.section-header .section-title {
+    font-size: 2em;
+}
+@media only screen and (max-width: 768px) {
+    .section-header .section-title {
+        font-size: 1.5em;
     }
 }
