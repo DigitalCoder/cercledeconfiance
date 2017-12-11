@@ -10,50 +10,51 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
     {{ parent() }}
+
+    <link href="{{ asset('assets/css/frontStyle.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block navbar %}
-    <nav class="navbar navbar-default stopPadding">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="navbar-header col-xs-2">
-                    <a class="paddingLogoNav navbar-brand" href="/">
-                        <img src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
-                             alt="logo_cercle_confiance" class="logo">
-                    </a>
-                </div>
-                <div class="navbar-collapse">
-                    <div class="col-xs-8">
-                        <a class="circleLink respLink" href="{{ path('accueil') }}">
-                            <h1 class="respNavApp">{{ circleUser.circle.name }}</h1>
-                            <i class="fa fa-arrow-circle-o-left"></i> Changer de cercle
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="navbar-header col-xs-2 col-xs-offset-0 col-lg-offset-2">
+                        <a class="paddingLogoNav navbar-brand" href="/">
+                            <img src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"
+                                 alt="logo_cercle_confiance" class="logo">
                         </a>
                     </div>
-                    {% if app.user.username is defined %}
-                        <div class="col-xs-1 col-sm-2 paddAuth">
-                            <div class="row">
-                                <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">
-                                {{ app.user.username }}
+                    <div class="col-xs-9 col-lg-6">
+                            <div class="pull-left">
+                                <a class="circleLink respLink" href="{{ path('accueil') }}">
+                                    <h1 class="respNavApp">{{ circleUser.circle.name }}</h1>
+                                    <i class="fa fa-arrow-circle-o-left"></i> Changer de cercle
+                                </a>
                             </div>
-                            <div class="row text-center respLink">
-                                <div class="col-sm-2 col-sm-offset-4 col-xs-6 stopPaddLink">
-                                    <a href="{{ path('fos_user_profile_edit', {'token': token}) }}"><i
-                                                class="fa fa-address-card-o"></i>
-                                    </a>
+                        {% if app.user.username is defined %}
+                            <div class="pull-right">
+                                <div class="row">
+                                    <img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle" alt="{{ app.user.username }}"">
+                                    <span class="hidden-xs">{{ app.user.username }}</span>
                                 </div>
-                                <div class="col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-3 stopPaddLink">
-                                    <a href="/logout"> <i class="fa fa-sign-out"></i></a>
+                                <div class="row text-center respLink">
+                                    <div class="col-sm-2 col-sm-offset-4 col-xs-6 stopPaddLink">
+                                        <a href="{{ path('fos_user_profile_edit', {'token': token}) }}"><i
+                                                    class="fa fa-address-card-o"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-sm-offset-0 col-xs-3 col-xs-offset-3 stopPaddLink">
+                                        <a href="/logout"> <i class="fa fa-sign-out"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-
-
-        </div>
-    </nav>
+        </nav>
+    </header>
 {% endblock %}
 
 {% block footer %}{% endblock %}
-

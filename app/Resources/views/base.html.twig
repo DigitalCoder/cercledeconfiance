@@ -16,7 +16,7 @@
 
 </head><!--/head-->
 
-<body id="home" class="homepage">
+<body class="{% block page_type %}{% endblock %}">
 {% block navbar %}{% endblock %}
 
 {% block content %}{% endblock %}
@@ -34,8 +34,8 @@
             <div class="col-xs-12 col-sm-4 footerLinks">
                 <a href="#">Contactez-nous</a>
             </div>
-            <div class="col-xs-12 mentionFooter">
-                &copy; 2017 Cercle Confiance. Designed by <a target="_blank" href="http://wildcodeschool.com" title="wild code school">Wild Code School</a>
+            <div class="col-xs-12 mentionFooter footerLinks">
+                &copy; 2017 Cercle Confiance.
             </div>
         </div>
     </div>

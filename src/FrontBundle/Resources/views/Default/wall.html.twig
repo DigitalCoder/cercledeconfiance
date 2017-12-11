@@ -23,11 +23,13 @@
                 {% for data in walldatas %}
                     {# WALL DISPLAY MESSAGE #}
                     {% if data.wall != null %}
-                        <div class="row messages index{{ loop.index0 }}">
+                        <!--<div class="row messages index{{ loop.index0 }}">-->
+                        <div class="messages index{{ loop.index0 }}">
                             <div class="wallBorder">
                                 <div class="wallTitle">
                                     <div class="row">
-                                        <div class="col-lg-3 col-xs-3">
+                                        <!--<div class="col-lg-3 col-xs-3">-->
+                                        <div class="col-xs-3">
                                             <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}"
                                                  class="wallAvatar img-circle" alt="avatar.png">
                                         </div>
@@ -48,15 +50,18 @@
                     {% elseif data.cloud != null %}
                         {% if 'image' in data.cloud.filetype or 'application/pdf' in data.cloud.filetype
                         or 'video' in data.cloud.filetype %}
-                            <div class="row messages index{{ loop.index0 }}">
+                            <!--<div class="row messages index{{ loop.index0 }}">-->
+                            <div class="messages index{{ loop.index0 }}">
                                 <div class="wallBorder">
                                     <div class="wallTitle">
                                         <div class="row">
-                                            <div class="col-lg-3 col-xs-3">
+                                            <!--<div class="col-lg-3 col-xs-3">-->
+                                            <div class="col-xs-3">
                                                 <img src="{{ asset("uploads/" ~ data.circleuser.user.avatar) }}"
                                                      class="wallAvatar img-circle" alt="avatar.png">
                                             </div>
-                                            <div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">
+                                            <!--<div class="col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">-->
+                                                <div class="col-xs-9">
                                                 <h5>
                                                     <i class="fa fa-folder-open wallIcon"></i><strong>{{ data.circleuser.user.firstname }} {{ data.circleuser.user.name }}</strong>
                                                 </h5>
@@ -83,7 +88,8 @@
                         {% endif %}
                             {# AGENDA DISPLAY MESSAGE #}
                     {% elseif data.agenda != null %}
-                        <div class="row messages index{{ loop.index0 }}">
+                        <!--<div class="row messages index{{ loop.index0 }}">-->
+                        <div class="messages index{{ loop.index0 }}">
                             <div class="wallBorder">
                                 <div class="wallTitle">
                                     <div class="row">

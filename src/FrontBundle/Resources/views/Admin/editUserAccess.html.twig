@@ -1,5 +1,5 @@
 {% extends 'FrontBundle::layoutFront.html.twig' %}
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block title %}Gérer utilisateurs du Cercle{% endblock %}
 
@@ -12,14 +12,17 @@
 
         </div>
 
-        <div class="formEditUser center-block">
+        <!--<div class="formEditUser center-block">-->
+        <div class="row">
+            <div class="formEditUserAccess col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
 
-            {{ form_start(form) }}
-            {% for widget in form.children %}
-                {{ form_row(widget) }}
-                <br />
-            {% endfor %}
-            {{ form_end(form) }}
+                {{ form_start(form) }}
+                {% for widget in form.children %}
+                    {{ form_row(widget) }}
+                    <br />
+                {% endfor %}
+                {{ form_end(form) }}
+            </div>
         </div>
 
     </div>

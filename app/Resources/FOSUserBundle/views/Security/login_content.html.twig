@@ -1,15 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="container text-center marginTop marginBottom">
-    <div class="row paddAnchor">
-        <div class="section-header col-xs-12">
+<div class="container">
+    <div class="row">
+        <div class="text-center section-header col-xs-10 col-xs-offset-1">
             <h2 class="section-title">Connectez-vous à votre compte</h2>
             {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="alert alert-danger text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
         </div>
-        <div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">
-            <form action="{{ path("fos_user_security_check") }}" method="post" class="marginTitle">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 well login-box">
+            <form action="{{ path("fos_user_security_check") }}" method="post">
                 {% if csrf_token %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
                 {% endif %}
@@ -26,10 +26,14 @@
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                     <label for="remember_me">{{ 'Se souvenir de moi'|trans }}</label>
                 </div>
-                <input class="btn btn-default" type="submit" id="_submit" name="_submit"
-                       value="{{ 'Entrer !'|trans }}"/>
+                <div class="text-right">
+                    <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'Entrer !'|trans }}"/>
+                </div>
             </form>
-            <a href="/register" class="btn btn-default marginBtnRegister">Pas encore inscrit ? Par ici !</a>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 text-center">
+            <!-- /register -->
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-block btn-lg btn-not_yet">Pas encore <br>inscrit ? <br>Par ici !</a>
         </div>
     </div>
 </div>
