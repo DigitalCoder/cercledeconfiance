@@ -157,6 +157,11 @@ class ResettingController extends Controller
         }
 
         $form = $formFactory->createForm();
+		
+		//fix error upon form validation: "The file could not be found."
+		$avatar = $user->getAvatar();
+		$user->setAvatar(null);
+
         $form->setData($user);
 
         $form->handleRequest($request);
@@ -165,10 +170,14 @@ class ResettingController extends Controller
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::RESETTING_RESET_SUCCESS, $event);
 
-            $userManager->updateUser($user);
+            //set photo name instead of null
+			$user->setAvatar($avatar);
+		
+			$userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_profile_show');
+                //$url = $this->generateUrl('accueil');
                 $response = new RedirectResponse($url);
             }
 

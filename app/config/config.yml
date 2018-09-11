@@ -39,6 +39,8 @@ twig:
     globals:
         basepath: '%base_path%'
         numberusers: '%number_circle_users%'
+    date:
+          timezone: Europe/Paris
 
 doctrine:
     dbal:

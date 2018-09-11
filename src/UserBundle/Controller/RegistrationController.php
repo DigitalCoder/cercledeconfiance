@@ -11,6 +11,7 @@
 
 namespace UserBundle\Controller;
 
+use AppBundle\Form\RegistrationType;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -34,6 +35,20 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class RegistrationController extends Controller
 {
+    public function convertToCamelCase(string $value, string $encoding = null) {
+        if ($encoding == null){
+            $encoding = mb_internal_encoding();
+        }
+        $stripChars = "()[]{}=?!.:,-_+\"#~/";
+        $len = strlen( $stripChars );
+        for($i = 0; $len > $i; $i ++) {
+            $value = str_replace( $stripChars [$i], " ", $value );
+        }
+        $value = mb_convert_case( $value, MB_CASE_TITLE, $encoding );
+        $value = preg_replace( "/\s+/", "", $value );
+        return $value;
+    }
+
     /**
      * @param Request $request
      *
@@ -41,6 +56,27 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+        $all = $request->request->all();
+        $firstname = $request->request->get('fos_user_registration_form')['firstname'];
+        if (null !== $firstname) {
+            $firstname = $all["fos_user_registration_form"]['firstname'] = ucwords(strtolower($firstname));
+        }
+        $name = $request->request->get('fos_user_registration_form')['name'];
+        if (null !== $name) {
+            $name = $all["fos_user_registration_form"]['name'] = strtoupper($name);
+        }
+        ////////
+        /// autofill username with email's informations
+        $email = $request->request->get('fos_user_registration_form')['email'];
+        if (null !== $email) {
+            $pattern = "/([a-z0-9\-._+]+).*/i";
+            preg_match_all($pattern, $email,$matches);
+            $username = $this->convertToCamelCase($matches[1][0]);
+            $all["fos_user_registration_form"]['username'] = $username;
+        }
+        ////////
+        $request->request->replace($all);
+
         /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager UserManagerInterface */
@@ -49,6 +85,7 @@ class RegistrationController extends Controller
         $dispatcher = $this->get('event_dispatcher');
 
         $user = $userManager->createUser();
+
         $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);
@@ -59,6 +96,7 @@ class RegistrationController extends Controller
         }
 
         $form = $formFactory->createForm();
+
         $form->setData($user);
 
         $form->handleRequest($request);
@@ -74,6 +112,24 @@ class RegistrationController extends Controller
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
+
+                    // send email to notify admin
+                    $memberName = $firstname . ' ' . $name;
+                    $mailer = $this->get('mailer');
+                    $mailer_message = new \Swift_Message('Nouveau membre sur le site Cercle Confiance : ' . $memberName);
+
+                    $mailer_message
+                        ->setTo(['jouin.olivier@free.fr','web.konception@gmail.com'])
+                        ->setFrom([$this->getParameter('mailer_user') => 'Cercle Confiance'])
+                        ->setBody($this->renderView('registration_confirmation.html.twig',
+                            array(
+                                'memberName' => $memberName,
+                                'email'=>$email,
+                                'userName'=> $username
+                            )
+                        ),
+                        'text/html');
+                    $mailer->send($mailer_message);
                 }
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));

@@ -76,6 +76,21 @@ class Circle
     private $token;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="number_circle_users", type="integer", length=11)
+     * @Assert\Range(
+     *      min = 2,
+     *      max = 12,
+     *      minMessage = "min 2 membres",
+     *      maxMessage = "max 12 membres",
+     *      invalidMessage = "Vous devez obligatoirement saisir un nombre entre 2 et 12"
+     * )
+     * @Assert\NotBlank(message="Vous devez obligatoirement saisir un nombre entre 2 et 12")
+     */
+    private $number_circle_users;
+
+    /**
      * @return string
      */
     public function getToken()
@@ -286,5 +301,30 @@ class Circle
     public function getAvailabilityDate()
     {
         return $this->availabilityDate;
+    }
+
+
+    /**
+     * Set NumberCircleUsers
+     *
+     * @param integer $number_circle_users
+     *
+     * @return Offer
+     */
+    public function setNumberCircleUsers($number_circle_users)
+    {
+        $this->number_circle_users = $number_circle_users;
+
+        return $this;
+    }
+
+    /**
+     * Get NumberCircleUsers
+     *
+     * @return integer
+     */
+    public function getNumberCircleUsers()
+    {
+        return $this->number_circle_users;
     }
 }

@@ -2,289 +2,113 @@
 
 {% block links %}
     <!--<li id="navAcc" class="scroll active"><a href="/">Accueil</a></li>-->
-    <li id="navQSN" class="scroll"><a href="#intro">A propos</a></li>
-    <li id="navServ" class="scroll"><a href="#serve">Services</a></li>
-    <li id="navObj" class="scroll"><a href="#object">Objets connectés</a></li>
-    <li class="scroll"><a href="{{ path('accueil') }}">Accès aux cercles</a></li>
+    <li id="navQSN" class="scroll"><a href="#intro" title="A propos">A propos</a></li>
+    <li id="navServ" class="scroll"><a href="#serve" title="Services">Services</a></li>
+    <li id="navObj" class="scroll"><a href="#object" title="Objets connectés">Objets connectés</a></li>
+    <li class="scroll"><a href="{{ path('accueil') }}" title="Accès aux cercles">Accès aux cercles</a></li>
 {% endblock %}
 
 {% block content %}
-
-
-    <section id="main-slider">
-        <div class="owl-carousel">
-            <div class="item firstItem">
-                <div class="slider-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--/.item-->
-            <div class="item secondItem">
-                <div class="slider-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-        </div>
-    </section>
-
-    <section class="text-center">
-        <div id="intro" class="paddAnchor">
-            <div class="container text-center">
-                <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown">Qui sommes nous ?</h2>
-                    <div class="row item marginTitle">
-                        <!-- /.intro image -->
-                        <div class="col-md-6 intro-pic wow slideInLeft">
-                            <img src="{{ asset('assets/images/home/QSN.jpeg') }}" alt="image"
-                                 class="img-responsive medal">
-                        </div>
-                        <!-- /.intro content -->
-                        <div class="col-md-6 wow slideInRight">
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias aliquam beatae commodi
-                                cumque dolore explicabo facilis illum, iste, laborum laudantium modi nihil perferendis
-                                praesentium quasi quis tempore voluptas voluptatibus. Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Beatae commodi consequatur distinctio ea, eius error eum
-                                fuga id inventore neque odit officia officiis perspiciatis quae, quos repudiandae
-                                sapiente vel, velit.
-                            </p>
-                            <a href="{{ path('presentation') }}" class="btn btn-default marginButtonHome">En savoir
-                                plus</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="serve" class="paddAnchor">
-            <div class="container text-center">
-                <div class="section-header">
-                    <h2 class="section-title wow fadeInDown">Nos Services</h2>
-                    <div class="row item marginTitle">
-                        <div class="col-md-5 wow slideInLeft">
-                            <img class="img-circle img-responsive img-center medal"
-                                 src="{{ asset('assets/images/home/confiance.jpg') }}"
-                                 alt="">
-                            <h3>Service confiance</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta exercitationem facilis
-                                nesciunt sit vel? Ab assumenda, cumque, distinctio dolore dolorem facere fugiat iusto,
-                                odio quidem repudiandae sed soluta velit voluptatum! Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Cupiditate deserunt explicabo facere facilis illum impedit
-                                magni, maxime minus numquam placeat porro quae qui repellendus repudiandae sunt vel
-                                velit! Eum, fuga.</p>
-                        </div>
-                        <div class="col-md-5 col-md-offset-2 wow slideInRight">
-                            <img class="img-circle img-responsive img-center medal"
-                                 src="{{ asset('assets/images/home/secours.jpg') }}"
-                                 alt="">
-                            <h3>Service secours</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut autem esse
-                                eveniet incidunt iste nostrum pariatur quibusdam, quo similique tempore totam,
-                                voluptatem. Ab dolore molestias quibusdam rem suscipit, temporibus?Lorem ipsum dolor sit
-                                amet, consectetur adipisicing elit. A accusantium alias aliquid architecto at autem
-                                corporis culpa dolor doloremque illo nobis placeat quisquam quos repellat, sit veniam
-                                voluptas. Nostrum, tempora!</p>
-                        </div>
-                    </div>
-                    <a href="{{ path('services') }}" class="btn btn-default marginButtonHome">En savoir plus</a>
-                </div>
-            </div>
-        </div>
-
-        <div id="object" class="paddAnchor">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title text-center wow fadeInDown">Les Objets Connectés</h2>
-                    <div class="row item marginTitle">
-                        <div class="features marginTitle">
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                                 data-wow-delay="0ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-line-chart"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Camera</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                                 data-wow-delay="100ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-cubes"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Camera supplémentaire</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                                 data-wow-delay="100ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-cubes"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Camera supplémentaire</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="features">
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-line-chart"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Capteur de température</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div><!--/.col-md-4-->
-
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                                 data-wow-delay="100ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-cubes"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Capteur incendie</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms"
-                                 data-wow-delay="100ms">
-                                <div class="media service-box">
-                                    <div class="pull-left">
-                                        <i class="fa fa-cubes"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Capteur incendie</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eveniet
-                                            fugiat fugit necessitatibus nemo numquam odio, sed sint velit voluptatem?
-                                            Amet exercitationem necessitatibus nesciunt.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="{{ path('pres_objets') }}" class="btn btn-default">En savoir plus</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="testi" class="paddAnchor">
+    <section id="intro">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title text-center wow fadeInDown">Les Témoignages</h2>
-                <div class="row item marginTitle">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="quote"><i class="fa fa-quote-left fa-4x"></i></div>
-                        <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-                            <!-- Carousel indicators -->
-                            <ol class="carousel-indicators">
-                                <li data-target="#fade-quote-carousel" data-slide-to="0"></li>
-                                <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
-                                <li data-target="#fade-quote-carousel" data-slide-to="2" class="active"></li>
-                                <li data-target="#fade-quote-carousel" data-slide-to="3"></li>
-                                <li data-target="#fade-quote-carousel" data-slide-to="4"></li>
-                                <li data-target="#fade-quote-carousel" data-slide-to="5"></li>
-                            </ol>
-                            <!-- Carousel items -->
-                            <div class="carousel-inner">
-                                <div class="item">
-                                    <div class="profile-circle" style="background-color: rgba(0,0,0,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                                <div class="active item">
-                                    <div class="profile-circle" style="background-color: rgba(145,169,216,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                                <div class="item">
-                                    <div class="profile-circle" style="background-color: rgba(77,5,51,.2);"></div>
-                                    <blockquote>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis
-                                            nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos
-                                            eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                    </blockquote>
-                                </div>
-                            </div>
+
+            <div class="row">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="col-xs-12 col-sm-4 wow fadeInDown text-center pull-right">
+                        <div class="alert alert-success">
+                            <a class="text-success" href="{{ path('fos_user_profile_edit') }}" title="{{ 'layout.logged_in_as'|trans({'%username%':app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper}, 'FOSUserBundle') }}">
+                                <u>{{ 'layout.logged_in_as'|trans({'%username%':app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper}, 'FOSUserBundle') }}</u>
+                            </a>
+                            <hr/>
+                            <a class="btn btn-success btn-block" href="{{ path('accueil') }}">Accès aux cercles</a>
                         </div>
+                        <hr/>
+                        <a class="btn btn-danger btn-block" href="{{ path('fos_user_security_logout') }}" title="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                        <br class="hidden-xs" />
+                        <hr class="visible-xs" />
+                    </div>
+                {% else %}
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-0 col-md-3 col-md-offset-1 wow fadeInDown text-center pull-right">
+                        <br class="hidden-xs" />
+                        <a class="btn btn-info btn-block btn-lg" href="{{ path('fos_user_security_login') }}" title="{{ 'layout.login'|trans({}, 'FOSUserBundle') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <br class="hidden-xs" />
+                        <hr/>
+                        <br class="hidden-xs" />
+                        <a class="btn btn-success btn-block" href="{{ path('fos_user_registration_register') }}" title="{{ 'layout.register'|trans({}, 'FOSUserBundle') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                        <br class="hidden-xs" />
+                        <hr class="visible-xs" />
+                    </div>
+                {% endif %}
+                <div class="col-xs-12 col-sm-8 pull-left">
+                    <div class="jumbotron bg-info wow fadeInDown">
+                        <p class="lead text-justify text-primary">
+                            Cercle Confiance propose à des groupes restreints, qu’ils soient familiaux, professionnels ou associatifs,
+                            de communiquer très facilement sur des réseaux internet dédiés et sécurisés.
+                            <br>
+                            C’est un réseau social réservé, sans publicité, sans revente de vos données, sécurisé.</p>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-xs-12 wow fadeInRight">
+                    <p>
+                        <strong class="text-primary">Chaque Cercle de Confiance propose :</strong>
+                    </p>
+                    <ul class="nostyle morepadding">
+                        <li><i class="fa fa-check-square"></i> Une visiophonie du groupe</li>
+                        <li><i class="fa fa-check-square"></i> Le partage de fichiers (notamment des photos)</li>
+                        <li><i class="fa fa-check-square"></i> Un agenda</li>
+                        <li><i class="fa fa-check-square"></i> Un mur</li>
+                        <li><i class="fa fa-check-square"></i> Eventuellement des informations issues d’objets connectés (droits restreints ou étendus selon les membres)</li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 wow fadeInLeft">
+                    <p>
+                        <strong class="text-primary">Chaque membre peut être inscrit à plusieurs Cercles.</strong>
+                    </p>
+                    <p>
+                        Cercle Confiance propose un service de liaisons visio, d’échange et de stockage sécurisé pour un prix forfaitaire mensuel.
+                    </p>
+
+                    <p>
+                        Cercle Confiance vend des objets connectés et le « lutrin numérique », un objet innovant qui intègre les flux de données issus des objets connectés et amplifie le son et l’image pour une meilleure interaction.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </section>
 {% endblock %}
 {% block javascript %}
-{{ parent() }}
-    <script type="text/javascript" src="{{ asset('assets/js/scroll.js') }}"></script>
+    {{ parent() }}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <script>
+        var website_name    = 'Cercle Confiance';
+        var msg             = "Bonjour {{ app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper }}, nous vous remercions de cette nouvelle visite !";
+        var website_url     = 'https://cercle-confiance.fr/';
+        var website_icon    = 'https://cercle-confiance.fr/assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png';
+        var notificationType = 'welcome-feature';
+        var buttons         = [
+                                {
+                                    /* Choose any unique identifier for your button. The ID of the clicked button 			 is passed to you so you can identify which button is clicked */
+                                    id: 'about-button',
+                                    /* The text the button should display. Supports emojis. */
+                                    text: 'A propos',
+                                    /* A valid publicly reachable URL to an icon. Keep this small because it's 				 downloaded on each notification display. */
+                                    //icon: '//cercle-confiance.fr/assets/img/about.png',
+                                    /* The URL to open when this action button is clicked. See the sections below 			 for special URLs that prevent opening any window. */
+                                    url: 'https://cercle-confiance.fr/presentation'
+                                },
+                                {
+                                    id: 'cercles',
+                                    text: 'Accès aux cercles',
+                                    //icon: 'https://cercle-confiance.fr/assets/img/about.png',
+                                    url: 'https://cercle-confiance.fr/cercles/'
+                                }
+                            ];
+    </script>
+    <script src="{{ asset('assets/js/OneSignal/pushWelcome.js') }}"></script>
+    {% endif %}
+    <script src="{{ asset('assets/js/scroll.js') }}"></script>
 {% endblock %}

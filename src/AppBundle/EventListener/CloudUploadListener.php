@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Cloud;
-
 class CloudUploadListener
 {
     private $uploader;
@@ -42,7 +41,6 @@ class CloudUploadListener
             if (!$entity instanceof Cloud) {
                 return;
             }
-
             if ($fileName = $entity->getFileName()) {
                 $entity->setFileName(new File($this->uploader->getTargetDir() . '/' . $fileName));
             }
@@ -67,8 +65,10 @@ class CloudUploadListener
         if (!$file instanceof UploadedFile) {
             return;
         }
+        $targetDir = $entity->getTargetDir();
+        $this->uploader->setTargetDir($this->uploader->getTargetDir(). '/' . $targetDir);
         $fileName = $this->uploader->upload($file);
-        $entity->setFileName($fileName);
+        $entity->setFileName($targetDir . '/' . $fileName);
     }
 
     /**

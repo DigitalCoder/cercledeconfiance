@@ -39,20 +39,22 @@ class AdminUsersController extends Controller
         $userToinvite = new User();
 
         $form = $this->createFormBuilder($userToinvite)
-            ->add('email', EmailType::class, ['label'=>'Email : ', 'attr'=>['class'=>'form-control']])
-            ->add('name', TextType::class, ['label'=>'Nom : ', 'attr'=>['class'=>'form-control']])
+            ->add('email', EmailType::class, ['label'=>'Renseigner l\'email de la personne à inviter : '])
+            //->add('name', TextType::class, ['label'=>'Nom : (optionnel)', 'required' => false])
             ->add('envoyer', SubmitType::class, array(
                     'attr' => array('class' => 'btn btn-default btn-submit-resize')));
-
         $form = $form->getForm();
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $circleId = $circle->getId();
+        $circleName = $circle->getName();
         $users = $em->getRepository('AppBundle:CircleUser')->findBy(['circle'=>$circleId]);
         $objects = $em->getRepository('AppBundle:ObjectEntry')->findBy(['circleUser'=>$users]);
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')->findOneBy(['user' => $user->getId(), 'circle' => $circleId]);
+
+        $number_circle_users = $circle->getNumberCircleUsers();
 
         if ($currentCircleUser == null || $currentCircleUser->getAdminCircle() == false) {
             return $this->redirectToRoute('accueil');
@@ -78,7 +80,7 @@ class AdminUsersController extends Controller
         if (isset($userCenter)) {
             $usersWithAdminFirst[1] = $userCenter;
         }
-        
+
         if (count($userOther) > 0) {
             foreach ($userOther as $user) {
                 $usersWithAdminFirst[] = $user;
@@ -91,23 +93,22 @@ class AdminUsersController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $mailer = $this->get('mailer');
-            $message = new \Swift_Message('Invitation Cercle Confiance');
+            $message = new \Swift_Message('Invitation Cercle Confiance : ' . $circleName);
             $message->setTo($userToinvite->getEmail())
-            ->setFrom($this->getParameter('mailer_user'))
-            ->setBody($this->renderView('invitation.html.twig', array('name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
+            ->setFrom([$this->getParameter('mailer_user') => 'Cercle Confiance'])
+            ->setBody($this->renderView('invitation.html.twig', array('circleName' => $circleName, 'name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
 
             $mailer->send($message);
 
-        if ($mailer->send($message)) {
-            $mailSent = true;
-        } else {
-            $mailSent = false;
-        }
+            if ($mailer->send($message)) {
+                $mailSent = true;
+            } else {
+                $mailSent = false;
+            }
 
-
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser, 'mailSent'=>$mailSent]);
+            return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'number_circle_users'=>$number_circle_users, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser, 'mailSent'=>$mailSent, 'invitEmail' => $userToinvite->getEmail()]);
         }
-        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
+        return $this->render('FrontBundle:Admin:adminUsers.html.twig', ['users'=>$usersWithAdminFirst, 'number_circle_users'=>$number_circle_users, 'token'=>$circle->getToken(), "form" => $form->createView(), 'objects'=>$objects, 'circleUser'=>$circleUser]);
 
     }
 

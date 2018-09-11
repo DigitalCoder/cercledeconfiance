@@ -40,4 +40,20 @@ class DefaultController extends Controller
         return $this->render('FrontBundle:Default:objets.html.twig');
     }
 
+    /**
+     * @Route("/mentions-legales", name="mentions_legales")
+     */
+    public function mentionsLegales()
+    {
+        return $this->render('FrontBundle:Default:mentions_legales.html.twig');
+    }
+
+    /**
+     * @Route("/nos-partenaires", name="nos_partenaires")
+     */
+    public function nosPartenaires()
+    {
+        return $this->render('FrontBundle:Default:nos_partenaires.html.twig');
+    }
+
 }

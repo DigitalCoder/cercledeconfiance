@@ -1,21 +1,19 @@
 {% extends 'FrontBundle::layoutFront.html.twig' %}
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 
-{% block title %}Gérer utilisateurs du Cercle{% endblock %}
+{% block title %}Gérer les membres du Cercle{% endblock %}
 
 {% block content %}
-    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
+    <a href="{{ path('appli', {'token': token}) }}" class="btn btn-default btn-back padder" title="Retour"><i class="fa fa-arrow-left fa-fw"></i></a>
     <div class="container-fluid text-center editUserBlock">
         <div class="section-header text-center">
-        <h2 class="section-title">Droits d'accès aux objets connectés</h2>
-        <h4>Vous pouvez ajouter ou retirer des droits aux membres sur les différents objets connectés</h4>
-
+            <h2 class="section-title">Droits d'accès</h2>
+            <h3>Vous pouvez ajouter ou retirer des droits aux membres sur les différents services et objets connectés</h3>
         </div>
 
         <!--<div class="formEditUser center-block">-->
         <div class="row">
             <div class="formEditUserAccess col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3">
-
                 {{ form_start(form) }}
                 {% for widget in form.children %}
                     {{ form_row(widget) }}

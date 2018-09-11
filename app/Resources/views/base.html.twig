@@ -13,10 +13,15 @@
     {% endblock %}
 
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
+    <link rel="manifest" href="/manifest.json" />
 
+    <script async custom-element="amp-web-push" src="//cdn.ampproject.org/v0/amp-web-push-0.1.js"></script>
+    <script src="//cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}<script src="{{ asset('assets/js/OneSignal/init.js') }}"></script>{% endif %}
 </head><!--/head-->
+{% set current_path = app.request.get('_route') %}
 
-<body class="{% block page_type %}{% endblock %}">
+<body class="{% block page_type %}{% endblock %} {{ current_path }} ">
 {% block navbar %}{% endblock %}
 
 {% block content %}{% endblock %}
@@ -26,10 +31,10 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-xs-12 col-sm-4 footerLinks">
-                <a href="#">Nos partenaires</a>
+                <a href="{{ path('nos_partenaires') }}">Nos partenaires</a>
             </div>
             <div class="col-xs-12 col-sm-4 footerLinks">
-                <a href="#">Mentions légales</a>
+                <a href="{{ path('mentions_legales') }}">Mentions légales</a>
             </div>
             <div class="col-xs-12 col-sm-4 footerLinks">
                 <a href="#">Contactez-nous</a>
@@ -42,20 +47,20 @@
 </footer><!--/#footer-->
 {% endblock %}
 
-
 </body>
 {% block javascript %}
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/js/mousescroll.js') }}"></script>
-    <script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>
+    {#<script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>#}
+    {#<script src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>#}
+    {#<script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>#}
     <script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+   <!-- <script src="{{ asset('assets/js/custom.js') }}"></script>-->
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+
 {% endblock %}
 </html>

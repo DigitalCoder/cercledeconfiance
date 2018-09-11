@@ -16,8 +16,10 @@ class WallType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        //$builder
+            //->add('content', TextType::class, array('label'=>'Message'));
         $builder
-            ->add('content', TextType::class, array('label'=>'Message'));
+            ->add('content', TextareaType::class,array('label'=>'Message','attr' => array('class' => 'form-control')));
     }
     
     /**

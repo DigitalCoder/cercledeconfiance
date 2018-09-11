@@ -11,17 +11,16 @@
         <div class="container-fluid circle">
 
             <div class="row text-center circleSub navAppli section-header">
-
-                <div class="col-xs-8 col-sm-9 col-md-10">
-                    <h1 class="circleTitle section-title">Mes Cercles</h1>
-                    <!--<h3>Sélectionnez un cercle</h3>-->
+                <div class="cols_divide_sm_by_2">
+                  <div class="col-xs-8 col-sm-9 col-md-10">
+                      <h1 class="circleTitle section-title">Mes Cercles</h1>
+                      <!--<h3>Sélectionnez un cercle</h3>-->
+                  </div>
+                  <div class="col-xs-4 col-sm-3 col-md-2">
+                      <a class="btn btn-success btn-add" href="{{ path('create') }}">Créer un nouveau cercle</a>
+                  </div>
                 </div>
-                <div class="col-xs-4 col-sm-3 col-md-2">
-                    <a class="btn btn-success btn-add" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
-                </div>
-
             </div>
-
 
             <div class="row text-center margFooter">
                 {% for CUser in CUsers %}
@@ -37,22 +36,14 @@
                             <hr/>
                             {% set sizeCircleUsers = CUser.circle.circleUsers | length %}
                             {% for circleUser in CUser.circle.circleUsers if circleUser.circleCenter == true %}
-                              {% if  circleUser.user.avatar != null %}
-                              <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle circleItem" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
-                              {% else %}
-                              <img src="{{ asset("assets/img/avatar.png") }}" class="img-circle circleItem" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
-                              {% endif %}
+                                <img src="{% if circleUser.user.avatar != null %}{{ asset("uploads/" ~ circleUser.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="img-circle circleItem" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
                             {% endfor %}
                             {% for circleUser in CUser.circle.circleUsers if circleUser.circleCenter == false %}
-                            {% if  sizeCircleUsers == 2 %}
+                            {% if sizeCircleUsers == 2 %}
                             <span class="only-one">
                             {% endif %}
-                              {% if  circleUser.user.avatar != null %}
-                              <img src="{{ asset("uploads/" ~ circleUser.user.avatar) }}" class="img-circle circleMember" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
-                              {% else %}
-                              <img src="{{ asset("assets/img/avatar.png") }}" class="img-circle circleMember" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
-                              {% endif %}
-                            {% if  sizeCircleUsers == 2 %}
+                                <img src="{% if circleUser.user.avatar != null %}{{ asset("uploads/" ~ circleUser.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="img-circle circleMember" alt="{{ circleUser.user.firstname }} {{ circleUser.user.name }}">
+                            {% if sizeCircleUsers == 2 %}
                             </span>
                             {% endif %}
                             {% endfor %}
@@ -63,12 +54,10 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <!--<a class="btn-circle" href="{{ path('create') }}">Ajouter un nouveau cercle</a>-->
-                    <a class="btn btn-success btn-lg" href="{{ path('create') }}">Ajouter un nouveau cercle</a>
+                    <a class="btn btn-success btn-lg" href="{{ path('create') }}">Créer un nouveau cercle</a>
                 </div>
             </div>
 
         </div>
-
     </section>
 {% endblock %}

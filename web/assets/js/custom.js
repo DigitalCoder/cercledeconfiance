@@ -23,39 +23,16 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
-/* carousel */
-$(document).ready(function() {
-$("#screenshots").owlCarousel({
-	items: 4,
-	itemsCustom : [
-		[0, 1],
-		[480, 2],
-		[768, 3],
-		[992, 4]
-		],
-    });
-$("#owl-testi").owlCarousel
-({
-	navigation : false, // Show next and prev buttons
-	slideSpeed : 300,
-	autoHeight : true,
-	singleItem:true
-});
-});
-
-
 /* sticky navigation */
-  $(document).ready(function(){
+$(document).ready(function(){
     $("#menu").sticky({topSpacing:0});
-  });
+});
 
 jQuery(document).ready(function($) {  
-
-// site preloader -- also uncomment the div in the header and the css style for #preloader
-$(window).load(function(){
-	$('#preloader').fadeOut('slow',function(){$(this).remove();});
-});
-
+    // site preloader -- also uncomment the div in the header and the css style for #preloader
+    $(window).load(function(){
+        $('#preloader').fadeOut('slow',function(){$(this).remove();});
+    });
 });
 
 
@@ -82,13 +59,13 @@ $(document).ready(function(){
 	
 /* parallax background image http://www.minimit.com/articles/lets-animate/parallax-backgrounds-with-centered-content	
 /* detect touch */
-if("ontouchstart" in window){
+/*if("ontouchstart" in window){
     document.documentElement.className = document.documentElement.className + " touch";
-}
-if(!$("html").hasClass("touch")){
-    /* background fix */
+}*/
+/*if(!$("html").hasClass("touch")){
+    // background fix
     $(".parallax").css("background-attachment", "fixed");
-}
+}*/
 
 /* fix vertical when not overflow
 call fullscreenFix() if .fullscreen content changes */

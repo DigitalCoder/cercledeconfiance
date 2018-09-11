@@ -26,12 +26,14 @@ h2 {
 h3, h4 {
     font-weight: bold;
 }
-
+.btn {
+    margin-bottom: .5em;
+}
 .btn-default {
-    background: transparent none repeat scroll 0 0;
-    border: 2px solid #45aed6;
+    /*background: transparent none repeat scroll 0 0;*/
+    /*border: 2px solid #45aed6;*/
     border-radius: 100px;
-    color: #45aed6;
+    /*color: #45aed6;*/
     font-size: 17px;
     height: 50px;
     line-height: 20px;
@@ -41,7 +43,6 @@ h3, h4 {
 
 .btn-default:hover,
 .btn-default:focus,
-.btn-default:active,
 .btn-default:active {
     background: #1C75BC;
     border: 2px solid #1C75BC;
@@ -287,11 +288,14 @@ footer {
 
 .upload {
     width: 100px;
-    margin: 0 auto 20px auto;
+    margin: 1em auto;
 }
 
 .marginBottom {
     margin-bottom: 50px;
+}
+.marginTop {
+    margin-top: 50px;
 }
 
 .imgCloud{
@@ -306,11 +310,6 @@ footer {
     font-size: 44px;
     margin-top: 25%;
 }
-
-.cloudDoc {
-    margin-top: 20%;
-}
-
 .cloudContent {
     font-size: 19px;
     margin-top: 3%;
@@ -321,9 +320,9 @@ footer {
     text-decoration: none;
 }
 .itemCloud {
-    width: 300px;
-    height: 200px;
-    margin: 100px auto 0 auto;
+    max-width: 300px;
+    max-height: 200px;
+    margin: 0 auto;
 }
 .imgFile {
     max-width: 429px;
@@ -331,16 +330,23 @@ footer {
 }
 
 .marginCloud {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .cloudBorder {
     border: solid 5px #36ABE2;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-top: 0;
+    margin-bottom: 1.5em;
 }
-
+/*@media screen and (min-width: 768px) {
+    .cloudDoc {
+        margin-top: 20%;
+    }
+    .cloudBorder {
+        min-height: 366px;
+    }
+}*/
 
 .cloudBack {
     border: solid 2px #36ABE2;
@@ -442,7 +448,9 @@ footer {
     width: 50px;
 }
 
-
+.respNavApp {
+    margin-bottom: 0;
+}
 @media screen and (max-width: 768px){
     .paddAuth {
         padding-top: 10px;
@@ -479,15 +487,19 @@ footer {
     height: 100%;
 }
 .wallTitle{
-    position: absolute;
-    color: white;
+    /*position: absolute;*/
+    color: #FFF;
     /*margin: 0;*/
-    margin: -3.5em 0 0;
-    padding: 5px;
+    /*margin: -3.5em 0 0;*/
+    margin: -0.5em -.2em 0 0;
+    padding: 5px 1em 5px 0;
     width: auto;
     height: 70px;
     line-height: 5px;
     border-radius: 5px;
+}
+.cloud .files .wallTitle {
+      margin: -0.5em 0 0 -0.5em;
 }
 .wallBorder{
     border-radius: 5px;
@@ -497,6 +509,7 @@ footer {
     width: auto;
 }
 .wallAvatar{
+    z-index: 999;
     border-radius: 50px;
     margin-left: -30px;
     margin-top: -17px;
@@ -506,10 +519,11 @@ footer {
 
 .wallMsgContent{
     color: black;
-    margin: 20px auto;
-    padding-top: 70px;
-    padding-left: 10px;
-    padding-right: 10px;
+    /*margin: 20px auto;*/
+    margin: 0 auto;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 #btnCloseModal{
     float: right;
@@ -559,7 +573,6 @@ footer {
 }
 
 .itemWallVideo {
-    margin-left: 33%;
     width: 33%;
     z-index: 10;
 }
@@ -569,7 +582,7 @@ footer {
     z-index: 10;
 }
 .messages {
-  margin-bottom: 5em;
+  margin-bottom: 2em;
 }
 @media screen and (min-device-width: 768px){
     #affiche{

@@ -1,5 +1,9 @@
-<h2>Bonjour {{ name }}</h2>
+<h2>Cercle Confiance - Invitation</h2>
 
-<p>Tu es invité sur un cercle</p>
-
-<a href="{{ basepath }}{{ token }}/invit">Rejoindre le cercle</a>
+<p>
+    Bonjour {% if name is defined %}{{ name }}{% endif %}
+    <br />
+    Vous êtes invité sur le Cercle Confiance "<strong>{{ circleName }}</strong>".
+    <br />
+    <strong style="font-size:1em;color:#337ab7;"><a href="{{ basepath }}{{ token }}/invit">Rejoindre le Cercle Confiance {{ circleName }}</a></strong>
+</p>

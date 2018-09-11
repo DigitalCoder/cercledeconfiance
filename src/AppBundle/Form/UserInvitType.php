@@ -24,7 +24,7 @@ class UserInvitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', RegistrationType::class, array("label"=>"S'Enregistrer"))
+            ->add('user', RegistrationType::class, array("label"=>"S'enregistrer"))
             ->add('save', SubmitType::class);
     }
 

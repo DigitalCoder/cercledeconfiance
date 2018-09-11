@@ -1,5 +1,5 @@
 <?php
-
+ini_set('date.timezone', 'Europe/Paris');
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
 

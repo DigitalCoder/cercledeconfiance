@@ -61,6 +61,11 @@ class ChangePasswordController extends Controller
         $formFactory = $this->get('fos_user.change_password.form.factory');
 
         $form = $formFactory->createForm();
+
+        //fix error upon form validation: "The file could not be found."
+        $avatar = $user->getAvatar();
+        $user->setAvatar(null);
+
         $form->setData($user);
 
         $form->handleRequest($request);
@@ -71,6 +76,9 @@ class ChangePasswordController extends Controller
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
+
+            //set photo name instead of null
+            $user->setAvatar($avatar);
 
             $userManager->updateUser($user);
 

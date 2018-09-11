@@ -4,25 +4,46 @@
 
 {% block title %} Modification du cercle{% endblock %}
 
-
 {% block content %}
-    <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default padder"><i class="fa fa-arrow-left"></i></a>
+<section class="container-fluid marginBottom">
+    <div class="row btn-tools">
+        <div class="col-xs-6 text-left">
+            <a href="{{ path('admin', {'token': token}) }}" class="btn btn-default btn-back" title="Retour"><i class="fa fa-arrow-left fa-fw"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="section-header col-xs-8 col-xs-offset-2 col-sm-12 col-sm-offset-0 text-center ">
+            <h2 class="section-title text-center">Administration du cercle</h2>
+        </div>
+        <div class="col-xs-12 text-center ">
+            <h3>Modifier le nom du cercle ou l’offre de service</h3>
+        </div>
+    </div>
 
-    <div class="container-fluid">
-        <!--<div class="row">
-            <div class="col-md-4 col-md-offset-4 section-header offerTitle">-->
-        <div class="row text-center navAppli section-header">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-                <h2 class="section-title">Administaration du cercle</h2>
-                <h4>Modifier le nom du cercle ou l’offre de service</h4>
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                <div class="form-group">
-                     <input class="btn btn-default form-control btnOffer" type="submit" name="add" value="Modifiez votre service"/>
-                    <a class="btn btn-default form-control btnOffer btnDelet" type="submit" name="delete" data-toggle="modal" data-target="#confirm">Supprimer le cercle</a>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 alert alert-warning">
+            {{ form_start(form) }}
+                <div class="col-md-6 form-group">
+                    {{ form_label(form.name)}}
+                    {{ form_widget(form.name) }}
                 </div>
-                {{ form_end(form) }}
-            </div>
+                <div class="col-md-6 form-group">
+                    {{ form_label(form.number_circle_users)}}
+                    {{ form_widget(form.number_circle_users) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    {{ form_label(form.offer)}}
+                    {{ form_widget(form.offer) }}
+                </div>
+                <div class="col-md-6 form-group">
+                    <input class="btn btn-default btn-success form-control btnOffer" type="submit" name="add" value="Modifiez votre service"/>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 alert alert-danger">
+            <strong class="text-danger">Souhaitez-vous supprimer ce Cercle ?</strong> <a class="pull-right btn btn-md btnDelet" type="submit" name="delete" data-toggle="modal" data-target="#confirm">Supprimer le cercle</a>
         </div>
     </div>
 
@@ -34,7 +55,7 @@
                     <h4 class="modal-title">Suppression du cercle</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Voulez vous vraiment supprimer le cercle ?</p>
+                    <p>Voulez-vous vraiment supprimer le cercle ?</p>
                     <p>Cette action est définitive</p>
                 </div>
                 <div class="modal-footer">
@@ -44,5 +65,5 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
+</section>
 {% endblock %}

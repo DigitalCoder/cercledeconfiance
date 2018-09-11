@@ -11,9 +11,9 @@ $(document).ready(function () {
 
     function Link() {
         var scroll = $(window).scrollTop();
-        var scrollQSN = $('#intro').offset().top - 10;
-        var scrollServ = $('#serve').offset().top - 10;
-        var scrollObj = $('#object').offset().top - 10;
+        var scrollQSN = $('#intro').length ? $('#intro').offset().top - 10 : 0;
+        var scrollServ = $('#serve').length ? $('#serve').offset().top - 10 : 0;
+        var scrollObj = $('#object').length ? $('#object').offset().top - 10 : 0;
         if (scroll < scrollQSN) {
             $('li.scroll').removeClass('active');
             $('#navAcc').addClass('active');

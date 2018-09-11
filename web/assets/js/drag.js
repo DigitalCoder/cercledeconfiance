@@ -1,23 +1,40 @@
-/**
- * Created by julien on 15/06/17.
- */
 $(document).ready(function () {
 
-    $('#dropzone').on('dragover', function (e) {
-        e.preventDefault();
-        $(this).css('border', '3px dashed lime');
+    $('#dropzone').on('dragenter', function() {
+        $(this).removeClass('dragover dragleave drop').addClass('dragenter');
+        return false;
     });
 
-    $('#dropzone').on('drop', function (e) {
+    $('#dropzone').on('dragover', function(e){
         e.preventDefault();
         e.stopPropagation();
-        let files = e.originalEvent.dataTransfer.files;
-        console.log(files[0]);
-        $('#form_file_name').val(files[0]);
-        $(this).css('border', '3px dashed blue');
+        $(this).removeClass('dragenter dragleave drop').addClass('dragover');
+        return false;
     });
 
-    $('#dropzone').on('dragleave', function (e) {
-       $(this).css('border', '3px dashed black');
+    $('#dropzone').on('dragleave', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).removeClass('dragenter dragover drop').addClass('dragleave');
+        return false;
+    });
+
+    $('#dropzone').on('drop', function(e) {
+        if(e.originalEvent.dataTransfer){
+            if(e.originalEvent.dataTransfer.files.length) {
+                // Stop the propagation of the event
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).removeClass('dragenter dragover dragleave').addClass('drop');
+                // Main function to upload
+                //$('#form_file_name').val(e.originalEvent.dataTransfer.files);
+                form_file_name.files = e.originalEvent.dataTransfer.files;
+                //upload(e.originalEvent.dataTransfer.files);
+            }
+        }
+        else {
+            $(this).css('border', '3px dashed red');
+        }
+        return false;
     });
 });

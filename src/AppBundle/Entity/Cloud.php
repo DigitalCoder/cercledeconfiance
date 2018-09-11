@@ -144,4 +144,28 @@ class Cloud
     {
         return $this->fileType;
     }
+
+    /**
+     * Set targetDir
+     *
+     * @param string $targetDir
+     *
+     * @return Cloud
+     */
+
+    public function setTargetDir($targetDir)
+    {
+        $this->targetDir = $targetDir;
+        return $this;
+    }
+
+    /**
+     * Get targetDir
+     *
+     * @return string
+     */
+    public function getTargetDir()
+    {
+        return $this->targetDir;
+    }
 }

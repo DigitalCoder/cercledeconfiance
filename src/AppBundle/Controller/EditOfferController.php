@@ -8,6 +8,8 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+
 use AppBundle\Entity\Circle;
 use AppBundle\Entity\Offer;
 use AppBundle\Form\CircleType;
@@ -33,18 +35,29 @@ class EditOfferController extends Controller
         if ($circleUser == null || $circleUser->getAdminCircle() == false) {
             return $this->redirectToRoute('errorAccess');
         }
-        $form = $this->createForm(CircleType::class, $circle);
+        $number_circle_users = $circle->getNumberCircleUsers();
+        //$form = $this->createForm(CircleType::class, $circle);
+        $form = $this->createForm(CircleType::class, $circle)
+            ->add('number_circle_users', NumberType::class, [
+                "label"=>"Nombre de membres",
+                'attr' => [
+                    'min' => 2,
+                    'max' => 12
+                ],
+                'data' => $number_circle_users,
+                'empty_data' => 6
+            ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($circle);
             $em->flush();
-            return $this->redirectToRoute('admin', ['token'=>$circle->getToken(), 'circleUser'=>$circleUser] );
+            return $this->redirectToRoute('admin', ['token'=>$circle->getToken(), 'circleUser'=>$circleUser, 'number_circle_users'=>$number_circle_users] );
 
         }
 
             return $this->render('FrontBundle:Admin:adminServices.html.twig',
-                        array("form" => $form->createView(), 'token'=>$circle->getToken(), 'circleUser'=>$circleUser));
+                        array("form" => $form->createView(), 'token'=>$circle->getToken(), 'circleUser'=>$circleUser, 'number_circle_users'=>$number_circle_users));
 
     }
 

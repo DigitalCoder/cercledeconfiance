@@ -34,16 +34,16 @@ class SecurityController extends Controller
 
         // get the error if any (works with forward and redirect -- see below)
         if ($request->attributes->has($authErrorKey)) {
-            $error = $request->attributes->get($authErrorKey);
+            $errors = $request->attributes->get($authErrorKey);
         } elseif (null !== $session && $session->has($authErrorKey)) {
-            $error = $session->get($authErrorKey);
+            $errors = $session->get($authErrorKey);
             $session->remove($authErrorKey);
         } else {
-            $error = null;
+            $errors = null;
         }
 
-        if (!$error instanceof AuthenticationException) {
-            $error = null; // The value does not come from the security component.
+        if (!$errors instanceof AuthenticationException) {
+            $errors = null; // The value does not come from the security component.
         }
 
         // last username entered by the user
@@ -55,7 +55,7 @@ class SecurityController extends Controller
 
         return $this->renderLogin(array(
             'last_username' => $lastUsername,
-            'error' => $error,
+            'errors' => $errors,
             'csrf_token' => $csrfToken,
         ));
     }

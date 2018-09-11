@@ -10,6 +10,7 @@ $(document).ready(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
+        handleWindowResize: true,
         defaultDate: moment().format("YYYY/MM/DD"),
         defaultView: 'agendaWeek',
         locale: 'fr',
@@ -83,11 +84,9 @@ $(document).ready(function() {
         }
     });
 
-    element.on('select', function (properties) {
+    /*element.on('select', function (properties) {
 
         $('#modal-id').modal('show');
 
-    });
-
-
+    });*/
 });

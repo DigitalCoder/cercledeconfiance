@@ -44,7 +44,10 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'),
                 array('label' => 'Email', 'translation_domain' => 'FOSUserBundle'))
-            ->add('username', null, array('label' => 'Nom d\'utilisateur', 'translation_domain' => 'FOSUserBundle'))
+            ->add('username', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\HiddenType')
+//                , array('label' => 'Nom d\'utilisateur', 'translation_domain' => 'FOSUserBundle')
+                , ['label' => ' ', 'translation_domain' => 'FOSUserBundle','required' => false]
+            )
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'),
                 array(
                 'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
@@ -53,8 +56,11 @@ class RegistrationFormType extends AbstractType
                 'second_options' => array('label' => 'Confirmation du mot de passe'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-            ->add('avatar', FileType::class, ['label' => 'Photo',
-                'required' => false]);
+            ->add('firstname', RegistrationType::class, ['label' => 'Prénom'])
+            ->add('name', RegistrationType::class, ['label' => 'Nom'])
+            ->add('address', AddressType::class, ['label'=>false, 'required' => false])
+            ->add('phone_number', TextType::class, ['label'=>'Numéro de téléphone', 'required' => false])
+            ->add('avatar', FileType::class, ['label' => 'Photo', 'data_class' => null, 'required' => false]);
     }
 
     /**

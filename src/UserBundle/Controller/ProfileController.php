@@ -24,6 +24,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Provider\PreAuthenticatedAuthenticationProvider;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -33,6 +34,20 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ProfileController extends Controller
 {
+    public function convertToCamelCase(string $value, string $encoding = null) {
+        if ($encoding == null){
+            $encoding = mb_internal_encoding();
+        }
+        $stripChars = "()[]{}=?!.:,-_+\"#~/";
+        $len = strlen( $stripChars );
+        for($i = 0; $len > $i; $i ++) {
+            $value = str_replace( $stripChars [$i], " ", $value );
+        }
+        $value = mb_convert_case( $value, MB_CASE_TITLE, $encoding );
+        $value = preg_replace( "/\s+/", "", $value );
+        return $value;
+    }
+
     /**
      * Show the user.
      */
@@ -58,6 +73,19 @@ class ProfileController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
+        $email = $user->getEmail();
+        $pattern = "/([a-z0-9\-._+]+).*/i";
+        preg_match_all($pattern, $email,$matches);
+        $username = $this->convertToCamelCase($matches[1][0]);
+        $user->setUsername($username);
+        $user->setUsernameCanonical($username);
+
+        if(!$user) {
+           // throw new AccessDeniedException('System Error Profile Edit.');
+            $url = $this->generateUrl('accueil');
+            $response = new RedirectResponse($url);
+            return $response;
+        }
         $oldfile = $user->getAvatar();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -83,7 +111,6 @@ class ProfileController extends Controller
         if ($user->getAvatar() === null) {
             $user->setAvatar($oldfile);
         }
-
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var $userManager UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');

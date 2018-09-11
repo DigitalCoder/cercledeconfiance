@@ -24,8 +24,8 @@ class VerifCenterAccountType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', TextType::class, ['label' => 'Nom d\'utilisateur du centre'])
-            ->add('password', PasswordType::class, ['label' => 'Mot de passe du centre'])
+        $builder->add('username', TextType::class, ['label' => 'Email du centre'])
+            ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
             ->add('circle', CircleType::class)
             ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-default']]);
     }

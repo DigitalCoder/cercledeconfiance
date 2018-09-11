@@ -28,10 +28,10 @@ class User extends BaseUser implements UserInterface
      *
      * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      * @Assert\Image(
-     *     maxHeight="1000",
-     *     maxWidth="1000",
-     *     maxHeightMessage="La taille de votre image est trop grande, la hauteur maximum autorisée est de 1000px.",
-     *     maxWidthMessage="La taille de votre image est trop grande, la largeur maximum autorisée est de 1000px."
+     *     maxHeight="2048",
+     *     maxWidth="2048",
+     *     maxHeightMessage="La taille de votre image est trop grande, la hauteur maximum autorisée est de 2048px.",
+     *     maxWidthMessage="La taille de votre image est trop grande, la largeur maximum autorisée est de 2048px."
      * )
      */
     private $avatar;
@@ -39,7 +39,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Nom", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Entrez un nom s'il vous plait.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=255,
@@ -54,7 +54,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Prenom", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Entrez un prénom s'il vous plait.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=255,
@@ -65,26 +65,25 @@ class User extends BaseUser implements UserInterface
      */
     private $firstname;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     *
-     * @Assert\NotBlank(message="Relation", groups={"Registration", "Profile"})
-     * @Assert\Length(
-     *     min=3,
-     *     max=255,
-     *     minMessage="Le nom est trop court..",
-     *     maxMessage="Le nom est trop long.",
-     *     groups={"Registration", "Profile"}
-     * )
-     */
-    private $relation;
+//    /**
+//     * @ORM\Column(type="string", length=255)
+//     *
+//     * @Assert\NotBlank(message="choisir le lien principal avec le centre du cercle.", groups={"Registration", "Profile"})
+//     * @Assert\Length(
+//     *     min=3,
+//     *     max=255,
+//     *     minMessage="Le nom est trop court..",
+//     *     maxMessage="Le nom est trop long.",
+//     *     groups={"Registration", "Profile"}
+//     * )
+//     */
+//    private $relation;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Numero Telephone", groups={"Registration", "Profile"})
      * @Assert\Length(
-     *     min=10,
+     *     min=0,
      *     max=10,
      *     minMessage="Le numéro de téléphone n'est pas complet.",
      *     maxMessage="Le numéro de téléphone est trop long.",
