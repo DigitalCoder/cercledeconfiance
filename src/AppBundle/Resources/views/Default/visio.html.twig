@@ -95,6 +95,8 @@
                 </div>
             </div>
         </div>
+        <a id="link" data-href="{{ path('ajaxSendMessage', {'token': token, 'messageToSend': notificationDatas}) }}" title="visio-notification">visio-notification</a>
+
         <div class="col-xs-12">
             <div class="panel panel-default">
                 <div id="panelHeading" class="panel-heading">
@@ -275,6 +277,7 @@
 
 {% block javascript %}
     {{ parent() }}
+
     {% if app.visio_enterprise is defined %}
     <script src=//cdn.temasys.com.sg/adapterjs/0.15.0/adapter.screenshare.min.js"></script>
     {%  else %}
@@ -331,132 +334,26 @@
     </script>
     <script src="{{ asset('assets/js/jitsi/visio.js') }}?{{ date().timestamp }}"></script>
 
-    <?php
-    $currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
-    //$currentUserEmail = $currentCircleUser->getUser()->getEmail();
+    {#<script>#}
+        {#var user_type = 'free';#}
+        {#var user_classifier = {% if circleUser.circleCenter %}'center_circle'{% elseif circleUser.adminCircle == 1 %}'administrator'{% else %}'member'{% endif %};#}
+        {#var user_privileges = {% if circleUser.adminCircle == 1 %}'administrator'{% else %}'member'{% endif %};#}
+        {#var user_id_circlename = '{{ circleUser.circle.name }}';#}
+        {#var user_id_circle_id = '{{ circleUser.circle.id }}';#}
+        {#var user_id_circle_user_id = '{{ circleUser.user.id }}';#}
+        {#var real_name = "{{ app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper }}";#}
+        {#var first_name = "{{ app.user.firstname|lower|capitalize }}";#}
+        {#var last_name = "{{ app.user.name|upper }}";#}
+        {#//var salutation =  'M.';#}
+        {#var user_email = '{{ app.user.email|lower }}';#}
+    {#</script>#}
+    {#<script src="{{ asset('assets/js/OneSignal/sendTags.js') }}"></script>#}
 
-    $filters = [
-    [
-    "field" => "tag", "key" => "user_id_circle_id", "relation" => "=", "value" => $circleId,
-    ],
-    [
-    "operator" => "AND"
-    ],
-    [
-    "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "!=", "value" => $currentCircleUserId,
-    ]
-    ];
-
-    $mailer = $this->get('mailer');
-    $mailer_message = new \Swift_Message('Nouveau document ajouté dans le Cercle Confiance : ' . $circleName);
-    foreach($circleUsers as $circleUser){
-    /*if(true == $circleUser->getAdminCircle()){
-    $circleUserAdmin = $circleUser;
-    }
-    elseif(true == $circleUser->getCircleCenter()){
-    $circleUserCenter = $circleUser;
-    }else{
-    $circleUserOther[] = $circleUser;
-    }*/
-    if($currentCircleUserId != $circleUser->getUser()->getId()) {
-    $filters[] = [
-    "operator" => "OR"
-    ];
-    $filters[] = [
-    "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "=", "value" => $circleUser->getUser()->getId(),
-    ];
-    $userEmail = $circleUser->getUser()->getEmail();
-    $userName = $circleUser->getUser()->getFirstname() . ' ' . $circleUser->getUser()->getName();
-    $mailer_message->addBcc($userEmail, $userName);
-    }
-    }
-
-    $locale = 'fr';
-    $title = 'Partage de fichiers | ' . date('d/m/Y H:i:s');
-    $headings = array(
-    "en" => 'Cloud | ' . date('d/m/Y H:i:s'),
-    $locale => $title
-    );
-    $msg = $currentUserName .'  a soumis un nouveau fichier "'. $fileName .'" dans le Cloud du Cercle Confiance "' . $circleName .'"';
-    $contents = [
-    'en' => $currentUserName .' submitted a new file "'. $fileName .'" in the Cloud of the Circle Trust "' . $circleName .'"',
-    $locale => $msg
-    ];
-
-    if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
-    $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
-    } elseif ($currentCircleUser->getUser()->getFirstname()) {
-    $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname();
-    } elseif ($currentCircleUser->getUser()->getName()) {
-    $currentCircleUserFullname = $currentCircleUser->getUser()->getName();
-    } elseif ($currentCircleUser->getUser()->getUserName()) {
-    $currentCircleUserFullname = $currentCircleUser->getUser()->getUserName();
-    } else {
-    $currentCircleUserFullname = 'inconnu';
-    }
-    $currentCircleUserFullname = preg_replace('/\s+/', '_', $currentCircleUserFullname . '_' . $currentCircleUserId);
-
-    //$url = 'https://cercle-confiance.fr' . $this->generateUrl('cloud', ['token'=>$circle->getToken()]) . '#' . $currentCircleUserId;
-    $url = 'https://cercle-confiance.fr' . $this->generateUrl('cloud', ['token'=>$circle->getToken()]) . '#' . $currentCircleUserFullname;
-    $web_buttons = [];
-    array_push($web_buttons, [
-    "id" => "cloud-button",
-    "text" => 'Accéder au Cloud du Cercle Confiance ' . $circleName,
-    "icon" => "",
-    "url" => $url
-    ]);
-    $notificationType = 'cloud-feature-' . $circle->getToken();
-    $uniqId = uniqid($notificationType . '_' . time());
-    $messageToSend = [
-    'disable_badge_clearing' => true,
-    'web_push_topic' => $uniqId,
-    'notificationType' => $notificationType,
-    'url' => $url,
-    'headings' => $headings,
-    'filters' => $filters,
-    'contents' => $contents,
-    'web_buttons' => $web_buttons,
-    'android_group' => $notificationType,
-    'android_group_message' => [
-    "en" => "You have $[notif_count] new messages",
-    'fr' => "Vous avez $[notif_count] nouveau(x) message(s)",
-    ],
-    'ios_badgeType' => 'Increase',
-    'ios_badgeCount' => 1
-    ];
-    if(preg_match('/image/', $cloud->getFileType())) {
-    $messageToSend['chrome_web_image'] = 'https://cercle-confiance.fr/' . 'uploads/' . $cloud->getFileName();
-    }
-    $response = $this->sendMessage($messageToSend);
-    $return["allresponses"] = $response;
-    $return = json_encode( $return);
-
-    ?>
     <script>
-        var website_name    = 'Cercle Confiance';
-        var msg             = "Bonjour {{ app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper }}, nous vous remercions de cette nouvelle visite !";
-        var website_url     = 'https://cercle-confiance.fr/';
-        var website_icon    = 'https://cercle-confiance.fr/assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png';
-        var notificationType = 'welcome-feature';
-        var buttons         = [
-            {
-                /* Choose any unique identifier for your button. The ID of the clicked button 			 is passed to you so you can identify which button is clicked */
-                id: 'about-button',
-                /* The text the button should display. Supports emojis. */
-                text: 'A propos',
-                /* A valid publicly reachable URL to an icon. Keep this small because it's 				 downloaded on each notification display. */
-                //icon: '//cercle-confiance.fr/assets/img/about.png',
-                /* The URL to open when this action button is clicked. See the sections below 			 for special URLs that prevent opening any window. */
-                url: 'https://cercle-confiance.fr/presentation'
-            },
-            {
-                id: 'cercles',
-                text: 'Accès aux cercles',
-                //icon: 'https://cercle-confiance.fr/assets/img/about.png',
-                url: 'https://cercle-confiance.fr/cercles/'
-            }
-        ];
+        var notification = {};
+        notification.url = "{{ path('ajaxSendMessage') }}"; // notification.url = "https://onesignal.com/api/v1/notifications";
+        {#notification.restApiKey = "NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk";#}
+        notification.data = JSON.stringify({{ messageToSend|json_encode|raw }});
     </script>
-    <script src="{{ asset('assets/js/OneSignal/pushNotification.js') }}"></script>
-
+    <script src="{{ asset('assets/js/OneSignal/pushNotificationAjax.js') }}"></script>
 {% endblock %}

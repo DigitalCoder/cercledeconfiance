@@ -16,3 +16,8 @@ front:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+ajaxSendMessage:
+  path: /ajax/sendMessage
+  defaults: { _controller: AppBundle\Controller\DefaultController::sendMessageAction }
+  requirements:
+    _method: POST|GET

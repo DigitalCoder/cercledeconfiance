@@ -2,12 +2,15 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 <!--<a href="{{ path('accueil') }}" class="btn btn-default btn-back padder" title="Retour"><i class="fa fa-arrow-left fa-fw"></i></a>-->
-<div class="container">
+<section class="container marginBottom{% if app.visio_enterprise is defined %} visio_enterprise{% endif %}">
+    <div class="row btn-tools">
+        <div class="col-xs-6 text-left">
+            <a href="{{ path('accueil') }}" class="btn btn-default btn-back" title="Retour"><i class="fa fa-arrow-left fa-fw" aria-hidden="true"></i></a>
+        </div>
+    </div>
     <div class="row userProfileEdit">
-        <div class="col-sm-8 col-sm-offset-2">
-            <header class="section-header">
-                <h2 class="section-title text-center wow fadeInDown">{{ 'profile.edit.submit'|trans }} votre profil</h2>
-            </header>
+        <div class="section-header col-xs-12 text-center ">
+            <h2 class="section-title text-center wow fadeInDown">{{ 'profile.edit.submit'|trans }} votre profil</h2>
         </div>
         <div class="col-sm-12 col-md-10 col-md-offset-1 form">
             {% if not form.vars.valid %}

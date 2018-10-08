@@ -10,12 +10,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\CircleUser;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Form\Circle_userType;
 use UserBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 /**
  * Class DefaultController
  * @package AppBundle\Controller
@@ -23,35 +24,88 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
  */
 class DefaultController extends Controller
 {
-    public function sendMessage($messageToSend){
-        $fields = [
-            'app_id' => $this->getParameter('one_signal_app_id'),
-        ] + $messageToSend;
-
-        $fields = json_encode($fields);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk'));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        return $response;
-    }
 
     /**
-     * @Route("/error", name="errorAccess")
+     * @Route("/ajax/sendMessage", name="ajaxSendMessage")
+     * @Method("POST")
      */
+    public function sendMessageAction(Request $request)
+    {
+        function objectToArray($d) {
+            if (is_object($d)) {
+                // Gets the properties of the given object
+                // with get_object_vars function
+                $d = get_object_vars($d);
+            }
+
+            if (is_array($d)) {
+                /*
+                * Return array converted to object
+                * Using __FUNCTION__ (Magic constant)
+                * for recursive call
+                */
+                return array_map(__FUNCTION__, $d);
+            }
+            else {
+                // Return array
+                return $d;
+            }
+        }
+        if($request->isXmlHttpRequest())
+        {
+            $messageToSend = $request->request->get('messageToSend');
+            $fields = json_encode(objectToArray(json_decode($messageToSend), true));
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+                 'Authorization: Basic NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk'));
+             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+             curl_setopt($ch, CURLOPT_HEADER, FALSE);
+             curl_setopt($ch, CURLOPT_POST, TRUE);
+             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+             $response = curl_exec($ch);
+             curl_close($ch);
+             $response = objectToArray(json_decode($response));
+             if (array_key_exists('errors', $response)) {
+                 $response =  ['error' => $response["errors"][0]];
+             }
+             $response = new JsonResponse($response);
+             return $response;
+         } else {
+             return new JsonResponse(null);
+         }
+     }
+
+     public function sendMessage($messageToSend){
+         $fields = [
+             'app_id' => $this->getParameter('one_signal_app_id'),
+         ] + $messageToSend;
+         $fields['app_id'] = $this->getParameter('one_signal_app_id');
+
+         $fields = json_encode($fields);
+         $ch = curl_init();
+         curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+             'Authorization: Basic NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk'));
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+         curl_setopt($ch, CURLOPT_HEADER, FALSE);
+         curl_setopt($ch, CURLOPT_POST, TRUE);
+         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+         $response = curl_exec($ch);
+         curl_close($ch);
+
+         return $response;
+     }
+
+     /**
+      * @Route("/error", name="errorAccess")
+      */
     public function errorAccessAction($error = '')
     {
-        //var_dump($error);
-        //die();
         return $this->render('AppBundle:Default:errorAccess.html.twig', ['error' => $error]);
     }
 
@@ -173,34 +227,24 @@ class DefaultController extends Controller
      */
     public function visioAction(Circle $circle)
     {
-        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $circleId = $circle->getId();
         $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
-            ->findOneBy(['user' => $user->getId(), 'circle' => $circle->getId()]);
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circleId]);
+
+        $currentCircleUserId = $currentCircleUser->getUser()->getId();
+
         if ($currentCircleUser == null || $currentCircleUser->getCallAccess() == false) {
             return $this->redirectToRoute('errorAccess');
         }
-        $cUsers = $em->getRepository('AppBundle:CircleUser')
-            ->findBy(['circle' => $circle->getId()]);
+        $cUsers = $em->getRepository('AppBundle:CircleUser')->findBy(['circle' => $circleId]);
+        $circleName = $circle->getName();
+
         $circleUsers = $cUsers;
         $circleUserAdmin = array();
         $circleUserCenter = array();
         $cUserWithoutThis = array();
-        // Exclude the current user from array
-        foreach ($cUsers as $cUser){
-            if(true == $cUser->getAdminCircle()){
-                $circleUserAdmin = $cUser;
-            }
-            elseif(true == $cUser->getCircleCenter()){
-                $circleUserCenter = $cUser;
-            }else{
-                $cUserOther[] = $cUser;
-            }
-
-            if ($cUser->getUser()->getId() != $user->getId()){
-                $cUserWithoutThis[] = $cUser;
-            }
-        }
 
         if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
             $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
@@ -213,6 +257,104 @@ class DefaultController extends Controller
         } else {
             $currentCircleUserFullname = 'inconnu';
         }
+
+        $filters = [
+            [
+                "field" => "tag", "key" => "user_id_circle_id", "relation" => "=", "value" => $circleId,
+            ],
+            [
+                "operator" => "AND"
+            ],
+            [
+                "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "!=", "value" => $currentCircleUserId,
+            ]
+        ];
+
+        $subject = 'Nouveau message de ' . $currentCircleUserFullname . ' ajouté sur le Mur du Cercle Confiance : ' . $circleName;
+        // Exclude the current user from array
+        foreach ($cUsers as $cUser){
+            if(true == $cUser->getAdminCircle()){
+                $circleUserAdmin = $cUser;
+            }
+            elseif(true == $cUser->getCircleCenter()){
+                $circleUserCenter = $cUser;
+            }else{
+                $cUserOther[] = $cUser;
+            }
+
+            //if ($cUser->getUser()->getId() != $user->getId()){
+            if($currentCircleUserId != $cUser->getUser()->getId()){
+                $cUserWithoutThis[] = $cUser;
+                $filters[] = [
+                    "operator" => "OR"
+                ];
+                $filters[] = [
+                    "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "=", "value" => $cUser->getUser()->getId(),
+                ];
+            }
+        }
+
+        $locale = 'fr';
+        $title = 'Visio | ' . date('d/m/Y H:i:s');
+        $headings = array(
+            "en" => 'Visio | ' . date('d/m/Y H:i:s'),
+            $locale => $title
+        );
+        $msg = $currentCircleUserFullname .' est connecté sur le Visio du Cercle Confiance "' . $circleName .'"';
+        $contents = [
+            'en' => $currentCircleUserFullname .' is online on the Circle of Trust Visio "' . $circleName .'"',
+            $locale => $msg
+        ];
+
+        $url = 'https://cercle-confiance.fr' . $this->generateUrl('visio', ['token'=>$circle->getToken()]);
+        $web_buttons = [];
+        array_push($web_buttons, [
+            "id" => "wall-button",
+            "text" => 'Accéder à la visio du Cercle Confiance ' . $circleName,
+            "icon" => "",
+            "url" => $url
+        ]);
+        $notificationType = 'visio-feature-' . $circle->getToken();;
+        $uniqId = uniqid($notificationType . '_' . time());
+
+        $website_name    = 'Cercle Confiance';
+        $msg             = $contents;
+        $website_url     = $url;
+        $website_icon    = 'https://cercle-confiance.fr/assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png';
+        $messageToSend = $additionalDataHash = [
+            'app_id' => $this->getParameter('one_signal_app_id'),
+            'disable_badge_clearing' => true,
+            'web_push_topic' => $uniqId,
+            'notificationType' => $notificationType,
+            'url' => $url,
+            'headings' => $headings,
+            'filters' => $filters,
+            'contents' => $contents,
+            'web_buttons' => $web_buttons,
+            'android_group' => $notificationType,
+            'android_group_message' => [
+                "en" => "You have $[notif_count] new messages",
+                'fr' => "Vous avez $[notif_count] nouveau(x) message(s)",
+            ],
+            'ios_badgeType' => 'Increase',
+            'ios_badgeCount' => 1
+        ];
+        $buttons         = $web_buttons;
+
+        $notificationDatas = [
+            'app_id' => $this->getParameter('one_signal_app_id'),
+            $website_name,
+            /* Message (defaults if unset) */
+            $msg,
+            $website_url,
+            $website_icon,
+            $additionalDataHash,
+            $buttons
+        ];
+        //$response = $this->sendMessage($messageToSend);
+        //$return["allresponses"] = $response;
+        //$return = json_encode( $return);
+
         $roomName = $circle->getName();
         $roomName = trim($roomName);
         $roomName = htmlspecialchars($roomName, ENT_QUOTES);
@@ -227,7 +369,10 @@ class DefaultController extends Controller
             'circleUserFullname' => $currentCircleUserFullname,
             'CUsers' => $cUserWithoutThis,
             'circleUsers' => $circleUsers,
-            'roomName' => $roomName
+            'roomName' => $roomName,
+            //'messageToSend' =>  htmlspecialchars_decode(json_encode($messageToSend))
+            'messageToSend' =>  $messageToSend,
+            'notificationDatas' =>  $notificationDatas
         ];
         return $this->render('AppBundle:Default:visio.html.twig', $param);
     }
@@ -288,8 +433,20 @@ class DefaultController extends Controller
             $em->persist($cloud);
             $em->flush();
 
-            $currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
+            //$currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
             //$currentUserEmail = $currentCircleUser->getUser()->getEmail();
+            if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
+            } elseif ($currentCircleUser->getUser()->getFirstname()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname();
+            } elseif ($currentCircleUser->getUser()->getName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getName();
+            } elseif ($currentCircleUser->getUser()->getUserName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getUserName();
+            } else {
+                $currentCircleUserFullname = 'inconnu';
+            }
+            $currentUserName = $currentCircleUserFullname;
 
             $filters = [
                 [
@@ -339,21 +496,8 @@ class DefaultController extends Controller
                 $locale => $msg
             ];
 
-            if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
-                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
-            } elseif ($currentCircleUser->getUser()->getFirstname()) {
-                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname();
-            } elseif ($currentCircleUser->getUser()->getName()) {
-                $currentCircleUserFullname = $currentCircleUser->getUser()->getName();
-            } elseif ($currentCircleUser->getUser()->getUserName()) {
-                $currentCircleUserFullname = $currentCircleUser->getUser()->getUserName();
-            } else {
-                $currentCircleUserFullname = 'inconnu';
-            }
-            $currentCircleUserFullname = preg_replace('/\s+/', '_', $currentCircleUserFullname . '_' . $currentCircleUserId);
-
             //$url = 'https://cercle-confiance.fr' . $this->generateUrl('cloud', ['token'=>$circle->getToken()]) . '#' . $currentCircleUserId;
-            $url = 'https://cercle-confiance.fr' . $this->generateUrl('cloud', ['token'=>$circle->getToken()]) . '#' . $currentCircleUserFullname;
+            $url = 'https://cercle-confiance.fr' . $this->generateUrl('cloud', ['token'=>$circle->getToken()]) . '#' . preg_replace('/\s+/', '_', $currentCircleUserFullname . '_' . $currentCircleUserId);
             $web_buttons = [];
             array_push($web_buttons, [
                 "id" => "cloud-button",
@@ -385,7 +529,7 @@ class DefaultController extends Controller
             }
             $response = $this->sendMessage($messageToSend);
             $return["allresponses"] = $response;
-            $return = json_encode( $return);
+            $return = json_encode($return);
 
             $mailer_message
                 ->setFrom([$this->getParameter('mailer_user') => 'Cercle Confiance'])

@@ -25,6 +25,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class WallController extends Controller
 {
+    /**
+     * @Route("/cercles/{token}/mur/notification", name="wall-notification")
+     */
     public function sendMessage($messageToSend){
         $fields = [
             'app_id' => $this->getParameter('one_signal_app_id')
@@ -127,8 +130,21 @@ class WallController extends Controller
             $em->persist($formContent);
             $em->flush();
 
-            $currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
+            //$currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
             //$currentUserEmail = $currentCircleUser->getUser()->getEmail();
+
+            if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
+            } elseif ($currentCircleUser->getUser()->getFirstname()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname();
+            } elseif ($currentCircleUser->getUser()->getName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getName();
+            } elseif ($currentCircleUser->getUser()->getUserName()) {
+                $currentCircleUserFullname = $currentCircleUser->getUser()->getUserName();
+            } else {
+                $currentCircleUserFullname = 'inconnu';
+            }
+            $currentUserName = $currentCircleUserFullname;
 
             $filters = [
                 [

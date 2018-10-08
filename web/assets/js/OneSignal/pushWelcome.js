@@ -14,7 +14,7 @@ OneSignal.push(function() {
                     notificationType: notificationType
                 },
                 buttons
-        );
+            );
 
         } else {
             console.log("Push notifications are not enabled yet.");
