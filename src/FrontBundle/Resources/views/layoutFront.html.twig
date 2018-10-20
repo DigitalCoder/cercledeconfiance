@@ -52,7 +52,18 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <div class="{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}col-xs-8 col-sm-8 col-md-2 col-lg-2 {% endif %}text-center stopPaddLink user text-center">
                         <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-lg">
-                            <img src="{% if app.user.avatar != null %}{{ asset("uploads/" ~ app.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="avatar img-circle" alt="{{ app.user.firstname }} {{ app.user.name }}">
+                            {% set avatar_src = asset("assets/img/avatar.png") %}
+                            {% if app.user.avatar != null %}
+                                {% set avatar_src =asset("uploads/" ~ app.user.avatar) %}
+                            {% endif %}
+                            <picture>
+                                <source srcset="{{ avatar_src | imagine_filter('profile_thumb_small') }} 1x,
+                                    {{ avatar_src | imagine_filter('profile_thumb_small_2x') }} 2x">
+                                <img src="{{ avatar_src | imagine_filter('profile_thumb_small') }}"
+                                     class="avatar img-circle"
+                                     alt="{{ app.user.firstname }} {{ app.user.name }}"
+                                >
+                            </picture>
                             <i class="fa fa-2x fa-id-card-o" aria-hidden="true" title="{{ app.user.username }}"></i>
                         </a>
                         <a href="{{ path('fos_user_security_logout') }}" class="btn btn-lg logout" title="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">
@@ -75,64 +86,7 @@
                     </div>
                 </div>
             </div>
-            </div>
         </nav>
-        {#<nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">#}
-            {#<div class="container-fluid">#}
-                {#<div class="navbar-header">#}
-                    {#<div class="row">#}
-                        {#<div class="col-xs-3 col-sm-2">#}
-                            {#<a class="paddingLogoNavFront navbar-brand" href="/"><img class="logoFront" src="{{ asset('assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png') }}"#}
-                                 {#alt="logo_cercle_confiance"></a>#}
-                        {#</div>#}
-                        {#<div class="col-xs-7 col-sm-9 responsiveLogout">#}
-                                {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
-                                {#<div class="blockLogout text-center">#}
-                                    {#<span>#}
-                                        {#<img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">#}
-                                        {#<img src="{% if app.user.avatar != null %}{{ asset("uploads/" ~ app.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="avatar img-circle" alt="{{ app.user.firstname }} {{ app.user.name }}">#}
-                                        {#<strong>{{ app.user.username }}</strong>#}
-                                    {#</span>#}
-                                    {#<a class="btnLogout" href="/logout"><i class="fa fa-sign-out"></i></a>#}
-                                {#</div>#}
-                                {#{% endif %}#}
-
-                        {#</div>#}
-                        {#<div class="col-xs-2 col-sm-1 text-right">#}
-                            {#<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">#}
-                                {#<span class="sr-only">Toggle navigation</span>#}
-                                {#<span class="icon-bar"></span>#}
-                                {#<span class="icon-bar"></span>#}
-                                {#<span class="icon-bar"></span>#}
-                            {#</button>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-                {#<div class="collapse navbar-collapse">#}
-                    {#<div id="item">#}
-                        {#<ul class="nav navbar-nav">#}
-                            {#{% block links %}#}
-                            {#<!--<li class="scroll"><a href="/">Accueil</a></li>-->#}
-                            {#<li class="scroll"><a href="{{ path('presentation') }}">A propos</a></li>#}
-                            {#<li class="scroll"><a href="{{ path('services') }}">Services</a></li>#}
-                            {#<li class="scroll"><a href="{{ path('pres_objets') }}">Objets connectés</a></li>#}
-                            {#<li class="scroll active"><a href="{{ path('accueil') }}">Accès aux cercles</a></li>#}
-                            {#{% endblock %}#}
-                        {#</ul>#}
-                    {#</div>#}
-                    {#<div class="desktopLogout">#}
-                    {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
-                        {#<div class="blockLogout text-center pull-left">#}
-                            {#<img src="{{ asset("uploads/" ~ app.user.avatar) }}" class="avatar img-circle">#}
-                            {#<img src="{% if app.user.avatar != null %}{{ asset("uploads/" ~ app.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="avatar img-circle" alt="{{ app.user.firstname }} {{ app.user.name }}">#}
-                            {#<strong>{{ app.user.username }}</strong>#}
-                        {#</div>#}
-                        {#<a class="btnLogout pull-right" href="/logout"><i class="fa fa-sign-out"></i></a>#}
-                        {#{% endif %}#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div><!--/.container-->#}
-        {#</nav><!--/nav-->#}
     </header><!--/header-->
 {% endblock %}
 

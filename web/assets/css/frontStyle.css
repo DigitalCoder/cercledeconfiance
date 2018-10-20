@@ -146,24 +146,16 @@ body {
 }
 
 .circleBlock {
-  padding-bottom: 1em;
+    min-height: 272px;
 }
-/*.circleBlock .linkCircle strong {
-  margin-bottom: -.85em;
-  display: block;
-  padding: .25em 0;
-  background: rgb(28, 117, 188);
-  color: #fff;
-  border-radius: 1em 1em 0 0;
-}*/
 .circleBlock .linkCircle hr {
     margin-top: -0.5em;
 }
 .circleBlock img.circleItem {
     display: block;
     width:100%;
-    max-width: 272px;
-    max-height: 272px;
+    max-width: 215px;
+    max-height: 215px;
     border-color: rgb(28, 117, 188);
     opacity: .85;
     -webkit-transition-property: opacity;
@@ -171,30 +163,22 @@ body {
     transition-property: opacity;
 
     object-fit: cover;
+
+    margin-top: -10px;
 }
 .circleBlock img.circleMember {
-    /*width: 20%;
-    height: auto;
-    max-width: 140px;
-    */
-    width: 75px;
-    height: 75px;
-    border-width: 5px;
-    /*min-height: 69px;*/
-    margin-right: -5%;
+    width: 50px;
+    height: 50px;
+    border-width: 3px;
 }
 .circleBlock .only-one {
     margin-left: -5%;
 }
-@media screen and (min-width: 768px) {
-  .circleBlock img.circleMember {
-    /*width: 23%;*/
-      width: 110px;
-      height: 110px;
-  }
+.linkCircle:hover .label {
+    background-color: rgb(54, 171, 226);
 }
-.linkCircle:hover >  img.circleItem, .linkCircle:focus >  img.circleItem {
-    border: 10px solid rgba(54, 171, 226, 0.8);
+.linkCircle:hover img.circleItem, .linkCircle:focus img.circleItem {
+    border: 5px solid rgb(54, 171, 226);
     opacity: 1;
     -webkit-transition-property: opacity;
     -ms-transition-property: opacity;
@@ -305,7 +289,7 @@ body {
         margin: 3em auto;
     }
 }*/
-.circle .btn-add {
+.circle .btn-add{
     display: inline-block;
     font-size: 15px;
     line-height: 1.33;
@@ -806,7 +790,17 @@ header + section > .container .section-header {
     width: 80%;
     max-width: 700px;
 }
-
+#imgModal img.modal-content {
+    margin: auto;
+    display: block;
+    /*background: transparent url(/assets/img/loader.gif) center center no-repeat;*/
+    background: transparent url(/assets/img/ajax_loader_gray_64.gif) center center no-repeat;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 64px;
+    min-height: 64px;
+}
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
 #caption {
     margin: auto;
@@ -1239,58 +1233,31 @@ label:hover:before {
         padding-top: 0;
     }
 }
-/*
-#visioBtns.all #visioMultiple .alert {
-    background: #ddd;
-    color: #999;
-    border-color: #999;
-}
-#visioBtns #visioMultiple .alert {
-    padding: 0 .5em;
-    margin-bottom: .5em;
-}
-#visioBtns #visioMultiple .alert h3 {
-    margin-top: .5em;
-}*/
-#visioBtns.all #visioMultiple button {
+#visioBtns.all #visioMultiple button{
     background: #ccc;
     color: #999;
     border-color: #999;
 }
-/*#visioBtns.multiple #videoButtonJoin {
-    display:none;
-}*/
-#visioBtns.multiple #visioAll, #visioBtns.multiple #or  {
+#visioBtns.multiple #visioAll, #visioBtns.multiple #or{
     display:none;
 }
-#visioBtns.multiple #visioMultiple {
+#visioBtns.multiple #visioMultiple{
     width:100%;
 }
-#visioBtns.multiple #visioMultiple .label {
+#visioBtns.multiple #visioMultiple .label{
     margin:0 .25em;
     display: inline-block;
 }
-/*div#btnsVisio .btn {
-    display: block;
-    width: 100%;
-}*/
 @media screen and (min-width: 560px) {
     div#btnsVisio {
         position: absolute;
         text-align: center;
-        /*top: 1em;
-        margin-left: 35%;*/
         top: .5em;
         width: 100%;
     }
 }
 
 .visio .circle-members .fa {
-    /*
-    position: absolute;
-    bottom: 0;
-    right: 10%;
-    */
     position: relative;
     margin-right: 5%;
     margin-top: 2%;

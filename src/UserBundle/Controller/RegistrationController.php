@@ -85,7 +85,6 @@ class RegistrationController extends Controller
         $dispatcher = $this->get('event_dispatcher');
 
         $user = $userManager->createUser();
-
         $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);
@@ -100,7 +99,20 @@ class RegistrationController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
+        if (isset($_FILES['fos_user_registration_form']['type']['avatar'])) {
+            $fileName = $_FILES['fos_user_registration_form']['name']['avatar'];
+            $user->setFileType($_FILES['fos_user_registration_form']['type']['avatar']);
 
+            if (null === $user->getConfirmationToken()) {
+                $tokenGenerator = $this->get('fos_user.util.token_generator');
+                $user->setConfirmationToken($tokenGenerator->generateToken());
+            }
+            //$targetDir = 'profiles/' . $user->getId() . '/' . $_POST['fos_user_registration_form']['_token'];
+            $feature_dir = 'profiles';
+            $user_id = $user->getId() ? $user->getId() : 'tmp';
+            $targetDir = $feature_dir . '/' . $user_id . '/' . $user->getConfirmationToken();
+            $user->setTargetDir($targetDir);
+        }
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
 
@@ -108,7 +120,6 @@ class RegistrationController extends Controller
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
-
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
@@ -128,7 +139,7 @@ class RegistrationController extends Controller
                                 'userName'=> $username
                             )
                         ),
-                        'text/html');
+                            'text/html');
                     $mailer->send($mailer_message);
                 }
 

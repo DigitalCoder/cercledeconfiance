@@ -9,6 +9,12 @@
             </header>
         </div>
         <div class="col-sm-12 col-md-10 col-md-offset-1 form">
+            {% if not form.vars.valid %}
+                <div class="alert alert-error row">
+                    <p>Veuillez corriger les champs suivants :</p>
+                    {{ form_errors(form) }}
+                </div>
+            {% endif %}
             {{ form_start(form, { 'action': path('fos_user_registration_register'), 'attr': { 'class': 'fos_user_registration_register' } }) }}
                <div class="alert alert-warning requiredFields row">
                     <div class="col-sm-6">
@@ -74,7 +80,7 @@
                     <div class="col-sm-6">
                         <div class="form-group {% if form.avatar.vars.errors|length > 0 %} has-error text-danger{% endif %}">
                             {{ form_label(form.avatar)}}
-                            {{ form_widget(form.avatar) }}
+                            {{ form_widget(form.avatar, {'attr': {'class': 'form-control'}}) }}
                             {{ form_errors(form.avatar) }}
                         </div>
                     </div>

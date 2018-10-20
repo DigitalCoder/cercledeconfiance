@@ -292,4 +292,54 @@ class User extends BaseUser implements UserInterface
         return $this->address;
     }
 
+
+    /**
+     * Set fileType
+     *
+     * @param string $fileType
+     *
+     * @return User
+     */
+    public function setFileType($fileType)
+
+    {
+        $this->fileType = $fileType;
+
+        return $this;
+    }
+
+    /**
+     * Get fileType
+     *
+     * @return string
+     */
+    public function getFileType()
+    {
+        return $this->fileType;
+    }
+
+    /**
+     * Set targetDir
+     *
+     * @param string $targetDir
+     *
+     * @return User
+     */
+
+    public function setTargetDir($targetDir)
+    {
+        $this->targetDir = $targetDir;
+        return $this;
+    }
+
+    /**
+     * Get targetDir
+     *
+     * @return string
+     */
+    public function getTargetDir()
+    {
+        return $this->targetDir;
+    }
+
 }

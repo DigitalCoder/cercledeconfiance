@@ -118,7 +118,6 @@ class AdminUsersController extends Controller
      */
     public function editUsersAccessAction(Circle $circle, $idUser, Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $circleUser = $em->getRepository('AppBundle:CircleUser')->findBy(['id'=>$idUser]);
         $circleUser = $circleUser[0];

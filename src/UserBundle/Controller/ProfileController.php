@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Provider\PreAuthenticatedAuthenticationProvider;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * Controller managing the user profile.
  *
@@ -108,10 +109,45 @@ class ProfileController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
+        if (isset($_FILES['fos_user_profile_form']['type']['avatar'])) {
+            //$fileName = $_FILES['fos_user_profile_form']['name']['avatar'];
+            $user->setFileType($_FILES['fos_user_profile_form']['type']['avatar']);
+
+            if (null === $user->getConfirmationToken()) {
+                $tokenGenerator = $this->get('fos_user.util.token_generator');
+                $user->setConfirmationToken($tokenGenerator->generateToken());
+            }
+            //$targetDir = 'profiles/' . $user->getId() . '/' . $_POST['fos_user_profile_form']['_token'];
+            $feature_dir = 'profiles';
+            $targetDir = $feature_dir . '/' . $user->getId() . '/' . $user->getConfirmationToken();
+            $user->setTargetDir($targetDir);
+        }
         if ($user->getAvatar() === null) {
             $user->setAvatar($oldfile);
         }
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($user->getAvatar()) {
+                if (preg_match('/tmp/', $user->getAvatar())) {
+                    if($user_id = $user->getId()) {
+                        $returnValue = preg_replace('/tmp/', $user_id, $user->getAvatar());
+                    }
+                    $filename = basename ($returnValue);
+
+                    $targetDir = preg_replace('/'.$filename.'/', '', $returnValue);
+                    $sourcePath = $this->getParameter('upload_directory')  . '/' . $user->getAvatar();
+                    $oldDir = $this->getParameter('upload_directory')  . '/' .  preg_replace('/'.$filename.'/', '', $user->getAvatar());
+
+                    $file = new File($sourcePath);
+                    $movedFile = $file->move('uploads/' . $targetDir);
+
+                    if($movedFile) {
+                        if (is_dir($oldDir) && count(scandir($oldDir)) == 2) {
+                            rmdir($oldDir);
+                        }
+                    };
+                    $user->setAvatar($returnValue);
+                }
+            }
             /** @var $userManager UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
@@ -131,7 +167,7 @@ class ProfileController extends Controller
         }
 
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 }

@@ -2,6 +2,14 @@ var isMobile = false;
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Opera Mobile|Kindle|Windows Phone|PSP|AvantGo|Atomic Web Browser|Blazer|Chrome Mobile|Dolphin|Dolfin|Doris|GO Browser|Jasmine|MicroB|Mobile Firefox|Mobile Safari|Mobile Silk|Motorola Internet Browser|NetFront|NineSky|Nokia Web Browser|Obigo|Openwave Mobile Browser|Palm Pre web browser|Polaris|PS Vita browser|Puffin|QQbrowser|SEMC Browser|Skyfire|Tear|TeaShark|UC Browser|uZard Web|wOSBrowser|Yandex.Browser mobile/i.test(navigator.userAgent)) isMobile = true;
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+function mreplace (replacements, str) {
+    let result = str;
+    for (let [x, y] of replacements)
+        result = result.replace(x, y);
+    return result;
+}
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 /*function createCookie(name,value,days) {
     if (days) {
         var date = new Date();
@@ -32,7 +40,7 @@ function eraseCookie(name) {
 // ES6
 /*function getCookie(name) {
     let cookie = {};
-    decodeURIComponent(document.cookie).split(';').forEach(function(el) {
+    decodeURIComponent(document.cookie).split(';').forEach(function (el) {
         let [k,v] = el.split('=');
         cookie[k.trim()] = v;
     })
@@ -58,7 +66,6 @@ if(!viewMode || viewMode == "desktop"){
  * @return {Boolean|Element}  Returns null if not match found
  */
 var getClosest = function ( elem, selector ) {
-
     // Element.matches() polyfill
     if (!Element.prototype.matches) {
         Element.prototype.matches =
@@ -67,7 +74,7 @@ var getClosest = function ( elem, selector ) {
             Element.prototype.msMatchesSelector ||
             Element.prototype.oMatchesSelector ||
             Element.prototype.webkitMatchesSelector ||
-            function(s) {
+            function (s) {
                 var matches = (this.document || this.ownerDocument).querySelectorAll(s),
                     i = matches.length;
                 while (--i >= 0 && matches.item(i) !== this) {}
@@ -95,24 +102,22 @@ var hasSomeParentTheClass = function (element, classname) {
 //////////////////////////////////////////////////////////////////////
 var toggleBtnOnOff = function (element) {
     if (hasSomeParentTheClass(element, 'off')) {
-        //#//console.log('on');
         element.classList.remove('off');
         element.classList.add('on');
     } else {
-        //#//console.log('off');
         element.classList.remove('on');
         element.classList.add('off');
     }
 };
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-var api;
+var apiJitsi;
 
 var circleMembers = document.getElementById("circleMembers");
 var videoButtonJoin = document.getElementById("videoButtonJoin");
 var videoButtonCreate = document.getElementById("videoButtonCreate");
-//var videoButtonJoin = document.querySelector(".videoButtonJoin");
 var videoButtonClose = document.getElementById("videoButtonClose");
+var btnsVisio = document.getElementById("btnsVisio");
 var visioContainer = document.getElementById("visioContainer");
 var videoParticipants = document.getElementById("videoParticipants");
 var videoChat = document.getElementById("videoChat");
@@ -144,35 +149,35 @@ var visioRoomLink = document.getElementById('visio_room_link');
 var _participantId = '';
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-var interfaceVisioLoad = function(event) {
-    console.log('interfaceVisioLoad : ', event);
+var interfaceVisioLoad = function (event) {
+    console.info('== interfaceVisioLoad : ');
+    console.log(event);
+
+    if (typeof notification !== 'undefined' && typeof pushNotificationAjax == "function") {
+        notification.data = mreplace([
+            [/déconnecté/, 'en ligne'],
+            [/offline/,'online']
+        ], notification.data);
+        //new Date().getTime(); // timestamp
+        pushNotificationAjax(notification);
+    }
+
     visio_loader.classList.add('in');
 
     var meetContainer = document.querySelector('#Meet_' + _token);
-    //meetContainer.innerText = "";
-    //visioContainer.style.display = "block";
-    //visio_loader.classList.remove('in');
-    console.info('api._participants).length', Object.getOwnPropertyNames(api._participants).length);
-    console.info('api._participants', api._participants);
+    console.info('apiJitsi._participants.length', Object.getOwnPropertyNames(apiJitsi._participants).length);
+    console.info('apiJitsi._participants', apiJitsi._participants);
 
-    //if (Object.getOwnPropertyNames(api._participants).length > 0) {
+    //if (Object.getOwnPropertyNames(apiJitsi._participants).length > 0) {
 
     visio_loader.classList.remove('in');
     visioContainer.classList.remove("hidden");
     toolsVisio.classList.remove("hidden");
     panelFooter.classList.add('in');
 
-    console.info('api._participants', api._participants);
-    api.executeCommand('avatarUrl', _avatarURL);
-    api.executeCommand('displayName', _displayName);
+    apiJitsi.executeCommand('avatarUrl', _avatarURL);
+    apiJitsi.executeCommand('displayName', _displayName);
 
-    //videoButton.innerText = "Fermer la viso-conférence";
-
-    //api.executeCommand('displayName', _userName);
-    //api.executeCommand('formattedDisplayName', _formattedDisplayName);
-
-    //videoButtonJoin.classList.add("hidden");
-    //getClosest(videoButtonJoin, '.row').classList.add("hidden");
     document.getElementById('visioBtns').classList.add("hidden");
     document.getElementById('panelHeading').classList.add("hidden");
     videoButtonClose.classList.remove("hidden");
@@ -185,56 +190,69 @@ var interfaceVisioLoad = function(event) {
     }
 
     toggleAudio.addEventListener("click", (event) => { // Mutes / unmutes the audio for the local participant. No arguments are required.
-        api.executeCommand('toggleAudio');
+        apiJitsi.executeCommand('toggleAudio');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
     toggleVideo.addEventListener("click", (event) => { // Mutes / unmutes the video for the local participant. No arguments are required.
-        console.log('toggleVideo');
-        api.executeCommand('toggleVideo');
+        apiJitsi.executeCommand('toggleVideo');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
     toggleFilmStrip.addEventListener("click", (event) => { // Hides / shows the filmstrip. No arguments are required.
-        api.executeCommand('toggleFilmStrip');
+        apiJitsi.executeCommand('toggleFilmStrip');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
     toggleChat.addEventListener("click", (event) => { // Hides / shows the chat. No arguments are required.
-        api.executeCommand('toggleChat');
+        apiJitsi.executeCommand('toggleChat');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
     toggleContactList.addEventListener("click", (event) => { // Hides / shows the contact list. No arguments are required.
-        api.executeCommand('toggleContactList');
+        apiJitsi.executeCommand('toggleContactList');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
     toggleShareScreen.addEventListener("click", (event) => { // Starts / stops screen sharing. No arguments are required.
-        api.executeCommand('toggleShareScreen');
+        apiJitsi.executeCommand('toggleShareScreen');
+
         var parent = getClosest(event.target, '.btn');
         toggleBtnOnOff(parent);
     }, false);
 
-    //var videoParticipantName = '';
-    api.addEventListener("participantJoined", (data) => {
-        console.log("participantJoined");
+    //////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
 
-        videoParticipants.innerText = api.getNumberOfParticipants();
+    apiJitsi.addEventListener("hangup ", (data) => {
+        console.info("== event hangup ==");
+        console.log(data);
+    }, false);
+
+    apiJitsi.addEventListener("participantJoined", (data) => {
+        console.info("== participantJoined ==");
+
+        videoParticipants.innerText = apiJitsi.getNumberOfParticipants();
         videoParticipants.classList.add('in');
+
         var participantId = data.id;
-        var displayName = data.displayName;
-        var avatarURL = api.getAvatarURL(participantId);
-        console.log("participantJoined", participantId, displayName, avatarURL);
-        //api.executeCommand('displayName', _displayName);
+        var displayName = data.displayName; // apiJitsi.getDisplayName(participantId);
+
+        console.log("participantJoined", participantId, displayName);
+
         circleMembers.querySelector('a[data-displayName="' + displayName + '"]').setAttribute('data-participantId', participantId);
         circleMembers.querySelector('a[data-participantId="' + participantId + '"]').classList.add('bg-info');
-        //circleMembers.querySelector('a[data-participantId="'+participantId+'"]').querySelector('.label').classList.add('label-primary');
+
         var eventMsg = '"' + displayName + '"' + ' a rejoint la visio';
         videoEvents.value = eventMsg;
     }, false);
@@ -248,49 +266,60 @@ var interfaceVisioLoad = function(event) {
         "avatarURL": avatarURL // the avatar URL of the local participant
     }
     */
-    api.addEventListener("videoConferenceJoined", (data) => {
-        console.log("videoConferenceJoined");
+    apiJitsi.addEventListener("videoConferenceJoined", (data) => {
+        console.info("== videoConferenceJoined ==");
+
         visio_loader.classList.remove('in');
         document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function (element) {
             element.setAttribute('disabled', 'disabled');
         });
-        //videoParticipantName = document.getElementById("videoParticipantName").value;
-        //api.executeCommand('displayName', videoParticipantName);
-        videoParticipants.innerText = api.getNumberOfParticipants();
+        videoParticipants.innerText = apiJitsi.getNumberOfParticipants();
         videoParticipants.classList.add('in');
-        //console.log("videoConferenceJoined", videoParticipantName);
+
         var roomName = data.roomName;
+
         var participantId = data.id;
-        var displayName = data.displayName; // api.getDisplayName(participantId);
-        var avatarURL = data.avatarURL;
-        console.log("videoConferenceJoined", roomName, participantId, displayName, avatarURL);
-        //api.executeCommand('displayName', _displayName);
+        var displayName = data.displayName; // apiJitsi.getDisplayName(participantId);
+
+        console.log("videoConferenceJoined", roomName, participantId, displayName);
+
         _participantId = participantId;
         circleMembers.querySelector('a[data-displayName="' + displayName + '"]').setAttribute('data-participantId', participantId);
         circleMembers.querySelector('a[data-participantId="' + participantId + '"]').classList.add('bg-success');
-        //circleMembers.querySelector('a[data-participantId="'+participantId+'"]').querySelector('.label').classList.add('label-primary');
+
         var eventMsg = '"' + displayName + '"' + ' a rejoint la visio';
         videoEvents.value = eventMsg;
     }, false);
 
-    api.addEventListener("participantLeft", (data) => {
-        videoParticipants.innerText = api.getNumberOfParticipants();
+    apiJitsi.addEventListener("participantLeft", (data) => {
+        console.info("== participantLeft ==");
+
+        videoParticipants.innerText = apiJitsi.getNumberOfParticipants();
         videoParticipants.classList.add('in');
-        participantId = data.id;
-        var displayName = api.getDisplayName(participantId);
-        console.log(api.getDisplayName(participantId));
-        var avatarURL = api.getAvatarURL(participantId);
-        console.log("participantLeft", participantId, displayName, avatarURL);
+        //participantId = data.id;
+
+        var participantId = data.id;
+        data.displayName = _displayName;
+        var displayName = data.displayName;
+        console.log("participantLeft", participantId, displayName);
+
         var eventMsg = '"' + displayName + '"' + ' a quitté la visio';
         videoEvents.value = eventMsg;
     }, false);
 
-    api.addEventListener("videoConferenceLeft", (data) => {
-        /*/*meetContainer.innerText = "";*/
-        videoParticipants.innerText = api.getNumberOfParticipants();
-        videoParticipants.classList.add('in');
+    // @TODO refacto with videoConferenceLeft and hangup and readyToClose
+    apiJitsi.addEventListener("videoConferenceLeft", (data) => {
+        console.log("== videoConferenceLeft ==");
+        console.log(data);
+
+        btnsVisio.classList.add('hidden');
+        //videoParticipants.innerText = apiJitsi.getNumberOfParticipants();
+        //videoParticipants.classList.add('in');
+
         roomName = data.roomName;
+
         console.log("videoConferenceLeft", roomName);
+
         var eventMsg = 'Vous avez quitté la visio-conférence ';
         videoEvents.value = eventMsg;
     }, false);
@@ -301,26 +330,34 @@ var interfaceVisioLoad = function(event) {
         "nick": nick, // the nickname of the user that sent the message
         "message": txt // the text of the message
     }*/
-    api.addEventListener("incomingMessage", (data) => {
-        //#//console.log(data);
+    apiJitsi.addEventListener("incomingMessage", (data) => {
+        console.info("== incomingMessage ==");
+        console.log(data);
+
         var from = data.from;
         var nick = data.nick;
         var message = data.message;
-        //#//console.log("incomingMessage", from, nick, message);
+
         //var timestamp = Date.now();
         //var date = new Date(timestamp).toLocaleString();
         //var chatMsg = '['+ date +']' + ' "' + nick.replace(' ('+from+')', '') +'"' + ' > ' + message;
+
         var displayName = nick.replace(' (' + from + ')', '');
         var chatMsg = '<strong>"' + displayName + '"</strong>' + ' > ' + message;
+
         if (typeof videoChat != undefined) {
             videoChat.value = chatMsg;
         }
+
         var msgContainer = document.createElement("li");
         msgContainer.className = "list-group-item";
+
         if (displayName === _displayName) {
             msgContainer.classList.add('active');
         }
+
         msgContainer.innerHTML = chatMsg;
+
         if (typeof videoChat != undefined) {
             videoChat.appendChild(msgContainer);
         }
@@ -332,36 +369,45 @@ var interfaceVisioLoad = function(event) {
     /*{
         "message": txt // the text of the message
     }*/
+    apiJitsi.addEventListener("outgoingMessage", (data) => {
+        console.info("== outgoingMessage ==");
+        console.log(data);
 
-    api.addEventListener("outgoingMessage", (data) => {
-        //#//console.log(data);
         var from = data.from;
         var nick = data.nick;
         var message = data.message;
-        //#//console.log("outgoingMessage", from, nick, message);
+
         var chatMsg = '#> ' + message;
+
         if (typeof videoChat != undefined) {
             videoChat.value = chatMsg;
         }
+
         var msgContainer = document.createElement("li");
         msgContainer.className = "list-group-item active";
         msgContainer.innerHTML = chatMsg;
+
         if (typeof videoChat != undefined) {
             videoChat.appendChild(msgContainer);
         }
+
         var eventMsg = '"le message "' + message + '"' + '" est envoyé ';
         videoEvents.value = eventMsg;
     }, false);
+
     // audioMuteStatusChanged
     /*
     {
     "muted": muted // new muted status - boolean
     }
      */
-    api.addEventListener("audioMuteStatusChanged", (data) => {
+    apiJitsi.addEventListener("audioMuteStatusChanged", (data) => {
+        console.info("== audioMuteStatusChanged ==");
+        console.log(data);
+
         var muted = data.muted;
-        console.log("audioMuteStatusChanged", muted);
         var eventMsg = 'le son est ';
+
         if (muted) {
             toggleAudio.classList.add('off');
             eventMsg += 'désactivé';
@@ -369,6 +415,7 @@ var interfaceVisioLoad = function(event) {
             toggleAudio.classList.remove('off');
             eventMsg += 'activé';
         }
+
         videoEvents.value = eventMsg;
     }, false);
 
@@ -378,10 +425,13 @@ var interfaceVisioLoad = function(event) {
     "muted": muted // new muted status - boolean
     }
      */
-    api.addEventListener("videoMuteStatusChanged", (data) => {
+    apiJitsi.addEventListener("videoMuteStatusChanged", (data) => {
+        console.info("== videoMuteStatusChanged ==");
+        console.log(data);
+
         var muted = data.muted;
-        console.log("videoMuteStatusChanged", muted);
         var eventMsg = 'la vidéo est ';
+
         if (muted) {
             toggleVideo.classList.add('off');
             eventMsg += 'désactivé';
@@ -389,25 +439,72 @@ var interfaceVisioLoad = function(event) {
             toggleVideo.classList.remove('off');
             eventMsg += 'activé';
         }
+
         videoEvents.value = eventMsg;
     }, false);
 
-    api.addEventListener("readyToClose", (data) => {
-        console.log("interfaceVisioLoad readyToClose");
-    }, false);
-    //} else {
-    //if (Object.getOwnPropertyNames(api._participants).length < 0) {
+    apiJitsi.addEventListener("readyToClose", (data) => {
+        console.info("== event readyToClose ==");
+        console.log(data);
 
-    document.querySelectorAll('.btn-reload').forEach(function(element) {
-        element.addEventListener("click", (event) => { // Mutes / unmutes the audio for the local participant. No arguments are required.
+        notification.data = mreplace([
+            [/en ligne/, 'déconnecté'],
+            [/online/,'offline']
+        ], notification.data);
+        //new Date().getTime(); // timestamp
+        pushNotificationAjax(notification);
+
+        apiJitsi.removeEventListeners(["participantJoined", "participantLeft", "videoConferenceJoined", "videoConferenceLeft"]);
+        apiJitsi.dispose();
+
+        videoParticipants.innerText = "0";
+        videoParticipants.classList.remove('in');
+
+        visioContainer.classList.add("hidden");
+
+        visioRoomLink.classList.add("hidden");
+
+        document.getElementById('visioBtns').classList.remove("hidden");
+        document.getElementById('panelHeading').classList.remove("hidden");
+
+        videoButtonClose.classList.add("hidden");
+
+        toolsVisio.classList.add("hidden");
+        panelFooter.classList.remove('in');
+
+        if(colChat) {
+            colChat.classList.add("hidden");
+        }
+
+        if(discussion) {
+            discussion.classList.remove('in');
+        }
+
+        document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function (element) {
+            element.removeAttribute('disabled','disabled');
+            $(element).trigger('click');
+        });
+
+        document.querySelectorAll('#circleMembers input[type="checkbox"].current_user').forEach(function (element) {
+            $(element).trigger('click');
+            element.setAttribute('disabled','disabled');
+        });
+
+        window.location.reload();
+    }, false);
+
+    //if (Object.getOwnPropertyNames(apiJitsi._participants).length < 0) {
+    document.querySelectorAll('.btn-reload').forEach(function (element) {
+        element.addEventListener("click", (event) => {
             window.location.reload();
         }, false);
     });
+
     if(isMobile) {
-        var iframe = api.getIFrame();
-        visioRoomLink.classList.remove("hidden");
+        var iframe = apiJitsi.getIFrame();
         var appURL = iframe.src.replace('https://','org.jitsi.meet://');
-        //visioRoomLink.querySelector('a').setAttribute('href', encodeURI(appURL))
+
+        visioRoomLink.classList.remove("hidden");
         visioRoomLink.querySelector('a').setAttribute('href', appURL)
 
         //var strWindowFeatures = "menubar=no,location=no,resizable=yes,scrollbars=no,status=no";
@@ -416,19 +513,13 @@ var interfaceVisioLoad = function(event) {
         //window.open(appURL, '_blank', false);
         //window.location = appURL;
         visioContainer.querySelector('iframe').setAttribute('src', appURL);
-        //visioRoomLink.querySelector('a').click();
-        /*setTimeout(function() {
-            window.location = appURL; }, 4000
-        );*/
 
         visioContainer.classList.add("hidden");
         toolsVisio.classList.add("hidden");
         panelFooter.classList.remove('in');
 
-        //getClosest(videoButtonJoin,'.row').classList.add("hidden");
         document.getElementById('visioBtns').classList.add("hidden");
         document.getElementById('panelHeading').classList.add("hidden");
-
     }
 }
 //////////////////////////////////////////////////////////////////////
@@ -514,14 +605,10 @@ var options = {
 };
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-var visioName = function(event) {
+var visioName = function (event) {
     var member_id = '';
     var visioMultiple = document.getElementById('visioMultiple');
     if($(event.target).is(':checked')) {
-        //#//var roomName = document.getElementById('videoButtonCreate').getAttribute('data-roomname');
-        //#//roomName += '_' + event.target.roomName;
-        //#//document.getElementById('videoButtonCreate').setAttribute('data-roomname', roomName);
-
         event.target.parentNode.querySelector('a').classList.add("bg-info");
 
         if(document.getElementById("membersList")) {
@@ -531,7 +618,7 @@ var visioName = function(event) {
         var membersList = document.createElement('div');
         membersList.setAttribute('id', "membersList");
 
-        document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function(element, index) {
+        document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function (element, index) {
             member_id = element.getAttribute('data-member_id');
             var div = document.createElement('span');
             div.setAttribute('data-member_id', member_id);
@@ -542,36 +629,27 @@ var visioName = function(event) {
             membersList.appendChild(div);
         });
 
-        //visioMultiple.querySelector('.alert').appendChild(membersList);
         visioMultiple.appendChild(membersList);
-
-        /*
-        var div = document.createElement('span');
-        div.setAttribute('data-member_id', member_id);
-        div.innerHTML = event.target.getAttribute('value');
-        div.classList.add("label");
-        div.classList.add("label-info");
-        visioMultiple.querySelector('.alert').appendChild(div);
-        */
     } else {
-        //#//console.log(event);
         member_id = event.target.getAttribute('data-member_id');
-        //#//console.log(member_id);
         event.target.parentNode.querySelector('a').classList.remove("bg-info");
+
         if(visioMultiple.querySelector('[data-member_id="' + member_id + '"]')) {
             visioMultiple.querySelector('[data-member_id="' + member_id + '"]').remove();
         }
     }
 
     var roomName = document.getElementById('videoButtonJoin').getAttribute('data-roomname');
-    document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function(element) {
+
+    document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function (element) {
         member_id = element.getAttribute('data-member_id');
         roomName += '_' + member_id;
         document.getElementById('videoButtonCreate').setAttribute('data-roomname', roomName);
     });
 
     var parent = getClosest(videoButtonJoin,'#visioBtns');
-    if($(circleMembers).find('input[type="checkbox"]:checked').not('[disabled="disabled"]').length > 0) {
+
+    if ($(circleMembers).find('input[type="checkbox"]:checked').not('[disabled="disabled"]').length > 0) {
         parent.classList.remove("all");
         parent.classList.add("multiple");
         videoButtonCreate.classList.remove("disabled");
@@ -585,11 +663,14 @@ var visioName = function(event) {
             document.getElementById("membersList").remove();
         }
     }
+
     var btnCreate = document.getElementById("videoButtonCreate");
+
     btnCreate.roomName = btnCreate.getAttribute('data-roomName');
     options.roomName = btnCreate.roomName;
     btnCreate.addEventListener("click", visioLaunch, false);
 };
+
 var elementsCheckbox = document.querySelectorAll('#circleMembers input[type="checkbox"]');
 for (var i = 0; i < elementsCheckbox.length; i++) {
     elementsCheckbox[i].addEventListener("click", visioName, false);
@@ -597,24 +678,28 @@ for (var i = 0; i < elementsCheckbox.length; i++) {
 
 var elementsAvatarsLink = document.querySelectorAll('#circleMembers input[type="checkbox"]+label+a');
 for (var i = 0; i < elementsAvatarsLink.length; i++) {
-    elementsAvatarsLink[i].addEventListener("click", function(event){
+    elementsAvatarsLink[i].addEventListener("click", function (event){
         var parent = getClosest(event.target,'li');
         parent.querySelector('input[type="checkbox"]').click();
     }, false);
 }
 
-var visioLaunch = function(event) {
-    AdapterJS.webRTCReady(function(isUsingPlugin) {
+var visioLaunch = function (event) {
+    AdapterJS.webRTCReady(function (isUsingPlugin) {
+        console.info("== The WebRTC API is ready ==");
+
         // The WebRTC API is ready.
         //isUsingPlugin: true is the WebRTC plugin is being used, false otherwise
         /*getUserMedia(constraints, successCb, failCb);*/
 
         /* btnReload */
-        if(document.getElementById('btnReload')) {
+        if (document.getElementById('btnReload')) {
             document.getElementById('btnReload').remove();
         }
+
         var li=document.createElement("li");
         var btnReload=document.createElement("button");
+
         btnReload.setAttribute('id','btnReload');
         btnReload.setAttribute('class','btn btn-default on');
         btnReload.setAttribute('title','Recharger');
@@ -622,50 +707,46 @@ var visioLaunch = function(event) {
         li.appendChild(btnReload);
         toolsVisio.querySelector('ul').appendChild(li);
 
-        btnReload.addEventListener("click", (event) => { // Mutes / unmutes the audio for the local participant. No arguments are required.
+        btnReload.addEventListener("click", (event) => {
             var button = document.querySelectorAll('.videoButtonJoin:not(.disabled)');
-            api.executeCommand('hangup');
-            api.removeEventListeners(["participantJoined", "participantLeft", "videoConferenceJoined", "videoConferenceLeft"]);
-            api.dispose();
+            apiJitsi.executeCommand('hangup');
+
+            apiJitsi.dispose();
+
             $(button).trigger('click');
         }, false);
 
-        //#//console.info('options',options);
         if (event.target.roomName) {
             options.roomName = event.target.roomName;
         }
+
         if(!options.roomName) {
             $(btnReload).trigger('click');
         }
+
         if ( options.roomName && !visioContainer.style.display || visioContainer.style.display === "none" ) {
-            //api = new JitsiMeetExternalAPI(domain, room, width, height, htmlElement, configOverwrite, interfaceConfigOverwrite);
-            api = new JitsiMeetExternalAPI(domain, options);
-            console.info('api._participants', api._participants);
-            //api.executeCommand('avatarUrl', _avatarURL);
-            //api.executeCommand('displayName', _displayName);
-
-
+            //apiJitsi = new JitsiMeetExternalAPI(domain, room, width, height, htmlElement, configOverwrite, interfaceConfigOverwrite);
+            apiJitsi = new JitsiMeetExternalAPI(domain, options);
+            console.info('apiJitsi._participants', apiJitsi._participants);
         } else {
-            api.executeCommand('hangup');
-            console.log("else hangup");
+            console.info("== else hangup ==");
+            apiJitsi.executeCommand('hangup');
 
-            api.addEventListener("readyToClose", (data) => {
-                console.log("hangup videoButtonClose readyToClose");
+            /*apiJitsi.addEventListener("readyToClose", (data) => {
+                console.info("== visioLaunch hangup readyToClose ==");
+
+                apiJitsi.removeEventListeners(["participantJoined", "participantLeft", "videoConferenceJoined", "videoConferenceLeft"]);
+                apiJitsi.dispose();
+
                 videoParticipants.innerText = "0";
                 videoParticipants.classList.remove('in');
 
-                api.removeEventListeners(["participantJoined", "participantLeft", "videoConferenceJoined", "videoConferenceLeft"]);
-                api.dispose();
-
-                //visioContainer.style.display = "none";
                 visioContainer.classList.add("hidden");
-
                 visioRoomLink.classList.add("hidden");
 
-                //videoButtonJoin.classList.remove("hidden");
-                //getClosest(videoButtonJoin,'.row').classList.remove("hidden");
                 document.getElementById('visioBtns').classList.remove("hidden");
                 document.getElementById('panelHeading').classList.remove("hidden");
+
                 videoButtonClose.classList.add("hidden");
 
                 toolsVisio.classList.add("hidden");
@@ -674,60 +755,18 @@ var visioLaunch = function(event) {
                 if(colChat) {
                     colChat.classList.add("hidden");
                 }
+
                 if(discussion) {
                     discussion.classList.remove('in');
                 }
-
-            }, false);
+            }, false);*/
         }
     });
 };
 
 videoButtonClose.addEventListener("click", () => {
-    api.executeCommand('hangup');
-    //#//console.log("videoButtonClose hangup");
-
-    api.addEventListener("readyToClose", (data) => {
-        //#//console.log("videoButtonClose readyToClose");
-
-        api.removeEventListeners(["participantJoined", "participantLeft", "videoConferenceJoined", "videoConferenceLeft"]);
-        api.dispose();
-
-        videoParticipants.innerText = "0";
-        videoParticipants.classList.remove('in');
-
-        //visioContainer.style.display = "none";
-        visioContainer.classList.add("hidden");
-
-        visioRoomLink.classList.add("hidden");
-
-        //videoButtonJoin.classList.remove("hidden");
-        //getClosest(videoButtonJoin,'.row').classList.remove("hidden");
-        document.getElementById('visioBtns').classList.remove("hidden");
-        document.getElementById('panelHeading').classList.remove("hidden");
-        videoButtonClose.classList.add("hidden");
-
-        toolsVisio.classList.add("hidden");
-        panelFooter.classList.remove('in');
-
-        if(colChat) {
-            colChat.classList.add("hidden");
-        }
-        if(discussion) {
-            discussion.classList.remove('in');
-        }
-
-        document.querySelectorAll('#circleMembers input[type="checkbox"]:checked').forEach(function(element) {
-            element.removeAttribute('disabled','disabled');
-            $(element).trigger('click');
-        });
-        document.querySelectorAll('#circleMembers input[type="checkbox"].current_user').forEach(function(element) {
-            $(element).trigger('click');
-            element.setAttribute('disabled','disabled');
-        });
-        window.location.reload();
-
-    }, false);
+    console.info("== videoButtonClose event click ==");
+    apiJitsi.executeCommand('hangup');
 }, false);
 
 var elements = document.querySelectorAll(".videoButtonJoin");
@@ -735,27 +774,8 @@ for (var i = 0; i < elements.length; i++) {
     elements[i].roomName = elements[i].getAttribute('data-roomName');
     elements[i].addEventListener("click", visioLaunch, false);
 }
-
-/*videoButtonClose.addEventListener("click", () => {
-    api.executeCommand('hangup');
-    //videoButtonJoin.classList.remove("hidden");
-    getClosest(videoButtonJoin,'.row').classList.remove("hidden");
-    videoButtonClose.classList.add("hidden");
-
-    //visioContainer.style.display = "none";
-    visioContainer.classList.add("hidden");
-    //videoButton.innerText = "Rejoindre la visio-conférence";
-
-    toolsVisio.classList.add("hidden");
-    panelFooter.classList.remove('in');
-
-    if(colChat) {
-      colChat.classList.add("hidden");
+$(document).ready(function() {
+    if(window.location.hash && window.location.hash.replace('#','') === 'autoconnect') {
+        videoButtonJoin.click();
     }
-    if(discussion) {
-      discussion.classList.remove('in');
-    }
-}, false);*/
-
-//var api = new JitsiMeetExternalAPI(domain, options);
-//api.executeCommand('avatarUrl', '{% if circleUser.user.avatar != null %}{{ asset("https://cercle-confiance.fr/uploads/" ~ circleUser.user.avatar) }}{% else %}{{ asset("https://cercle-confiance.fr/assets/img/avatar.png") }}{% endif %}');
+});

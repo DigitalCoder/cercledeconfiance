@@ -94,24 +94,26 @@ var alertContents = function (httpRequest) {
     }
 };
 
-var ajaxPushNotitication = function(notification) {
-    makeAjaxPHPRequestNotification(notification);
-    //makeAjaxRequestNotification(notification);
-    //makeRequestNotification(notification);
-}
-
-OneSignal.push(function() {
-    OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
-        if (isEnabled) {
-            console.log("Push notifications are enabled!");
-            if (typeof notification !== 'undefined') {
-                console.info("notification");
-                console.log(notification);
-                ajaxPushNotitication(notification);
-            }
-        } else {
-            console.log("Push notifications are not enabled yet.");
-            OneSignal.registerForPushNotifications();
-        }
-    });
-});
+var pushNotificationAjax = function(notification) {
+    if (typeof OneSignal == 'function') {
+        console.info('== pushNotificationAjax ==');
+        OneSignal.push(function () {
+            console.log('OneSignal.push');
+            OneSignal.isPushNotificationsEnabled().then(function (isEnabled) {
+                if (isEnabled) {
+                    console.log("Push notifications are enabled!");
+                    if (typeof notification !== 'undefined') {
+                        console.info("notification");
+                        console.log(notification);
+                        makeAjaxPHPRequestNotification(notification);
+                        //makeAjaxRequestNotification(notification);
+                        //makeRequestNotification(notification);
+                    }
+                } else {
+                    console.log("Push notifications are not enabled yet.");
+                    OneSignal.registerForPushNotifications();
+                }
+            });
+        });
+    }
+};

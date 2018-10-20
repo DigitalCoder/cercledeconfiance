@@ -95,7 +95,6 @@
                 </div>
             </div>
         </div>
-        <a id="link" data-href="{{ path('ajaxSendMessage', {'token': token, 'messageToSend': notificationDatas}) }}" title="visio-notification">visio-notification</a>
 
         <div class="col-xs-12">
             <div class="panel panel-default">
@@ -283,8 +282,16 @@
     {%  else %}
     <script src="https://cdn.temasys.com.sg/adapterjs/0.15.0/adapter.min.js"></script>
     {% endif %}
-    <script src="//meet.jit.si/external_api.js"></script>
 
+    <script>
+        var notification = {};
+        notification.url = "{{ path('ajaxSendMessage') }}"; // notification.url = "https://onesignal.com/api/v1/notifications";
+        {#notification.restApiKey = "NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk";#}
+        notification.data = JSON.stringify({{ messageToSend|json_encode|raw }});
+    </script>
+    <script src="{{ asset('assets/js/OneSignal/pushNotificationAjax.js') }}"></script>
+
+    <script src="//meet.jit.si/external_api.js"></script>
     <script>
         //////////////////////////////////////////////////////////////////////
         var domain = "meet.jit.si";
@@ -333,27 +340,4 @@
         //////////////////////////////////////////////////////////////////////
     </script>
     <script src="{{ asset('assets/js/jitsi/visio.js') }}?{{ date().timestamp }}"></script>
-
-    {#<script>#}
-        {#var user_type = 'free';#}
-        {#var user_classifier = {% if circleUser.circleCenter %}'center_circle'{% elseif circleUser.adminCircle == 1 %}'administrator'{% else %}'member'{% endif %};#}
-        {#var user_privileges = {% if circleUser.adminCircle == 1 %}'administrator'{% else %}'member'{% endif %};#}
-        {#var user_id_circlename = '{{ circleUser.circle.name }}';#}
-        {#var user_id_circle_id = '{{ circleUser.circle.id }}';#}
-        {#var user_id_circle_user_id = '{{ circleUser.user.id }}';#}
-        {#var real_name = "{{ app.user.firstname|lower|capitalize ~ " " ~ app.user.name|upper }}";#}
-        {#var first_name = "{{ app.user.firstname|lower|capitalize }}";#}
-        {#var last_name = "{{ app.user.name|upper }}";#}
-        {#//var salutation =  'M.';#}
-        {#var user_email = '{{ app.user.email|lower }}';#}
-    {#</script>#}
-    {#<script src="{{ asset('assets/js/OneSignal/sendTags.js') }}"></script>#}
-
-    <script>
-        var notification = {};
-        notification.url = "{{ path('ajaxSendMessage') }}"; // notification.url = "https://onesignal.com/api/v1/notifications";
-        {#notification.restApiKey = "NGZhZjdlMGEtMzViMy00ZmNiLWFjOWEtMTc5ZjgyNjQzNDdk";#}
-        notification.data = JSON.stringify({{ messageToSend|json_encode|raw }});
-    </script>
-    <script src="{{ asset('assets/js/OneSignal/pushNotificationAjax.js') }}"></script>
 {% endblock %}

@@ -21,3 +21,6 @@ ajaxSendMessage:
   defaults: { _controller: AppBundle\Controller\DefaultController::sendMessageAction }
   requirements:
     _method: POST|GET
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

@@ -63,6 +63,10 @@ function concatValues( obj ) {
 }
 
 $(document).ready(function() {
+    var $AlertBox = $('div[role="alert"]');
+    $AlertBox.each(function(){
+       $(this).remove();
+    });
     var $filtersChecked = $('.isotope .filters').find('button.is-checked');
     $filtersChecked.each(function () {
         $(this).trigger('click');

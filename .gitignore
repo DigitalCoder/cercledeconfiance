@@ -20,12 +20,14 @@
 /src/AppBundle/Entity/*~
 /src/UserBundle/Entity/*~
 .web-server-pid
-/web/uploads/
+/web/uploads/*
+/web/media/cache/*
 /src/UserBundle/Entity/*~
 
 /mqtt/config.php
 
-/web/uploads
+/web/uploads/
+/web/media/cache/
 /web/secretadmin/
 /web/dump/
 /web/jitsi-meet/

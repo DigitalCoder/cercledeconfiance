@@ -70,8 +70,17 @@ class UserUploadListener
         if (!$file instanceof UploadedFile) {
             return;
         }
+        //$fileName = $this->uploader->upload($file);
+        //$entity->setAvatar($fileName);
+
+        $targetDir = $entity->getTargetDir();
+
+        if($user_id = $entity->getId()) {
+            $returnValue = preg_replace('/tmp/', $user_id, $targetDir, $count);
+        }
+        $this->uploader->setTargetDir($this->uploader->getTargetDir(). '/' . $targetDir);
         $fileName = $this->uploader->upload($file);
-        $entity->setAvatar($fileName);
+        $entity->setAvatar($targetDir . '/' . $fileName);
     }
 
     /**

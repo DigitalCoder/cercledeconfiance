@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new AppBundle\AppBundle(),
             new \Symfony\Bundle\WebServerBundle\WebServerBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

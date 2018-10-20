@@ -1,0 +1,274 @@
+.visio-conference #visioBtns .btn {
+    display: inline-block;
+    font-size: .85em;
+    line-height: 1.33;
+    border-width: 5px;
+    border-radius: 6em;
+    padding: 1.5em 0em;
+    min-height: 12em;
+    width: 12em;
+    white-space: inherit;
+}
+.visio-conference #videoButtonJoin:hover, .visio-conference #videoButtonJoin:active, .visio-conference #videoButtonJoin:focus {
+    color: #5cb85c;
+    background-color: rgba(255, 255, 255, .25);
+    border-color: #5cb85c;
+}
+.visio-conference #videoButtonSchedule:hover, .visio-conference #videoButtonSchedule:active, .visio-conference #videoButtonSchedule:focus {
+    color: #45aed6;
+    background-color: rgba(255, 255, 255, .25);
+    border-color: #45aed6;
+}
+
+.visio iframe {
+    border: 0;
+}
+.visio #toolsVisio ul li button {
+    font-size: 1em;
+    padding: 0;
+    height: auto;
+    width: auto;
+    margin-bottom: .5em;
+    outline:none;
+    margin-left: .25em;
+}
+.visio .panel {
+    margin-top: 1em;
+}
+.visio .panel-heading {
+    padding: .5em .5em 0;
+}
+
+.visio #toolsVisio {
+    padding: 0
+}
+.visio #toolsVisio button .fa {
+}
+.visio #toolsVisio button.off {
+    color: rgb(194, 180, 153);
+    border-color: rgb(194, 180, 153);
+    background-color: #fff;
+}
+.visio #toolsVisio button.off .fa {
+    color: rgb(194, 180, 153) !important;
+}
+.visio #toolsVisio button.off:hover, .visio #toolsVisio button.off:focus {
+    background-color: rgb(194, 180, 153);
+}
+.visio #toolsVisio button.off:hover *, .visio #toolsVisio button.off:focus * {
+    color: #fff !important;
+}
+.visio #toolsVisio button .fa:nth-child(3) {
+    font-size: .5em;
+    color: #000;
+}
+@media screen and (max-width: 767px) {
+    .visio #toolsVisio li {
+        font-size: .65em
+    }
+    .visio .nav-justified li, .visio .nav-stacked li {
+        display: inline-block;
+    }
+}
+.visio #colChat {
+    max-height: 460px;
+    overflow: auto
+}
+.visio #colChat .btn {
+    width: 45%;
+}
+/*@media screen and (max-width: 768px) {*/
+@media screen and (max-width: 992px) {
+    /*.visio #visioContainer {
+        width: 100%;
+    }*/
+    .visio_enterprise #visioContainer {
+        width: 90%;
+    }
+    .visio_enterprise #colChat {
+        width: 100%
+    }
+}
+#discussion {
+    max-height: 390px;
+    overflow: auto;
+    margin-top: .5em;
+}
+#videoChat li {
+    font-size: .75em
+}
+#videoChat li.active {
+    color: #337ab7;
+    background-color: #d9edf7;
+    border-color: #337ab7;
+}
+
+.btn-tools + .row > .section-header {
+    margin-top: -2.5em
+}
+@media screen and (max-width: 768px) {
+    .btn-tools + .row > .section-header {
+        margin-top: -1.5em;
+        margin-bottom: 0; /* */
+    }
+    .mur .btn-tools + .row > .section-header {
+        margin-top: 0;
+    }
+}
+.videoButtonJoin {
+    padding: .25em 1em;
+    /*font-size: .75em;*/
+}/*
+@media (min-width: 425px) {
+    .videoButtonJoin {
+        font-size: 1em;
+    }
+}*/
+.visio .btn-enterprise, .visio #toggleChat, .viso button#toggleShareScreen, .visio #toggleContactList, .visio #colChat{
+    display: none;
+}
+
+.visio_enterprise .btn-enterprise, .visio_enterprise #toggleChat, .visio_enterprise button#toggleShareScreen, .visio_enterprise #toggleContactList, .visio_enterprise #colChat{
+    display: block;
+}
+
+/*
+    custom checkbox
+*/
+/* Base for label styling */
+.visio [type="checkbox"]:not(:checked),
+.visio [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+.visio [type="checkbox"]:not(:checked) + label,
+.visio [type="checkbox"]:checked + label {
+    position: relative;
+    padding: .25em 0 0 1.75em;
+    cursor: pointer;
+    width: 95%;
+    z-index: 9999;
+    text-align: left;
+    /*background: #fff;*/
+    font-size: .75em;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+}
+.visio [type="checkbox"]:not(:checked) + label:before {
+    background: #fff;
+}
+.visio [type="checkbox"]:checked + label:before {
+    background: #fff;
+    border: 1px solid #5cb85c;
+}
+@media screen and (max-width: 768px) {
+    .visio [type="checkbox"]:not(:checked) + label,
+    .visio [type="checkbox"]:checked + label {
+        font-size: .5em;
+        margin-left: .5em;
+        /*margin-bottom: -1em;*/
+        padding: 0 0 0 1.75em;
+        z-index: 99;
+        border: 0;
+    }
+}
+
+/* checkbox aspect */
+.visio [type="checkbox"]:not(:checked) + label:before,
+.visio [type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 5px;
+    width: 1.25em; height: 1.25em;
+    /*border: 1px solid #ccc;
+    background: #fff;*/
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+.visio [type="checkbox"]:not(:checked) + label:after,
+.visio [type="checkbox"]:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: .25em;
+    left: .275em;
+    font-size: 1.4em;
+    line-height: 0.8;
+    /*color: #09ad7e;*/
+    /*color: #1C75BC;*/
+    color: #5cb85c;
+    transition: all .2s;
+    font-family: Helvetica, Arial, sans-serif;
+}
+/*@media (max-width: 991px) and (min-width: 768px) {
+    .visio [type="checkbox"]:not(:checked) + label, .visio [type="checkbox"]:checked + label {
+        border: 0;
+        background:transparent;
+    }
+}*/
+/* checked mark aspect changes */
+.visio [type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+.visio [type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+/* disabled checkbox */
+.visio [type="checkbox"]:disabled:not(:checked) + label:before,
+.visio [type="checkbox"]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+}
+.visio [type="checkbox"]:disabled:checked + label:after {
+    color: #999;
+}
+.visio [type="checkbox"]:disabled + label {
+    color: #aaa;
+}
+/* accessibility */
+.visio [type="checkbox"]:checked:focus + label:before,
+.visio [type="checkbox"]:not(:checked):focus + label:before {
+    border: 2px dotted #1C75BC;
+}
+
+/* hover style just for information */
+label:hover:before {
+    /*border: 2px solid #4778d9!important;*/
+    border: 2px solid #45aed6!important;
+}
+.visio input[type="checkbox"]:checked + label + a > img {
+    border: 4px solid #5cb85c;
+}
+.visio input[type="checkbox"]:checked + label + a > .fa {
+    color: #5cb85c;
+}
+#visioBtns.schedule #visioAll, #visioBtns.schedule #or  {
+    display:none;
+}
+#visioBtns.schedule #visioSchedule {
+    width:100%;
+}
+#visioBtns.schedule #visioSchedule .label {
+    margin:0 .25em;
+    display: inline-block;
+}
+@media screen and (min-width: 560px) {
+    div#btnsVisio {
+        position: absolute;
+        text-align: center;
+        top: .5em;
+        width: 100%;
+    }
+}
+
+#visio_room_link a {
+    padding: .85em 1em;
+}
+
+.touch .visio [type="checkbox"]+label {
+    display: none;
+}

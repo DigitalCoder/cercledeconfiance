@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="hidden-xs col-md-12 col-lg-6 ui-group files-group">
+                <div class="col-md-12 col-lg-6 ui-group files-group">
                     <div class="button-group js-radio-button-group well well-sm" data-filter-group="filetype">
                         <ul class="nav nav-tabs nav-justified text-center">
                             <li role="presentation" class="active">
@@ -182,19 +182,26 @@
                                             {% endif %}
                                                 "></i>
                             </div>#}
-                            <a class="{{ fileTypeCss }} downloadFile" href="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" download="{{ dataApp.cloud.fileName }}">
+                            {% set cloud_src = asset("uploads/" ~ dataApp.cloud.fileName) %}
+                            <a class="{{ fileTypeCss }} downloadFile" href="{{ cloud_src }}" download="{{ dataApp.cloud.fileName }}">
                                 <i class="fa fa-1x fa-download fa-fw" aria-hidden="true"></i>fichier {{ fileTypeText }}
                             </a>
                             {% if "image" in dataApp.cloud.fileType %}
-                            <img data-src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" alt="{{ dataApp.creationdate|date("d/m/Y H:i") }} / {{ dataApp.cloud.fileName | replace ([token], ['']) }}" class="lazy itemCloud img-responsive imgModal img-circle">
+                                <img srcset="{{ cloud_src | imagine_filter('cloud_thumb') }} 1x,
+                                {{ cloud_src | imagine_filter('cloud_thumb_2x') }} 2x"
+                                     src="{{ cloud_src | imagine_filter('cloud_thumb') }}"
+                                     class="lazy itemCloud img-responsive imgModal img-circle"
+                                     alt="{{ dataApp.creationdate|date("d/m/Y H:i") }} / {{ fileName }}"
+                                     data-modal_img_src="{{ cloud_src | imagine_filter('original') }}"
+                                >
                             {% elseif "video" in dataApp.cloud.fileType %}
                             <video controls class="itemCloud videoModal" preload="metadata">
-                                <source src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}" type="{{ dataApp.cloud.fileType }}" />
+                                <source src="{{ cloud_src }}" type="{{ dataApp.cloud.fileType }}" />
                                 <p>Votre navigateur ne supporte pas les éléments de type<code>vidéo</code>.</p>
                             </video>
                             {% elseif "audio" in dataApp.cloud.fileType %}
                             <audio controls class="itemCloud audioModal">
-                                <source type="{{ dataApp.cloud.fileType }}" src="{{ asset("uploads/" ~ dataApp.cloud.fileName) }}"/>
+                                <source type="{{ dataApp.cloud.fileType }}" src="{{ cloud_src }}"/>
                                 Votre navigateur ne supporte pas les éléments de type<code>audio</code>.
                             </audio>
                             {% endif %}
@@ -271,7 +278,7 @@
             $Imgs.on('click', function(event) {
                 event.preventDefault();
                 var $This = $(this);
-                $ModalImg.attr('src', $This.attr('src'));
+                $ModalImg.attr('src', $This.attr('data-modal_img_src')).addClass("lazy");
                 $CaptionText.html($This.attr('alt'));
                 //$Modal.show();
                 $Modal.modal('show');

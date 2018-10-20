@@ -39,7 +39,18 @@
                     <a href="#{{ user.user.id }}"
                        aria-controls="{{ user.user.id }}"
                        role="tab" data-toggle="tab">
-                        <img src="{% if user.user.avatar != null %}{{ asset("uploads/" ~ user.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="memberAvatar img-responsive img-circle" alt="{{ user.user.firstname }} {{ user.user.name }}">
+                        {% set avatar_src = asset("assets/img/avatar.png") %}
+                        {% if user.user.avatar != null %}
+                            {% set avatar_src = asset("uploads/" ~ user.user.avatar) %}
+                        {% endif %}
+                        <picture>
+                            <source srcset="{{ avatar_src | imagine_filter('profile_thumb_small') }} 1x,
+                                    {{ avatar_src | imagine_filter('profile_thumb_small_2x') }} 2x">
+                            <img src="{{ avatar_src | imagine_filter('profile_thumb_small') }}"
+                                 class="memberAvatar img-responsive img-circle"
+                                 alt="{{ user.user.firstname }} {{ user.user.name }}"
+                            >
+                        </picture>
                     </a>
                 </li>
                 {#{% if loop.last %}
@@ -58,7 +69,6 @@
             <div class="tab-content row ">
             {% for user in users %}
                 <div role="tabpanel" class="col-xs-12 tab-pane fade{% if loop.first %} in active{% endif %}" id="{{ user.user.id }}">
-                    <!--<img src="{% if user.user.avatar != null %}{{ asset("uploads/" ~ user.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="memberAvatar img-circle" alt="avatar.png">-->
                     <h3>{{ user.user.firstname }} {{ user.user.name }}</h3>
 
                     <p>

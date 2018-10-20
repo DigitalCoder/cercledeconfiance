@@ -134,12 +134,19 @@
                                     {% set fileName = data.cloud.fileName|replace({ (replace_value_var): replace_with_value_var }) %}
 
                                     {% if 'image' in data.cloud.filetype %}
+                                    {% set cloud_src = asset("uploads/" ~ data.cloud.fileName) %}
                                     <div class="row">
                                         <div class="col-xs-12 text-center">
                                             <div class="col-xs-12 text-center">
                                                 <strong class="filename">{{ fileName }} <em>({{ fileSize }})</em></strong>
                                             </div>
-                                            <img data-src="{{ asset("uploads/" ~ data.cloud.fileName) }}" class="lazy itemWall itemCloud imgModal img-responsive" alt="{{ data.creationdate|date("d/m/Y H:i") }} / {{ data.cloud.filename }}" />
+                                            <img srcset="{{ cloud_src | imagine_filter('cloud_thumb') }} 1x,
+                                                {{ cloud_src | imagine_filter('cloud_thumb_2x') }} 2x"
+                                                 src="{{ cloud_src | imagine_filter('cloud_thumb') }}"
+                                                 class="lazy itemWall itemCloud imgModal img-responsive"
+                                                 alt="{{ data.creationdate|date("d/m/Y H:i") }} / {{ fileName }}"
+                                                 data-modal_img_src="{{ cloud_src | imagine_filter('original') }}"
+                                            >
                                             <a class="btn btn-default downloadFile" href="{{ asset("uploads/" ~ data.cloud.fileName) }}" download="{{ data.cloud.fileName }}">
                                                 Télécharger le fichier
                                             </a>
@@ -397,7 +404,7 @@
         $Imgs.on('click', function(event) {
             event.preventDefault();
             var $This = $(this);
-            $ModalImg.attr('src', $This.attr('src'));
+            $ModalImg.attr('src', $This.attr('data-modal_img_src')).addClass("lazy");
             $CaptionText.html($This.attr('alt'));
             //$Modal.show();
             $Modal.modal('show');

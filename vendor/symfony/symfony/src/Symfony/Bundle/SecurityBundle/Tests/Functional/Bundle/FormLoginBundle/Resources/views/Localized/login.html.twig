@@ -3,7 +3,7 @@
 {% block body %}
 
     {% if error %}
-        <div class="alert alert-danger text-danger">{{ error.message }}</div>
+        <div>{{ error.message }}</div>
     {% endif %}
 
     <form action="{{ path('localized_check_path') }}" method="post">

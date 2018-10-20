@@ -80,10 +80,6 @@
 }
 
 /* ui group */
-.cloud .isotope .ui-group {
-    display: inline-block;
-}
-
 .cloud .isotope .ui-group h3 {
     display: inline-block;
     vertical-align: top;
@@ -99,7 +95,6 @@
 .cloud .isotope .ui-group .button-group li {
     padding: 0 0.15em;
     float: left;
-    width: auto;
 }
 .cloud .isotope .users-group .button-group button {
     background: #fff;
@@ -108,7 +103,13 @@
     height: auto;
     line-height: 1.42857143;
     font-size: initial;
-    padding: .5em;
+    padding: .15em;
+}
+.cloud .isotope .users-group .button-group button {
+    color: inherit;
+}
+.cloud .isotope .ui-group .button-group button.btn-default {
+    border-width: 1px
 }
 .cloud .isotope .ui-group .button-group .active button:focus,
 .cloud .isotope .ui-group .button-group .active button:hover,
@@ -116,17 +117,26 @@
     background: #1C75BC;
 }
 @media only screen and (max-width: 525px) {
-    .cloud .isotope .ui-group .button-group li {
+    .cloud .isotope .ui-group .button-group  .files-group li {
         float: left;
-        width: 33%;
+        width: 12%;
         overflow: hidden;
     }
     .cloud .isotope .users-group .button-group li {
         width: 50%;
     }
-    .cloud .isotope .ui-group .button-group li:first-child {
-        display: block;
-        width: 100%;
+}
+@media only screen and (min-width: 768px) {
+    .cloud .isotope .ui-group .button-group li {
+        width: auto;
+    }
+    .cloud .isotope .ui-group .button-group button {
+        padding: .35em
+    }
+}
+@media only screen and (max-width: 767px) {
+    .cloud .isotope .ui-group .button-group .files-group li {
+        width: 33%;
     }
 }
 
@@ -202,4 +212,11 @@
     background: #000!important;
     color: #fff !important;
     border-color: #000 !important;
+}
+
+
+.cloud .isotope .ui-group em {
+    position: absolute;
+    top:-1.15em;
+    right: 1em;
 }

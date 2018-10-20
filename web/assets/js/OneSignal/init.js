@@ -73,12 +73,14 @@ OneSignal.push(function() {
             /* cancelButtonText limited to 15 characters */
             cancelButtonText: "Non merci"
         }
-        //}]);
-    });
-})
+    //}]);
+    })
+});
+
 OneSignal.push(function() {
     OneSignal.showHttpPrompt();
 });
+
 OneSignal.push(function() {
     OneSignal.on('subscriptionChange', function(isSubscribed) {
         console.info('subscriptionChange');
@@ -97,12 +99,6 @@ OneSignal.push(function() {
         });
     });
 });
-
-OneSignal.push(["getTags", function(tags) {
-    console.log("OneSignal getTags:");
-    console.log(tags);
-}]);
-
 OneSignal.push(["addListenerForNotificationOpened", function(data) {
     console.log("Received NotificationOpened:");
     console.log(data);
@@ -113,6 +109,14 @@ OneSignal.push(["addListenerForNotificationOpened", function(data) {
         // Make a POST call to Amplitude with the notification data and userId aka playerId
     });
 }]);
+
+/*
+OneSignal.push(["getTags", function(tags) {
+    console.log("OneSignal getTags:");
+    console.log(tags);
+}]);
+*/
+/*
 OneSignal.push(["addListenerForNotificationOpened", function(event) {
     console.log("OneSignal notification clicked:", event);
 }]);
@@ -120,15 +124,15 @@ OneSignal.push(["addListenerForNotificationOpened", function(event) {
 OneSignal.push(function() {
     OneSignal.on('notificationDisplay', function (event) {
         console.warn('OneSignal notification displayed:', event);
-        /*
-        {
-            "id": "ce31de29-e1b0-4961-99ee-080644677cd7",
-            "heading": "OneSignal Test Message",
-            "content": "This is an example notification.",
-            "url": "https://onesignal.com?_osp=do_not_open",
-            "icon": "https://onesignal.com/images/notification_logo.png"
-        }
-        */
+        //
+        //{
+        //    "id": "ce31de29-e1b0-4961-99ee-080644677cd7",
+        //    "heading": "OneSignal Test Message",
+        //    "content": "This is an example notification.",
+        //    "url": "https://onesignal.com?_osp=do_not_open",
+        //    "icon": "https://onesignal.com/images/notification_logo.png"
+        //}
+        //
 
 
         OneSignal.getTags().then(function(tags) {
@@ -138,15 +142,15 @@ OneSignal.push(function() {
     });
     OneSignal.on('notificationDismiss', function (event) {
         console.warn('OneSignal notification dismissed:', event);
-        /*
-        {
-            "id": "ce31de29-e1b0-4961-99ee-080644677cd7",
-            "heading": "OneSignal Test Message",
-            "content": "This is an example notification.",
-            "url": "https://onesignal.com?_osp=do_not_open",
-            "icon": "https://onesignal.com/images/notification_logo.png"
-        }
-        */
+        //
+        //{
+        //   "id": "ce31de29-e1b0-4961-99ee-080644677cd7",
+        //    "heading": "OneSignal Test Message",
+        //    "content": "This is an example notification.",
+        //    "url": "https://onesignal.com?_osp=do_not_open",
+        //    "icon": "https://onesignal.com/images/notification_logo.png"
+        //}
+        //
     });
     //OneSignal.addEventListener('received', this.onPushReceived);
     OneSignal.on('received', this.onPushReceived)
@@ -162,4 +166,4 @@ OneSignal.push(function() {
         console.log('DEVICE PUSH REGISTERED', notifData);
     }
 
-});
+});*/

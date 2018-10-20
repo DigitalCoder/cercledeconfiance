@@ -46,7 +46,14 @@ class ExtensionPass implements CompilerPassInterface
         if ($container->has('form.extension')) {
             $container->getDefinition('twig.extension.form')->addTag('twig.extension');
             $reflClass = new \ReflectionClass('Symfony\Bridge\Twig\Extension\FormExtension');
-            $container->getDefinition('twig.loader.native_filesystem')->addMethodCall('addPath', array(dirname(dirname($reflClass->getFileName())).'/Resources/views/Form'));
+
+            $coreThemePath = dirname(dirname($reflClass->getFileName())).'/Resources/views/Form';
+            $container->getDefinition('twig.loader.native_filesystem')->addMethodCall('addPath', array($coreThemePath));
+
+            $paths = $container->getDefinition('twig.cache_warmer')->getArgument(2);
+            $paths[$coreThemePath] = null;
+            $container->getDefinition('twig.cache_warmer')->replaceArgument(2, $paths);
+            $container->getDefinition('twig.template_iterator')->replaceArgument(2, $paths);
         }
 
         if ($container->has('translator')) {
@@ -61,10 +68,7 @@ class ExtensionPass implements CompilerPassInterface
             $container->getDefinition('twig.extension.httpkernel')->addTag('twig.extension');
 
             // inject Twig in the hinclude service if Twig is the only registered templating engine
-            if (
-                !$container->hasParameter('templating.engines')
-                || array('twig') == $container->getParameter('templating.engines')
-            ) {
+            if ((!$container->hasParameter('templating.engines') || array('twig') == $container->getParameter('templating.engines')) && $container->hasDefinition('fragment.renderer.hinclude')) {
                 $container->getDefinition('fragment.renderer.hinclude')
                     ->addTag('kernel.fragment_renderer', array('alias' => 'hinclude'))
                     ->replaceArgument(0, new Reference('twig'))
@@ -78,7 +82,11 @@ class ExtensionPass implements CompilerPassInterface
 
         if ($container->getParameter('kernel.debug')) {
             $container->getDefinition('twig.extension.profiler')->addTag('twig.extension');
-            $container->getDefinition('twig.extension.debug')->addTag('twig.extension');
+
+            // only register if the improved version from DebugBundle is *not* present
+            if (!$container->has('twig.extension.dump')) {
+                $container->getDefinition('twig.extension.debug')->addTag('twig.extension');
+            }
         }
 
         $twigLoader = $container->getDefinition('twig.loader.native_filesystem');
@@ -89,6 +97,7 @@ class ExtensionPass implements CompilerPassInterface
             $twigLoader->clearTag('twig.loader');
         } else {
             $container->setAlias('twig.loader.filesystem', new Alias('twig.loader.native_filesystem', false));
+            $container->removeDefinition('templating.engine.twig');
         }
 
         if ($container->has('assets.packages')) {

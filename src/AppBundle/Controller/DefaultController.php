@@ -270,7 +270,7 @@ class DefaultController extends Controller
             ]
         ];
 
-        $subject = 'Nouveau message de ' . $currentCircleUserFullname . ' ajouté sur le Mur du Cercle Confiance : ' . $circleName;
+        //$subject = 'Nouveau message de ' . $currentCircleUserFullname . ' ajouté sur le Mur du Cercle Confiance : ' . $circleName;
         // Exclude the current user from array
         foreach ($cUsers as $cUser){
             if(true == $cUser->getAdminCircle()){
@@ -300,13 +300,19 @@ class DefaultController extends Controller
             "en" => 'Visio | ' . date('d/m/Y H:i:s'),
             $locale => $title
         );
-        $msg = $currentCircleUserFullname .' est connecté sur le Visio du Cercle Confiance "' . $circleName .'"';
+        //$msg = $currentCircleUserFullname .' est connecté sur la Visio du Cercle Confiance "' . $circleName .'"';
+        //$msg = $currentCircleUserFullname .' : en ligne à la Visio du Cercle Confiance "' . $circleName .'"';
+        //$msg = 'Visio du Cercle Confiance "' . $circleName .'", ' . $currentCircleUserFullname . ' : en ligne';
+        $msg = $currentCircleUserFullname . ' : en ligne sur Visio du Cercle Confiance "' . $circleName;
         $contents = [
-            'en' => $currentCircleUserFullname .' is online on the Circle of Trust Visio "' . $circleName .'"',
+            //'en' => $currentCircleUserFullname .' is online on the Trust Circle Visio "' . $circleName .'"',
+            //'en' => $currentCircleUserFullname .' : online to the Trust Circle Visio "' . $circleName .'"',
+            //'en' => 'Visio of the Trust Circle "' . $circleName .'", ' . $currentCircleUserFullname . ' : online ',
+            'en' =>  $currentCircleUserFullname . ' : online on Visio of the Trust Circle "' . $circleName,
             $locale => $msg
         ];
 
-        $url = 'https://cercle-confiance.fr' . $this->generateUrl('visio', ['token'=>$circle->getToken()]);
+        $url = 'https://cercle-confiance.fr' . $this->generateUrl('visio', ['token'=>$circle->getToken()]) . '#autoconnect';
         $web_buttons = [];
         array_push($web_buttons, [
             "id" => "wall-button",
@@ -378,6 +384,167 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/{token}/visio-conference", name="visio-conference")
+     */
+    public function visioConferenceAction(Circle $circle)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $circleId = $circle->getId();
+        $currentCircleUser = $em->getRepository('AppBundle:CircleUser')
+            ->findOneBy(['user' => $user->getId(), 'circle' => $circleId]);
+
+        $currentCircleUserId = $currentCircleUser->getUser()->getId();
+
+        if ($currentCircleUser == null || $currentCircleUser->getCallAccess() == false) {
+            return $this->redirectToRoute('errorAccess');
+        }
+        $cUsers = $em->getRepository('AppBundle:CircleUser')->findBy(['circle' => $circleId]);
+        $circleName = $circle->getName();
+
+        $circleUsers = $cUsers;
+        $circleUserAdmin = array();
+        $circleUserCenter = array();
+        $cUserWithoutThis = array();
+
+        if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
+            $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
+        } elseif ($currentCircleUser->getUser()->getFirstname()) {
+            $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname();
+        } elseif ($currentCircleUser->getUser()->getName()) {
+            $currentCircleUserFullname = $currentCircleUser->getUser()->getName();
+        } elseif ($currentCircleUser->getUser()->getUserName()) {
+            $currentCircleUserFullname = $currentCircleUser->getUser()->getUserName();
+        } else {
+            $currentCircleUserFullname = 'inconnu';
+        }
+
+        $filters = [
+            [
+                "field" => "tag", "key" => "user_id_circle_id", "relation" => "=", "value" => $circleId,
+            ],
+            [
+                "operator" => "AND"
+            ],
+            [
+                "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "!=", "value" => $currentCircleUserId,
+            ]
+        ];
+
+        //$subject = 'Nouveau message de ' . $currentCircleUserFullname . ' ajouté sur le Mur du Cercle Confiance : ' . $circleName;
+        // Exclude the current user from array
+        foreach ($cUsers as $cUser){
+            if(true == $cUser->getAdminCircle()){
+                $circleUserAdmin = $cUser;
+            }
+            elseif(true == $cUser->getCircleCenter()){
+                $circleUserCenter = $cUser;
+            }else{
+                $cUserOther[] = $cUser;
+            }
+
+            //if ($cUser->getUser()->getId() != $user->getId()){
+            if($currentCircleUserId != $cUser->getUser()->getId()){
+                $cUserWithoutThis[] = $cUser;
+                $filters[] = [
+                    "operator" => "OR"
+                ];
+                $filters[] = [
+                    "field" => "tag", "key" => "user_id_circle_user_id", "relation" => "=", "value" => $cUser->getUser()->getId(),
+                ];
+            }
+        }
+
+        $locale = 'fr';
+        $title = 'Visio | ' . date('d/m/Y H:i:s');
+        $headings = array(
+            "en" => 'Visio | ' . date('d/m/Y H:i:s'),
+            $locale => $title
+        );
+        //$msg = $currentCircleUserFullname .' est connecté sur la Visio du Cercle Confiance "' . $circleName .'"';
+        //$msg = $currentCircleUserFullname .' : en ligne à la Visio du Cercle Confiance "' . $circleName .'"';
+        //$msg = 'Visio du Cercle Confiance "' . $circleName .'", ' . $currentCircleUserFullname . ' : en ligne';
+        $msg = $currentCircleUserFullname . ' : en ligne sur Visio du Cercle Confiance "' . $circleName;
+        $contents = [
+            //'en' => $currentCircleUserFullname .' is online on the Trust Circle Visio "' . $circleName .'"',
+            //'en' => $currentCircleUserFullname .' : online to the Trust Circle Visio "' . $circleName .'"',
+            //'en' => 'Visio of the Trust Circle "' . $circleName .'", ' . $currentCircleUserFullname . ' : online ',
+            'en' =>  $currentCircleUserFullname . ' : online on Visio of the Trust Circle "' . $circleName,
+            $locale => $msg
+        ];
+
+        $url = 'https://cercle-confiance.fr' . $this->generateUrl('visio-conference', ['token'=>$circle->getToken()]) . '#autoconnect';
+        $web_buttons = [];
+        array_push($web_buttons, [
+            "id" => "wall-button",
+            "text" => 'Accéder à la visio du Cercle Confiance ' . $circleName,
+            "icon" => "",
+            "url" => $url
+        ]);
+        $notificationType = 'visio-feature-' . $circle->getToken();;
+        $uniqId = uniqid($notificationType . '_' . time());
+
+        $website_name    = 'Cercle Confiance';
+        $msg             = $contents;
+        $website_url     = $url;
+        $website_icon    = 'https://cercle-confiance.fr/assets/img/logos/logo-CERCLE-CONFIANCE-quadri.png';
+        $messageToSend = $additionalDataHash = [
+            'app_id' => $this->getParameter('one_signal_app_id'),
+            'disable_badge_clearing' => true,
+            'web_push_topic' => $uniqId,
+            'notificationType' => $notificationType,
+            'url' => $url,
+            'headings' => $headings,
+            'filters' => $filters,
+            'contents' => $contents,
+            'web_buttons' => $web_buttons,
+            'android_group' => $notificationType,
+            'android_group_message' => [
+                "en" => "You have $[notif_count] new messages",
+                'fr' => "Vous avez $[notif_count] nouveau(x) message(s)",
+            ],
+            'ios_badgeType' => 'Increase',
+            'ios_badgeCount' => 1
+        ];
+        $buttons         = $web_buttons;
+
+        $notificationDatas = [
+            'app_id' => $this->getParameter('one_signal_app_id'),
+            $website_name,
+            /* Message (defaults if unset) */
+            $msg,
+            $website_url,
+            $website_icon,
+            $additionalDataHash,
+            $buttons
+        ];
+        //$response = $this->sendMessage($messageToSend);
+        //$return["allresponses"] = $response;
+        //$return = json_encode( $return);
+
+        $roomName = $circle->getName();
+        $roomName = trim($roomName);
+        $roomName = htmlspecialchars($roomName, ENT_QUOTES);
+        $roomName = preg_replace('/&#?[a-z0-9]{2,8};/i', '_', $roomName);
+        $roomName = mb_convert_case( $roomName, MB_CASE_UPPER, mb_internal_encoding() );
+        $roomName = preg_replace( "/\s+/", "", $roomName );
+
+        $param = ['token' => $circle->getToken(),
+            'circleUserAdmin' => $circleUserAdmin,
+            'circleUserCenter' => $circleUserCenter,
+            'circleUser' => $currentCircleUser,
+            'circleUserFullname' => $currentCircleUserFullname,
+            'CUsers' => $cUserWithoutThis,
+            'circleUsers' => $circleUsers,
+            'roomName' => $roomName,
+            //'messageToSend' =>  htmlspecialchars_decode(json_encode($messageToSend))
+            'messageToSend' =>  $messageToSend,
+            'notificationDatas' =>  $notificationDatas
+        ];
+        return $this->render('AppBundle:Default:visio-conference.html.twig', $param);
+    }
+
+    /**
      * @Route("/{token}/cloud", name="cloud")
      */
     public function cloudAction(Circle $circle, Request $request)
@@ -418,7 +585,12 @@ class DefaultController extends Controller
         if (isset($_FILES['form']['type']['file_name'])) {
             $fileName = $_FILES['form']['name']['file_name'];
             $cloud->setFileType($_FILES['form']['type']['file_name']);
-            $cloud->setTargetDir($circle->getToken());
+
+            //$targetDir = $circle->getToken();
+            $feature_dir = 'cloud';
+            $targetDir = 'circles/' . $circle->getToken() . '/' . $feature_dir . '/' . $user->getId() . '/' . time ();
+
+            $cloud->setTargetDir($targetDir);
         }
 
         $form->handleRequest($request);
@@ -433,8 +605,6 @@ class DefaultController extends Controller
             $em->persist($cloud);
             $em->flush();
 
-            //$currentUserName = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
-            //$currentUserEmail = $currentCircleUser->getUser()->getEmail();
             if ($currentCircleUser->getUser()->getFirstname() && $currentCircleUser->getUser()->getName()) {
                 $currentCircleUserFullname = $currentCircleUser->getUser()->getFirstname() . ' ' . $currentCircleUser->getUser()->getName();
             } elseif ($currentCircleUser->getUser()->getFirstname()) {
@@ -492,7 +662,7 @@ class DefaultController extends Controller
             );
             $msg = $currentUserName .'  a soumis un nouveau fichier "'. $fileName .'" dans le Cloud du Cercle Confiance "' . $circleName .'"';
             $contents = [
-                'en' => $currentUserName .' submitted a new file "'. $fileName .'" in the Cloud of the Circle Trust "' . $circleName .'"',
+                'en' => $currentUserName .' submitted a new file "'. $fileName .'" in the Cloud of the Trust Circle "' . $circleName .'"',
                 $locale => $msg
             ];
 

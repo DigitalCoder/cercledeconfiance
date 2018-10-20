@@ -192,7 +192,7 @@ class WallController extends Controller
             );
             $msg = $currentUserName .' a laissé un nouveau message sur le Mur du Cercle Confiance "' . $circleName .'"';
             $contents = [
-                'en' => $currentUserName .' left a new message on the Circle of Trust Wall "' . $circleName .'"',
+                'en' => $currentUserName .' left a new message on the Wall of the Trust Circle "' . $circleName .'"',
                 $locale => $msg
             ];
 

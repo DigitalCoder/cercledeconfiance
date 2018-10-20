@@ -12,6 +12,7 @@
 namespace UserBundle\Form\Type;
 
 use AppBundle\Form\AddressType;
+
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;

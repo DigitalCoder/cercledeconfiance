@@ -26,6 +26,30 @@ jQuery(function ($) {
 
     //Slider
     $(document).ready(function () {
+
+        $('form').on('submit', function(event) {
+            var $NodesSubmit = $('[type="submit"]',$(this));
+            $NodesSubmit.each(function(elm) {
+                var $This = $(this);
+                if($This[0].nodeName == 'INPUT'){
+                    $Btn = $('<button>').attr("class", $This.attr('class'));
+                    $This.after($Btn);
+                    $This.hide();
+                } else {
+                    var $Btn = $This;
+                }
+                $Btn.attr("data-loading-text","<i class='fa fa-circle-o-notch fa-spin'></i>")
+                    .button('loading');
+                setTimeout(function() {
+                    $Btn.button('reset');
+                    if($This[0].nodeName == 'INPUT'){
+                        $Btn.hide();
+                        $This.show();
+                    }
+                }, 8000);
+            });
+        });
+
         $('a.blank').on('click', function (event) {
             event.preventDefault();
             window.open($(this).attr('href'));

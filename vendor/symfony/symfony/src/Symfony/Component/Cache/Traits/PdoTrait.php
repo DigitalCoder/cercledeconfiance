@@ -99,7 +99,7 @@ trait PdoTrait
             $table->addColumn($this->idCol, $types[$this->driver], array('length' => 255));
             $table->addColumn($this->dataCol, 'blob', array('length' => 16777215));
             $table->addColumn($this->lifetimeCol, 'integer', array('unsigned' => true, 'notnull' => false));
-            $table->addColumn($this->timeCol, 'integer', array('unsigned' => true, 'foo' => 'bar'));
+            $table->addColumn($this->timeCol, 'integer', array('unsigned' => true));
             $table->setPrimaryKey(array($this->idCol));
 
             foreach ($schema->toSql($conn->getDatabasePlatform()) as $sql) {
@@ -170,7 +170,7 @@ trait PdoTrait
             foreach ($expired as $id) {
                 $stmt->bindValue(++$i, $id);
             }
-            $stmt->execute($expired);
+            $stmt->execute();
         }
     }
 
