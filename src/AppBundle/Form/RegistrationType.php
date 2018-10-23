@@ -6,8 +6,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+//use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
 class RegistrationType extends AbstractType
@@ -51,6 +52,8 @@ class RegistrationType extends AbstractType
                     'Autre' => 'autre'
                 ],
             ])*/
+            //->add('username', HiddenType::class, ['label' => ' ', 'translation_domain' => 'FOSUserBundle','required' => false])
+            ->add('username', TextType::class, ['label' => ' ', 'translation_domain' => 'FOSUserBundle','required' => false])
             ->add('firstname', TextType::class, ['label'=>'Prénom'])
             ->add('name', TextType::class, ['label'=>'Nom'])
             ->add('address', AddressType::class, ['label'=>false, 'required' => false])

@@ -42,7 +42,7 @@
                             {{ form_widget(form.name) }}
                             {{ form_errors(form.name) }}
                         </div>
-                        <div class="form-group {% if form.username.vars.errors|length > 0 %} has-error text-danger{% endif %}">
+                        <div class="form-group hidden {% if form.username.vars.errors|length > 0 %} has-error text-danger{% endif %}">
                             {{ form_label(form.username)}}
                             {{ form_widget(form.username) }}
                             {{ form_errors(form.username) }}
@@ -97,3 +97,5 @@
         </div>
     </div>
 </div>
+
+

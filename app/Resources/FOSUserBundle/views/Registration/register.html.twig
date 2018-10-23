@@ -3,3 +3,13 @@
 {% block fos_user_content %}
 {% include "@FOSUser/Registration/register_content.html.twig" %}
 {% endblock fos_user_content %}
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('#fos_user_registration_form_email').on('keyup', function(event) {
+                $('#fos_user_registration_form_username').val($(this).val());
+            });
+        });
+    </script>
+{% endblock %}
