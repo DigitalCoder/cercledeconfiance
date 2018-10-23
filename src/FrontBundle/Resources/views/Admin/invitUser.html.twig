@@ -106,7 +106,7 @@
                         <div class="col-sm-6">
                             <div class="form-group {% if form.user.avatar.vars.errors|length > 0 %} has-error text-danger{% endif %}">
                                 {{ form_label(form.user.avatar)}}
-                                {{ form_widget(form.user.avatar) }}
+                                {{ form_widget(form.user.avatar, {'attr': {'class': 'form-control'}}) }}
                                 {{ form_errors(form.user.avatar) }}
                             </div>
                         </div>

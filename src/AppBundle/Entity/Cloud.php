@@ -26,7 +26,7 @@ class Cloud
     /**
      * @var string
      * @ORM\Column(name="file_name", type="string", length=255)
-     * @Assert\File(maxSize = "20M",
+     * @Assert\File(maxSize = "1000M",
      *     maxSizeMessage="Le fichier est trop volumineux")
 
      */

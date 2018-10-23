@@ -65,7 +65,19 @@
                                 <div class="wallTitle" style="background-color: {{ wallUsersColors[data.circleuser.user.id] }}">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-2">
-                                            <img src="{% if data.circleuser.user.avatar != null %}{{ asset("uploads/" ~ data.circleuser.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="wallAvatar img-circle" alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}" style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};">
+                                            {% set avatar_src = asset("assets/img/avatar.png") %}
+                                            {% if data.circleuser.user.avatar != null %}
+                                                {% set avatar_src =asset("uploads/" ~ data.circleuser.user.avatar) %}
+                                            {% endif %}
+                                            <picture>
+                                                <source srcset="{{ avatar_src | imagine_filter('profile_thumb_small') }} 1x,
+                                                    {{ avatar_src | imagine_filter('profile_thumb_small_2x') }} 2x">
+                                                <img src="{{ avatar_src | imagine_filter('profile_thumb_small') }}"
+                                                     class="wallAvatar img-circle"
+                                                     alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}"
+                                                     style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};"
+                                                >
+                                            </picture>
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <h5>
@@ -103,7 +115,19 @@
                                     <div class="wallTitle" style="background-color: {{ wallUsersColors[data.circleuser.user.id] }}">
                                         <div class="row">
                                             <div class="col-xs-3 col-sm-2">
-                                                <img src="{% if data.circleuser.user.avatar != null %}{{ asset("uploads/" ~ data.circleuser.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="wallAvatar img-circle" alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}" style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};">
+                                                {% set avatar_src = asset("assets/img/avatar.png") %}
+                                                {% if data.circleuser.user.avatar != null %}
+                                                    {% set avatar_src =asset("uploads/" ~ data.circleuser.user.avatar) %}
+                                                {% endif %}
+                                                <picture>
+                                                    <source srcset="{{ avatar_src | imagine_filter('profile_thumb_small') }} 1x,
+                                                    {{ avatar_src | imagine_filter('profile_thumb_small_2x') }} 2x">
+                                                    <img src="{{ avatar_src | imagine_filter('profile_thumb_small') }}"
+                                                         class="wallAvatar img-circle"
+                                                         alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}"
+                                                         style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};"
+                                                    >
+                                                </picture>
                                             </div>
                                             <div class="col-xs-9 text-right">
                                                 <h5>
@@ -140,9 +164,9 @@
                                             <div class="col-xs-12 text-center">
                                                 <strong class="filename">{{ fileName }} <em>({{ fileSize }})</em></strong>
                                             </div>
-                                            <img srcset="{{ cloud_src | imagine_filter('cloud_thumb') }} 1x,
-                                                {{ cloud_src | imagine_filter('cloud_thumb_2x') }} 2x"
-                                                 src="{{ cloud_src | imagine_filter('cloud_thumb') }}"
+                                            <img srcset="{{ cloud_src | imagine_filter('wall_thumb') }} 1x,
+                                                {{ cloud_src | imagine_filter('wall_thumb_2x') }} 2x"
+                                                 src="{{ cloud_src | imagine_filter('wall_thumb') }}"
                                                  class="lazy itemWall itemCloud imgModal img-responsive"
                                                  alt="{{ data.creationdate|date("d/m/Y H:i") }} / {{ fileName }}"
                                                  data-modal_img_src="{{ cloud_src | imagine_filter('original') }}"
@@ -208,7 +232,19 @@
                                 <div class="wallTitle" style="background-color: {{ wallUsersColors[data.circleuser.user.id] }}">
                                     <div class="row">
                                         <div class="col-xs-3 col-sm-2">
-                                            <img src="{% if data.circleuser.user.avatar != null %}{{ asset("uploads/" ~ data.circleuser.user.avatar) }}{% else %}{{ asset("assets/img/avatar.png") }}{% endif %}" class="wallAvatar img-circle" alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}" style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};">
+                                            {% set avatar_src = asset("assets/img/avatar.png") %}
+                                            {% if data.circleuser.user.avatar != null %}
+                                                {% set avatar_src =asset("uploads/" ~ data.circleuser.user.avatar) %}
+                                            {% endif %}
+                                            <picture>
+                                                <source srcset="{{ avatar_src | imagine_filter('profile_thumb_small') }} 1x,
+                                                    {{ avatar_src | imagine_filter('profile_thumb_small_2x') }} 2x">
+                                                <img src="{{ avatar_src | imagine_filter('profile_thumb_small') }}"
+                                                 class="wallAvatar img-circle"
+                                                 alt="{{  data.circleuser.user.firstname }} {{  data.circleuser.user.name }}"
+                                                 style="border-color: {{ wallUsersColors[data.circleuser.user.id] }};"
+                                                >
+                                            </picture>
                                         </div>
                                         <div class="col-xs-9 text-right">
                                             <h5>
