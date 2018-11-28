@@ -144,7 +144,7 @@ class WallController extends Controller
             } else {
                 $currentCircleUserFullname = 'inconnu';
             }
-            $currentUserName = $currentCircleUserFullname;
+            $currentUserName = ucwords(strtolower($currentCircleUserFullname));
 
             $filters = [
                 [
@@ -185,14 +185,18 @@ class WallController extends Controller
 
             $locale = 'fr';
             //$title = 'Cercle Confiance | Mur | ' . date('d/m/Y H:i:s');
-            $title = 'Mur | ' . date('d/m/Y H:i:s');
+            //$title = 'Mur | ' . date('d/m/Y H:i:s');
+            $title = $circleName . ' | ' . 'Mur | ' . date('d/m/Y H:i:s');
             $headings = array(
-                "en" => 'Wall | ' . date('d/m/Y H:i:s'),
+                //"en" => 'Wall | ' . date('d/m/Y H:i:s'),
+                "en" => $circleName . ' | ' . 'Wall | ' . date('d/m/Y H:i:s'),
                 $locale => $title
             );
-            $msg = $currentUserName .' a laissé un nouveau message sur le Mur du Cercle Confiance "' . $circleName .'"';
+            //$msg = $currentUserName .' a laissé un nouveau message sur le Mur du Cercle Confiance "' . $circleName .'"';
+            $msg = $currentUserName .' a laissé un nouveau message sur le Mur';
             $contents = [
-                'en' => $currentUserName .' left a new message on the Wall of the Trust Circle "' . $circleName .'"',
+                //'en' => $currentUserName .' left a new message on the Wall of the Trust Circle "' . $circleName .'"',
+                'en' => $currentUserName .' left a new message on the Wall',
                 $locale => $msg
             ];
 

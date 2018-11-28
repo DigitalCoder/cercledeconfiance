@@ -3,7 +3,7 @@
 <p>
     Bonjour {% if name is defined %}{{ name }}{% endif %}
     <br />
-    Vous êtes invité sur le Cercle Confiance "<strong>{{ circleName }}</strong>".
+    {{ currentUserName }} vous invite sur le Cercle Confiance "<strong>{{ circleName }}</strong>".
     <br />
-    <strong style="font-size:1em;color:#337ab7;"><a href="{{ basepath }}{{ token }}/invit">Rejoindre le Cercle Confiance {{ circleName }}</a></strong>
+    <strong style="font-size:1em;color:#337ab7;"><a href="{{ basepath }}{{ token }}/invit">Rejoindre le Cercle Confiance &laquo; {{ circleName }} &raquo;</a></strong>
 </p>

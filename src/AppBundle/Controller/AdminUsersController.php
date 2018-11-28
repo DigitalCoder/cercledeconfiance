@@ -59,7 +59,6 @@ class AdminUsersController extends Controller
         if ($currentCircleUser == null || $currentCircleUser->getAdminCircle() == false) {
             return $this->redirectToRoute('accueil');
         }
-        $form->handleRequest($request);
 
         $userAdmin = null;
         $userCenter = null;
@@ -91,12 +90,26 @@ class AdminUsersController extends Controller
         $circleUser = $em->getRepository('AppBundle:CircleUser')
             ->findOneBy(['circle'=>$circle->getId(), 'user'=>$currentUser->getId()]);
 
+        if ($circleUser->getUser()->getFirstname() && $circleUser->getUser()->getName()) {
+            $currentCircleUserFullname = $circleUser->getUser()->getFirstname() . ' ' . $circleUser->getUser()->getName();
+        } elseif ($circleUser->getUser()->getFirstname()) {
+            $currentCircleUserFullname = $circleUser->getUser()->getFirstname();
+        } elseif ($circleUser->getUser()->getName()) {
+            $currentCircleUserFullname = $circleUser->getUser()->getName();
+        } elseif ($circleUser->getUser()->getUserName()) {
+            $currentCircleUserFullname = $circleUser->getUser()->getUserName();
+        } else {
+            $currentCircleUserFullname = 'inconnu';
+        }
+        $currentUserName = ucwords(strtolower($currentCircleUserFullname));
+
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $mailer = $this->get('mailer');
             $message = new \Swift_Message('Invitation Cercle Confiance : ' . $circleName);
             $message->setTo($userToinvite->getEmail())
             ->setFrom([$this->getParameter('mailer_user') => 'Cercle Confiance'])
-            ->setBody($this->renderView('invitation.html.twig', array('circleName' => $circleName, 'name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
+            ->setBody($this->renderView('invitation.html.twig', array('circleName' => $circleName, 'currentUserName' => $currentUserName, 'name' => $userToinvite->getName(), 'token'=>$circle->getToken())), 'text/html');
 
             $mailer->send($message);
 

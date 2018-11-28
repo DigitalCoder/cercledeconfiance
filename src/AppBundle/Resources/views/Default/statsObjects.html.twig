@@ -16,6 +16,19 @@
         </div>
     </div>
 
+    {% if (circleName == "Dev") or (circleName == "Patient à domicile") %}
+    <div class="row text-center">
+        {#<div class="col-xs-12">
+            <canvas id="myChart"></canvas>
+        </div>#}
+        <div class="col-xs-12">
+            <div id="chart" style="height: 500px; min-width: 500px"></div>
+        </div>
+        <div class="col-xs-12">
+            <div id="gauge" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+        </div>
+    </div>
+    {%  else %}
     <div class="row text-center">
         <div class="col-sm-2 col-xs-12">
             <ul class="nav nav-tabs nav-stacked" role="tablist" id="myTabs">
@@ -31,6 +44,22 @@
             {% for object in circleUser.objectEntries if object.access == true %}
                 <div role="tabpanel" class="tab-pane fade{% if loop.first %} in active{% endif %}"
                      id="{{ object.model.reference }}">
+                    <h2>{{ object.model.reference }}</h2>
+                    <h3>{{ object.model.description }}</h3>
+                    <em>{{ circleUser.id }}</em>
+                    <p>
+                        objectEntries id: {{ object.id }}
+                        <br>
+                        object.model.id: {{ object.model.id }}
+                        <br>
+                        Brand name: {{ object.model.brand.name }} [{{ object.model.brand.id }}]
+                        <br>
+                        Object type: {{ object.model.typeObject.type }} [{{ object.model.typeObject.id }}]
+                        <br>
+                        Price: {{ object.model.price }}
+                        <br>
+                        Doc url : <a href="{{ object.model.docUrl }}" class="blank">{{ object.model.docUrl }}</a>
+                    </p>
                     {% if object.model.typeObject.type == "Temperature sensor" %}
                         <canvas id="myChart"></canvas>
                     {% elseif object.model.typeObject.type == "Smoke sensor" and object.access == true %}
@@ -47,11 +76,446 @@
         </div>
 
     </div>
+    {% endif %}
 </section>
 {% endblock %}
 
 {% block javascript %}
     {{ parent() }}
+    {% if (circleName == "Dev") or (circleName == "Patient à domicile") %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.js"></script>
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                function addData(chart, label, data) {
+                    chart.data.labels.push(label);
+                    chart.data.datasets.forEach((dataset) => {
+                        dataset.data.push(data);
+                    });
+                    chart.update();
+                }
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var data = [];
+                var option = {
+                    responsive: true,
+                    title:{
+                        display:true,
+                        text: 'Chart.js'
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true
+                        }],
+                        yAxes: [{
+                            display: true
+                        }]
+                    }
+                };
+                var myLineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: options
+                });
+            });
+        </script>#}
+        <script>
+            //settings BEGIN
+            var client;
+            var clientId = "myclientid_";
+            var reconnectTimeout = 2000;
+            var MQTTbroker = 'cercle-confiance.fr';
+            var MQTTport = 443;
+            //var MQTTsubTopic = 'CERCLE/00000000908c3bf5/01832054/#'; //works with wildcard # and + topics dynamically now
+            var MQTTTopics = 'CERCLE/#'; //works with wildcard # and + topics dynamically now
+            var MQTTsubTopic = 'CERCLE/00000000908c3bf5/0182280e/#'; //works with wildcard # and + topics dynamically now
+            var useTLS = true;
+            //mqtt connecton options including the mqtt broker subscriptions
+            var options = {
+                timeout: 3,
+                useSSL: useTLS,
+                /*onSuccess: function () {
+                        console.log("mqtt connected");
+                        // Connection succeeded; subscribe to our topics
+                        client.subscribe(MQTTsubTopic, {qos: 1});
+                    },
+                    onFailure: function (message) {
+                        console.log("Connection failed, ERROR: " + message.errorMessage);
+                        //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
+                    }*/
+                onSuccess: onConnect,
+                onFailure: onFail
+            };
+            //settings END
+
+            var myLineChart;
+            var chart; // global variuable for chart
+            var gauge; // global variuable for gauge
+            var dataTopics = new Array();
+
+            //mqtt broker
+            function MQTTconnect() {
+                client = new Paho.MQTT.Client(MQTTbroker, MQTTport,
+                    clientId + parseInt(Math.random() * 100, 10));
+
+                // connect the client
+                /*client.reconnect = true;*/
+
+                // set callback handlers
+                client.onMessageArrived = onMessageArrived;
+                client.onMessageDelivered = onMessageDelivered;
+                client.onConnectionLost = onConnectionLost;
+                client.onConnected = onConnected;
+                //connect to broker is at the bottom of the init() function !!!!
+            }
+
+            //var datas = {};
+            // called when the client connects
+            function onConnect() {
+                // Once a connection has been made, make a subscription and send a message.
+                console.log("onConnect");
+                console.log(MQTTTopics);
+                client.subscribe(MQTTTopics, {qos: 0});
+            }
+            // called when the client fail
+            function onFail(message) {
+                console.log("onFail");
+                console.log("Connection failed, ERROR: " + message.errorMessage);
+                //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
+            }
+            // called when a message delivered
+            function onMessageDelivered(message) {
+                console.log("onMessageDelivered:"+message.payloadString);
+            }
+            // called when onConnected
+            function onConnected(message) {
+                console.log("onConnected:"+message.payloadString);
+            }
+            //can be used to reconnect on connection lost
+            function onConnectionLost(responseObject) {
+                console.log("connection lost: " + responseObject.errorMessage);
+                //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
+                setTimeout(MQTTconnect, reconnectTimeout);
+            };
+
+            //what is done when a message arrives from the broker
+            function onMessageArrived(message) {
+                console.log(message.destinationName, '',message.payloadString);
+
+                var datas = JSON.parse(message.payloadString);
+                var channel = datas.channel;
+                var senderId = datas.senderId;
+                console.info(datas);
+                //check if it is a new topic, if not add it to the array
+                if (dataTopics.indexOf(message.destinationName) < 0){
+
+                    dataTopics.push(message.destinationName); //add new topic to array
+                    var y = dataTopics.indexOf(message.destinationName); //get the index no
+
+                    //create new data series for the chart
+                    var newseries = {
+                        id: y,
+                        //name: message.destinationName,
+                        name: '[' + senderId + '] ' + channel,
+                        data: []
+                    };
+
+                    chart.addSeries(newseries); //add the series
+
+                };
+
+                var y = dataTopics.indexOf(message.destinationName); //get the index no of the topic from the array
+                var myEpoch = new Date().getTime(); //get current epoch time
+                //var thenum = message.payloadString.replace( /^\D+/g, ''); //remove any text spaces from the message
+                var thenum = datas.value.replace( /^\D+/g, ''); //remove any text spaces from the message
+                var plotMqtt = [myEpoch, Number(thenum)]; //create the array
+                if (isNumber(thenum)) { //check if it is a real number and not text
+                    console.log('is a propper number, will send to chart.')
+                    plot(plotMqtt, y, '[' + senderId + '] ' + channel);	//send it to the plot function
+                };
+            };
+
+            //check if a real number
+            function isNumber(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            };
+
+            //function that is called once the document has loaded
+            function init() {
+                //i find i have to set this to false if i have trouble with timezones.
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    },
+                    lang: {
+                        months: [
+                            'Janvier', 'Février', 'Mars', 'Avril',
+                            'Mai', 'Juin', 'Juillet', 'Août',
+                            'Septembre', 'Octobre', 'Novembre', 'Décembre'
+                        ],
+                        weekdays: [
+                            'Dimanche', 'Lundi', 'Mardi', 'Mercredi',
+                            'Jeudi', 'Vendredi', 'Samedi'
+                        ]
+                    }
+                });
+                // Connect to MQTT broker
+                MQTTconnect();
+                client.connect(options);
+            };
+
+            //this adds the plots to the chart
+            function plot(point, chartno, channel) {
+                console.log('point',point);
+                console.log('chartno',chartno);
+
+                //var series = chart.series[0],
+                var series = chart.series[chartno],
+                    shift = series.data.length > 20; // shift if the series is
+                // longer than 20
+
+                if(channel.match(/humidity/g)) {
+                    series.update({
+                        type: "column",
+                        yAxis: 1,
+                        tooltip: {
+                            valueSuffix: ' mm'
+                        }
+                    });
+                    chart.yAxis[1].update({
+                        labels: {
+                            format: '{value} mm',
+                            style: {
+                                color: Highcharts.getOptions().colors[chartno]
+                            }
+                        },
+                        title: {
+                            text: 'Humidity',
+                            style: {
+                                color: Highcharts.getOptions().colors[chartno]
+                            }
+                        }
+                    });
+                }
+                // add the point
+               chart.series[chartno].addPoint(point, true, shift);
+
+                //if(channel == 'temperature') {
+                if(channel.match(/temperature/g)) {
+                    series.update({
+                       tooltip: {
+                            valueSuffix: '°C'
+                        }
+                    });
+                    chart.yAxis[0].update({
+                        title: {
+                            text: 'Temperature',
+                            style: {
+                                color: Highcharts.getOptions().colors[chartno]
+                            }
+                        },
+                        labels: {
+                            format: '{value}°C',
+                            style: {
+                                color: Highcharts.getOptions().colors[chartno]
+                            }
+                        }
+                    });
+                    if(gauge.series.indexOf(chartno)) {
+                        gauge.setTitle({ text: channel });
+                        var newVal = gauge.series[0].points[0];
+                        newVal.update(point);
+                    }
+                }
+            };
+
+            //settings for the chart
+            $(document).ready(function() {
+                init();
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'chart',
+                        defaultSeriesType: 'spline',
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        //text: 'Plotting Live websockets data from a MQTT topic'
+                        text: 'Plotting Live'
+                    },
+                    /*subtitle: {
+                        text: 'broker: ' + MQTTbroker + ' | port: ' + MQTTport + ' | topic : ' + MQTTTopics
+                    },*/
+                    xAxis: {
+                        type: 'datetime',
+                        tickPixelInterval: 150,
+                        maxZoom: 20 * 1000
+                    },
+                    /*yAxis: {
+                        minPadding: 0.2,
+                        maxPadding: 0.2,
+                        title: {
+                            text: 'Value',
+                            margin: 80
+                        }
+                    },*/
+                    yAxis: [{ // Primary yAxis
+                        labels: {
+                            format: '{value}',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        title: {
+                            text: '',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        }
+                    }, { // Secondary yAxis
+                        title: {
+                            text: '',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        labels: {
+                            format: '{value}',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        opposite: true
+                    }],
+                    tooltip: {
+                        shared: true
+                    },
+                    series: []
+                });
+                gauge =  new Highcharts.chart('gauge', {
+                        chart: {
+                            type: 'gauge',
+                            plotBackgroundColor: null,
+                            plotBackgroundImage: null,
+                            plotBorderWidth: 0,
+                            plotShadow: false
+                        },
+                        navigation: {
+                            buttonOptions: {
+                                enabled: false
+                            }
+                        },
+                        title: {
+                            text: 'Temperature'
+                        },
+                        pane: {
+                            startAngle: -150,
+                            endAngle: 150,
+                            background: [{
+                                backgroundColor: {
+                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                    stops: [
+                                        [0, '#FFF'],
+                                        [1, '#333']
+                                    ]
+                                },
+                                borderWidth: 0,
+                                outerRadius: '109%'
+                            }, {
+                                backgroundColor: {
+                                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                    stops: [
+                                        [0, '#333'],
+                                        [1, '#FFF']
+                                    ]
+                                },
+                                borderWidth: 1,
+                                outerRadius: '107%'
+                            }, {
+                                // default background
+                            }, {
+                                backgroundColor: '#DDD',
+                                borderWidth: 0,
+                                outerRadius: '105%',
+                                innerRadius: '103%'
+                            }]
+                        },
+                        // the value axis
+                        yAxis: {
+                            min: -50,
+                            max: 50,
+
+                            minorTickInterval: 'auto',
+                            minorTickWidth: 1,
+                            minorTickLength: 10,
+                            minorTickPosition: 'inside',
+                            minorTickColor: '#666',
+
+                            tickPixelInterval: 30,
+                            tickWidth: 2,
+                            tickPosition: 'inside',
+                            tickLength: 10,
+                            tickColor: '#666',
+                            labels: {
+                                step: 2,
+                                rotation: 'auto'
+                            },
+                            title: {
+                                text: '°C'
+                            },
+                            plotBands: [{
+                                from: -50,
+                                to: 0,
+                                color: '#0000ff' // green
+                            }, {
+                                from: 0,
+                                to: 20,
+                                color: '#55BF3B' // green
+                            }, {
+                                from: 20,
+                                to: 30,
+                                color: '#DDDF0D' // yellow
+                            }, {
+                                from: 30,
+                                to: 50,
+                                color: '#DF5353' // red
+                            }]
+                        },
+                        series: [{
+                            name: 'Temperature',
+                            data: [0],
+                            tooltip: {
+                                valueSuffix: ' °C'
+                            }
+                        }]
+
+                    }
+                    //,
+                    // Add some life
+                    /*function (chart) {
+                        if (!chart.renderer.forExport) {
+                            setInterval(function () {
+                                var point = chart.series[0].points[0],
+                                    newVal,
+                                    inc = Math.round((Math.random() - 0.5) * 20);
+
+                                newVal = point.y + inc;
+                                if (newVal < -50 || newVal > 50) {
+                                    newVal = point.y - inc;
+                                }
+
+                                point.update(newVal);
+
+                            }, 3000);
+                        }
+                    }*/
+                );
+            });
+        </script>
+    {%  else %}
     <script src="{{ asset('assets/Chart.js-master/dist/Chart.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -105,4 +569,5 @@
             }
         });
     </script>
+    {% endif %}
 {% endblock %}
